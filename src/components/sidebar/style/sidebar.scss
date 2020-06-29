@@ -1,0 +1,47 @@
+$font-family: Muller;
+.sidebar {
+  position: relative;
+  background-color: #202A49;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  &:before{
+    content: "";
+    position: absolute;
+    left: 60px;
+    bottom: 722px;
+    height: 1px;
+    width: 87%;
+    border-bottom: 1px solid rgba(196, 196, 196, 0.23);
+  }
+}
+.sidebar__item-logo {
+  position: absolute;
+  left: 32px;
+  top: 30px;
+}
+
+.sidebar__item-photo {
+  position: absolute;
+  left: 37px;
+  top: 109px;
+}
+.sidebar__item-greeting{
+  position: absolute;
+  left: 200px;
+  top: 130px;
+  //overflow: auto;
+  font-family: $font-family;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 36px;
+  color: #FFFFFF;
+}
+.sidebar__item-rating{
+  position: absolute;
+  left: 32px;
+  top: 260.55px;
+}
+.sidebar__item-rating-star{
+  margin-right: 12px;
+}

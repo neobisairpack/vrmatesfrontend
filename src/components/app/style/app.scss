@@ -1,0 +1,13 @@
+$font-family: Muller;
+$font-size: 20px;
+$line-height: 20px;
+.app-wrapper{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 80px 893px 51px;
+  background-color: #E5E5E5;
+  font-family: $font-family;
+
+}
+

@@ -1,0 +1,49 @@
+.sidebar {
+  position: relative;
+  background-color: #202A49;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.sidebar:before {
+  content: "";
+  position: absolute;
+  left: 32px;
+  top: 301px;
+  height: 1px;
+  width: 279px;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.23);
+}
+
+.sidebar__item-logo {
+  position: absolute;
+  left: 32px;
+  top: 30px;
+}
+
+.sidebar__item-photo {
+  position: absolute;
+  left: 37px;
+  top: 109px;
+}
+
+.sidebar__item-greeting {
+  position: absolute;
+  left: 200px;
+  top: 130px;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 36px;
+  color: #FFFFFF;
+}
+
+.sidebar__item-rating {
+  position: absolute;
+  left: 32px;
+  top: 260.55px;
+}
+
+.sidebar__item-rating-star {
+  margin-right: 12px;
+}

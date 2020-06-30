@@ -1,5 +1,6 @@
 import React from 'react';
 import './style/main.css';
+import Post from '../post';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
 const Main = () => {
     return (
@@ -14,7 +15,7 @@ const Main = () => {
                 <button className={"dashboard__button"}>Create Post</button>
             </div>
             <div className={"dashboard__content"}>
-
+                <Post/>
             </div>
         </div>
     );

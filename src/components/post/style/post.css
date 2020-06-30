@@ -1,0 +1,10 @@
+.post {
+  position: absolute;
+  width: 310px;
+  height: 224px;
+  left: 414px;
+  top: 166px;
+  background: #FFFFFF;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+}

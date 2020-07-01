@@ -11,12 +11,11 @@ const Main = () => {
                 <ul className={"dashboard__list"}>
                     <li className={"dashboard__list-item dashboard__list-item_active"}>Providers</li>
                     <li className={"dashboard__list-item "}>Requesters</li>
+                    <li className={"dashboard__list-item "}> <button className={"dashboard__button"}>Create Post</button></li>
                 </ul>
-                <button className={"dashboard__button"}>Create Post</button>
+
             </div>
-            <div className={"dashboard__content"}>
                 <Post/>
-            </div>
         </div>
     );
 };

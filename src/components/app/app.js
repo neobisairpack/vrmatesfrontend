@@ -3,12 +3,14 @@ import Main from '../dashboard';
 import Header from "../header";
 import Sidebar from "../sidebar";
 import Footer from "../footer";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './style/app.css';
 //import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 const App = () => {
     return (
+        <Router>
             <div className={"app-wrapper"}>
                 <Sidebar/>
                 <Header/>
@@ -17,7 +19,7 @@ const App = () => {
                 </div>
                 <Footer/>
             </div>
-
+        </Router>
     );
 };
 

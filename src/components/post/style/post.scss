@@ -28,7 +28,7 @@ $font-color-orange: #FD5A01;
     left: 0;
     bottom: -6px;
     height: 1px;
-    width: 273.25px;
+    width: 245px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     //margin-bottom: 11px;
   }
@@ -149,4 +149,25 @@ $font-color-orange: #FD5A01;
   align-items: center;
   background: transparent;
   border: none;
+  &:hover{
+    background: transparent;
+    border: none;
+    color: #FD5A01;
+    outline: none;
+  }
+  &:focus{
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+  &:visited{
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+  &:active{
+    background: transparent;
+    border: none;
+    outline: none;
+  }
 }

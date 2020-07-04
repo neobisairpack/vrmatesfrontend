@@ -60,7 +60,7 @@ const Post = () => {
                             </div>
                             <CardText className={"post__text"}>Some quick example text to build on the card title</CardText>
                             <CardText className={"post__email"}>aelina@gmail.com</CardText>
-                            <Button className={"post__interested-btn"}>Interested</Button>
+                            <button className={"post__interested-btn"}>Interested</button>
                         </Card>
                     </div>
                 )}

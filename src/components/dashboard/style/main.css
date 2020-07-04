@@ -52,6 +52,9 @@
   font-size: 18px;
   line-height: 18px;
 }
+.dashboard__button:focus {
+  outline: none;
+}
 
 .dashboard__list-item_active {
   position: relative;

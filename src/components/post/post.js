@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/post.css';
 import profile from '../sidebar/images/profilephoto.svg';
 import star from "../sidebar/images/star.svg";
 import arrow from './images/arrow.svg';
+import FullPost from './full-view';
 import {
     Card,
     CardImg,
@@ -17,7 +18,11 @@ import {
 } from 'reactstrap';
 
 const Post = () => {
-    const array = [1, 2, 3, 4, 5, 6, 7, 8]
+    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const [postState, setPostState] = useState(false);
+    function postView() {
+        setPostState(!postState)
+    }
     return (
         <div className={"post container"}>
             <div className={"row"}>
@@ -60,12 +65,14 @@ const Post = () => {
                             </div>
                             <CardText className={"post__text"}>Some quick example text to build on the card title</CardText>
                             <CardText className={"post__email"}>aelina@gmail.com</CardText>
-                            <button className={"post__interested-btn"}>Interested</button>
+                            <button onClick={postView} className={"post__interested-btn"}>Interested</button>
                         </Card>
                     </div>
                 )}
 
-
+                <div>
+                    {postState ? <FullPost/> : null}
+                </div>
             </div>
         </div>
     );

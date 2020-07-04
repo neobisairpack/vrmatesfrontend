@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import './style/main.css';
 import Post from '../post';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
+//import Switch from '../pop-up';
+import '../pop-up/style/popup.css';
 const Main = () => {
     const [popUpState, setPopUpState] = useState(false);
     function togglePopUp(){
-        setPopUpState(true);
+        setPopUpState(!popUpState);
     }
     return (
         <div className={"dashboard"}>
@@ -20,7 +22,29 @@ const Main = () => {
 
             </div>
             <div>
-                {popUpState ? "I am pop up!" : null}
+                {popUpState ? <div className={"switch"}>
+                    <p className={"switch__title"}>Providers</p>
+                    <ul>
+                        <li>
+                            <input type={"radio"} name={"radio"} />
+                            <label>Package Delivery</label>
+                        </li>
+                        <li>
+                            <input type={"radio"} name={"radio"}/>
+                            <label>Airport pick up/drop off</label>
+                        </li>
+                        <li>
+                            <input type={"radio"} name={"radio"}/>
+                            <label>Hosting</label>
+                        </li>
+                    </ul>
+                    <div className={"switch__buttons"}>
+                        <ul>
+                            <li><button onClick={togglePopUp} className={"switch__button"}>Cancel</button></li>
+                            <li><button className={"switch__button"}>Ok</button></li>
+                        </ul>
+                    </div>
+                </div> : null}
             </div>
                 <Post/>
         </div>

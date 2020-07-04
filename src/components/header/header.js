@@ -28,7 +28,7 @@ const Header = (props) => {
                     <Collapse className={"nav"} isOpen={isOpen} navbar>
                         <Nav className={"mr-auto"} >
                             <NavItem>
-                                <NavLink href="/components/" className={"nav__item nav__item_active"}>Dashboard</NavLink>
+                                <NavLink href="/" className={"nav__item nav__item_active"}>Dashboard</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/profile/" className={"nav__item"}>Profile</NavLink>

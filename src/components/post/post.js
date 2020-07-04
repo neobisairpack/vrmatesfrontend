@@ -63,13 +63,13 @@ const Post = () => {
                                 </div>
                                 <CardSubtitle className={"post__deadline"}>10th July,2020</CardSubtitle>
                             </div>
-                            <CardText className={"post__text"}>Some quick example text to build on the card title</CardText>
+                            <CardText className={"post__text"}>Coming to Bishkek to participate at some conference.
+                                is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </CardText>
                             <CardText className={"post__email"}>aelina@gmail.com</CardText>
                             <button onClick={postView} className={"post__interested-btn"}>Interested</button>
                         </Card>
                     </div>
                 )}
-
                 <div>
                     {postState ? <FullPost/> : null}
                 </div>

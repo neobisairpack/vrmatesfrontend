@@ -5,6 +5,7 @@ import Sidebar from "../sidebar";
 import Footer from "../footer";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './style/app.css';
+import Profile from '../profile';
 //import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
@@ -15,7 +16,13 @@ const App = () => {
                 <Sidebar/>
                 <Header/>
                 <div className={"app-wrapper__content"}>
-                    <Main/>
+                    <Route exact path="/"
+                           render={() => <Main
+                           />} />
+                    <Route exact path="/profile"
+                           render={() => <Profile
+                           />} />
+
                 </div>
                 <Footer/>
             </div>

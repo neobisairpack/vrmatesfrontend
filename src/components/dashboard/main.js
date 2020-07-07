@@ -4,10 +4,16 @@ import Post from '../post';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
 //import Switch from '../pop-up';
 import '../pop-up/style/popup.css';
+import CreatePost from "../create-post";
 const Main = () => {
     const [popUpState, setPopUpState] = useState(false);
+    const [createPostState, setCreatePostState] = useState(false);
     function togglePopUp(){
         setPopUpState(!popUpState);
+    }
+    function toggleCreatePost(){
+        setCreatePostState(!createPostState);
+        setPopUpState(false);
     }
     return (
         <div className={"dashboard"}>
@@ -41,10 +47,11 @@ const Main = () => {
                     <div className={"switch__buttons"}>
                         <ul>
                             <li><button onClick={togglePopUp} className={"switch__button"}>Cancel</button></li>
-                            <li><button className={"switch__button"}>Ok</button></li>
+                            <li><button onClick={toggleCreatePost} className={"switch__button"}>Ok</button></li>
                         </ul>
                     </div>
                 </div> : null}
+                {createPostState ? <CreatePost/> : null}
             </div>
                 <Post/>
         </div>

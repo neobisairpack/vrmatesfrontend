@@ -19,7 +19,7 @@ const Sidebar = () => {
                   <img src={star} className={"sidebar__item-rating-star"} alt={"Rating"}/>
                   <img src={star} className={"sidebar__item-rating-star"} alt={"Rating"}/>
                 </div>
-
+            <div className={"sidebar__weather"}></div>
         </div>
     );
 }

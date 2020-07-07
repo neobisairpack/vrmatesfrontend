@@ -1,35 +1,47 @@
 .sidebar {
+  display: grid;
   position: relative;
+  padding-left: 32px;
+  padding-top: 30px;
   background-color: #202A49;
   grid-row-start: 1;
   grid-row-end: 3;
+  grid-gap: 0;
+  grid-template-rows: repeat(4, 58px);
+  grid-template-columns: repeat(2, 50%);
+  grid-template-areas: "l l" "p g" "p g" "r r";
 }
 .sidebar:before {
   content: "";
   position: absolute;
-  left: 32px;
-  top: 301px;
+  left: 10%;
+  top: 280px;
   height: 1px;
-  width: 279px;
+  width: 83%;
   border-bottom: 1px solid rgba(196, 196, 196, 0.23);
 }
 
 .sidebar__item-logo {
-  position: absolute;
-  left: 32px;
-  top: 30px;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: l;
 }
 
 .sidebar__item-photo {
-  position: absolute;
-  left: 37px;
-  top: 109px;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 3;
+  -ms-grid-column: 1;
+  grid-area: p;
+  align-self: center;
 }
 
 .sidebar__item-greeting {
-  position: absolute;
-  left: 200px;
-  top: 130px;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 3;
+  -ms-grid-column: 3;
+  grid-area: g;
+  align-self: center;
   font-family: Muller;
   font-style: normal;
   font-weight: normal;
@@ -39,11 +51,17 @@
 }
 
 .sidebar__item-rating {
-  position: absolute;
-  left: 32px;
-  top: 260.55px;
+  -ms-grid-row: 7;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: r;
+  align-self: end;
 }
 
 .sidebar__item-rating-star {
   margin-right: 12px;
+}
+
+.sidebar__weather {
+  grid-area: w;
 }

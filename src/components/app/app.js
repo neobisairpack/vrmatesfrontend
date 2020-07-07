@@ -3,11 +3,11 @@ import Main from '../dashboard';
 import Header from "../header";
 import Sidebar from "../sidebar";
 import Footer from "../footer";
+import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './style/app.css';
 import Profile from '../profile';
 //import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
 
 const App = () => {
     return (

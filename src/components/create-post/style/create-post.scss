@@ -1,0 +1,73 @@
+.create-post{
+  position: absolute;
+  left: 22%;
+  top: 7%;
+  width: 55.34%;
+  height: 142%;
+  background: #FFFFFF;
+  border-radius: 20px;
+  z-index: 1;
+  padding: 32px;
+  display: grid;
+  grid-gap: 30px;
+  grid-template-rows: repeat(11, 50px);
+  grid-template-columns: repeat(2, 45%);
+  grid-template-areas:
+    "t t"
+    "lf lt"
+    "lf lt"
+    "lf lt"
+    "dt dt"
+    "dt dt"
+    "ttl ds"
+    "ttl ds"
+    "p p"
+    "p p"
+    "b b";
+}
+.create-post__type{
+  grid-area: t;
+  //background-color: #202A49;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 28px;
+  color: #202A49;
+}
+.create-post__location-from{
+  grid-area: lf;
+  //margin-right: 20px;
+}
+.create-post__location-to{
+  grid-area: lt;
+  //background-color: aqua;
+}
+.create-post__date{
+  grid-area: dt;
+  background-color: chartreuse;
+}
+.create-post__title{
+  grid-area: ttl;
+  background-color: black;
+}
+.create-post__description{
+  grid-area: ds;
+  background-color: aquamarine;
+}
+.create-post__photos{
+  grid-area: p;
+  background-color: lightsteelblue;
+}
+.create-post__buttons{
+  grid-area: b;
+  background-color: brown;
+}
+.create-post__form-title{
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 20px;
+  color: #424141;
+}

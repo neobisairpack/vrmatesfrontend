@@ -9,10 +9,11 @@
   z-index: 1;
   padding: 32px;
   display: grid;
-  grid-gap: 30px;
+  grid-row-gap: 10px;
+  grid-column-gap: 15px;
   grid-template-rows: repeat(11, 50px);
   grid-template-columns: repeat(2, 45%);
-  grid-template-areas: "t t" "lf lt" "lf lt" "lf lt" "dt dt" "dt dt" "ttl ds" "ttl ds" "p p" "p p" "b b";
+  grid-template-areas: "t t" "lf lt" "lf lt" "lf lt" "dt dt" "ttl ds" "ttl ds" "p p" "p p" "b b";
 }
 
 .create-post__type {
@@ -44,15 +45,14 @@
 
 .create-post__date {
   -ms-grid-row: 9;
-  -ms-grid-row-span: 3;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: dt;
-  background-color: chartreuse;
+  display: inline-block;
 }
 
 .create-post__title {
-  -ms-grid-row: 13;
+  -ms-grid-row: 11;
   -ms-grid-row-span: 3;
   -ms-grid-column: 1;
   grid-area: ttl;
@@ -60,7 +60,7 @@
 }
 
 .create-post__description {
-  -ms-grid-row: 13;
+  -ms-grid-row: 11;
   -ms-grid-row-span: 3;
   -ms-grid-column: 3;
   grid-area: ds;
@@ -68,7 +68,7 @@
 }
 
 .create-post__photos {
-  -ms-grid-row: 17;
+  -ms-grid-row: 15;
   -ms-grid-row-span: 3;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
@@ -77,7 +77,7 @@
 }
 
 .create-post__buttons {
-  -ms-grid-row: 21;
+  -ms-grid-row: 19;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: b;

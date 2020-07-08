@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import './style/footer.css';
 
 const Footer = () => {
-
+    const [supportState, setSupportState] = useState(false);
+    function toggleSupport() {
+        setSupportState(!supportState)
+    }
     return (
         <div className="footer" >
-            <Link to={"/support"}><p className={"footer__link"}>Support</p></Link>
+            <button onClick={toggleSupport} className={"footer__link"}>Support</button>
             <Link to={"/terms"}><p className={"footer__link"}>Terms</p></Link>
         </div>
+
+    {supportState ? }
     );
 }
 

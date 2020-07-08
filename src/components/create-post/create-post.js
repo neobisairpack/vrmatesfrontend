@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import './style/create-post.css';
 import { Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import imgIcon from "../post/images/empty-img.svg";
+import plus from './images/plus.svg';
 const CreatePost = () => {
     return (
         <div className={"create-post"}>
@@ -46,23 +48,23 @@ const CreatePost = () => {
                 </Form>
             </div>
             <div className={"create-post__date"}>
-                <Label>Select the date of the delivery</Label>
+                <Label className={"create-post__form-title"}>Select the date of the delivery</Label>
                 <Row form>
-                    <Col md={2}>
+                    <Col md={3}>
                         <FormGroup>
                             <Input type="select">
                                 <option>Day</option>
                             </Input>
                         </FormGroup>
                     </Col>
-                    <Col md={2}>
+                    <Col md={3}>
                         <FormGroup>
                             <Input type="select">
                                 <option>Month</option>
                             </Input>
                         </FormGroup>
                     </Col>
-                    <Col md={2}>
+                    <Col md={3}>
                         <FormGroup>
                             <Input type="select">
                                 <option>Year</option>
@@ -74,7 +76,7 @@ const CreatePost = () => {
             <div className={"create-post__title"}>
                 <Form>
                     <FormGroup>
-                        <Label>Please, add post title:</Label>
+                        <Label className={"create-post__form-title"}>Please, add post title:</Label>
                         <Input type="textarea" name="text" />
                     </FormGroup>
                 </Form>
@@ -82,13 +84,32 @@ const CreatePost = () => {
             <div className={"create-post__description"}>
                 <Form>
                     <FormGroup>
-                        <Label>Please, add post body:</Label>
+                        <Label className={"create-post__form-title"}>Please, add post body:</Label>
                         <Input type="textarea" name="text" />
                     </FormGroup>
                 </Form>
             </div>
-            <div className={"create-post__photos"}>4</div>
-            <div className={"create-post__buttons"}>5</div>
+            <div className={"create-post__photos"}>
+                <label className={"create-post__form-title"}>Attach photos of the package(max 2 photos) </label>
+                <Row>
+                    <Col md={3}>
+                        <div className={"create-post__photo"}>
+                            <img src={imgIcon} className={"create-post__icon"}/>
+                            <button className={"create-post__add-photo"}/>
+                        </div>
+                    </Col>
+                    <Col md={3}>
+                        <div className={"create-post__photo"}>
+                            <img src={imgIcon} className={"create-post__icon"}/>
+                            <button className={"create-post__add-photo"}/>
+                        </div>
+                    </Col>
+                </Row>
+             </div>
+            <div className={"create-post__buttons"}>
+                <button className={"create-post__cancel-button"}>Cancel</button>
+                <button className={"create-post__save-button"}>Save</button>
+            </div>
         </div>
     );
 };

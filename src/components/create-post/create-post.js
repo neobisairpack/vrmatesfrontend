@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './style/create-post.css';
-import { Row, Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
 import plus from './images/plus.svg';
 const CreatePost = () => {

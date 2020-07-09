@@ -1,12 +1,12 @@
 import React from 'react';
 import Main from '../dashboard';
 import Header from "../header";
-import Sidebar from "../sidebar";
 import Footer from "../footer";
+import Profile from "../profile"
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './style/app.css';
-import Profile from '../profile';
+import Sidebar from "../sidebar";
 //import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 const App = () => {

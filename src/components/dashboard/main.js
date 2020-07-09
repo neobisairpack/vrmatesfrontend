@@ -3,6 +3,8 @@ import './style/main.css';
 import Post from '../post';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
 import Sidebar from "../sidebar";
+import Header from "../header";
+import Footer from "../footer";
 import '../pop-up/style/popup.css';
 import CreatePost from "../create-post";
 const Main = () => {

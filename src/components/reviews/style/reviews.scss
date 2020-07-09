@@ -1,0 +1,43 @@
+.reviews{
+  display: flex;
+  //flex: 1 1 15%;
+  flex-flow: row nowrap;
+  margin-left: 7.8%;
+}
+.review{
+  padding: 5px 9px;
+  width: 16.8%;
+  height: 101px;
+  margin-right: 20px;
+  background: #FD5A01;
+  border-radius: 10px;
+}
+.review__rating-star{
+  margin-top: 0;
+  padding-top: 0;
+  margin-right: 3px;
+  width: 11px;
+  filter: invert(100%) sepia(0%) saturate(7471%) hue-rotate(26deg) brightness(100%) contrast(97%);
+}
+.review__text{
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 130%;
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+
+}
+.review__time{
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 2px;
+}

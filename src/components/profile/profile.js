@@ -18,7 +18,7 @@ const Profile = () => {
                     <li className={"dashboard__list-item "}>Completed</li>
                 </ul>
             </div>
-            <Post/>
+            <Post size={"profile-post"}/>
         </div>
     );
 };

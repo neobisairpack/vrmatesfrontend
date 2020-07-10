@@ -39,9 +39,9 @@ $font-color-orange: #FD5A01;
   float: left;
 }
 .card{
-  width: 280px;
+  width: 93%;
   height: 224px;
-  margin-bottom: 10px;
+  margin-bottom: 4%;
   background-color: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
   border-radius: 20px;
@@ -52,6 +52,12 @@ $font-color-orange: #FD5A01;
     opacity: 0.9;
   }
 }
+//.profile-post{
+//  height: 85%;
+//}
+//.dashboard-post{
+//  height: 93%;
+//}
 .post__top-list{
   display: flex;
   padding: 0 0 9px 0;

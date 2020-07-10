@@ -55,7 +55,7 @@ const Main = () => {
                 </div> : null}
                 {createPostState ? <CreatePost/> : null}
             </div>
-                <Post/>
+                <Post size={"dashboard-post"}/>
         </div>
     );
 };

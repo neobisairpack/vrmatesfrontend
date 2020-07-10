@@ -7,17 +7,11 @@ import arrow from './images/arrow.svg';
 import FullPost from './full-view';
 import {
     Card,
-    CardImg,
     CardText,
-    CardBody,
-    CardTitle,
     CardSubtitle,
-    CardHeader,
-    CardFooter,
-    Button
 } from 'reactstrap';
 
-const Post = () => {
+const Post = (props) => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const [postState, setPostState] = useState(false);
     function postView() {
@@ -28,7 +22,7 @@ const Post = () => {
             <div className={"row"}>
                 {array.map((item) =>
                     <div key={item} className={"col-4"}>
-                        <Card>
+                        <Card className={props.size}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
@@ -66,7 +60,10 @@ const Post = () => {
                             <CardText className={"post__text"}>Coming to Bishkek to participate at some conference.
                                 is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </CardText>
                             <CardText className={"post__email"}>aelina@gmail.com</CardText>
-                            <button onClick={postView} className={"post__interested-btn"}>Interested</button>
+                            {props.btn ?
+                                <button onClick={postView} className={"post__interested-btn"}>Interested</button> :
+                                null
+                            }
                         </Card>
                     </div>
                 )}

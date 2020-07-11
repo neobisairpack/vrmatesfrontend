@@ -16,13 +16,23 @@ const App = () => {
                 <Sidebar/>
                 <Header/>
                 <div className={"app-wrapper__content"}>
-                    <Route exact path="/"
-                           render={() => <Main
-                           />} />
-                    <Route exact path="/profile"
-                           render={() => <Profile
-                           />} />
-
+                    <Switch>
+                        <Route exact path="/"
+                               render={() => <Main
+                               />} />
+                        <Route exact path="/:profile/:inbox"
+                               render={() => <Profile
+                               />} />
+                        <Route exact path="/profile/:in-progress"
+                               render={() => <Profile
+                               />} />
+                        <Route exact path="/profile/:completed"
+                               render={() => <Profile
+                               />} />
+                        <Route exact path="/profile"
+                               render={() => <Profile
+                               />} />
+                    </Switch>
                 </div>
                 <Footer/>
             </div>

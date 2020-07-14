@@ -19,8 +19,13 @@ import LogOut from './images/logout.svg';
 
 const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeLink, setActiveLink] = useState(null)
 
     const toggle = () => setIsOpen(!isOpen);
+    const handleClick = (id) => {
+        setActiveLink(id)
+        console.log(id)
+    }
     return (
         <div className={"header"}>
                 <Navbar light expand="md">
@@ -28,10 +33,10 @@ const Header = (props) => {
                     <Collapse className={"nav"} isOpen={isOpen} navbar>
                         <Nav className={"mr-auto"} >
                             <NavItem>
-                                <NavLink href="/" className={"nav__item nav__item_active"}>Dashboard</NavLink>
+                                <NavLink href="/" onClick={() => handleClick(1)} className={"nav__item" + (activeLink === 1 ? "nav__item_active" : "")}>Dashboard</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/profile/" className={"nav__item"}>Profile</NavLink>
+                                <NavLink href="/profile" onClick={() => handleClick(2)} className={"nav__item" + (activeLink === 1 ? "nav__item_active" : "")}>Profile</NavLink>
                             </NavItem>
                         </Nav>
                         <NavbarText className={"nav__item nav__item_logout"}><img src={LogOut} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</NavbarText>

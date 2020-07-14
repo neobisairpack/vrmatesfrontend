@@ -21,8 +21,8 @@ const App = () => {
                         <Route exact path={"/"}
                                render={() => <Main
                                />} />
-                        <Route path={"/profile"}
-                               render={() => <Profile
+                        <Route exact path={"/profile"}
+                               render={(props) => <Profile {...props}
                                />}/>
                     </Switch>
                 </div>

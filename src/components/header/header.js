@@ -3,19 +3,15 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
     NavbarText
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/header.css';
 import LogOut from './images/logout.svg';
+import {Link} from "react-router-dom";
 
 const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +29,14 @@ const Header = (props) => {
                     <Collapse className={"nav"} isOpen={isOpen} navbar>
                         <Nav className={"mr-auto"} >
                             <NavItem>
-                                <NavLink href="/" onClick={() => handleClick(1)} className={"nav__item" + (activeLink === 1 ? "nav__item_active" : "")}>Dashboard</NavLink>
+                                <Link to="/" onClick={() => {
+                                    handleClick(1)
+                                }} className={"nav__item" + (activeLink === 1 ? " nav__item_active" : "")}>Dashboard</Link>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/profile" onClick={() => handleClick(2)} className={"nav__item" + (activeLink === 1 ? "nav__item_active" : "")}>Profile</NavLink>
+                                <Link to="/profile" onClick={() => {
+                                    handleClick(2)
+                                }} className={"nav__item" + (activeLink === 2 ? " nav__item_active" : "")}>Profile</Link>
                             </NavItem>
                         </Nav>
                         <NavbarText className={"nav__item nav__item_logout"}><img src={LogOut} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</NavbarText>

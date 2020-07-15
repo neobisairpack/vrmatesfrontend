@@ -8,7 +8,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './style/app.css';
 import Sidebar from "../sidebar";
 import Inbox from "../inbox";
-//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import InProgress from "../in-progress";
+import Completed from "../completed";
 
 const App = () => {
     return (
@@ -22,7 +23,16 @@ const App = () => {
                                render={() => <Main
                                />} />
                         <Route exact path={"/profile"}
-                               render={(props) => <Profile {...props}
+                               render={() => <Profile
+                               />}/>
+                        <Route exact path={"/profile/inbox"}
+                               render={() => <Inbox
+                               />}/>
+                        <Route exact path={"/profile/in-progress"}
+                               render={() => <InProgress
+                               />}/>
+                        <Route exact path={"/profile/completed"}
+                               render={() => <Completed
                                />}/>
                     </Switch>
                 </div>

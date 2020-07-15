@@ -21,7 +21,7 @@ const Profile = (props) => {
                     <li className={"dashboard__list-item "}><Link to={'profile/completed'}>Completed</Link></li>
                 </ul>
             </div>
-            <InboxPost/>
+            <InboxPost />
         </div>
     );
 };

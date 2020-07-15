@@ -4,6 +4,7 @@ import '../../post/style/post.css';
 import people from './icons/people-icon.png';
 import arrow from '../../post/images/arrow.svg';
 import './style/inbox-post.css';
+import {Link, withRouter} from "react-router-dom";
 import {
     Card,
     CardText,
@@ -12,13 +13,18 @@ import {
 
 const InboxPost = (props) => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
+    const redirect = () => {
+        console.log(props)
+        props.history.push({
+            pathname: '/profile/inbox-page',
+        })
+    }
     return (
         <div className={"post container"}>
             <div className={"row"}>
                 {array.map((item) =>
                     <div key={item} className={"col-4"}>
-                        <Card className={props.size}>
+                        <Card onClick={() => redirect()} className={props.size}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
@@ -57,4 +63,4 @@ const InboxPost = (props) => {
     );
 };
 
-export default InboxPost;
+export default withRouter(InboxPost);

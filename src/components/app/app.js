@@ -10,6 +10,7 @@ import Sidebar from "../sidebar";
 import Inbox from "../inbox";
 import InProgress from "../in-progress";
 import Completed from "../completed";
+import InboxPage from "../inbox/inbox-page/inbox-page";
 
 const App = () => {
     return (
@@ -33,6 +34,9 @@ const App = () => {
                                />}/>
                         <Route exact path={"/profile/completed"}
                                render={() => <Completed
+                               />}/>
+                        <Route exact path={"/profile/inbox-page"}
+                               render={() => <InboxPage
                                />}/>
                     </Switch>
                 </div>

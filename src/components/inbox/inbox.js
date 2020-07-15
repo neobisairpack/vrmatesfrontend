@@ -5,6 +5,7 @@ import '../profile/style/profile.css';
 import '../dashboard/style/main.css';
 import {Link} from 'react-router-dom';
 import Post from "../post";
+import InboxPost from "./inbox-post";
 
 const Inbox = (props) => {
     console.log(props)
@@ -15,12 +16,12 @@ const Inbox = (props) => {
             <Reviews/>
             <div className={"dashboard__submenu"}>
                 <ul className={"dashboard__list"}>
-                    <li className={"dashboard__list-item dashboard__list-item_active"}><Link to={'profile/inbox'}>Inbox</Link></li>
-                    <li className={"dashboard__list-item "}><Link to={'profile/in-progress'}>In progress</Link></li>
-                    <li className={"dashboard__list-item "}><Link to={'profile/completed'}>Completed</Link></li>
+                    <li className={"dashboard__list-item dashboard__list-item_active"}><Link to={'/profile/inbox'}>Inbox</Link></li>
+                    <li className={"dashboard__list-item "}><Link to={'/profile/in-progress'}>In progress</Link></li>
+                    <li className={"dashboard__list-item "}><Link to={'/profile/completed'}>Completed</Link></li>
                 </ul>
             </div>
-            <Post/>
+            <InboxPost/>
         </div>
     );
 };

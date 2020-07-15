@@ -1,0 +1,18 @@
+@mixin font($size, $family, $style, $weight, $line, $color){
+  font-size: $size;
+  font-family: $family;
+  font-style: $style;
+  font-weight: $weight;
+  line-height: $line;
+  color: $color;
+}
+.post__person{
+  @include font(14px, Muller, normal, 500, 150%, #000000);
+  margin: 0;
+}
+.inbox-post__item{
+  margin-left: auto;
+}
+.icon-people{
+  filter: invert(72%) sepia(51%) saturate(5117%) hue-rotate(89deg) brightness(94%) contrast(108%);
+}

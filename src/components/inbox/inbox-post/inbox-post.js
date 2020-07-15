@@ -1,22 +1,18 @@
 import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './style/post.css';
-import profile from '../sidebar/images/profilephoto.svg';
-import star from "../sidebar/images/star.svg";
-import arrow from './images/arrow.svg';
-import FullPost from './full-view';
+import '../../post/style/post.css';
+import people from './icons/people-icon.png';
+import arrow from '../../post/images/arrow.svg';
+import './style/inbox-post.css';
 import {
     Card,
     CardText,
     CardSubtitle,
 } from 'reactstrap';
 
-const Post = (props) => {
+const InboxPost = (props) => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    const [postState, setPostState] = useState(false);
-    function postView() {
-        setPostState(!postState)
-    }
+
     return (
         <div className={"post container"}>
             <div className={"row"}>
@@ -26,24 +22,15 @@ const Post = (props) => {
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
-                                        <li className={"post__top-list-item"}><img className={"post__avatar"} src={profile}
-                                                                                   alt="Card image cap"/></li>
                                         <li className={"post__top-list-item"}>
-                                            <div className={"post__user-name"}>Aelina</div>
-                                            <div className={"post__item-rating"}>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                            </div>
+                                            <p className={"post__type"}>Package delivery</p>
+                                            <div className={"post__person"}>Provider</div>
                                         </li>
-                                        <li className={"post__top-list-item"}><CardText
-                                            className={"post__package-provider"}>Provider</CardText></li>
+                                        <li className={"post__top-list-item inbox-post__item"}><img className={"icon-people"} src={people}/> + 3</li>
                                     </ul>
                                 </div>
 
-                                <p className={"post__type"}>Package delivery</p>
+
                                 <div>
                                     <div className={"post__address"}>
                                         <CardText className={"post__city"}>Bishkek</CardText>
@@ -60,19 +47,14 @@ const Post = (props) => {
                             <CardText className={"post__text"}>Coming to Bishkek to participate at some conference.
                                 is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </CardText>
                             <CardText className={"post__email"}>aelina@gmail.com</CardText>
-                            {props.btn ?
-                                <button onClick={postView} className={"post__interested-btn"}>Interested</button> :
-                                null
-                            }
                         </Card>
                     </div>
                 )}
                 <div>
-                    {postState ? <FullPost/> : null}
                 </div>
             </div>
         </div>
     );
 };
 
-export default Post;
+export default InboxPost;

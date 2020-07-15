@@ -1,0 +1,17 @@
+.post__person {
+  font-size: 14px;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  color: #000000;
+  margin: 0;
+}
+
+.inbox-post__item {
+  margin-left: auto;
+}
+
+.icon-people {
+  filter: invert(72%) sepia(51%) saturate(5117%) hue-rotate(89deg) brightness(94%) contrast(108%);
+}

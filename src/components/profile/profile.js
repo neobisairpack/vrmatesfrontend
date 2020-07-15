@@ -5,6 +5,7 @@ import './style/profile.css';
 import '../dashboard/style/main.css';
 import {Link} from 'react-router-dom';
 import Post from "../post";
+import InboxPost from "../inbox/inbox-post";
 
 const Profile = (props) => {
     console.log(props)
@@ -20,7 +21,7 @@ const Profile = (props) => {
                     <li className={"dashboard__list-item "}><Link to={'profile/completed'}>Completed</Link></li>
                 </ul>
             </div>
-            <Post/>
+            <InboxPost/>
         </div>
     );
 };

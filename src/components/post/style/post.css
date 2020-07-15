@@ -35,7 +35,6 @@
 
 .card {
   width: 93%;
-  height: 224px;
   margin-bottom: 4%;
   background-color: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
@@ -97,8 +96,8 @@
   width: 7px;
 }
 
-.post__type-package-del {
-  margin-bottom: 10px;
+.post__type {
+  margin: 0;
   width: 142px;
   height: 18px;
   font-size: 18px;
@@ -110,6 +109,7 @@
 }
 
 .post__address {
+  margin-top: 10px;
   display: inline-block;
   width: 40%;
 }

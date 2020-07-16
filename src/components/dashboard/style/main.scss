@@ -35,8 +35,30 @@
   margin-left: 48px;
   display: inline;
 }
+.dashboard__filter{
+  width: 150px;
+  height: 46px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #202A49;
+  border: 1px solid #FFFFFF;
+  background: #FFFFFF;
+  border-radius: 12px;
+  &:focus{
+    outline: none;
+  }
+  &:active{
+    outline: none;
+  }
+}
+.dashboard__list-item img{
+  padding-right: 10px;
+}
 .dashboard__button{
-  width: 200px;
+  width: 180px;
   height: 46px;
   color: #FFFFFF;
   border: 1px solid #FD5A01;

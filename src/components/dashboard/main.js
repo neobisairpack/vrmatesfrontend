@@ -5,13 +5,19 @@ import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
 import Sidebar from "../sidebar";
 import Header from "../header";
 import Footer from "../footer";
-import '../pop-up/style/popup.css';
+import '../pop-up/popup-switch/style/popup.css';
 import CreatePost from "../create-post";
+import filter from './icons/filter-icon.svg';
+import Filter from "../pop-up/popup-filter";
 const Main = () => {
     const [popUpState, setPopUpState] = useState(false);
+    const [filterState, setFilterState] = useState(false);
     const [createPostState, setCreatePostState] = useState(false);
-    function togglePopUp(){
+    function togglePopUpSwitch(){
         setPopUpState(!popUpState);
+    }
+    function togglePopUpFilter(){
+        setFilterState(!filterState);
     }
     function toggleCreatePost(){
         setCreatePostState(!createPostState);
@@ -25,7 +31,12 @@ const Main = () => {
                 <ul className={"dashboard__list"}>
                     <li className={"dashboard__list-item dashboard__list-item_active"}>Providers</li>
                     <li className={"dashboard__list-item "}>Requesters</li>
-                    <li className={"dashboard__list-item "}> <button onClick={togglePopUp} className={"dashboard__button"}>Create Post</button></li>
+                    <li className={"dashboard__list-item "}><button onClick={togglePopUpFilter}
+                                                                    className={"dashboard__filter "}>
+                        <img src={filter}/>Filter</button></li>
+                    <li className={"dashboard__list-item "}> <button onClick={togglePopUpSwitch}
+                                                                     className={"dashboard__button"}>
+                        Create Post</button></li>
                 </ul>
 
             </div>
@@ -48,12 +59,13 @@ const Main = () => {
                     </ul>
                     <div className={"switch__buttons"}>
                         <ul>
-                            <li><button onClick={togglePopUp} className={"switch__button"}>Cancel</button></li>
+                            <li><button onClick={togglePopUpSwitch} className={"switch__button"}>Cancel</button></li>
                             <li><button onClick={toggleCreatePost} className={"switch__button"}>Ok</button></li>
                         </ul>
                     </div>
                 </div> : null}
                 {createPostState ? <CreatePost/> : null}
+                {filterState ? <Filter/> : null}
             </div>
                 <Post size={"dashboard-post"} btn={"true"}/>
         </div>

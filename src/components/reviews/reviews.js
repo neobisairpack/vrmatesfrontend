@@ -2,16 +2,16 @@ import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/reviews.css';
 import star from '../post/images/star-icon.png';
+import FullReview from "./full-review";
 
 const Reviews = () => {
-    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    const [postState, setPostState] = useState(false);
-    function postView() {
-        setPostState(!postState)
+    const [reviewState, setReviewState] = useState(false);
+    function reviewView() {
+        setReviewState(!reviewState)
     }
     return (
         <div className={"reviews"}>
-            <div className={"review review-orange"}>
+            <div onClick={reviewView} className={"review review-orange"}>
                 <div className={"review__rating"}>
                     <img src={star} className={"review__rating-star"} alt={"Rating"}/>
                     <img src={star} className={"review__rating-star"} alt={"Rating"}/>
@@ -92,7 +92,9 @@ const Reviews = () => {
                     1 week ago
                 </div>
             </div>
-
+            <div>
+                {reviewState ? <FullReview/> : null}
+            </div>
         </div>
     );
 };

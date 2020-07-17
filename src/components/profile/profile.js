@@ -4,24 +4,37 @@ import Reviews from "../reviews/reviews";
 import './style/profile.css';
 import '../dashboard/style/main.css';
 import {Link} from 'react-router-dom';
-import Post from "../post";
 import InboxPost from "../inbox/inbox-post";
+import Sidebar from "../sidebar";
+import Header from "../header";
+import Footer from "../footer";
 
 const Profile = (props) => {
     console.log(props)
     return (
         <div className={"profile"}>
             <ScrollToTopControlller/>
-            <p className={"profile__title"}>Reviews</p>
-            <Reviews/>
-            <div className={"dashboard__submenu"}>
-                <ul className={"dashboard__list"}>
-                    <li className={"dashboard__list-item "}><Link to={'/profile/inbox'} className={"dashboard__label profile__list-item_active"}>Inbox</Link></li>
-                    <li className={"dashboard__list-item "}><Link to={'/profile/in-progress'} className={"dashboard__label"}>In progress</Link></li>
-                    <li className={"dashboard__list-item "}><Link to={'/profile/completed'} className={"dashboard__label"}>Completed</Link></li>
-                </ul>
+            <Sidebar/>
+            <Header/>
+            <div>
+                <p className={"profile__title"}>Reviews</p>
+                <Reviews/>
+                <div className={"dashboard__submenu"}>
+                    <ul className={"dashboard__list"}>
+                        <li className={"dashboard__list-item "}><Link to={'/profile/inbox'}
+                                                                      className={"dashboard__label profile__list-item_active"}>Inbox</Link>
+                        </li>
+                        <li className={"dashboard__list-item "}><Link to={'/profile/in-progress'}
+                                                                      className={"dashboard__label"}>In progress</Link>
+                        </li>
+                        <li className={"dashboard__list-item "}><Link to={'/profile/completed'}
+                                                                      className={"dashboard__label"}>Completed</Link>
+                        </li>
+                    </ul>
+                </div>
+                <InboxPost/>
             </div>
-            <InboxPost />
+            <Footer/>
         </div>
     );
 };

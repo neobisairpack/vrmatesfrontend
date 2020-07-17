@@ -1,6 +1,9 @@
 .dashboard{
   background-color: #E5E5E5;
-
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 80px calc(100% - 80px - 51px) 51px;
 }
 .dashboard__submenu{
   padding-top: 3%;

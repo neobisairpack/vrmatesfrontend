@@ -16,8 +16,8 @@ const App = () => {
     return (
         <Router>
             <div className={"app-wrapper"}>
-                <Sidebar/>
-                <Header/>
+                {/*<Sidebar/>*/}
+                {/*<Header/>*/}
                 <div className={"app-wrapper__content"}>
                     <Switch>
                         <Route exact path={"/"}
@@ -40,7 +40,7 @@ const App = () => {
                                />}/>
                     </Switch>
                 </div>
-                <Footer/>
+                {/*<Footer/>*/}
             </div>
         </Router>
     );

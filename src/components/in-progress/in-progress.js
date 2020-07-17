@@ -14,9 +14,9 @@ const InProgress = () => {
             <Reviews/>
             <div className={"dashboard__submenu"}>
                 <ul className={"dashboard__list"}>
-                    <li className={"dashboard__list-item dashboard__list-item_active"}><Link to={'/profile/inbox'}>Inbox</Link></li>
-                    <li className={"dashboard__list-item "}><Link to={'/profile/in-progress'}>In progress</Link></li>
-                    <li className={"dashboard__list-item "}><Link to={'/profile/completed'}>Completed</Link></li>
+                    <li className={"dashboard__list-item "}><Link to={'/profile/inbox'} className={"dashboard__label profile__list-item_active"}>Inbox</Link></li>
+                    <li className={"dashboard__list-item "}><Link to={'/profile/in-progress'} className={"dashboard__label"}>In progress</Link></li>
+                    <li className={"dashboard__list-item "}><Link to={'/profile/completed'} className={"dashboard__label"}>Completed</Link></li>
                 </ul>
             </div>
             <Post/>

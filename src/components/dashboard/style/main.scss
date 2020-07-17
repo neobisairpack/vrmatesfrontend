@@ -18,7 +18,6 @@
   font-size: 20px;
   line-height: 20px;
   text-transform: uppercase;
-  color: #000000;
 }
 .dashboard__list{
   list-style: none;
@@ -34,6 +33,14 @@
   height: 18px;
   margin-left: 48px;
   display: inline;
+  color: #000000;
+}
+.dashboard__label{
+  color: black;
+  &:hover{
+    color: #FD5A01;
+    text-decoration: none;
+  }
 }
 .dashboard__filter{
   width: 150px;

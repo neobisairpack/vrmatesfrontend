@@ -10,3 +10,16 @@
   color: #000000;
   padding-top: 2%;
 }
+.profile__list-item_active{
+  position: relative;
+  color: #FD5A01;
+  &:before{
+    content: "";
+    position: absolute;
+    left: -20%;
+    bottom: -6px;
+    height: 2px;
+    width: 140%;
+    border-bottom: 1px solid #FD5A01;
+  }
+}

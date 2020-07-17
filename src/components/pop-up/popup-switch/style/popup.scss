@@ -3,17 +3,32 @@
   width: 480px;
   //height: 261px;
   left: 60%;
-  top: 170px;
+  top: 160px;
   background: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   z-index: 1;
   padding: 30px;
 }
+.switch__list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 .switch ul{
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.switch__list li{
+  position: relative;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 18px;
+  color: #000000;
+  margin-bottom: 20px;
 }
 .switch li{
   position: relative;

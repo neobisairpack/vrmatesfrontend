@@ -3,8 +3,8 @@ import './style/popup.css';
 const Switch = () => {
     return (
         <div className={"switch"}>
-            <p className={"switch__title"}>Providers</p>
-            <ul>
+            <label className={"switch__title"}>Providers</label>
+            <ul className={"switch__list"}>
                 <li>
                     <input type={"radio"} name={"radio"} />
                     <label>Package Delivery</label>

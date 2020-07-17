@@ -1,4 +1,17 @@
+.filter {
+  position: absolute;
+  width: 480px;
+  left: 43%;
+  top: 160px;
+  background: #FFFFFF;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  z-index: 1;
+  padding: 30px;
+}
+
 .filter__title {
+  margin-bottom: 4%;
   font-family: Muller;
   font-style: normal;
   font-weight: bold;
@@ -8,4 +21,30 @@
   align-items: center;
   text-align: center;
   color: #202A49;
+}
+
+.filter__forms {
+  display: flex;
+  justify-content: normal;
+  margin-bottom: 4%;
+}
+
+.filter__dates-text {
+  margin-right: 2%;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 16px;
+  color: #000000;
+}
+
+.filter__datepicker {
+  margin-right: 30px;
+  width: 120px;
+  height: 38px;
+  background: #F8F8F8;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-radius: 5px;
 }

@@ -4,9 +4,9 @@ import profile from "../../sidebar/images/profilephoto.svg";
 import star from "../../sidebar/images/star.svg";
 import {CardSubtitle, CardText} from "reactstrap";
 import arrow from "../images/arrow.svg";
-import './style/full-post.css';
 import imgIcon from '../images/empty-img.svg';
 import exit from '../images/exit.svg';
+import '../style/post.css';
 
 const FullPost = () => {
     // useEffect(()=>{
@@ -44,7 +44,7 @@ const FullPost = () => {
                         </ul>
                     </div>
 
-                    <p className={"post__type-package-del"}>Package delivery</p>
+                    <p className={"post__type"}>Package delivery</p>
                     <div>
                         <div className={"post__address"}>
                             <CardText className={"post__city"}>Bishkek</CardText>

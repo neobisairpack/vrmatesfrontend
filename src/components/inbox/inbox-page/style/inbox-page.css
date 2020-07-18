@@ -24,16 +24,25 @@
   grid-row-end: 3;
   padding-top: 4%;
   padding-left: 8%;
-  grid-gap: 0;
-  grid-template-rows: repeat(14, 58px);
+  grid-gap: 3%;
+  grid-template-rows: repeat(13, 46px);
   grid-template-columns: 85%;
-  grid-template-areas: "l" "t" "h" "h" "h" "h" "bd" "bd" "bd" "bd" "bd" "bd" "bd" "btn";
+  grid-template-areas: "l" "t" "h" "h" "h" "h" "bd" "bd" "bd" "bd" "bd" "bd" "btn";
 }
 
 .inbox-page__title {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
   grid-area: t;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 28px;
+  text-transform: uppercase;
+  display: flex;
+  align-self: center;
+  color: #000000;
 }
 
 .inbox-page__logo {
@@ -52,22 +61,22 @@
 .inbox-page__post-head:before {
   content: "";
   position: absolute;
-  left: 75.75px;
-  bottom: 10%;
+  left: 0;
+  bottom: 5%;
   height: 1px;
-  width: 85.3%;
+  width: 100%;
   border-bottom: 1px solid rgba(196, 196, 196, 0.23);
 }
 
 .inbox-page__post-body {
   -ms-grid-row: 13;
-  -ms-grid-row-span: 13;
+  -ms-grid-row-span: 11;
   -ms-grid-column: 1;
   grid-area: bd;
 }
 
 .inbox-page__post-buttons {
-  -ms-grid-row: 27;
+  -ms-grid-row: 25;
   -ms-grid-column: 1;
   grid-area: btn;
 }
@@ -86,4 +95,50 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border-radius: 6px;
+}
+
+.inbox-page__post-type {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 150%;
+  color: #FD5A01;
+}
+
+.inbox-page__category {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 150%;
+  color: #202A49;
+}
+
+.inbox-page__data {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 100%;
+  color: #202A49;
+}
+
+.inbox-page__text {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 170%;
+  color: #202A49;
+}
+
+.inbox-page__email {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 100%;
+  text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.5);
 }

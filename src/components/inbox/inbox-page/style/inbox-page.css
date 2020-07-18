@@ -5,12 +5,22 @@
   min-height: 1024px;
   grid-template-rows: 80px minmax(974px, auto) 50px;
   background: #E5E5E5;
+  position: relative;
+}
+.inbox-page:before {
+  content: "";
+  position: absolute;
+  left: 50px;
+  top: 80px;
+  height: 1px;
+  width: 92.5%;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.23);
 }
 
 .inbox-page__sidebar {
   background: #FFFFFF;
   grid-row-start: 1;
   grid-row-end: 3;
-  padding-top: 5%;
+  padding-top: 4%;
   padding-left: 8%;
 }

@@ -23,7 +23,7 @@ const Header = (props) => {
         console.log(id)
     }
     return (
-        <div className={"header"}>
+        <div className={(props.style ? "inbox-header" : "header")}>
                 <Navbar light expand="md">
                     <NavbarToggler onClick={toggle} />
                     <Collapse className={"nav"} isOpen={isOpen} navbar>
@@ -39,7 +39,7 @@ const Header = (props) => {
                                 }} className={"nav__item" + (activeLink === 2 ? " nav__item_active" : "")}>Profile</Link>
                             </NavItem>
                         </Nav>
-                        <NavbarText className={"nav__item nav__item_logout"}><img src={LogOut} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</NavbarText>
+                        <NavbarText className={"nav__item nav__item_logout "}><img src={LogOut} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</NavbarText>
                     </Collapse>
                 </Navbar>
         </div>

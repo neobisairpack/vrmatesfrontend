@@ -1,6 +1,7 @@
 .header{
   background-color: #E5E5E5 !important;
   position: relative;
+  padding-right: 5.5%;
   &:before{
     content: "";
     position: absolute;
@@ -10,6 +11,11 @@
     width: 85.3%;
     border-bottom: 1px solid rgba(196, 196, 196, 0.23);
   }
+}
+.inbox-header{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5.5%;
 }
 .nav{
   padding-top: 8px;
@@ -21,7 +27,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
-  margin-right: 25px;
+  margin-right: 40px;
 }
 .mr-auto{
   margin-left: 59.75px;
@@ -29,7 +35,6 @@
 .nav__item_active{
   background-color: #202A49;
   color: #FFFFFF;
-  //border-spacing: 16px 14px;
   padding: 12px 16px;
   border: 1px solid #202A49;
   border-radius: 12px;
@@ -40,11 +45,10 @@
   line-height: 20px;
 }
 .nav__item_logout{
-  position: absolute;
-  right: 77px;
   font-size: 16px;
   line-height: 16px;
-  margin: 0;
+  margin-right: 0;
+  margin-left: 30px;
 }
 .nav__item-logout-icon{
   margin-right: 8px;

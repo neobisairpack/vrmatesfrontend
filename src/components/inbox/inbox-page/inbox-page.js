@@ -5,15 +5,14 @@ import Header from "../../header";
 import Footer from "../../footer";
 import './style/inbox-page.css';
 import logo from "../../sidebar/images/logo.svg";
-import '../../sidebar/style/sidebar.css';
 const InboxPage = (props) => {
     return (
         <div className={"inbox-page"}>
             <ScrollToTopControlller/>
             <div className={"inbox-page__sidebar"}>
-                <img src={logo} className={"sidebar__item-logo"} alt={"Vrmates"}/>
+                <img src={logo} alt={"Vrmates"}/>
             </div>
-            <Header/>
+            <Header style={"inbox"}/>
             <div className={"inbox-page__content"}>
                 jkj
             </div>

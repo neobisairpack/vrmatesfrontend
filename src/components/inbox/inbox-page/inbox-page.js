@@ -14,7 +14,7 @@ const InboxPage = (props) => {
                 <img src={logo} className={"sidebar__item-logo"} alt={"Vrmates"}/>
             </div>
             <Header/>
-            <div>
+            <div className={"inbox-page__content"}>
                 jkj
             </div>
             <Footer/>

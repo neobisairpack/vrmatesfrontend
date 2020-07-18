@@ -18,9 +18,72 @@
 }
 
 .inbox-page__sidebar {
+  display: grid;
   background: #FFFFFF;
   grid-row-start: 1;
   grid-row-end: 3;
   padding-top: 4%;
   padding-left: 8%;
+  grid-gap: 0;
+  grid-template-rows: repeat(14, 58px);
+  grid-template-columns: 85%;
+  grid-template-areas: "l" "t" "h" "h" "h" "h" "bd" "bd" "bd" "bd" "bd" "bd" "bd" "btn";
+}
+
+.inbox-page__title {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: t;
+}
+
+.inbox-page__logo {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: l;
+}
+
+.inbox-page__post-head {
+  -ms-grid-row: 5;
+  -ms-grid-row-span: 7;
+  -ms-grid-column: 1;
+  grid-area: h;
+  position: relative;
+}
+.inbox-page__post-head:before {
+  content: "";
+  position: absolute;
+  left: 75.75px;
+  bottom: 10%;
+  height: 1px;
+  width: 85.3%;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.23);
+}
+
+.inbox-page__post-body {
+  -ms-grid-row: 13;
+  -ms-grid-row-span: 13;
+  -ms-grid-column: 1;
+  grid-area: bd;
+}
+
+.inbox-page__post-buttons {
+  -ms-grid-row: 27;
+  -ms-grid-column: 1;
+  grid-area: btn;
+}
+
+.inbox-page__photos {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inbox-page__photo {
+  display: flex;
+  justify-content: center;
+  width: 48%;
+  height: 160px;
+  background: #F8F8F8;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-radius: 6px;
 }

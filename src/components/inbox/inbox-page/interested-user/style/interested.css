@@ -3,7 +3,8 @@
 }
 
 .interested-user-card {
-  width: 28%;
+  width: 90%;
+  margin-bottom: 10%;
   background: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
   border-radius: 10px;
@@ -84,5 +85,5 @@
 .interested__button_cancel {
   color: #E00E28;
   border-left: 1px solid rgba(2, 7, 18, 0.1);
-  padding-left: 15.5px;
+  padding-left: 15%;
 }

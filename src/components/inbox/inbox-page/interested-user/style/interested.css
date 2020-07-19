@@ -1,0 +1,88 @@
+.interested-user {
+  padding-top: 8%;
+}
+
+.interested-user-card {
+  width: 28%;
+  background: #FFFFFF;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+}
+.interested-user-card ul {
+  padding: 16px 16px 0 16px;
+  margin: 0;
+  display: flex;
+}
+
+.interested__list-item {
+  display: inline-block;
+}
+
+.interested__photo {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+
+.interested__user-type {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  color: rgba(66, 65, 65, 0.71);
+}
+
+.interested__user-name {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 150%;
+  color: #020712;
+}
+
+.interested__service-type {
+  padding: 0 16px 11px 16px;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 150%;
+  color: #020712;
+  margin-top: 13px;
+}
+
+.interested__buttons {
+  padding: 0 16px 0 16px;
+  display: flex;
+  justify-content: space-between;
+  height: 41px;
+  border-top: 1px solid rgba(2, 7, 18, 0.1);
+}
+
+.interested__button {
+  background: transparent;
+  border: none;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.interested__button:focus {
+  outline: none;
+}
+
+.interested__button_accept {
+  color: #03D031;
+}
+
+.interested__button_cancel {
+  color: #E00E28;
+  border-left: 1px solid rgba(2, 7, 18, 0.1);
+  padding-left: 15.5px;
+}

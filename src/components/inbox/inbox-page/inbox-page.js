@@ -6,6 +6,7 @@ import Footer from "../../footer";
 import './style/inbox-page.css';
 import logo from "../../sidebar/images/logo.svg";
 import InboxPageSidebar from "./inbox-sidebar/inbox-sidebar";
+import InterestedUser from "./interested-user";
 const InboxPage = (props) => {
     return (
         <div className={"inbox-page"}>
@@ -13,7 +14,8 @@ const InboxPage = (props) => {
             <InboxPageSidebar/>
             <Header style={"inbox"}/>
             <div className={"inbox-page__content"}>
-                jkj
+                <div className={"inbox-page__title"}>interested users</div>
+                <InterestedUser/>
             </div>
             <Footer/>
         </div>

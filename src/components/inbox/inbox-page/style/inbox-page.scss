@@ -35,8 +35,6 @@
 }
 .inbox-page__title{
   grid-area: t;
-  //width: 171px;
-  //height: 28px;
   font-family: Muller;
   font-style: normal;
   font-weight: bold;
@@ -123,4 +121,8 @@
   line-height: 100%;
   text-transform: capitalize;
   color: rgba(0, 0, 0, 0.5);
+}
+.inbox-page__content{
+  padding-top: 3%;
+  padding-left: 9%;
 }

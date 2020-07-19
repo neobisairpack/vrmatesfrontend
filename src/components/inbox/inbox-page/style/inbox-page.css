@@ -142,3 +142,8 @@
   text-transform: capitalize;
   color: rgba(0, 0, 0, 0.5);
 }
+
+.inbox-page__content {
+  padding-top: 3%;
+  padding-left: 9%;
+}

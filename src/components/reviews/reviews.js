@@ -4,7 +4,7 @@ import './style/reviews.css';
 import star from '../post/images/star-icon.png';
 import FullReview from "./full-review";
 
-const Reviews = () => {
+const Reviews = (props) => {
     const [reviewState, setReviewState] = useState(false);
     function reviewView() {
         setReviewState(!reviewState)
@@ -29,7 +29,6 @@ const Reviews = () => {
 
             <div className={"review review-blue"}>
                 <div className={"review__rating"}>
-                    {/*<a target="_blank" href="https://icons8.com/icons/set/star">Star icon</a>*/}
                     <img src={star} className={"review__rating-star"} alt={"Rating"}/>
                     <img src={star} className={"review__rating-star"} alt={"Rating"}/>
                     <img src={star} className={"review__rating-star"} alt={"Rating"}/>

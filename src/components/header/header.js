@@ -39,7 +39,7 @@ const Header = (props) => {
                                 }} className={"nav__item" + (activeLink === 2 ? " nav__item_active" : "")}>Profile</Link>
                             </NavItem>
                         </Nav>
-                        <NavbarText className={"nav__item nav__item_logout "}><img src={LogOut} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</NavbarText>
+                        <NavbarText className={"nav__item nav__item_logout "}><Link to={"/landingpage"}><img src={LogOut} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</Link></NavbarText>
                     </Collapse>
                 </Navbar>
         </div>

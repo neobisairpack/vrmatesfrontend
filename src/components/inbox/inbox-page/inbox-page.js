@@ -4,7 +4,6 @@ import '../../profile/style/profile.css';
 import Header from "../../header";
 import Footer from "../../footer";
 import './style/inbox-page.css';
-import logo from "../../sidebar/images/logo.svg";
 import InboxPageSidebar from "./inbox-sidebar/inbox-sidebar";
 import InterestedUser from "./interested-user";
 const InboxPage = (props) => {

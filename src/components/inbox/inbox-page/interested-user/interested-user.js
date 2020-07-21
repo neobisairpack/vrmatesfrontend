@@ -2,17 +2,24 @@ import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/interested.css';
 import profile from '../../../sidebar/images/profilephoto.svg';
+import {withRouter} from "react-router-dom";
 
 
-const InterestedUser = () => {
+const InterestedUser = (props) => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    const redirect = (userName) => {
+        console.log(props)
+        props.history.push({
+            pathname: `/profile/inbox-page/${userName}`,
+        })
+    }
     return (
         <div className={"interested-user container"}>
             <div className={"row"}>
                 {array.map((item) =>
                     <div key={item} className={"col-4"}>
                         <div className={"interested-user-card "}>
-                            <ul>
+                            <ul className={"interested-user__info"} onClick={() => redirect("Marsel'")}>
                                 <li className={"interested__list-item"}><img className={"interested__photo"}
                                                                              src={profile}/></li>
                                 <li className={"interested__list-item"}>
@@ -34,4 +41,4 @@ const InterestedUser = () => {
     );
 };
 
-export default InterestedUser;
+export default withRouter(InterestedUser);

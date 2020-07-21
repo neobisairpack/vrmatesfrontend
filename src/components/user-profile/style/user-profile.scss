@@ -1,0 +1,32 @@
+.user-profile{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  min-height: 1024px;
+  grid-template-rows: 80px minmax(974px, auto) 50px;
+  background: #E5E5E5;
+  position: relative;
+  &:before{
+    content: "";
+    position: absolute;
+    left: 50px;
+    top: 80px;
+    height: 1px;
+    width: 92.5%;
+    border-bottom: 1px solid rgba(196, 196, 196, 0.23);
+  }
+}
+.user-profile__content{
+  display: grid;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-gap: 0;
+  grid-template-rows: 39% 61%;
+  grid-template-columns: 91%;
+  justify-content: center;
+
+}
+.user-profile__gen-info{
+  //background-color: #03D031;
+  padding: 35px 0 35px 0;
+}

@@ -11,6 +11,7 @@ import Inbox from "../inbox";
 import InProgress from "../in-progress";
 import Completed from "../completed";
 import InboxPage from "../inbox/inbox-page/inbox-page";
+import UserProfile from "../user-profile";
 
 const App = () => {
     return (
@@ -37,6 +38,9 @@ const App = () => {
                                />}/>
                         <Route exact path={"/profile/inbox-page"}
                                render={() => <InboxPage
+                               />}/>
+                        <Route exact path={'/profile/inbox-page/:userName'}
+                               render={() => <UserProfile
                                />}/>
                     </Switch>
                 </div>

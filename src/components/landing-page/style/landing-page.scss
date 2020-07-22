@@ -2,6 +2,7 @@
 //  min-height: 3265px;
 //}
 .landing__main{
+  width: 100%;
   background: url("../images/image-for-landing.png") no-repeat;
   min-height: 900px;
 }
@@ -40,23 +41,14 @@
 .landing__about-project{
   min-height: 2365px;
   padding-top: 7%;
-  padding-left: 5%;
-  //padding-right: 5%;
+  //padding-left: 5%;
   display: grid;
   grid-template-rows: 25% 43.75% 31.25%;
-  //grid-template-columns: 50% 50%;
 }
 .landing__about{
+  padding-left: 5%;
   display: flex;
   list-style: none;
-  padding: 0;
-  //display: grid;
-  //align-items: center;
-  //grid-template-rows: repeat(2, 50%);
-  //grid-template-columns: repeat(2, 50%);
-  //grid-template-areas:
-  //  "at aimg"
-  //  "atxt aimg";
 }
 .landing__about-title{
   grid-area: at;
@@ -86,6 +78,9 @@
 }
 .landing__about-img{
   grid-area: aimg;
+}
+.landing__how-works{
+  padding-left: 5%;
 }
 .landing__how-works-list{
   display: flex;
@@ -135,4 +130,60 @@
   letter-spacing: 0.02em;
 
   color: #000000;
+}
+.landing__donation-title{
+  padding-left: 5%;
+  padding-bottom: 3%;
+}
+.landing__donation-background{
+  display: flex;
+  align-items: center;
+  background: url("../images/donation-back.png") no-repeat;
+  min-height: 390px;
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    background-color: rgba(32, 42, 73, 0.72);;
+  }
+}
+.landing__donation-text{
+  z-index: 1;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 170%;
+  color: #FFFFFF;
+  width: 36%;
+  padding-left: 5%;
+}
+.landing__footer{
+  padding: 0 5% 0 5%;
+  background-color: #202A49;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+.landing__footer-link{
+  background: transparent;
+  outline: none;
+  border: none;
+  &:focus{
+    outline: none;
+  }
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 27px;
+  text-transform: uppercase;
+  color: #FFFFFF;
 }

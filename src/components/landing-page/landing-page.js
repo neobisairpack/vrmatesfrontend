@@ -7,6 +7,7 @@ import hw1 from './images/how-works1.png';
 import hw2 from './images/how-works2.png';
 import hw3 from './images/how-works3.png';
 import hw4 from './images/how-works4.png';
+import donation from './images/donation-back.png';
 
 const LandingPage = () => {
     return (
@@ -24,14 +25,11 @@ const LandingPage = () => {
                     <li>
                         <div className={"landing__about-title"}>About us</div>
                         <div className={"landing__about-text"}>
-                            There are many variations of passages of Lorem Ipsum available,
-                            but the majority have suffered alteration in some form, by injected humour,
-                            or randomised words which don't look even slightly believable. If you are going
-                            to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing
-                            hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat
-                            predefined chunks as necessary, making this the first true generator on the Internet. It
-                            uses a dictionary of over 200 Latin words, combined with a handful of model sentence
-                            structures,
+                            Vrmates is a platform that makes traveling easier and funnier by connecting people around
+                            the globe. In this platform you can find hosters, couriers and drivers or you can become one
+                            of them. Vrmates allows you to earn points by providing services to other users of the
+                            platform. Then, you can use those points to get similar services back. Our platform is free
+                            to use and users are thoroughly checked before being approved for safety issues.
                         </div>
                     </li>
                     <li>
@@ -49,7 +47,8 @@ const LandingPage = () => {
                             </div>
                             <div className={"landing__hw-description"}>
                                 <p className={"landing__hw-title"}>Hoster </p>
-                                <p className={"landing__hw-text"}>Travel to any part of the world and stay with locals or accept guests to your
+                                <p className={"landing__hw-text"}>Travel to any part of the world and stay with locals
+                                    or accept guests to your
                                     place.</p>
                             </div>
                         </div>
@@ -59,7 +58,8 @@ const LandingPage = () => {
                             </div>
                             <div className={"landing__hw-description"}>
                                 <p className={"landing__hw-title"}>Driver</p>
-                                <p className={"landing__hw-text"}>Get free rides from local drivers or give a ride if you have a car and spare
+                                <p className={"landing__hw-text"}>Get free rides from local drivers or give a ride if
+                                    you have a car and spare
                                     time.</p>
                             </div>
                         </div>
@@ -69,7 +69,8 @@ const LandingPage = () => {
                             </div>
                             <div className={"landing__hw-description"}>
                                 <p className={"landing__hw-title"}>Courier</p>
-                                <p className={"landing__hw-text"}>Ask travelers to bring your packages from any country or make deliveries for others
+                                <p className={"landing__hw-text"}>Ask travelers to bring your packages from any country
+                                    or make deliveries for others
                                     if you are traveling.</p>
                             </div>
                         </div>
@@ -79,7 +80,8 @@ const LandingPage = () => {
                             </div>
                             <div className={"landing__hw-description"}>
                                 <p className={"landing__hw-title"}>Pointing System</p>
-                                <p className={"landing__hw-text"}>Points are the currency of the platform. The cost of each service is 20 points. It
+                                <p className={"landing__hw-text"}>Points are the currency of the platform. The cost of
+                                    each service is 20 points. It
                                     means users can make 20 points each time by providing one of the three services
                                     above. </p>
 
@@ -87,7 +89,21 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </div>
-                <div></div>
+                <div>
+                    <div className={"landing__about-title landing__donation-title"}>Donation</div>
+                    <div className={"landing__donation-background"}>
+                        <div className={"landing__donation-text"}>
+                        Vrmates is a platform that brings travelers and locals to one place. We made it absolutely free
+                        to use to make it accessible for everyone. However, we have constant expenses for the
+                        maintenance of the platform. That’s why your donations and support would be greatly helpful for
+                        the further development of this project. Thank you!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={"landing__footer"}>
+                <button className={"landing__footer-link"}>Terms&Conditions</button>
+                <button  className={"landing__footer-link"}>faq</button>
             </div>
         </div>
     );

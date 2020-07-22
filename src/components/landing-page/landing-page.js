@@ -9,10 +9,12 @@ const LandingPage = () => {
             <ScrollToTopControlller/>
             <div className={"landing__main"}>
                 <Header/>
-                fdvbfdbv
+                <div className={"landing__slogan"}>Vrmates is the global platform where travelers and locals connect to help each other!</div>
+                <button className={"landing__join-btn"}>Join us</button>
             </div>
+            <div className={"landing__about-project"}>
 
-fdvfdfd
+            </div>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
+    NavbarBrand,
     Nav,
     NavItem,
 } from 'reactstrap';
@@ -21,26 +22,31 @@ const Header = (props) => {
         console.log(id)
     }
     return (
-        <div className={"header"}>
+        <div className={"header-landing"}>
             <Navbar light expand="md">
+                <NavbarBrand tag={'div'} className={"nav__item"}  >
+                    <Link to={"/"}>
+                        <img src={logo} alt={"Vrmates"}/>
+                    </Link>
+                </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
-                <Collapse className={"nav"} isOpen={isOpen} navbar>
-                    <Nav className={"mr-auto"} >
+                <Collapse className={"nav "} isOpen={isOpen} navbar>
+                    <Nav className={"mr-auto landing__navbar"} >
+                        {/*<NavItem>*/}
+                        {/*    <Link to="/" className={"landing__nav-logo"}>*/}
+                        {/*        <img src={logo} alt={"Vrmates"}/></Link>*/}
+                        {/*</NavItem>*/}
                         <NavItem>
-                            <Link to="/" className={"nav__item"}>
-                                <img src={logo} alt={"Vrmates"}/></Link>
+                            <Link to="/" className={"landing__nav-item nav__item"}>About</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/" className={"nav__item"}>About</Link>
+                            <Link to="/profile" className={"landing__nav-item nav__item"}>Donation</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/profile" className={"nav__item"}>Donation</Link>
+                            <Link to="/profile" className={"landing__nav-item nav__item"}>Contact us</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/profile" className={"nav__item"}>Contact us</Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to="/profile" className={"nav__item"}>Log in</Link>
+                            <button className={"landing__nav-item nav__item nav__login"}>Log in</button>
                         </NavItem>
                     </Nav>
                 </Collapse>

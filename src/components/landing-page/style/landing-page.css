@@ -1,4 +1,45 @@
 .landing__main {
   background: url("../images/image-for-landing.png") no-repeat;
-  height: 900px;
+  min-height: 900px;
+}
+
+.landing__slogan {
+  font-family: Avenir Next LT Pro;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 52px;
+  line-height: 62px;
+  color: #FFFFFF;
+  width: 75%;
+  padding-top: 8%;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+.landing__join-btn {
+  width: 300px;
+  height: 50px;
+  background-color: #FFFFFF;
+  outline: none;
+  border: none;
+  margin-left: 5%;
+  margin-top: 5%;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: center;
+  color: #000000;
+}
+.landing__join-btn:focus {
+  outline: none;
+}
+
+.landing__about-project {
+  padding-left: 5%;
+  padding-right: 5%;
+  display: grid;
+  grid-template-rows: 25% 43.75% 31.25%;
+  grid-template-columns: 100%;
 }

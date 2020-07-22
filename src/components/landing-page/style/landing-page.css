@@ -37,9 +37,97 @@
 }
 
 .landing__about-project {
+  min-height: 2365px;
+  padding-top: 7%;
   padding-left: 5%;
-  padding-right: 5%;
   display: grid;
   grid-template-rows: 25% 43.75% 31.25%;
-  grid-template-columns: 100%;
+}
+
+.landing__about {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.landing__about-title {
+  grid-area: at;
+  font-family: Avenir Next LT Pro;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 58px;
+  text-transform: uppercase;
+  color: #FD5A01;
+}
+
+.landing__about-text {
+  width: 80%;
+  padding-top: 9%;
+  grid-area: atxt;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 170%;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.landing__about-img {
+  grid-area: aimg;
+}
+
+.landing__how-works-list {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.landing__hw-item {
+  width: 45%;
+  display: flex;
+  padding: 5% 0 5% 0;
+  margin-right: 5%;
+}
+
+.landing__img-border {
+  width: 214px;
+  height: 233px;
+  border: 1px solid #000000;
+  overflow: visible;
+}
+.landing__img-border img {
+  margin-top: 24px;
+  margin-left: 24px;
+}
+
+.landing__hw-description {
+  margin-left: 8%;
+}
+
+.landing__hw-title {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 170%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+
+.landing__hw-text {
+  width: 80%;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 170%;
+  /* or 34px */
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+  color: #000000;
 }

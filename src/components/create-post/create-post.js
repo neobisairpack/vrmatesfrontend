@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './style/create-post.css';
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
-import plus from './images/plus.svg';
 const CreatePost = () => {
     return (
         <div className={"create-post"}>

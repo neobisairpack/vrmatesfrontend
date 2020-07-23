@@ -1,6 +1,5 @@
 import React from 'react';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
-import Post from "../post";
 import Reviews from "../reviews/reviews";
 import {Link} from "react-router-dom";
 import '../profile/style/profile.css';

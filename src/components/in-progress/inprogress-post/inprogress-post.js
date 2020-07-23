@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../post/style/post.css';
 import arrow from '../../post/images/arrow.svg';

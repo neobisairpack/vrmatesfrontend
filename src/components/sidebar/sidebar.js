@@ -10,7 +10,7 @@ const Sidebar = () => {
         <div className="sidebar" >
           <img src={logo} className={"sidebar__item-logo"} alt={"Vrmates"}/>
 
-              <img src={profilePhoto} className={"sidebar__item-photo"} alt={"Profile Photo"}/>
+              <img src={profilePhoto} className={"sidebar__item-photo"} alt={"Profile"}/>
               <p className={"sidebar__item-greeting"}>Hello, <br/> Aelina! </p>
               <div className={"sidebar__item-rating"}>
                   <img src={star} className={"sidebar__item-rating-star"} alt={"Rating"}/>

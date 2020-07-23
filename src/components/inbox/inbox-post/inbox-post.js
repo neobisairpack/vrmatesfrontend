@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../post/style/post.css';
 import people from './icons/people-icon.png';
 import arrow from '../../post/images/arrow.svg';
 import './style/inbox-post.css';
-import {Link, withRouter} from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import {
     Card,
     CardText,

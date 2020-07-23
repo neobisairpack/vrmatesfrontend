@@ -1,13 +1,13 @@
 import React from 'react';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
-//import '../../profile/style/profile.css';
 import Header from "../header";
 import Footer from "../footer";
 import './style/user-profile.css';
 import back from "../inbox/inbox-page/icons/back-icon.png";
 import UserInfoCard from "./user-info-card/user-info-card";
 import Reviews from "../reviews/reviews";
-const UserProfile = (props) => {
+
+const UserProfile = () => {
     return (
         <div className={"user-profile"}>
             <ScrollToTopControlller/>

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
+import React from 'react';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 import './style/support.css';
 
 const Support = () => {

@@ -12,15 +12,10 @@ import {Link} from "react-router-dom";
 import logo from "../../sidebar/images/logo.svg";
 import './style/header-landing.css';
 
-const Header = (props) => {
+const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeLink, setActiveLink] = useState(null)
 
     const toggle = () => setIsOpen(!isOpen);
-    const handleClick = (id) => {
-        setActiveLink(id)
-        console.log(id)
-    }
     return (
         <div className={"header-landing"}>
             <Navbar light expand="md">
@@ -32,10 +27,6 @@ const Header = (props) => {
                 <NavbarToggler onClick={toggle} />
                 <Collapse className={"nav "} isOpen={isOpen} navbar>
                     <Nav className={"mr-auto landing__navbar"} >
-                        {/*<NavItem>*/}
-                        {/*    <Link to="/" className={"landing__nav-logo"}>*/}
-                        {/*        <img src={logo} alt={"Vrmates"}/></Link>*/}
-                        {/*</NavItem>*/}
                         <NavItem>
                             <Link to="/" className={"landing__nav-item nav__item"}>About</Link>
                         </NavItem>

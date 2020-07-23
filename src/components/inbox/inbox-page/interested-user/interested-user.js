@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/interested.css';
 import profile from '../../../sidebar/images/profilephoto.svg';

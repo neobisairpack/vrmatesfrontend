@@ -4,7 +4,7 @@ import './style/reviews.css';
 import star from '../post/images/star-icon.png';
 import FullReview from "./full-review";
 
-const Reviews = (props) => {
+const Reviews = () => {
     const [reviewState, setReviewState] = useState(false);
     function reviewView() {
         setReviewState(!reviewState)

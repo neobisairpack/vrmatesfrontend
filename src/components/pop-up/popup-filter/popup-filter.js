@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../popup-switch/style/popup.css';
 import './style/popup-filter.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import filter from '../../dashboard/icons/filter-icon.svg';
-import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
+import { FormGroup, Input } from 'reactstrap';
 
 
 const Filter = () => {

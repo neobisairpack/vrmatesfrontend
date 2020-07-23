@@ -6,7 +6,7 @@ import Footer from "../../footer";
 import './style/inbox-page.css';
 import InboxPageSidebar from "./inbox-sidebar/inbox-sidebar";
 import InterestedUser from "./interested-user";
-const InboxPage = (props) => {
+const InboxPage = () => {
     return (
         <div className={"inbox-page"}>
             <ScrollToTopControlller/>

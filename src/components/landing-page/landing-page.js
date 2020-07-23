@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
 import Header from "./landing-header/header";
 import './style/landing-page.css';
@@ -7,8 +7,6 @@ import hw1 from './images/how-works1.png';
 import hw2 from './images/how-works2.png';
 import hw3 from './images/how-works3.png';
 import hw4 from './images/how-works4.png';
-import donation from './images/donation-back.png';
-
 const LandingPage = () => {
     return (
         <div className={"landing"}>

@@ -9,7 +9,7 @@ import Header from "../header";
 import Footer from "../footer";
 import Sidebar from "../sidebar";
 
-const Inbox = (props) => {
+const Inbox = () => {
     return (
         <div className={"profile"}>
             <ScrollToTopControlller/>

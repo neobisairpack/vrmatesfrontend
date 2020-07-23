@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/user-info-card.css';
 import profile from '../../sidebar/images/profilephoto.svg'
@@ -9,7 +9,7 @@ import insta from '../icons/insta-icon.png';
 import whats from '../icons/whatsapp-icon.png';
 import telegram from '../icons/tele-icon.png';
 
-const UserInfoCard = (props) => {
+const UserInfoCard = () => {
 
     return (
         <div className={"user-info-card"}>

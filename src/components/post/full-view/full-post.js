@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './style/full-post.css';
 import profile from "../../sidebar/images/profilephoto.svg";
 import star from "../../sidebar/images/star.svg";

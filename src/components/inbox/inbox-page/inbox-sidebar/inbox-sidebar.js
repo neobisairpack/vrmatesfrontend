@@ -5,12 +5,12 @@ import logo from "../../../sidebar/images/logo.svg";
 import back from '../icons/back-icon.png';
 import imgIcon from "../../../post/images/empty-img.svg";
 import '../../../create-post/style/create-post.css';
-const InboxPageSidebar = (props) => {
+const InboxPageSidebar = () => {
     return (
         <div className={"inbox-page__sidebar"}>
             <img className={"inbox-page__logo"} src={logo} alt={"Vrmates"}/>
             <div className={"inbox-page__title"}>
-                <label> <img src={back}/> inbox post</label>
+                <label> <img src={back} alt={"Back"}/> inbox post</label>
             </div>
             <div className={"inbox-page__post-head"}>
                 <p className={"inbox-page__post-type"}>Package Delivery</p>

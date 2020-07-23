@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './style/popup.css';
 const Switch = () => {
     return (

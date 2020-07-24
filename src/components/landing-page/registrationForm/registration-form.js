@@ -12,7 +12,7 @@ const RegistrationForm = () => {
             <div className={"register-form"}>
                 <div>
                     <label className={"register__title"}>Registration</label>
-                    <img className={"register__exit"} src={exit} alt={"exit"}/>
+                    <Link to={"/landingpage"}><img className={"register__exit"} src={exit} alt={"exit"}/></Link>
                 </div>
                 <Form className={"register__inputs"}>
 

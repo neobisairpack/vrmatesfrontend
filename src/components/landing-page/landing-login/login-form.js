@@ -15,7 +15,6 @@ const LoginForm = () => {
             <div className={"login-form"}>
 
                 <div className={"login-form__item"}>
-                    {/*<img className={"login__exit"} src={exit} alt={"exit"}/>*/}
                     <label className={"login__title"}>Welcome  to Vrmates</label>
                     <Form>
                         <FormGroup>
@@ -38,7 +37,7 @@ const LoginForm = () => {
                     <button className={"register__sign-up-btn"}>Login</button>
                 </div>
                 <div>
-                    <img className={"login__exit"} src={exit} alt={"exit"}/>
+                    <Link to={"/landingpage"}><img className={"login__exit"} src={exit} alt={"exit"}/></Link>
                     <img className={"login-form__img"} src={loginImg} alt={"Login image"}/>
                 </div>
             </div>

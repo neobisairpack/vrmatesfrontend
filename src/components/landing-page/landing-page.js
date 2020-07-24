@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
 import Header from "./landing-header/header";
 import './style/landing-page.css';
@@ -7,6 +7,8 @@ import hw1 from './images/how-works1.png';
 import hw2 from './images/how-works2.png';
 import hw3 from './images/how-works3.png';
 import hw4 from './images/how-works4.png';
+import RegistrationForm from "./registrationForm";
+import {Link} from "react-router-dom";
 const LandingPage = () => {
     return (
         <div className={"landing"}>
@@ -16,7 +18,7 @@ const LandingPage = () => {
                 <div className={"landing__slogan"}>Vrmates is the global platform where travelers and locals connect to
                     help each other!
                 </div>
-                <button className={"landing__join-btn"}>Join us</button>
+                <Link to={"/registration"}><button className={"landing__join-btn"}>Join us</button></Link>
             </div>
             <div className={"landing__about-project"}>
                 <ul className={"landing__about"}>
@@ -103,6 +105,7 @@ const LandingPage = () => {
                 <button className={"landing__footer-link"}>Terms&Conditions</button>
                 <button  className={"landing__footer-link"}>faq</button>
             </div>
+
         </div>
     );
 };

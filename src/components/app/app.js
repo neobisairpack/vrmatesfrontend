@@ -10,6 +10,7 @@ import Completed from "../completed";
 import InboxPage from "../inbox/inbox-page/inbox-page";
 import UserProfile from "../user-profile";
 import LandingPage from "../landing-page";
+import RegistrationForm from "../landing-page/registrationForm";
 
 const App = () => {
     return (
@@ -40,6 +41,9 @@ const App = () => {
                                />}/>
                         <Route exact path={'/profile/inbox-page/:userName'}
                                render={() => <UserProfile
+                               />}/>
+                        <Route exact path={'/registration'}
+                               render={() => <RegistrationForm
                                />}/>
                     </Switch>
                 </div>

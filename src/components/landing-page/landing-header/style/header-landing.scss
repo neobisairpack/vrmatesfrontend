@@ -2,17 +2,11 @@
   background: url("../../images/image-for-landing.png")  no-repeat;
   padding-left: 5%;
   padding-right: 5%;
-  &:before{
-    content: "";
-    position: absolute;
-    left: 75.75px;
-    bottom: 0;
-    height: 1px;
-    width: 85.3%;
-    border-bottom: 0 solid rgba(196, 196, 196, 0.23);
-  }
+
 }
 .landing__nav-item{
+  position: relative;
+  z-index: 1;
   font-family: Muller;
   font-style: normal;
   font-weight: 500;
@@ -28,6 +22,7 @@
   align-items: center;
 }
 .nav__login{
+  z-index: 1;
   background: transparent;
   outline: none;
   border: 1px solid #FFFFFF;

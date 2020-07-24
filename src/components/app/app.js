@@ -11,6 +11,7 @@ import InboxPage from "../inbox/inbox-page/inbox-page";
 import UserProfile from "../user-profile";
 import LandingPage from "../landing-page";
 import RegistrationForm from "../landing-page/registrationForm";
+import LoginForm from "../landing-page/landing-login";
 
 const App = () => {
     return (
@@ -44,6 +45,9 @@ const App = () => {
                                />}/>
                         <Route exact path={'/registration'}
                                render={() => <RegistrationForm
+                               />}/>
+                        <Route exact path={'/login'}
+                               render={() => <LoginForm
                                />}/>
                     </Switch>
                 </div>

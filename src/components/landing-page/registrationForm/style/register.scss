@@ -1,12 +1,23 @@
 .register-container{
-  //position: fixed;
   width: 100%;
   background: url("../../images/image-for-landing.png") no-repeat;
   min-height: 900px;
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    background-color: rgba(32, 42, 73, 0.3);
+  }
 }
 
 .register-form{
   position: absolute;
+  z-index: 5;
   left: 18%;
   top: 10%;
   padding: 4% 6%;
@@ -61,10 +72,13 @@
   }
 }
 .register__checkbox{
+
   margin-right: auto;
   padding-left: 9%;
 }
 .register__checkbox-lbl{
+  display: flex;
+  align-items: center;
   font-family: Muller;
   font-style: normal;
   font-weight: normal;
@@ -89,4 +103,8 @@
   color: #FFFFFF;
   background: #202A49;
   border-radius: 12px;
+  outline: none;
+  &:focus{
+    outline: none
+  }
 }

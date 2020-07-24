@@ -2,11 +2,25 @@
 //  min-height: 3265px;
 //}
 .landing__main{
+  //z-index: -5;
   width: 100%;
   background: url("../images/image-for-landing.png") no-repeat;
   min-height: 900px;
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    background-color: rgba(32, 42, 73, 0.3);
+  }
 }
 .landing__slogan{
+  position: relative;
+  z-index: 100;
   font-family: Avenir Next LT Pro;
   font-style: normal;
   font-weight: 800;
@@ -19,6 +33,8 @@
   padding-left: 5%;
 }
 .landing__join-btn{
+  position: relative;
+  z-index: 1;
   width: 300px;
   height: 50px;
   background-color: #FFFFFF;
@@ -149,7 +165,7 @@
     left: 0;
     right: 0;
     display: block;
-    background-color: rgba(32, 42, 73, 0.72);;
+    background-color: rgba(32, 42, 73, 0.72);
   }
 }
 .landing__donation-text{

@@ -4,7 +4,6 @@ import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import './style/register.css';
 import exit from '../../post/images/exit.svg';
 import DatePicker from "react-datepicker";
-import LandingPage from "../landing-page";
 
 const RegistrationForm = () => {
 

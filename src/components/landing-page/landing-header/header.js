@@ -19,7 +19,7 @@ const Header = () => {
     return (
         <div className={"header-landing"}>
             <Navbar light expand="md">
-                <NavbarBrand tag={'div'} className={"nav__item"}  >
+                <NavbarBrand tag={'div'} className={"landing__nav-item nav__item"}  >
                     <Link to={"/"}>
                         <img src={logo} alt={"Vrmates"}/>
                     </Link>
@@ -37,7 +37,7 @@ const Header = () => {
                             <Link to="/profile" className={"landing__nav-item nav__item"}>Contact us</Link>
                         </NavItem>
                         <NavItem>
-                            <button className={"landing__nav-item nav__item nav__login"}>Log in</button>
+                            <Link to={"/login"}><button className={"landing__nav-item nav__item nav__login"}>Log in</button></Link>
                         </NavItem>
                     </Nav>
                 </Collapse>

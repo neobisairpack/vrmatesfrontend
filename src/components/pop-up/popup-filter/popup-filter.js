@@ -9,14 +9,14 @@ import { FormGroup, Input } from 'reactstrap';
 
 const Filter = () => {
 
-    const CustomInput = () => {
-            return (
-                <div className="wrapper">
-                    <i aria-hidden="true" className="fa fa-calendar"></i>
-                    <input className="dateInput" type="text" />
-                </div>
-            )
-    }
+    // const CustomInput = () => {
+    //         return (
+    //             <div className="wrapper">
+    //                 <i aria-hidden="true" className="fa fa-calendar"></i>
+    //                 <input className="dateInput" type="text" />
+    //             </div>
+    //         )
+    //}
     return (
         <div className={"filter"}>
             <label className={"filter__title"}>Choose the type of service</label>

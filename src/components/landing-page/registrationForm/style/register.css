@@ -5,10 +5,95 @@
 }
 
 .register-form {
-  position: fixed;
-  left: 15%;
+  position: absolute;
+  left: 18%;
   top: 10%;
-  width: 971px;
-  height: 681px;
+  padding: 4% 6%;
+  width: 67.43%;
   background-color: #FFFFFF;
+}
+
+.register__title {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 36px;
+  color: #202A49;
+}
+
+.register__exit {
+  float: right;
+  width: 14px;
+  height: 14px;
+}
+
+.register__inputs {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 4% 0 3% 0;
+}
+
+.register__input {
+  width: 350px;
+  height: 46px;
+  border: 1px solid rgba(0, 0, 0, 0.27);
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  color: #000000;
+}
+.register__input::placeholder {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  color: #000000;
+}
+.register__input:required {
+  color: red;
+  font-weight: 700;
+  font-size: inherit;
+}
+
+.register__checkbox {
+  margin-right: auto;
+  padding-left: 9%;
+}
+
+.register__checkbox-lbl {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  color: #FD5A01;
+}
+
+.register__sign-up {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.register__sign-up-btn {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  width: 350px;
+  height: 48px;
+  color: #FFFFFF;
+  background: #202A49;
+  border-radius: 12px;
 }

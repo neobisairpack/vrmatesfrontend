@@ -1,6 +1,7 @@
-import {createStore} from "redux";
-import reducer from "./reducers";
-
-const store = createStore(reducer);
-
-export default store;
+// import {createStore} from "redux";
+// import reducer from "./reducers";
+// import authReducer from './reducers/auth-reducer';
+//
+// const store = createStore(authReducer);
+//
+// export default store;

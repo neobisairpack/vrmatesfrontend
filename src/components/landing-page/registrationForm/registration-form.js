@@ -2,54 +2,68 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import './style/register.css';
+import dateformat from 'dateformat'
 import exit from '../../post/images/exit.svg';
 import DatePicker from "react-datepicker";
 import axios from "axios";
 
 const RegistrationForm = () => {
-    const [name, setName] = useState(null)
-    const [lastName, setLastName] = useState(null)
-    const [phone, setPhone] = useState(null)
-    const [email, setEmail] = useState(null)
-    const [birthDate, setBirthDate] = useState(null)
-    const [address, setAddress] = useState(null)
-    const [zipcode, setZipcode] = useState(null)
-    const [country, setCountry] = useState(null)
-    const [gender, setGender] = useState(null)
-    const [city, setCity] = useState(null)
-    const [state, setState] = useState(null)
-    const [password, setPassword] = useState(null)
-    const [password2, setPassword2] = useState(null)
-    const [isChecked, setIsChecked] = useState(false)
+    const [state, setState] = useState({
+        name: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        //birthDate: null,
+        address: "",
+        zipcode: "",
+        country: "",
+        gender: "",
+        city: "",
+        states: "",
+        password: "",
+        password2: "",
+        isChecked: false
 
-    //console.log(email, password)
-    const handleSubmit = () => {
-        //e.preventDefault()
-        console.log(email, password, city, name)
+    })
+    const [birthDate, setBirthDate] = useState(null)
+
+    console.log(dateformat(birthDate, "yyyy-mm-dd"))
+    const handleChange = (e) => {
+        const value = e.target.value
+        console.log(e.target.name, value)
+        setState({
+            ...state,
+            [e.target.name]: value
+        })
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(state.email, state.password, state.city, state.name)
         axios.post('https://cors-anywhere.herokuapp.com/http://167.172.178.135/users/registration/', {
-            first_name: name,
-            last_name: lastName,
-            username: name,
-            email: email,
-            birthday: birthDate,
-            gender: "Male",
-            phone: "996559129557",
-            "address": "Moscow st. 219",
-            "zip_code": 720010,
-            "country": "Kyrgyzstan",
-            "city": "Bishkek",
-            "state": "Chui",
-            "password": "MyPassword1",
-            "password2": "MyPassword1"
+            first_name: state.name,
+            last_name: state.lastName,
+            username: state.name,
+            email: state.email,
+            birthday: dateformat(birthDate, 'yyyy-mm-dd'),
+            gender: state.gender,
+            phone: state.phone,
+            address: state.address,
+            zip_code: state.zipcode,
+            country: state.country,
+            city: state.city,
+            state: state.states,
+            password: state.password,
+            password2: state.password2
         })
             .then((res) => {
                 console.log(res)
-                localStorage.setItem("token", JSON.stringify(res.data.token));
-                window.location.href='/'
+                alert(res.data.response)
+                //localStorage.setItem("token", JSON.stringify(res.data.token));
+                //window.location.href='/'
                 // dispatch(loginUser(res.data.email))
             })
             .catch((err) => {
-                console.log("Logging in error " + err)
+                console.log("Registration error " + err)
             })
     }
     return (
@@ -65,8 +79,10 @@ const RegistrationForm = () => {
                         <Input
                             className={"register__input"}
                             placeholder={"First Name"}
-                            type={"name"}
-                            onChange={e => setName(e.target.value)}
+                            type={"text"}
+                            name={"name"}
+                            value={state.name}
+                            onChange={e => handleChange(e)}
                             required/>
                     </FormGroup>
 
@@ -76,15 +92,18 @@ const RegistrationForm = () => {
                             placeholder={"Phone Number"}
                             type={"tel"}
                             name={"phone"}
-                            onChange={e => setPhone(e.target.value)}
+                            value={state.phone}
+                            onChange={e => handleChange(e)}
                             required/>
                     </FormGroup>
                     <FormGroup>
                         <Input
                             className={"register__input"}
                             placeholder={"Last Name"}
-                            type={"name"}
-                            onChange={e => setLastName(e.target.value)}
+                            type={"text"}
+                            name={"lastName"}
+                            value={state.lastName}
+                            onChange={e => handleChange(e)}
                             required/>
                     </FormGroup>
 
@@ -93,7 +112,9 @@ const RegistrationForm = () => {
                             className={"register__input"}
                             placeholder={"Address"}
                             type={"address"}
-                            onChange={e => setAddress(e.target.value)}
+                            name={"address"}
+                            value={state.address}
+                            onChange={e => handleChange(e)}
                             required/>
                     </FormGroup>
 
@@ -103,7 +124,8 @@ const RegistrationForm = () => {
                             placeholder={"E-mail"}
                             type={"email"}
                             name={"email"}
-                            onChange={e => setEmail(e.target.value)}
+                            value={state.email}
+                            onChange={e => handleChange(e)}
                             required/>
                     </FormGroup>
 
@@ -111,32 +133,39 @@ const RegistrationForm = () => {
                         <Input
                             className={"register__input"}
                             placeholder={"Zip Code"}
-                            type="number"
-                            onChange={e => setZipcode(e.target.value)}
+                            type={"number"}
+                            name={"zipcode"}
+                            value={state.zipcode}
+                            onChange={e => handleChange(e)}
                             required/>
                     </FormGroup>
 
                     <DatePicker
-                        dateFormat="yy-MM-dd"
+                        //dateFormat="yyyy-mm-dd"
                         className={"register__input"}
                         placeholderText={"   Date Of Birth"}
-                        onChange={e => setBirthDate(e.target.value)}
+                        selected={birthDate}
+                        onChange={date => setBirthDate(date)}
                     />
 
                     <FormGroup>
-                        <Input type="select" className={"register__input"} onChange={e => setCountry(e.target.value)}>
-                            <option>Country</option>
+                        <Input type="select" name={"country"} className={"register__input"} value={state.country} onChange={e => handleChange(e)}>
+                            <option value={""}>Country</option>
+                            <option value={"Kyrgyzstan"}>Kyrgyzstan</option>
                         </Input>
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="select" className={"register__input"} onChange={e => setGender(e.target.value)}>
+                        <Input type="select" name={"gender"} className={"register__input"} value={state.gender} onChange={e => handleChange(e)}>
                             <option>Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
                         </Input>
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="select" className={"register__input"} onChange={e => setCity(e.target.value)}>
+                        <Input type="select" name={"city"} className={"register__input"} value={state.city} onChange={e => handleChange(e)}>
                             <option value={""}>City</option>
                             <option value={"Bishkek"}>Bishkek</option>
                         </Input>
@@ -148,35 +177,38 @@ const RegistrationForm = () => {
                             name={"password"}
                             className={"register__input"}
                             placeholder={"Password"}
-                            onChange={e => setPassword(e.target.value)}
+                            value={state.password}
+                            onChange={e => handleChange(e)}
                         />
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="select" className={"register__input"} onChange={e => setState(e.target.value)}>
+                        <Input type="select" name={"states"} className={"register__input"} value={state.states} onChange={e => handleChange(e)}>
                             <option value={""}>State</option>
+                            <option value={"Chui"}>Chui</option>
                         </Input>
                     </FormGroup>
 
                     <FormGroup>
                         <Input
                             type={"password"}
-                            name={"password"}
+                            name={"password2"}
                             className={"register__input"}
                             placeholder={"Repeat Password"}
-                            onChange={e => setPassword2(e.target.value)}
+                            value={state.password2}
+                            onChange={e => handleChange(e)}
                         />
                     </FormGroup>
 
                     <FormGroup className={"register__checkbox"} check>
                         <Label check className={"register__checkbox-lbl"}>
-                            <Input type={"checkbox"} onChange={setIsChecked(!isChecked)}/>
+                            <Input type={"checkbox"} name={"isChecked"} value={state.isChecked} onChange={e => handleChange(e)}/>
                             I agree to terms conditions
                         </Label>
                     </FormGroup>
                 </Form>
                 <div className={"register__sign-up"}>
-                    <button onClick={handleSubmit} type={"submit"} className={"register__sign-up-btn"}>Sign Up</button>
+                    <button type={"submit"} onClick={handleSubmit} className={"register__sign-up-btn"}>Sign Up</button>
                 </div>
 
             </div>

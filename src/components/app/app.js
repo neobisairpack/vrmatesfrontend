@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from '../dashboard';
-import Profile from "../profile"
+import Profile from "../profile";
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './style/app.css';

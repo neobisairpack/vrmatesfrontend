@@ -1,7 +1,6 @@
 $font-color-orange: #FD5A01;
-@mixin font($size, $family, $style, $weight, $line, $color){
+@mixin font($size, $style, $weight, $line, $color){
   font-size: $size;
-  font-family: $family;
   font-style: $style;
   font-weight: $weight;
   line-height: $line;
@@ -21,17 +20,18 @@ $font-color-orange: #FD5A01;
   border-radius: 20px;
 }
 .post__content{
-  position: relative;
-  &:before{
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    height: 1px;
-    width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    //margin-bottom: 11px;
-  }
+
+  //position: relative;
+  //&:before{
+  //  content: "";
+  //  position: absolute;
+  //  left: 0;
+  //  bottom: 0;
+  //  height: 1px;
+  //  width: 100%;
+  //  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  //  //margin-bottom: 11px;
+  //}
 }
 .card-img{
   width: 20px;
@@ -52,12 +52,7 @@ $font-color-orange: #FD5A01;
     opacity: 0.8;
   }
 }
-//.profile-post{
-//  height: 85%;
-//}
-//.dashboard-post{
-//  height: 93%;
-//}
+
 .post__top-list{
   display: flex;
   padding: 0 0 9px 0;
@@ -66,9 +61,9 @@ $font-color-orange: #FD5A01;
 }
 .post__package-provider{
  position: absolute;
-  right: -8px;
-  @include font(14px, Muller, normal, 500, 14px, $font-color-orange);
-  width: 58px;
+  right: 8px;
+  @include font(14px, normal, 500, 14px, $font-color-orange);
+  //width: 58px;
 }
 .post__avatar{
   vertical-align: top;
@@ -78,7 +73,7 @@ $font-color-orange: #FD5A01;
   margin-right: 11px;
 }
 .post__user-name{
-  @include font(18px, Muller, normal, bold, 18px, #000000);
+  @include font(18px, normal, bold, 18px, #000000);
   margin: 0;
 }
 
@@ -95,9 +90,9 @@ $font-color-orange: #FD5A01;
 }
 .post__type{
   margin: 0;
-  width: 142px;
-  height: 18px;
-  @include font(18px, Muller, normal, 500, 18px, $font-color-orange);
+  //width: 142px;
+  //height: 18px;
+  @include font(18px, normal, 500, 18px, $font-color-orange);
 }
 .post__address{
   margin-top: 10px;
@@ -110,13 +105,13 @@ $font-color-orange: #FD5A01;
   margin-bottom: 5px;
   width: 124px;
   height: 19px;
-  @include font(14px, Muller, normal, normal, 100%, #424141);
+  @include font(14px, normal, normal, 100%, #424141);
   text-transform: capitalize;
  }
 .post__country{
   display: flex;
   align-items: center;
-  @include font(12px, Muller, normal, 300, 100%, rgba(64, 64, 64, 0.7));
+  @include font(12px, normal, 300, 100%, rgba(64, 64, 64, 0.7));
   width: 112px;
   height: 14px;
 }
@@ -125,11 +120,13 @@ $font-color-orange: #FD5A01;
   //margin-left: 50px;
 }
 .post__deadline{
-  margin-left: auto;
-  width: 72px;
-  height: 12px;
-  @include font(12px, Muller, normal, normal, 12px, rgba(0, 0, 0, 0.5));
-  margin-top: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 2px;
+  float: right;
+  //width: 72px;
+  //height: 12px;
+  @include font(12px, normal, normal, 12px, rgba(0, 0, 0, 0.5));
+  margin-top: 2px;
 }
 .post__text{
   margin-top: 11px;
@@ -137,14 +134,14 @@ $font-color-orange: #FD5A01;
   width: 225px;
   height: 16px;
   overflow: hidden;
-  @include font(16px, Muller, normal, 500, 16px, #424141);
+  @include font(16px, normal, 500, 16px, #424141);
   text-transform: capitalize;
 }
 .post__email{
   margin-bottom: 0;
   width: 140px;
   height: 14px;
-  @include font(14px, Muller, normal, normal, 100%, rgba(0, 0, 0, 0.5));
+  @include font(14px, normal, normal, 100%, rgba(0, 0, 0, 0.5));
   display: flex;
   align-items: center;
   text-transform: capitalize;
@@ -154,7 +151,7 @@ $font-color-orange: #FD5A01;
   margin-left: auto;
   width: 78px;
   height: 16px;
-  @include font(16px, Muller, normal, bold, 100%, #202A49);
+  @include font(16px, normal, bold, 100%, #202A49);
   display: flex;
   align-items: center;
   background: transparent;

@@ -23,6 +23,7 @@ const LoginForm = () => {
             .then((res) => {
                 console.log(res)
                 localStorage.setItem("token", JSON.stringify(res.data.token));
+                console.log(res.data.token)
                 window.location.href='/'
                 // dispatch(loginUser(res.data.email))
             })

@@ -14,19 +14,6 @@
   border-radius: 20px;
 }
 
-.post__content {
-  position: relative;
-}
-.post__content:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  height: 1px;
-  width: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
 .card-img {
   width: 20px;
   height: 20px;
@@ -56,14 +43,12 @@
 
 .post__package-provider {
   position: absolute;
-  right: -8px;
+  right: 8px;
   font-size: 14px;
-  font-family: Muller;
   font-style: normal;
   font-weight: 500;
   line-height: 14px;
   color: #FD5A01;
-  width: 58px;
 }
 
 .post__avatar {
@@ -76,7 +61,6 @@
 
 .post__user-name {
   font-size: 18px;
-  font-family: Muller;
   font-style: normal;
   font-weight: bold;
   line-height: 18px;
@@ -98,10 +82,7 @@
 
 .post__type {
   margin: 0;
-  width: 142px;
-  height: 18px;
   font-size: 18px;
-  font-family: Muller;
   font-style: normal;
   font-weight: 500;
   line-height: 18px;
@@ -121,7 +102,6 @@
   width: 124px;
   height: 19px;
   font-size: 14px;
-  font-family: Muller;
   font-style: normal;
   font-weight: normal;
   line-height: 100%;
@@ -133,7 +113,6 @@
   display: flex;
   align-items: center;
   font-size: 12px;
-  font-family: Muller;
   font-style: normal;
   font-weight: 300;
   line-height: 100%;
@@ -147,16 +126,15 @@
 }
 
 .post__deadline {
-  margin-left: auto;
-  width: 72px;
-  height: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 2px;
+  float: right;
   font-size: 12px;
-  font-family: Muller;
   font-style: normal;
   font-weight: normal;
   line-height: 12px;
   color: rgba(0, 0, 0, 0.5);
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .post__text {
@@ -166,7 +144,6 @@
   height: 16px;
   overflow: hidden;
   font-size: 16px;
-  font-family: Muller;
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
@@ -179,7 +156,6 @@
   width: 140px;
   height: 14px;
   font-size: 14px;
-  font-family: Muller;
   font-style: normal;
   font-weight: normal;
   line-height: 100%;
@@ -195,7 +171,6 @@
   width: 78px;
   height: 16px;
   font-size: 16px;
-  font-family: Muller;
   font-style: normal;
   font-weight: bold;
   line-height: 100%;

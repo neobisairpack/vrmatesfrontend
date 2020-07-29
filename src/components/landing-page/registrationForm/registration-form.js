@@ -58,9 +58,6 @@ const RegistrationForm = () => {
             .then((res) => {
                 console.log(res)
                 alert(res.data.response)
-                //localStorage.setItem("token", JSON.stringify(res.data.token));
-                //window.location.href='/'
-                // dispatch(loginUser(res.data.email))
             })
             .catch((err) => {
                 console.log("Registration error " + err)
@@ -71,7 +68,7 @@ const RegistrationForm = () => {
             <div className={"register-form"}>
                 <div>
                     <label className={"register__title"}>Registration</label>
-                    <Link to={"/landingpage"}><img className={"register__exit"} src={exit} alt={"exit"}/></Link>
+                    <Link to={"/"}><img className={"register__exit"} src={exit} alt={"exit"}/></Link>
                 </div>
                 <Form className={"register__inputs"}>
 

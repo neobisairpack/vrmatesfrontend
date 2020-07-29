@@ -7,13 +7,20 @@
 .landing__nav-item{
   position: relative;
   z-index: 1;
-  font-family: Muller;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 18px;
   color: #FFFFFF;
-  //margin-left: auto;
+}
+.landing__scroll-btn{
+  background: transparent;
+  outline: none;
+  border: none;
+  color: #FFFFFF;
+  &:focus{
+    outline: none;
+  }
 }
 .landing__navbar{
   margin-right: 0 !important;

@@ -19,10 +19,10 @@ const App = () => {
             <div className={"app-wrapper"}>
                 <div className={"app-wrapper__content"}>
                     <Switch>
-                        <Route exact path={"/landingpage"}
+                        <Route exact path={"/"}
                                render={() => <LandingPage
                                />} />
-                        <Route exact path={"/"}
+                        <Route exact path={"/dashboard"}
                                render={() => <Main
                                />} />
                         <Route exact path={"/profile"}

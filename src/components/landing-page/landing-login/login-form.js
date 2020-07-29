@@ -24,7 +24,7 @@ const LoginForm = () => {
                 console.log(res)
                 localStorage.setItem("token", JSON.stringify(res.data.token));
                 console.log(res.data.token)
-                window.location.href='/'
+                window.location.href='/dashboard'
                 // dispatch(loginUser(res.data.email))
             })
             .catch((err) => {
@@ -61,7 +61,7 @@ const LoginForm = () => {
                     <button onClick={handleSubmit} type={"submit"} className={"register__sign-up-btn"}>Login</button>
                 </div>
                 <div>
-                    <Link to={"/landingpage"}><img className={"login__exit"} src={exit} alt={"exit"}/></Link>
+                    <Link to={"/"}><img className={"login__exit"} src={exit} alt={"exit"}/></Link>
                     <img className={"login-form__img"} src={loginImg} alt={"Login image"}/>
                 </div>
             </div>

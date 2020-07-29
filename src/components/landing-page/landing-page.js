@@ -9,6 +9,8 @@ import hw3 from './images/how-works3.png';
 import hw4 from './images/how-works4.png';
 import RegistrationForm from "./registrationForm";
 import {Link} from "react-router-dom";
+
+
 const LandingPage = () => {
     return (
         <div className={"landing"}>
@@ -21,6 +23,7 @@ const LandingPage = () => {
                 <Link to={"/registration"}><button className={"landing__join-btn"}>Join us</button></Link>
             </div>
             <div className={"landing__about-project"}>
+                <div id={"about-project"}>
                 <ul className={"landing__about"}>
                     <li>
                         <div className={"landing__about-title"}>About us</div>
@@ -38,6 +41,7 @@ const LandingPage = () => {
                         </div>
                     </li>
                 </ul>
+                </div>
                 <div className={"landing__how-works"}>
                     <div className={"landing__about-title"}>How it works</div>
                     <div className={"landing__how-works-list"}>
@@ -89,7 +93,7 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div id={"donation"}>
                     <div className={"landing__about-title landing__donation-title"}>Donation</div>
                     <div className={"landing__donation-background"}>
                         <div className={"landing__donation-text"}>

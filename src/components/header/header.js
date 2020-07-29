@@ -28,7 +28,7 @@ const Header = (props) => {
                     <Collapse className={"nav landing-nav"} isOpen={isOpen} navbar>
                         <Nav className={"mr-auto"} >
                             <NavItem>
-                                <Link to="/" onClick={() => {
+                                <Link to="/dashboard" onClick={() => {
                                     handleClick(1)
                                 }} className={"nav__item" + (activeLink === 1 ? " nav__item_active" : "")}>Dashboard</Link>
                             </NavItem>
@@ -38,7 +38,7 @@ const Header = (props) => {
                                 }} className={"nav__item" + (activeLink === 2 ? " nav__item_active" : "")}>Profile</Link>
                             </NavItem>
                         </Nav>
-                        <NavbarText className={"nav__item nav__item_logout "}><Link to={"/landingpage"}><img src={LogOut} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</Link></NavbarText>
+                        <NavbarText className={"nav__item nav__item_logout "}><Link to={"/"}><img src={LogOut} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</Link></NavbarText>
                     </Collapse>
                 </Navbar>
         </div>

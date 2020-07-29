@@ -11,6 +11,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from "react-router-dom";
 import logo from "../../sidebar/images/logo.svg";
 import './style/header-landing.css';
+import * as Scroll from 'react-scroll'
+import {Link as ScrollLink} from 'react-scroll'
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,13 +30,23 @@ const Header = () => {
                 <Collapse className={"nav "} isOpen={isOpen} navbar>
                     <Nav className={"mr-auto landing__navbar"} >
                         <NavItem>
-                            <Link to="/" className={"landing__nav-item nav__item"}>About</Link>
+                            <ScrollLink to="about-project"
+                                        //spy={true}
+                                        smooth={true}
+                                        duration={1000}
+                                        className={"landing__nav-item nav__item"}>
+                                <button className={"landing__scroll-btn"}>About</button></ScrollLink>
                         </NavItem>
                         <NavItem>
-                            <Link to="/profile" className={"landing__nav-item nav__item"}>Donation</Link>
+                            <ScrollLink to="donation"
+                                //spy={true}
+                                        smooth={true}
+                                        duration={1000}
+                                        className={"landing__nav-item nav__item"}>
+                                <button className={"landing__scroll-btn"}>Donation</button></ScrollLink>
                         </NavItem>
                         <NavItem>
-                            <Link to="/profile" className={"landing__nav-item nav__item"}>Contact us</Link>
+                            <Link to="/contact-us" className={"landing__nav-item nav__item"}>Contact us</Link>
                         </NavItem>
                         <NavItem>
                             <Link to={"/login"}><button className={"landing__nav-item nav__item nav__login"}>Log in</button></Link>

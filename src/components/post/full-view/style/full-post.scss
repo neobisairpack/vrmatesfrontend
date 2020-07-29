@@ -7,15 +7,15 @@
   color: $color;
 }
 .full-post{
-  position: absolute;
-  left: 40%;
-  top: 22%;
-  width: 34.72%;
-  height: 673px;
-  background: #FFFFFF;
-  border-radius: 20px;
+
   z-index: 99;
+
+}
+.modal-content{
+  border-radius: 20px;
   padding: 27px 32px;
+  width: 100%; /*34.72%*/
+  height: 673px;
 }
 .full-post__text{
   margin-top: 14px;

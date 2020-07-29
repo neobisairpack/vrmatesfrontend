@@ -18,6 +18,7 @@ const Post = (props) => {
     const [dataAll, setData] = useState([]);
     const [first_name, setFirst_name] = useState("");
     const [loading, setLoading] = useState(false);
+    const [modalShow, setModalShow] = useState(false)
 
     useEffect(() => {
         let token = JSON.parse(localStorage.getItem("token"));
@@ -42,7 +43,7 @@ const Post = (props) => {
             <div className={"row"}>
                 {array.map((item) =>
                     <div key={item} className={"col-4"}>
-                        <Card className={props.size}>
+                        <Card onClick={() => setModalShow(true)} className={props.size}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
@@ -88,7 +89,7 @@ const Post = (props) => {
                                     took a galley of type and scrambled it to make a type specimen book. </CardText>
                                 <CardText className={"post__email"}>aelina@gmail.com</CardText>
                                 {props.btn ?
-                                    <button onClick={postView} className={"post__interested-btn"}>Interested</button> :
+                                    <button className={"post__interested-btn"}>Interested</button> :
                                     null
                                 }
                             </div>
@@ -96,7 +97,9 @@ const Post = (props) => {
                     </div>
                 )}
                 <div>
-                    {postState ? <FullPost/> : null}
+                    <FullPost show={modalShow}
+                          onHide={() => setModalShow(false)}
+                    />
                 </div>
             </div>
         </div>

@@ -7,8 +7,9 @@ import arrow from "../images/arrow.svg";
 import imgIcon from '../images/empty-img.svg';
 import exit from '../images/exit.svg';
 import '../style/post.css';
+import {Modal, Button} from "react-bootstrap";
 
-const FullPost = () => {
+const FullPost = (props) => {
     // useEffect(()=>{
     //     document.addEventListener('mousedown', handleClick, false)
     // }, []);
@@ -17,9 +18,73 @@ const FullPost = () => {
     //         return
     //     }
     // }
+
     return (
-        <div className="full-post">
-            <div className={"full-post__exit"}>
+        <Modal
+            {...props}
+            //size="lg"
+            //aria-labelledby="contained-modal-title-vcenter"
+            //centered
+        >
+            <div>
+                <div onClick={props.onHide} className={"full-post__exit"}>
+                    <img src={exit}/>
+                </div>
+
+                <div className={"full-post__content"}>
+                    <div className={"post__content"}>
+                        <div className={"post__top"}>
+                            <ul className={"post__top-list"}>
+                                <li className={"post__top-list-item"}><img className={"post__avatar"} src={profile}
+                                                                           alt="Card image cap"/></li>
+                                <li className={"post__top-list-item"}>
+                                    <div className={"post__user-name"}>Aelina</div>
+                                    <div className={"post__item-rating"}>
+                                        <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
+                                        <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
+                                        <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
+                                        <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
+                                        <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
+                                    </div>
+                                </li>
+                                <li className={"post__top-list-item"}><CardText
+                                    className={"post__package-provider"}>Provider</CardText></li>
+                            </ul>
+                        </div>
+
+                        <p className={"post__type"}>Package delivery</p>
+                        <div>
+                            <div className={"post__address"}>
+                                <CardText className={"post__city"}>Bishkek</CardText>
+                                <CardSubtitle className={"post__country"}>Kyrgyzstan</CardSubtitle>
+                            </div>
+                            <img className={"post__arrow"} src={arrow}/>
+                            <div className={"post__address"}>
+                                <CardText className={"post__city"}>Moscow</CardText>
+                                <CardSubtitle className={"post__country"}>Russia</CardSubtitle>
+                                <CardSubtitle className={"post__deadline"}>10th July,2020</CardSubtitle>
+                            </div>
+                        </div>
+
+                    </div>
+                    <CardText className={"full-post__text"}>Coming to Bishkek to participate at some conference.
+                        is simply dummy text of theindustry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </CardText>
+                    <CardText className={"full-post__email"}>aelina@gmail.com</CardText>
+                    <div className={"full-post__images"}>
+                        <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div>
+                        <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div>
+                    </div>
+                </div>
+                <button className={"full-post__interested-btn post__interested-btn"}>Interested</button>
+            </div>
+        </Modal>
+    );
+}
+
+export default FullPost;
+
+/* <div className="full-post">
+            <div onClick={props.onHide} className={"full-post__exit"}>
                 <img src={exit}/>
             </div>
 
@@ -68,9 +133,5 @@ const FullPost = () => {
                 </div>
             </div>
             <button className={"full-post__interested-btn post__interested-btn"}>Interested</button>
-        </div>
-    );
-}
-
-export default FullPost;
+        </div> */
 

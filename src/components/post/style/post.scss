@@ -50,7 +50,7 @@ $font-color-orange: #FD5A01;
 }
 .post__package-provider{
  position: absolute;
-  right: 8px;
+  right: 5%;
   @include font(14px, normal, 500, 14px, $font-color-orange);
   //width: 58px;
 }

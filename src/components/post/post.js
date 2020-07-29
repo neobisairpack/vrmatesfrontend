@@ -51,7 +51,7 @@ const Post = (props) => {
                                                                                    alt="Card image cap"/></li>
                                         <li className={"post__top-list-item"}>
                                             <div
-                                                className={"post__user-name"}>{loading ? dataAll[0].requester.first_name : "Aelina"}</div>
+                                                className={"post__user-name"}>{ "Aelina"}</div>
                                             <div className={"post__item-rating"}>
                                                 <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
                                                 <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>

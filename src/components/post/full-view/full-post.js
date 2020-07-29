@@ -54,12 +54,13 @@ const FullPost = () => {
                         <div className={"post__address"}>
                             <CardText className={"post__city"}>Moscow</CardText>
                             <CardSubtitle className={"post__country"}>Russia</CardSubtitle>
+                            <CardSubtitle className={"post__deadline"}>10th July,2020</CardSubtitle>
                         </div>
                     </div>
-                    <CardSubtitle className={"post__deadline"}>10th July,2020</CardSubtitle>
+
                 </div>
                 <CardText className={"full-post__text"}>Coming to Bishkek to participate at some conference.
-                    is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </CardText>
+                    is simply dummy text of theindustry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </CardText>
                 <CardText className={"full-post__email"}>aelina@gmail.com</CardText>
                 <div className={"full-post__images"}>
                     <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div>

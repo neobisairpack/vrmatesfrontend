@@ -27,10 +27,8 @@ const RegistrationForm = () => {
     })
     const [birthDate, setBirthDate] = useState(null)
 
-    console.log(dateformat(birthDate, "yyyy-mm-dd"))
     const handleChange = (e) => {
         const value = e.target.value
-        console.log(e.target.name, value)
         setState({
             ...state,
             [e.target.name]: value
@@ -39,7 +37,7 @@ const RegistrationForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(state.email, state.password, state.city, state.name)
-        axios.post('https://cors-anywhere.herokuapp.com/http://167.172.178.135/users/registration/', {
+        axios.post('http://167.172.178.135/users/registration/', {
             first_name: state.name,
             last_name: state.lastName,
             username: state.name,
@@ -74,13 +72,13 @@ const RegistrationForm = () => {
 
                     <FormGroup>
                         <Input
-                            className={"register__input"}
-                            placeholder={"First Name"}
+                            className={"register__input required"}
+                            placeholder={"*First Name"}
                             type={"text"}
                             name={"name"}
                             value={state.name}
                             onChange={e => handleChange(e)}
-                            required/>
+                            reqiured="true"/>
                     </FormGroup>
 
                     <FormGroup>
@@ -91,17 +89,17 @@ const RegistrationForm = () => {
                             name={"phone"}
                             value={state.phone}
                             onChange={e => handleChange(e)}
-                            required/>
+                            />
                     </FormGroup>
                     <FormGroup>
                         <Input
                             className={"register__input"}
-                            placeholder={"Last Name"}
+                            placeholder={"*Last Name"}
                             type={"text"}
                             name={"lastName"}
                             value={state.lastName}
                             onChange={e => handleChange(e)}
-                            required/>
+                            reqiured="true"/>
                     </FormGroup>
 
                     <FormGroup>
@@ -112,18 +110,18 @@ const RegistrationForm = () => {
                             name={"address"}
                             value={state.address}
                             onChange={e => handleChange(e)}
-                            required/>
+                            />
                     </FormGroup>
 
                     <FormGroup>
                         <Input
                             className={"register__input"}
-                            placeholder={"E-mail"}
+                            placeholder={"*E-mail"}
                             type={"email"}
                             name={"email"}
                             value={state.email}
                             onChange={e => handleChange(e)}
-                            required/>
+                            reqiured="true"/>
                     </FormGroup>
 
                     <FormGroup>
@@ -134,15 +132,16 @@ const RegistrationForm = () => {
                             name={"zipcode"}
                             value={state.zipcode}
                             onChange={e => handleChange(e)}
-                            required/>
+                            />
                     </FormGroup>
 
                     <DatePicker
                         //dateFormat="yyyy-mm-dd"
                         className={"register__input"}
-                        placeholderText={"   Date Of Birth"}
+                        placeholderText={"   *Date Of Birth"}
                         selected={birthDate}
                         onChange={date => setBirthDate(date)}
+                        reqiured="true"
                     />
 
                     <FormGroup>
@@ -153,8 +152,8 @@ const RegistrationForm = () => {
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="select" name={"gender"} className={"register__input"} value={state.gender} onChange={e => handleChange(e)}>
-                            <option>Gender</option>
+                        <Input type="select" name={"gender"} reqiured="true" className={"register__input"} value={state.gender} onChange={e => handleChange(e)}>
+                            <option>*Gender</option>
                             <option>Male</option>
                             <option>Female</option>
                             <option>Other</option>
@@ -173,7 +172,8 @@ const RegistrationForm = () => {
                             type={"password"}
                             name={"password"}
                             className={"register__input"}
-                            placeholder={"Password"}
+                            placeholder={"*Password"}
+                            reqiured="true"
                             value={state.password}
                             onChange={e => handleChange(e)}
                         />
@@ -191,7 +191,8 @@ const RegistrationForm = () => {
                             type={"password"}
                             name={"password2"}
                             className={"register__input"}
-                            placeholder={"Repeat Password"}
+                            placeholder={"*Repeat Password"}
+                            reqiured="true"
                             value={state.password2}
                             onChange={e => handleChange(e)}
                         />

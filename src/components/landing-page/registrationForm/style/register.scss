@@ -26,7 +26,6 @@
   background-color: #FFFFFF;
 }
 .register__title{
-  font-family: Muller;
   font-style: normal;
   font-weight: 900;
   font-size: 36px;
@@ -56,19 +55,24 @@
   box-sizing: border-box;
   border-radius: 5px;
   background-color: #FFFFFF;
-  font-family: Muller;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 14px;
   color: #000000;
   &::placeholder{
-    font-family: Muller;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 14px;
     color: #000000;
+  }
+}
+.required{
+
+  &::before{
+    content: "*";
+    color: tomato;
   }
 }
 .register__checkbox{
@@ -79,7 +83,6 @@
 .register__checkbox-lbl{
   display: flex;
   align-items: center;
-  font-family: Muller;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

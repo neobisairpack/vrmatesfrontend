@@ -16,7 +16,7 @@ const LoginForm = () => {
     const handleSubmit = () => {
         //e.preventDefault()
         console.log(email, password)
-        axios.post('https://cors-anywhere.herokuapp.com/http://167.172.178.135/users/login/', {
+        axios.post('http://167.172.178.135/users/login/', {
             email: email,
             password: password
         })

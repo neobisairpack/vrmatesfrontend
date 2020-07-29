@@ -46,7 +46,7 @@ const Header = () => {
                                 <button className={"landing__scroll-btn"}>Donation</button></ScrollLink>
                         </NavItem>
                         <NavItem>
-                            <Link to="/contact-us" className={"landing__nav-item nav__item"}>Contact us</Link>
+                            <Link to={"/contact-us"} className={"landing__nav-item nav__item"}>Contact us</Link>
                         </NavItem>
                         <NavItem>
                             <Link to={"/login"}><button className={"landing__nav-item nav__item nav__login"}>Log in</button></Link>

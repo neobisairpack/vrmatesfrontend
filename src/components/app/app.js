@@ -12,6 +12,7 @@ import UserProfile from "../user-profile";
 import LandingPage from "../landing-page";
 import RegistrationForm from "../landing-page/registrationForm";
 import LoginForm from "../landing-page/landing-login";
+import ContactUs from "../landing-page/contact-us/contact-us";
 
 const App = () => {
     return (
@@ -48,6 +49,9 @@ const App = () => {
                                />}/>
                         <Route exact path={'/login'}
                                render={() => <LoginForm
+                               />}/>
+                        <Route exact path={'/contact-us'}
+                               render={() => <ContactUs
                                />}/>
                     </Switch>
                 </div>

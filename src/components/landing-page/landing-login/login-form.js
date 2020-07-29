@@ -61,7 +61,7 @@ const LoginForm = () => {
                     <button onClick={handleSubmit} type={"submit"} className={"register__sign-up-btn"}>Login</button>
                 </div>
                 <div>
-                    <Link to={"/"}><img className={"login__exit"} src={exit} alt={"exit"}/></Link>
+                    <Link to={"/"} className={"login__exit-link"} ><img className={"login__exit"} src={exit} alt={"exit"}/></Link>
                     <img className={"login-form__img"} src={loginImg} alt={"Login image"}/>
                 </div>
             </div>

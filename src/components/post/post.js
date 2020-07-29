@@ -21,7 +21,7 @@ const Post = (props) => {
 
     useEffect(() => {
         let token = JSON.parse(localStorage.getItem("token"));
-        axios.get('https://cors-anywhere.herokuapp.com/http://167.172.178.135/api/service/', {
+        axios.get('http://167.172.178.135/api/service/', {
             headers: {
                 "Authorization": "Token " + token
             }

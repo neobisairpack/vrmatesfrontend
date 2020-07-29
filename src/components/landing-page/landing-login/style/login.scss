@@ -36,18 +36,25 @@
 .login__title{
   display: flex;
   justify-self: center;
-  font-family: Muller;
   font-style: normal;
   font-weight: 900;
   font-size: 36px;
   line-height: 36px;
   color: #202A49;
 }
-.login__exit{
+.login__exit-link{
+  display: inline-block;
   margin-bottom: 24px;
   float: right;
+}
+.login__exit{
   width: 14px;
   height: 14px;
+  &:hover{
+    background-color: #f5f4f2;
+    box-shadow: 0 0 0 10px #f5f4f2;
+    border-radius: 50%;
+  }
 }
 //.login-form__img{
 //  width: 100%;

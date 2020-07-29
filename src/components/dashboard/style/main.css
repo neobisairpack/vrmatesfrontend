@@ -3,7 +3,8 @@
   width: 100%;
   display: grid;
   grid-template-columns: 25% 75%;
-  grid-template-rows: 80px calc(100% - 80px - 51px) 51px;
+  grid-template-rows: 80px minmax(893px, auto) 51px;
+  overflow: hidden;
 }
 
 .dashboard__submenu {

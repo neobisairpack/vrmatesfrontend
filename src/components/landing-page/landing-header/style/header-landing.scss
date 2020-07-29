@@ -12,6 +12,10 @@
   font-size: 18px;
   line-height: 18px;
   color: #FFFFFF;
+  &:hover{
+    text-decoration: none;
+    color: #FFFFFF;
+  }
 }
 .landing__scroll-btn{
   background: transparent;

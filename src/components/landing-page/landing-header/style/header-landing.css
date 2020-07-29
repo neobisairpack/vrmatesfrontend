@@ -13,6 +13,10 @@
   line-height: 18px;
   color: #FFFFFF;
 }
+.landing__nav-item:hover {
+  text-decoration: none;
+  color: #FFFFFF;
+}
 
 .landing__scroll-btn {
   background: transparent;

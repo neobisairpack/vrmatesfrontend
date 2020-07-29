@@ -4,12 +4,11 @@
   display: grid;
   grid-template-columns: 25% 75%;
   grid-template-rows: 80px minmax(893px, auto) 51px;
+  overflow: hidden;
 }
 .profile__title{
   margin-left: 7.8%;
   margin-bottom: 0;
-  //margin-right: auto;
-  font-family: Muller;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;

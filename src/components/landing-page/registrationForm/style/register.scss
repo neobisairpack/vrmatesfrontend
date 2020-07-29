@@ -37,6 +37,11 @@
   float: right;
   width: 14px;
   height: 14px;
+  &:hover{
+    background-color: #f5f4f2;
+    box-shadow: 0 0 0 10px #f5f4f2;
+    border-radius: 50%;
+  }
 }
 .register__inputs{
   display: flex;

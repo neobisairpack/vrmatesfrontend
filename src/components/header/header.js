@@ -9,18 +9,26 @@ import {
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/header.css';
-import LogOut from './images/logout.svg';
+import LogOutImg from './images/logout.svg';
 import {Link} from "react-router-dom";
 import {withRouter} from 'react-router-dom';
+import LogOut from "../pop-up/popup-logout";
+
 
 const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeLink, setActiveLink] = useState(null)
+    const [modalShow, setModalShow] = useState(false)
 
     const toggle = () => setIsOpen(!isOpen);
-    const handleClick = (id) => {
-        setActiveLink(id)
-        console.log(props)
+    const handleLogout = () =>{
+        return (
+        <div>
+            <LogOut show={modalShow}
+                    onHide={() => setModalShow(false)}/>
+        </div>
+
+            )
     }
     useEffect(() => {
         const path = props.location.pathname;
@@ -40,14 +48,15 @@ const Header = (props) => {
                                 <Link to="/dashboard" className={"nav__item" + (activeLink === 1 ? " nav__item_active" : "")}>Dashboard</Link>
                             </NavItem>
                             <NavItem>
-                                <Link to="/profile" onClick={() => {
-                                    handleClick(2)
-                                }} className={"nav__item" + (activeLink === 2 ? " nav__item_active" : "")}>Profile</Link>
+                                <Link to="/profile" className={"nav__item" + (activeLink === 2 ? " nav__item_active" : "")}>Profile</Link>
                             </NavItem>
                         </Nav>
-                        <NavbarText className={" nav__item_logout "}><Link to={"/"}><img src={LogOut} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</Link></NavbarText>
+                        <NavbarText className={" nav__item_logout "}>
+                            <button onClick={() => setModalShow(true)}><img src={LogOutImg} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</button></NavbarText>
                     </Collapse>
                 </Navbar>
+            <LogOut show={modalShow}
+                    onHide={() => setModalShow(false)}/>
         </div>
     );
 }

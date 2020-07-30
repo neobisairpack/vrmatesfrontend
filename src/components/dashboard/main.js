@@ -9,8 +9,9 @@ import '../pop-up/popup-switch/style/popup.css';
 import CreatePost from "../create-post";
 import filter from './icons/filter-icon.svg';
 import Filter from "../pop-up/popup-filter";
+import {withRouter} from 'react-router-dom';
 
-const Main = () => {
+const Main = (props) => {
     const [popUpState, setPopUpState] = useState(false);
     const [filterState, setFilterState] = useState(false);
     const [createPostState, setCreatePostState] = useState(false);
@@ -27,7 +28,7 @@ const Main = () => {
         setCreatePostState(!createPostState);
         setPopUpState(false);
     }
-
+    console.log(props)
     return (
         <div className={"dashboard"}>
             <ScrollToTopControlller/>
@@ -86,11 +87,11 @@ const Main = () => {
                     {filterState ? <Filter/> : null}
 
                 </div>
-                <Post size={"dashboard-post"} btn={"true"}/>
+                <Post {...props} size={"dashboard-post"} btn={"true"}/>
             </div>
             <Footer/>
         </div>
     );
 };
 
-export default Main;
+export default withRouter(Main);

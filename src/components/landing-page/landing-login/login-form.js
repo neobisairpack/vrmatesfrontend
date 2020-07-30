@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import '../registrationForm/style/register.css';
@@ -9,7 +9,7 @@ import loginImg from '../images/login-img.png';
 import axios from 'axios';
 
 
-const LoginForm = () => {
+const LoginForm = (props) => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     //console.log(email, password)
@@ -21,11 +21,12 @@ const LoginForm = () => {
             password: password
         })
             .then((res) => {
-                console.log(res)
                 localStorage.setItem("token", JSON.stringify(res.data.token));
-                console.log(res.data.token)
-                window.location.href='/dashboard'
-                // dispatch(loginUser(res.data.email))
+                //window.location.href='/dashboard';
+                props.history.push({
+                    pathname: '/dashboard',
+                    state: { email: email }
+                })
             })
             .catch((err) => {
                 console.log("Logging in error " + err)
@@ -69,5 +70,5 @@ const LoginForm = () => {
     );
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);
 

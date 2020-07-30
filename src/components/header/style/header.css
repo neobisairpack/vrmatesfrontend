@@ -62,3 +62,8 @@
 .nav__item-logout-icon {
   margin-right: 8px;
 }
+
+.logout {
+  width: 100px;
+  padding: 20px;
+}

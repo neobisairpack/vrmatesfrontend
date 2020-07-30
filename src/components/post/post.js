@@ -16,7 +16,7 @@ const Post = (props) => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const [postState, setPostState] = useState(false);
     const [dataAll, setData] = useState([]);
-    const [first_name, setFirst_name] = useState("");
+    //const [first_name, setFirst_name] = useState("");
     const [loading, setLoading] = useState(false);
     const [modalShow, setModalShow] = useState(false)
 
@@ -34,15 +34,12 @@ const Post = (props) => {
             .catch((err) => console.log(err))
     }, [])
 
-    function postView() {
-        setPostState(!postState)
-    }
 
     return (
         <div className={"post container"}>
             <div className={"row"}>
-                {array.map((item) =>
-                    <div key={item} className={"col-4"}>
+                {dataAll.map((item) =>
+                    <div key={item.id} className={"col-4"}>
                         <Card onClick={() => setModalShow(true)} className={props.size}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
@@ -52,7 +49,7 @@ const Post = (props) => {
                                                                                    alt="Card image cap"/></li>
                                         <li className={"post__top-list-item"}>
                                             <div
-                                                className={"post__user-name"}>{ "Aelina"}</div>
+                                                className={"post__user-name"}>{item.requester.first_name}</div>
                                             <div className={"post__item-rating"}>
                                                 <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
                                                 <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
@@ -62,32 +59,29 @@ const Post = (props) => {
                                             </div>
                                         </li>
                                         <li className={"post__top-list-item"}><CardText
-                                            className={"post__package-provider"}>Provider</CardText></li>
+                                            className={"post__package-provider"}>{item.requester ? "Requester" : "Provider"}</CardText></li>
                                     </ul>
                                 </div>
 
-                                <label className={"post__type"}>Package delivery</label>
+                                <label className={"post__type"}>{item.service_type}</label>
                                 <div>
                                     <div className={"post__address"}>
-                                        <CardText className={"post__city"}>Bishkek</CardText>
-                                        <CardSubtitle className={"post__country"}>Kyrgyzstan</CardSubtitle>
+                                        <CardText className={"post__city"}>{item.start_location}</CardText>
+                                        <CardSubtitle className={"post__country"}>{item.start_location}</CardSubtitle>
                                     </div>
                                     <img className={"post__arrow"} src={arrow}/>
                                     <div className={"post__address"}>
-                                        <CardText className={"post__city"}>Moscow</CardText>
-                                        <CardSubtitle className={"post__country"}>Russia</CardSubtitle>
-                                        <div className={"post__deadline"}>10th July,2020</div>
+                                        <CardText className={"post__city"}>{item.end_location}</CardText>
+                                        <CardSubtitle className={"post__country"}>{item.end_location}</CardSubtitle>
+                                        <div className={"post__deadline"}>{item.deadline}</div>
                                     </div>
 
                                 </div>
 
                             </div>
                             <div>
-                                <CardText className={"post__text"}>Coming to Bishkek to participate at some conference.
-                                    is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                                    the industry's standard dummy text ever since the 1500s, when an unknown printer
-                                    took a galley of type and scrambled it to make a type specimen book. </CardText>
-                                <CardText className={"post__email"}>aelina@gmail.com</CardText>
+                                <CardText className={"post__text"}>{item.text} </CardText>
+                                <CardText className={"post__email"}>{item.requester.email}</CardText>
                                 {props.btn ?
                                     <button className={"post__interested-btn"}>Interested</button> :
                                     null
@@ -96,7 +90,7 @@ const Post = (props) => {
                         </Card>
                     </div>
                 )}
-                <div>
+                <div className={"full-post"}>
                     <FullPost show={modalShow}
                           onHide={() => setModalShow(false)}
                     />

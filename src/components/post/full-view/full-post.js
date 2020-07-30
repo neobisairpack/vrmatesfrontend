@@ -7,26 +7,12 @@ import arrow from "../images/arrow.svg";
 import imgIcon from '../images/empty-img.svg';
 import exit from '../images/exit.svg';
 import '../style/post.css';
-import {Modal, Button} from "react-bootstrap";
+import {Modal} from "react-bootstrap";
 
 const FullPost = (props) => {
-    // useEffect(()=>{
-    //     document.addEventListener('mousedown', handleClick, false)
-    // }, []);
-    // function handleClick(e) => {
-    //     if(this.node.contains(e.target)){
-    //         return
-    //     }
-    // }
-
     return (
-        <Modal
-            {...props}
-            //size="lg"
-            //aria-labelledby="contained-modal-title-vcenter"
-            //centered
-        >
-            <div>
+        <div>
+            <Modal {...props} dialogClassName={"full-post"}>
                 <div onClick={props.onHide} className={"full-post__exit"}>
                     <img src={exit}/>
                 </div>
@@ -68,7 +54,9 @@ const FullPost = (props) => {
 
                     </div>
                     <CardText className={"full-post__text"}>Coming to Bishkek to participate at some conference.
-                        is simply dummy text of theindustry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </CardText>
+                        is simply dummy text of theindustry. Lorem Ipsum has been the industry's standard dummy text
+                        ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                        type specimen book. </CardText>
                     <CardText className={"full-post__email"}>aelina@gmail.com</CardText>
                     <div className={"full-post__images"}>
                         <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div>
@@ -76,8 +64,8 @@ const FullPost = (props) => {
                     </div>
                 </div>
                 <button className={"full-post__interested-btn post__interested-btn"}>Interested</button>
-            </div>
-        </Modal>
+            </Modal>
+        </div>
     );
 }
 

@@ -1,12 +1,6 @@
-.full-post {
-  z-index: 99;
-}
-
-.modal-content {
-  border-radius: 20px;
+.full-post .modal-content {
   padding: 27px 32px;
   width: 100%;
-  /*34.72%*/
   height: 673px;
 }
 

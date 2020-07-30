@@ -2,9 +2,11 @@ import React from 'react';
 import './style/create-post.css';
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
-const CreatePost = () => {
+import {Modal} from "react-bootstrap";
+
+const CreatePost = (props) => {
     return (
-        <div className={"create-post"}>
+        <Modal {...props} dialogClassName={"create-post"}>
             <div className={"create-post__type"}>Package Delivery</div>
             <div className={"create-post__location-from"}>
                 <Form>
@@ -109,7 +111,7 @@ const CreatePost = () => {
                 <button className={"create-post__cancel-button"}>Cancel</button>
                 <button className={"create-post__save-button"}>Save</button>
             </div>
-        </div>
+        </Modal>
     );
 };
 

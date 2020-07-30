@@ -6,15 +6,22 @@ import Sidebar from "../sidebar";
 import Header from "../header";
 import Footer from "../footer";
 import '../pop-up/popup-switch/style/popup.css';
-import CreatePost from "../create-post";
 import filter from './icons/filter-icon.svg';
 import Filter from "../pop-up/popup-filter";
 import {withRouter} from 'react-router-dom';
+import LogOut from "../pop-up/popup-logout";
+import CreatePostContainer from "../create-post/createPostContainer";
 
 const Main = (props) => {
     const [popUpState, setPopUpState] = useState(false);
     const [filterState, setFilterState] = useState(false);
     const [createPostState, setCreatePostState] = useState(false);
+    const [modalShow, setModalShow] = useState(false)
+    const [radio, setRadio] = useState({
+        package: "",
+        pickup: "",
+        hosting: ""
+    })
 
     function togglePopUpSwitch() {
         setPopUpState(!popUpState);
@@ -23,10 +30,17 @@ const Main = (props) => {
     function togglePopUpFilter() {
         setFilterState(!filterState);
     }
+    function setModalFunc() {
+        setModalShow(true);
+        togglePopUpSwitch();
+    }
 
-    function toggleCreatePost() {
-        setCreatePostState(!createPostState);
-        setPopUpState(false);
+    const handleChange = (e) => {
+        const value = e.target.value
+        setRadio({
+            ...radio,
+            [e.target.name]: value
+        })
     }
     console.log(props)
     return (
@@ -60,15 +74,15 @@ const Main = (props) => {
                         <p className={"switch__title"}>Providers</p>
                         <ul>
                             <li>
-                                <input type={"radio"} name={"radio"}/>
+                                <input type={"radio"} name={"radio"} value={"package"}/>
                                 <label>Package Delivery</label>
                             </li>
                             <li>
-                                <input type={"radio"} name={"radio"}/>
+                                <input type={"radio"} name={"radio"} value={"pickup"}/>
                                 <label>Airport pick up/drop off</label>
                             </li>
                             <li>
-                                <input type={"radio"} name={"radio"}/>
+                                <input type={"radio"} name={"radio"} value={"hosting"}/>
                                 <label>Hosting</label>
                             </li>
                         </ul>
@@ -78,17 +92,19 @@ const Main = (props) => {
                                     <button onClick={togglePopUpSwitch} className={"switch__button"}>Cancel</button>
                                 </li>
                                 <li>
-                                    <button onClick={toggleCreatePost} className={"switch__button"}>Ok</button>
+                                    <button onClick={setModalFunc} className={"switch__button"}>Ok</button>
                                 </li>
                             </ul>
                         </div>
                     </div> : null}
-                    {createPostState ? <CreatePost/> : null}
+
                     {filterState ? <Filter/> : null}
 
                 </div>
                 <Post {...props} size={"dashboard-post"} btn={"true"}/>
             </div>
+            <CreatePostContainer show={modalShow}
+                        onHide={() => setModalShow(false)}/>
             <Footer/>
         </div>
     );

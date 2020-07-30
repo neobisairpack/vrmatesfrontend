@@ -21,15 +21,6 @@ const Header = (props) => {
     const [modalShow, setModalShow] = useState(false)
 
     const toggle = () => setIsOpen(!isOpen);
-    const handleLogout = () =>{
-        return (
-        <div>
-            <LogOut show={modalShow}
-                    onHide={() => setModalShow(false)}/>
-        </div>
-
-            )
-    }
     useEffect(() => {
         const path = props.location.pathname;
         switch (path) {

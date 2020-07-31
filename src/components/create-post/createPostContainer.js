@@ -5,7 +5,7 @@ import axios from 'axios';
 const CreatePostContainer = (props) => {
     const createPostRequest = () => {
         axios.post('http://167.172.178.135/api/service/', {
-            
+
         })
             .then((res) => {
 

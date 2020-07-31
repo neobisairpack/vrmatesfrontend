@@ -1,4 +1,4 @@
-@mixin font($size, $family, $style, $weight, $line, $color){
+@mixin fontFunc($size, $family, $style, $weight, $line, $color){
   font-size: $size;
   font-family: $family;
   font-style: $style;
@@ -8,7 +8,7 @@
 }
 .full-post .modal-content{
   padding: 27px 32px;
-  //border-radius: 20px;
+  border-radius: 20px;
   width: 100%;
   height: 673px;
 }
@@ -18,7 +18,7 @@
   width: 380px;
   height: 162px;
   overflow: auto;
-  @include font(16px, Muller, normal, normal, 170%, #424141);
+  @include fontFunc(16px, Muller, normal, normal, 170%, #424141);
   text-transform: capitalize;
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@
   margin-bottom: 32px;
   width: 140px;
   height: 14px;
-  @include font(14px, Muller, normal, normal, 100%, rgba(0, 0, 0, 0.5));
+  @include fontFunc(14px, Muller, normal, normal, 100%, rgba(0, 0, 0, 0.5));
   display: flex;
   align-items: center;
   text-transform: capitalize;

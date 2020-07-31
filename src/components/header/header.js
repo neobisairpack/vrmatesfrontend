@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     Collapse,
     Navbar,
@@ -24,28 +24,41 @@ const Header = (props) => {
     useEffect(() => {
         const path = props.location.pathname;
         switch (path) {
-            case '/dashboard': setActiveLink(1); break;
-            case '/profile': setActiveLink(2); break;
-            default: setActiveLink(null);
+            case '/dashboard':
+                setActiveLink(1);
+                break;
+            case '/profile':
+                setActiveLink(2);
+                break;
+            default:
+                setActiveLink(null);
         }
     }, [])
     return (
         <div className={(props.style ? "inbox-header" : "header")}>
-                <Navbar light expand="md">
-                    <NavbarToggler onClick={toggle} />
-                    <Collapse className={"nav landing-nav"} isOpen={isOpen} navbar>
-                        <Nav className={"mr-auto"} >
-                            <NavItem>
-                                <Link to="/dashboard" className={"nav__item" + (activeLink === 1 ? " nav__item_active" : "")}>Dashboard</Link>
-                            </NavItem>
-                            <NavItem>
-                                <Link to="/profile" className={"nav__item" + (activeLink === 2 ? " nav__item_active" : "")}>Profile</Link>
-                            </NavItem>
-                        </Nav>
-                        <NavbarText className={" nav__item_logout "}>
-                            <button onClick={() => setModalShow(true)}><img src={LogOutImg} className={"nav__item-logout-icon"} alt={"logOut"}/>Log out</button></NavbarText>
-                    </Collapse>
-                </Navbar>
+            <Navbar light expand="md">
+                <NavbarToggler onClick={toggle}/>
+                <Collapse className={"nav landing-nav"} isOpen={isOpen} navbar>
+                    <Nav className={"mr-auto"}>
+                        <NavItem>
+                            <Link to="/dashboard"
+                                  className={"nav__item" + (activeLink === 1 ? " nav__item_active" : "")}>Dashboard</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to="/profile"
+                                  className={"nav__item" + (activeLink === 2 ? " nav__item_active" : "")}>Profile</Link>
+                        </NavItem>
+                    </Nav>
+                    <NavbarText className={"nav__item_logout "}>
+                        <button onClick={() => setModalShow(true)} className={
+                            "nav__logout-btn"
+                        }><img src={LogOutImg}
+                                                                        className={"nav__item-logout-icon"}
+                                                                        alt={"logOut"}/>Log out
+                        </button>
+                    </NavbarText>
+                </Collapse>
+            </Navbar>
             <LogOut show={modalShow}
                     onHide={() => setModalShow(false)}/>
         </div>

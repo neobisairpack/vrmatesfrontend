@@ -55,7 +55,11 @@
 .nav__item-logout-icon{
   margin-right: 8px;
 }
-//.logout{
-//  width: 100px;
-//  padding: 20px;
-//}
+.nav__logout-btn{
+  border: none;
+  outline: none;
+  background-color: #E5E5E5;
+  &:focus{
+    outline: none;
+  }
+}

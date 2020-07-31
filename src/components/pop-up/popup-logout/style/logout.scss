@@ -1,5 +1,17 @@
 .logout-content .modal-content{
   border-radius: 20px;
-  width: 500px;
-  height: 300px;
+}
+button.logout__yes.btn.btn-primary{
+  background-color: #FD5A01;
+  border: none;
+  &:hover{
+    opacity: 0.8;
+  }
+}
+button.logout__no.btn.btn-primary{
+  background-color: #202A49;
+  border: none;
+  &:hover{
+    opacity: 0.8;
+  }
 }

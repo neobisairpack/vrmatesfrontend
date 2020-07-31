@@ -63,7 +63,11 @@
   margin-right: 8px;
 }
 
-.logout {
-  width: 100px;
-  padding: 20px;
+.nav__logout-btn {
+  border: none;
+  outline: none;
+  background-color: #E5E5E5;
+}
+.nav__logout-btn:focus {
+  outline: none;
 }

@@ -1,17 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import {Modal} from "react-bootstrap";
 import './style/support.css';
 import axios from "axios";
 
 const Support = (props) => {
+    const [state, setState] = useState({
+        email: "",
+        text: ""
+    })
+
+    const handleChange = (e) =>{
+        const value = e.target.value
+        setState({
+            ...state,
+            [e.target.name]: value
+        })
+    }
     const handleSubmit = () => {
         let token = JSON.parse(localStorage.getItem("token"));
         axios.post('http://167.172.178.135/api/support/', {
-            name: "Alex",
-            email: "admin@mail.ru",
+            name: "Aidana",
+            email: state.email,
             title: "Title",
-            text: "text",
+            text: state.text,
 
             headers: {
                 "Authorization": "Token " + token
@@ -37,6 +49,9 @@ const Support = (props) => {
                             name="email"
                             id="exampleEmail"
                             placeholder="Email"
+                            value={state.name}
+                            onChange={e => handleChange(e)}
+                            reqiured="true"
                         />
                     </FormGroup>
                     <FormGroup>
@@ -45,15 +60,17 @@ const Support = (props) => {
                             className={"support__textarea"}
                             type="textarea"
                             name="text"
-                            placeholder={"Text"}/>
+                            placeholder={"Text"}
+                            value={state.name}
+                            onChange={e => handleChange(e)}
+                            reqiured="true"/>
                     </FormGroup>
                     <div  className={"support__submit"}>
-                        <button className={"support__submit-btn"}>Submit</button>
+                        <button onClick={handleSubmit} className={"support__submit-btn"}>Submit</button>
                     </div>
                 </Form>
             </Modal>
 );
 }
-
 export default Support;
 

@@ -9,7 +9,6 @@ import '../pop-up/popup-switch/style/popup.css';
 import filter from './icons/filter-icon.svg';
 import Filter from "../pop-up/popup-filter";
 import {withRouter} from 'react-router-dom';
-import LogOut from "../pop-up/popup-logout";
 import CreatePostContainer from "../create-post/createPostContainer";
 
 const Main = (props) => {

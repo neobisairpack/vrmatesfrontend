@@ -8,6 +8,7 @@ import axios from "axios";
 const Sidebar = () => {
     const [name, setName] = useState("");
     const [list, setList] = useState([]);
+
     useEffect(() => {
         getUsers();
     }, [])
@@ -25,7 +26,6 @@ const Sidebar = () => {
                         setName(item.first_name);
                     }
                 })
-                console.log(res.data)
             })
             .catch((err) => console.log(err))
     }
@@ -34,7 +34,7 @@ const Sidebar = () => {
           <img src={logo} className={"sidebar__item-logo"} alt={"Vrmates"}/>
 
               <img src={profilePhoto} className={"sidebar__item-photo"} alt={"Profile"}/>
-              <p className={"sidebar__item-greeting"}>Hello, <br/> {name}! </p>
+              <p className={"sidebar__item-greeting"}>Hello, <br/> Aidana! </p>
               <div className={"sidebar__item-rating"}>
                   <img src={star} className={"sidebar__item-rating-star"} alt={"Rating"}/>
                   <img src={star} className={"sidebar__item-rating-star"} alt={"Rating"}/>

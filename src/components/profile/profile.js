@@ -6,6 +6,7 @@ import '../dashboard/style/main.css';
 import {Link} from 'react-router-dom';
 import InboxPost from "../inbox/inbox-post";
 import Sidebar from "../sidebar";
+import ProfileSidebar from "../sidebar/profile-sidebar";
 import Header from "../header";
 import Footer from "../footer";
 
@@ -14,7 +15,7 @@ const Profile = (props) => {
     return (
         <div className={"profile"}>
             <ScrollToTopControlller/>
-            <Sidebar/>
+            <ProfileSidebar/>
             <Header/>
             <div>
                 <p className={"profile__title"}>Reviews</p>

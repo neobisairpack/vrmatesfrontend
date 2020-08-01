@@ -42,7 +42,7 @@ const InProgressPost = (props) => {
                                 </div>
                                 <label className={"post__type"}>Package delivery</label>
                                 <CardText
-                                    className={"post__package-provider"}>Provider</CardText>
+                                    className={"in-progress__requester"}>Requester</CardText>
                                 <div>
                                     <div className={"post__address"}>
                                         <CardText className={"post__city"}>Bishkek</CardText>

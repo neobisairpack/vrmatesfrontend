@@ -51,8 +51,8 @@ const Main = (props) => {
                 <div className={"dashboard__submenu"}>
                     <p className={"dashboard__title"}>NEWS FEED</p>
                     <ul className={"dashboard__list"}>
-                        <li className={"dashboard__list-item dashboard__list-item_active"}>Providers</li>
-                        <li className={"dashboard__list-item "}>Requesters</li>
+                        <li className={"dashboard__list-item"}>Providers</li>
+                        <li className={"dashboard__list-item dashboard__list-item_active"}>Requesters</li>
                         <li className={"dashboard__list-item "}>
                             <button onClick={togglePopUpFilter}
                                     className={"dashboard__filter "}>

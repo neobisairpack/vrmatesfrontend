@@ -22,7 +22,7 @@ const Sidebar = () => {
             .then(function(res){
                 // setList(data);
                 res.data.map((item) => {
-                    if(item.token === token){
+                    if(item.email === "aidana.niiazova@gmail.com"){
                         setName(item.first_name);
                     }
                 })
@@ -34,7 +34,7 @@ const Sidebar = () => {
           <img src={logo} className={"sidebar__item-logo"} alt={"Vrmates"}/>
 
               <img src={profilePhoto} className={"sidebar__item-photo"} alt={"Profile"}/>
-              <p className={"sidebar__item-greeting"}>Hello, <br/> Aidana! </p>
+              <p className={"sidebar__item-greeting"}>Hello, <br/> {name}! </p>
               <div className={"sidebar__item-rating"}>
                   <img src={star} className={"sidebar__item-rating-star"} alt={"Rating"}/>
                   <img src={star} className={"sidebar__item-rating-star"} alt={"Rating"}/>

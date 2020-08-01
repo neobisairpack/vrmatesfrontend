@@ -8,6 +8,7 @@ import './style/sidebar.css';
 
 const ProfileSidebar = () => {
     const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [list, setList] = useState([]);
 
     useEffect(() => {
@@ -23,8 +24,9 @@ const ProfileSidebar = () => {
             .then(function (res) {
                 // setList(data);
                 res.data.map((item) => {
-                    if (item.token === token) {
+                    if (item.email === "aidana.niiazova@gmail.com") {
                         setName(item.first_name);
+                        setLastName(item.last_name)
                     }
                 })
             })
@@ -36,7 +38,7 @@ const ProfileSidebar = () => {
             <div className={"profile-sidebar__top"}>
                 <img src={profilePhoto} className={"sidebar__item-photo"} alt={"Profile"}/>
                 <div className={"profile-sidebar__user-info"}>
-                <p className={"profile-sidebar__name"}> Kim <br/> Aelina </p>
+                <p className={"profile-sidebar__name"}> {name} <br/> {lastName} </p>
                     <p className={"profile-sidebar__detail"}>New York, USA</p>
                     <p className={"profile-sidebar__detail"}>20 years</p>
                 </div>

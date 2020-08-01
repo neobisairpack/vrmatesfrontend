@@ -25,7 +25,7 @@
   padding-top: 4%;
   padding-left: 8%;
   grid-gap: 3%;
-  grid-template-rows: repeat(13, 46px);
+  grid-template-rows: repeat(13, 47px);
   grid-template-columns: 85%;
   grid-template-areas: "l" "t" "h" "h" "h" "h" "bd" "bd" "bd" "bd" "bd" "bd" "btn";
 }

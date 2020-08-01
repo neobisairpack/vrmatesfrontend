@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../post/style/post.css';
 import arrow from '../../post/images/arrow.svg';
@@ -15,6 +15,7 @@ import './style/inprogress-post.css';
 
 const InProgressPost = (props) => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const [modalShow, setModalShow] = useState(false)
 
     return (
         <div className={"post container"}>
@@ -25,7 +26,8 @@ const InProgressPost = (props) => {
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
-                                        <li className={"post__top-list-item"}><img className={"post__avatar"} src={profile}
+                                        <li className={"post__top-list-item"}><img className={"post__avatar"}
+                                                                                   src={profile}
                                                                                    alt="Card image cap"/></li>
                                         <li className={"post__top-list-item"}>
                                             <div className={"post__user-name"}>Aelina</div>
@@ -37,12 +39,18 @@ const InProgressPost = (props) => {
                                                 <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
                                             </div>
                                         </li>
-                                        <li className={"post__top-list-item inbox-post__item"}><img className={"inprogress__icon-more"} src="https://img.icons8.com/ios-glyphs/30/000000/more.png"/></li>
+                                        <li className={"post__top-list-item inbox-post__item"}>
+                                            <button className={"inprogress__more-btn"}><img
+                                                className={"inprogress__icon-more"}
+                                                src="https://img.icons8.com/ios-glyphs/30/000000/more.png"/></button>
+                                        </li>
                                     </ul>
                                 </div>
-                                <label className={"post__type"}>Package delivery</label>
-                                <CardText
-                                    className={"in-progress__requester"}>Requester</CardText>
+                                <div className={"inprogress__post-type"}>
+                                    <label className={"post__type"}>Package delivery</label>
+                                    <CardText
+                                        className={"in-progress__requester"}>Requester</CardText>
+                                </div>
                                 <div>
                                     <div className={"post__address"}>
                                         <CardText className={"post__city"}>Bishkek</CardText>
@@ -57,7 +65,9 @@ const InProgressPost = (props) => {
                                 </div>
                             </div>
                             <CardText className={"post__text"}>Coming to Bishkek to participate at some conference.
-                                is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </CardText>
+                                is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                                industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                                galley of type and scrambled it to make a type specimen book. </CardText>
                             <CardText className={"post__email"}>aelina@gmail.com</CardText>
                         </Card>
                     </div>

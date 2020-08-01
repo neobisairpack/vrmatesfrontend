@@ -13,10 +13,7 @@ import {
 } from 'reactstrap';
 
 const Post = (props) => {
-    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    const [postState, setPostState] = useState(false);
     const [dataAll, setData] = useState([]);
-    //const [first_name, setFirst_name] = useState("");
     const [loading, setLoading] = useState(false);
     const [modalShow, setModalShow] = useState(false)
 

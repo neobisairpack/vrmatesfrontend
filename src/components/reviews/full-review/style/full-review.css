@@ -1,8 +1,7 @@
-.full-review {
+.full-review .modal-content {
   position: absolute;
-  left: 40%;
-  top: 22%;
-  width: 30.6%;
+  left: 20%;
+  width: 80%;
   background: #FFFFFF;
   border-radius: 20px;
   z-index: 99;

@@ -5,14 +5,10 @@ import imgIcon from "../../post/images/empty-img.svg";
 import './style/full-review.css';
 import exit from "../../post/images/exit.svg";
 import '../../post/full-view/style/full-post.css'
-import {Modal} from "react-bootstrap";
 
-const FullReview = (props) => {
+const RateUser = (props) => {
     return (
-        <Modal aria-labelledby="contained-modal-title-vcenter"
-               centered
-               {...props}
-               dialogClassName="full-review" >
+        <div className="full-review" >
 
             <div className={"full-review__rating"}>
                 <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
@@ -37,10 +33,10 @@ const FullReview = (props) => {
             </div>
             <div><div className={"full-review__image"}><img src={imgIcon} className={"full-post__icon"}/></div>
             </div>
-        </Modal>
+        </div>
 
     );
 }
 
-export default FullReview;
+export default RateUser;
 

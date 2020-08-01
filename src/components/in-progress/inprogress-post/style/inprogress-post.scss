@@ -1,5 +1,27 @@
-.inprogress__icon-more{
+.inprogress__icon-more {
   width: 24px;
   height: 24px;
   opacity: 0.5;
+}
+
+.in-progress__requester {
+  font-weight: 500;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 14px;
+  color: #03D031;
+}
+
+.inprogress__post-type {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inprogress__more-btn{
+  border: none;
+  outline: none;
+  background-color: #FFFFFF;
+  &:focus{
+    outline: none;
+  }
 }

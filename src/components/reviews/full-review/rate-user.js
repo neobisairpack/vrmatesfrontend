@@ -4,11 +4,15 @@ import star from "../../sidebar/images/star.svg";
 import imgIcon from "../../post/images/empty-img.svg";
 import './style/full-review.css';
 import exit from "../../post/images/exit.svg";
-import '../../post/full-view/style/full-post.css'
+import '../../post/full-view/style/full-post.css';
+import {Modal, Button} from "react-bootstrap";
 
 const RateUser = (props) => {
     return (
-        <div className="full-review" >
+        <Modal aria-labelledby="contained-modal-title-vcenter"
+               centered
+               {...props}
+               dialogClassName="full-review">
 
             <div className={"full-review__rating"}>
                 <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
@@ -33,7 +37,7 @@ const RateUser = (props) => {
             </div>
             <div><div className={"full-review__image"}><img src={imgIcon} className={"full-post__icon"}/></div>
             </div>
-        </div>
+        </Modal>
 
     );
 }

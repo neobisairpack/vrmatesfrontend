@@ -1,10 +1,33 @@
 import React from 'react';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
+import {Modal} from "react-bootstrap";
 import './style/support.css';
+import axios from "axios";
 
-const Support = () => {
+const Support = (props) => {
+    const handleSubmit = () => {
+        let token = JSON.parse(localStorage.getItem("token"));
+        axios.post('http://167.172.178.135/api/support/', {
+            name: "Alex",
+            email: "admin@mail.ru",
+            title: "Title",
+            text: "text",
+
+            headers: {
+                "Authorization": "Token " + token
+            }
+        })
+            .then((res) => {
+
+            })
+            .catch((err) => {
+                console.log("Logging in error " + err)
+            })
+    }
     return (
-            <div className="support" >
+            <Modal aria-labelledby="contained-modal-title-vcenter"
+                   dialogClassName={"support"}
+                   {...props} >
                 <Form>
                     <Label className={"support__label"}>Support</Label>
                     <FormGroup>
@@ -28,7 +51,7 @@ const Support = () => {
                         <button className={"support__submit-btn"}>Submit</button>
                     </div>
                 </Form>
-            </div>
+            </Modal>
 );
 }
 

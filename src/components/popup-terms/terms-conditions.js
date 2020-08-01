@@ -1,9 +1,12 @@
 import React from 'react';
 import './style/terms-conditions.css';
+import {Modal} from 'react-bootstrap';
 
-const TermsConditions = () => {
+const TermsConditions = (props) => {
     return (
-        <div className="terms-conditions" >
+        <Modal aria-labelledby="contained-modal-title-vcenter"
+               dialogClassName={"terms-conditions"}
+               {...props}>
             <div className={"terms__title"}>Terms & Conditions</div>
             <div className={"terms__text"}>
                 Our Terms and Conditions template will get you started with creating your own custom Terms and Conditions agreement.
@@ -56,7 +59,7 @@ const TermsConditions = () => {
 
                 Check out our Terms and Conditions FAQ for more helpful insight into these important agreements.
             </div>
-        </div>
+        </Modal>
     );
 }
 

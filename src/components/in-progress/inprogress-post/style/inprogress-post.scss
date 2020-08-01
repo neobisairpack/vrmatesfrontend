@@ -17,11 +17,26 @@
   justify-content: space-between;
 }
 
-.inprogress__more-btn{
+button.dropdown-toggle.btn.btn-primary{
+  //background-image: url("https://img.icons8.com/ios-glyphs/30/000000/more.png");
   border: none;
   outline: none;
   background-color: #FFFFFF;
   &:focus{
+    outline: none !important;
+    border: none;
+    background-color: #FFFFFF;
+  }
+  &:active{
     outline: none;
+    border: none
+  }
+  &:not(:disabled):not(.disabled):active{
+    outline: none;
+    border: none
+  }
+  &:after{
+    background-image: none;
+    border: none;
   }
 }

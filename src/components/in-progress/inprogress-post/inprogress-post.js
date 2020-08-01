@@ -12,6 +12,9 @@ import {
 import profile from "../../sidebar/images/profilephoto.svg";
 import star from "../../sidebar/images/star.svg";
 import './style/inprogress-post.css';
+import {DropdownButton, Dropdown} from "react-bootstrap";
+import RateUser from "../../reviews/full-review/rate-user";
+import LogOut from "../../pop-up/popup-logout";
 
 const InProgressPost = (props) => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -40,9 +43,15 @@ const InProgressPost = (props) => {
                                             </div>
                                         </li>
                                         <li className={"post__top-list-item inbox-post__item"}>
-                                            <button className={"inprogress__more-btn"}><img
-                                                className={"inprogress__icon-more"}
-                                                src="https://img.icons8.com/ios-glyphs/30/000000/more.png"/></button>
+                                            <DropdownButton alignRight
+                                                            title={<img className={"inprogress__icon-more"}
+                                                                        src={"https://img.icons8.com/ios-glyphs/30/000000/more.png"}/>}
+                                                            className={"inprogress__more-btn"}>
+                                                <Dropdown.Item eventKey="1"
+                                                               onClick={() => setModalShow(true)}>Confirm</Dropdown.Item>
+                                                <Dropdown.Item eventKey="2">Cancel</Dropdown.Item>
+                                                <Dropdown.Item eventKey="3">Report</Dropdown.Item>
+                                            </DropdownButton>
                                         </li>
                                     </ul>
                                 </div>
@@ -75,6 +84,8 @@ const InProgressPost = (props) => {
                 <div>
                 </div>
             </div>
+            <RateUser show={modalShow}
+                      onHide={() => setModalShow(false)}/>
         </div>
     );
 };

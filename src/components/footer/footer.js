@@ -4,21 +4,18 @@ import './style/footer.css';
 import TermsConditions from "../popup-terms";
 
 const Footer = () => {
-    const [supportState, setSupportState] = useState(false);
-    const [termsState, setTermsState] = useState(false);
-    function toggleSupport() {
-        setSupportState(!supportState)
-    }
-    function toggleTerms() {
-        setTermsState(!termsState)
-    }
+    const [modalShow, setModalShow] = useState(false)
+    const [termsModalShow, setTermsModalShow] = useState(false)
+
     return (
             <div className="footer" >
-                <button onClick={toggleSupport} className={"footer__link"}>Support</button>
-                <button onClick={toggleTerms} className={"footer__link"}>Terms</button>
+                <button onClick={() => setModalShow(true)} className={"footer__link"}>Support</button>
+                <button onClick={() => setTermsModalShow(true)} className={"footer__link"}>Terms</button>
                 <div>
-                    {supportState ? <Support/> : null}
-                    {termsState ? <TermsConditions/> : null}
+                    <Support show={modalShow}
+                             onHide={() => setModalShow(false)}/>
+                    <TermsConditions show={termsModalShow}
+                                     onHide={() => setTermsModalShow(false)}/>
                 </div>
             </div>
     );

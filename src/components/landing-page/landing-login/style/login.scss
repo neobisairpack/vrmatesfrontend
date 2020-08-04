@@ -56,7 +56,13 @@
     border-radius: 50%;
   }
 }
-//.login-form__img{
-//  width: 100%;
-//  //height: ;
-//}
+.login__forgot-pswrd{
+  display: flex;
+  align-items: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  text-decoration-line: underline;
+  color: #FD5A01;
+}

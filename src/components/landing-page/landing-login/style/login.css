@@ -61,3 +61,15 @@
   box-shadow: 0 0 0 10px #f5f4f2;
   border-radius: 50%;
 }
+
+.login__forgot-pswrd {
+  display: flex;
+  align-items: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  color: #FD5A01;
+}

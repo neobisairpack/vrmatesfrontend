@@ -58,6 +58,9 @@ const LoginForm = (props) => {
                                 onChange={(e)=>setPassword(e.target.value) }
                             />
                         </FormGroup>
+                            <Label check className={"login__forgot-pswrd"}>
+                                Forgot password?
+                            </Label>
                     </Form>
                     <button onClick={handleSubmit} type={"submit"} className={"register__sign-up-btn"}>Login</button>
                 </div>

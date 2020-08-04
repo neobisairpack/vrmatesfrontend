@@ -7,6 +7,7 @@ import axios from "axios";
 const Support = (props) => {
     const [state, setState] = useState({
         email: "",
+        title: "",
         text: ""
     })
 
@@ -22,7 +23,7 @@ const Support = (props) => {
         axios.post('http://167.172.178.135/api/support/', {
             name: "Aidana",
             email: state.email,
-            title: "Title",
+            title: state.title,
             text: state.text,
 
             headers: {
@@ -49,6 +50,17 @@ const Support = (props) => {
                             name="email"
                             id="exampleEmail"
                             placeholder="Email"
+                            value={state.name}
+                            onChange={e => handleChange(e)}
+                            reqiured="true"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Input
+                            style={{ height: 46 }}
+                            type="text"
+                            name="title"
+                            placeholder="Title"
                             value={state.name}
                             onChange={e => handleChange(e)}
                             reqiured="true"

@@ -9,7 +9,7 @@ import '../pop-up/popup-switch/style/popup.css';
 import filter from './icons/filter-icon.svg';
 import Filter from "../pop-up/popup-filter";
 import {withRouter} from 'react-router-dom';
-import CreatePostContainer from "../create-post/createPostContainer";
+import CreatePost from "../create-post";
 
 const Main = (props) => {
     const [popUpState, setPopUpState] = useState(false);
@@ -41,11 +41,10 @@ const Main = (props) => {
             [e.target.name]: value
         })
     }
-    console.log(props)
     return (
         <div className={"dashboard"}>
             <ScrollToTopControlller/>
-            <Sidebar/>
+            <Sidebar email={props.location.state.email} />
             <Header/>
             <div>
                 <div className={"dashboard__submenu"}>
@@ -102,8 +101,8 @@ const Main = (props) => {
                 </div>
                 <Post {...props} size={"dashboard-post"} btn={"true"}/>
             </div>
-            <CreatePostContainer show={modalShow}
-                        onHide={() => setModalShow(false)}/>
+            <CreatePost show={modalShow}
+                               onHide={() => setModalShow(false)}/>
             <Footer/>
         </div>
     );

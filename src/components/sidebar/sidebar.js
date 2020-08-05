@@ -5,10 +5,9 @@ import profilePhoto from './images/profilephoto.svg';
 import star from './images/star.svg';
 import axios from "axios";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
     const [name, setName] = useState("");
     const [list, setList] = useState([]);
-
     useEffect(() => {
         getUsers();
     }, [])
@@ -22,7 +21,7 @@ const Sidebar = () => {
             .then(function(res){
                 // setList(data);
                 res.data.map((item) => {
-                    if(item.email === "aidana.niiazova@gmail.com"){
+                    if(item.email === props.email){
                         setName(item.first_name);
                     }
                 })

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Main from '../dashboard';
 import Profile from "../profile";
 import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 import './style/app.css';
 import Inbox from "../inbox";
 import InProgress from "../in-progress";
@@ -15,49 +15,48 @@ import LoginForm from "../landing-page/landing-login";
 import ContactUs from "../landing-page/contact-us/contact-us";
 
 const App = () => {
+    const [token, setToken] = useState("");
+    useEffect(() => {
+        let data = JSON.parse(localStorage.getItem("token"));
+        if (data) {
+            setToken(data);
+        } else {
+            setToken('');
+        }
+    }, []);
     return (
         <Router>
             <div className={"app-wrapper"}>
                 <div className={"app-wrapper__content"}>
                     <Switch>
                         <Route exact path={"/"}
-                               render={() => <LandingPage
-                               />} />
+                               render={() => !token ? <LandingPage/> : <Main/>}/>
                         <Route exact path={"/dashboard"}
-                               render={() => <Main
-                               />} />
+                               render={() => <Main/>}/>
                         <Route exact path={"/profile"}
-                               render={() => <Profile
-                               />}/>
+                               render={() => token ? <Profile/> : <Redirect to={"/"}/>}/>
                         <Route exact path={"/profile/inbox"}
-                               render={() => <Inbox
-                               />}/>
+                               render={() => token ? <Inbox/> : <Redirect to={"/"}/>}/>
                         <Route exact path={"/profile/in-progress"}
-                               render={() => <InProgress
-                               />}/>
+                               render={() => token ? <InProgress/> : <Redirect to={"/"}/>}/>
                         <Route exact path={"/profile/completed"}
-                               render={() => <Completed
-                               />}/>
+                               render={() => token ? <Completed/> : <Redirect to={"/"}/>}/>
                         <Route exact path={"/profile/inbox-page"}
-                               render={() => <InboxPage
-                               />}/>
+                               render={() => token ? <InboxPage/> : <Redirect to={"/"}/>}/>
                         <Route exact path={'/profile/inbox-page/:userName'}
-                               render={() => <UserProfile
-                               />}/>
-                        <Route exact path={'/registration'}
-                               render={() => <RegistrationForm
-                               />}/>
-                        <Route exact path={'/login'}
-                               render={() => <LoginForm
-                               />}/>
+                               render={() => token ? <UserProfile/> : <Redirect to={"/"}/>}/>
                         <Route exact path={'/contact-us'}
-                               render={() => <ContactUs
-                               />}/>
+                               render={() => !token ? <ContactUs/> : <Main/>}/>
+                        <Route exact path={'/registration'}
+                               render={() => !token ? <RegistrationForm/> : <Main/>}/>
+                        <Route exact path={'/login'}
+                               render={() => !token ? <LoginForm/> : <Main/>}/>
                     </Switch>
+
                 </div>
-                {/*<Footer/>*/}
             </div>
         </Router>
+
     );
 };
 

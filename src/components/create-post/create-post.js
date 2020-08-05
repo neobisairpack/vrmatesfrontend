@@ -1,12 +1,18 @@
 import React from 'react';
 import './style/create-post.css';
+import { connect } from "react-redux";
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
 import {Modal} from "react-bootstrap";
+import * as actions from './createPostActions';
+import {addPost} from "./createPostActions";
 
 const CreatePost = (props) => {
+    const sendPost = () => {
+        console.log(props);
+    }
     return (
-        <Modal {...props} dialogClassName={"create-post"}>
+        <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post"}>
             <div className={"create-post__type"}>Package Delivery</div>
             <div className={"create-post__location-from"}>
                 <Form>
@@ -109,10 +115,20 @@ const CreatePost = (props) => {
              </div>
             <div className={"create-post__buttons"}>
                 <button className={"create-post__cancel-button"}>Cancel</button>
-                <button className={"create-post__save-button"}>Save</button>
+                <button onClick={sendPost} className={"create-post__save-button"}>Save</button>
             </div>
         </Modal>
     );
 };
-
-export default CreatePost;
+const mapStateToProps = state => {
+    return {
+        createPost: state.createPost,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        sendPost: post =>
+            dispatch(addPost(post)),
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);

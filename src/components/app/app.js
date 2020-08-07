@@ -25,12 +25,12 @@ const App = () => {
         }
     }, []);
     return (
-        <Router>
+        <React.Fragment>
             <div className={"app-wrapper"}>
                 <div className={"app-wrapper__content"}>
                     <Switch>
                         <Route exact path={"/"}
-                               render={() => !token ? <LandingPage/> : <Main/>}/>
+                               render={() => <LandingPage/>}/>
                         <Route exact path={"/dashboard"}
                                render={() => <Main/>}/>
                         <Route exact path={"/profile"}
@@ -50,12 +50,12 @@ const App = () => {
                         <Route exact path={'/registration'}
                                render={() => !token ? <RegistrationForm/> : <Main/>}/>
                         <Route exact path={'/login'}
-                               render={() => !token ? <LoginForm/> : <Main/>}/>
+                               render={() => <LoginForm/>}/>
                     </Switch>
 
                 </div>
             </div>
-        </Router>
+        </React.Fragment>
 
     );
 };

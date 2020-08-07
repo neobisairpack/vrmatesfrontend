@@ -18,22 +18,24 @@ const Support = (props) => {
             [e.target.name]: value
         })
     }
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         let token = JSON.parse(localStorage.getItem("token"));
         axios.post('http://167.172.178.135/api/support/', {
-            name: "Aidana",
             email: state.email,
             title: state.title,
-            text: state.text,
-
+            text: state.text
+        },
+        {
             headers: {
                 "Authorization": "Token " + token
             }
-        })
+        }
+        )
             .then((res) => {
-
+                console.log("support")
             })
             .catch((err) => {
+                console.log(`Token ${token}`)
                 console.log("Logging in error " + err)
             })
     }
@@ -78,7 +80,7 @@ const Support = (props) => {
                             reqiured="true"/>
                     </FormGroup>
                     <div  className={"support__submit"}>
-                        <button onClick={handleSubmit} className={"support__submit-btn"}>Submit</button>
+                        <button onClick={(e) => handleSubmit(e)} className={"support__submit-btn"}>Submit</button>
                     </div>
                 </Form>
             </Modal>

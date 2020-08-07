@@ -1,22 +1,42 @@
-import * as actions from './createPostActions';
+import {
+    SEND_POST_STARTED,
+    SEND_POST_SUCCESS,
+    SEND_POST_FAILURE} from './createPostActions';
+
 const initialState = {
-    requester: null,
-    provider: null,
-    pickup_location: "",
-    drop_off_location: "",
-    deadline: "",
-    status: "Created, not accepted",
-    title: "",
-    text: "",
-    image: null,
-    is_checked: false
+    posts: [],
+    loading: false,
+    error: null,
+    res: null
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.ADD_POST:
-            const newPost = {
-                requester: 1,
+        case SEND_POST_STARTED:
+            return {
+                ...state,
+                loading: true
+            };
+        case SEND_POST_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                res: action.payload
+            };
+        case SEND_POST_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            };
+    }
+    return state
+}
+export default reducer
+
+/*
+requester: 1,
                 provider: null,
                 pickup_location: "d",
                 drop_off_location: "fdv",
@@ -25,13 +45,4 @@ const reducer = (state = initialState, action) => {
                 title: "dvfd",
                 text: "fvfd",
                 image: null,
-                is_checked: false
-            }
-            return{
-                ...state,
-                ...newPost
-            }
-    }
-    return state
-}
-export default reducer
+                is_checked: false */

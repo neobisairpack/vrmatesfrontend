@@ -44,7 +44,7 @@ const Main = (props) => {
     return (
         <div className={"dashboard"}>
             <ScrollToTopControlller/>
-            <Sidebar email={props.location.state.email} />
+            <Sidebar  />
             <Header/>
             <div>
                 <div className={"dashboard__submenu"}>

@@ -19,7 +19,7 @@ const Post = (props) => {
 
     useEffect(() => {
         let token = JSON.parse(localStorage.getItem("token"));
-        axios.get('http://167.172.178.135/api/service/', {
+        axios.get('http://167.172.178.135/api/delivery/', {
             headers: {
                 "Authorization": "Token " + token
             }
@@ -63,12 +63,12 @@ const Post = (props) => {
                                 <label className={"post__type"}>{item.service_type}</label>
                                 <div>
                                     <div className={"post__address"}>
-                                        <CardText className={"post__city"}>{item.start_location}</CardText>
+                                        <CardText className={"post__city"}>{item.pickup_location}</CardText>
                                         <CardSubtitle className={"post__country"}>{item.start_location}</CardSubtitle>
                                     </div>
                                     <img className={"post__arrow"} src={arrow}/>
                                     <div className={"post__address"}>
-                                        <CardText className={"post__city"}>{item.end_location}</CardText>
+                                        <CardText className={"post__city"}>{item.drop_off_location}</CardText>
                                         <CardSubtitle className={"post__country"}>{item.end_location}</CardSubtitle>
                                         <div className={"post__deadline"}>{item.deadline}</div>
                                     </div>

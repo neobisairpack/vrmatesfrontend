@@ -34,21 +34,21 @@ const App = () => {
                         <Route exact path={"/dashboard"}
                                render={() => <Main/>}/>
                         <Route exact path={"/profile"}
-                               render={() => token ? <Profile/> : <Redirect to={"/"}/>}/>
+                               render={() => <Profile/>}/>
                         <Route exact path={"/profile/inbox"}
-                               render={() => token ? <Inbox/> : <Redirect to={"/"}/>}/>
+                               render={() => <Inbox/>}/>
                         <Route exact path={"/profile/in-progress"}
-                               render={() => token ? <InProgress/> : <Redirect to={"/"}/>}/>
+                               render={() => <InProgress/>}/>
                         <Route exact path={"/profile/completed"}
-                               render={() => token ? <Completed/> : <Redirect to={"/"}/>}/>
+                               render={() => <Completed/>}/>
                         <Route exact path={"/profile/inbox-page"}
-                               render={() => token ? <InboxPage/> : <Redirect to={"/"}/>}/>
+                               render={() => <InboxPage/>}/>
                         <Route exact path={'/profile/inbox-page/:userName'}
-                               render={() => token ? <UserProfile/> : <Redirect to={"/"}/>}/>
+                               render={() => <UserProfile/>}/>
                         <Route exact path={'/contact-us'}
-                               render={() => !token ? <ContactUs/> : <Main/>}/>
+                               render={() => <ContactUs/>}/>
                         <Route exact path={'/registration'}
-                               render={() => !token ? <RegistrationForm/> : <Main/>}/>
+                               render={() => <RegistrationForm/>}/>
                         <Route exact path={'/login'}
                                render={() => <LoginForm/>}/>
                     </Switch>

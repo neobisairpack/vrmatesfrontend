@@ -16,7 +16,18 @@ const Post = (props) => {
     const [dataAll, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [modalShow, setModalShow] = useState(false)
-
+    const [currentPost, setCurrentPost] = useState({
+        requester: {
+            first_name: "",
+            last_name: "",
+            email: "",
+        },
+        pickup_location: "",
+        drop_off_location: "",
+        deadline: "",
+        title: "",
+    })
+    //let currentPost = {};
     useEffect(() => {
         let token = JSON.parse(localStorage.getItem("token"));
         axios.get('http://167.172.178.135/api/delivery/', {
@@ -31,8 +42,10 @@ const Post = (props) => {
             .catch((err) => console.log(err))
     }, [])
 
-    const showFullPost = () => {
+    const showFullPost = (post) => {
+        setCurrentPost(post);
         setModalShow(true)
+        console.log(currentPost)
     }
 
     return (
@@ -40,7 +53,7 @@ const Post = (props) => {
             <div className={"row"}>
                 {dataAll.map((item) =>
                     <div key={item.id} className={"col-4"}>
-                        <Card onClick={() => setModalShow(true)} className={props.size}>
+                        <Card onClick={() => showFullPost(item)} className={props.size}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
@@ -89,13 +102,12 @@ const Post = (props) => {
                             </div>
                         </Card>
                         <div className={"full-post"}>
-                            <FullPost data={item} show={modalShow}
+                            <FullPost data={currentPost} show={modalShow}
                                       onHide={() => setModalShow(false)}
                             />
                         </div>
                     </div>
                 )}
-
             </div>
         </div>
     );

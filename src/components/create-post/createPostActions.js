@@ -44,7 +44,7 @@ export const sendPostAirport = (post) => {
             .post(`http://167.172.178.135/api/pickup/`, {
                     pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
                     drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
-                    deadline: (post.year).concat("-", post.month, "-", post.day),
+                    deadline: (post.year).concat("-", post.month, "-", post.day, "T12:07:46Z"),
                     status: "Created, not accepted",
                     title: post.title,
                     text: post.text,

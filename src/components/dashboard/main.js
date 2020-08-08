@@ -46,7 +46,7 @@ const Main = (props) => {
     return (
         <div className={"dashboard"}>
             <ScrollToTopControlller/>
-            <Sidebar/>
+            <Sidebar {...props}/>
             <Header/>
             <div>
                 <div className={"dashboard__submenu"}>
@@ -67,7 +67,6 @@ const Main = (props) => {
                             </button>
                         </li>
                     </ul>
-
                 </div>
                 <div>
                     {popUpState ? <div className={"switch"}>

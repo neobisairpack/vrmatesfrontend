@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style/create-post.css';
 import { connect } from "react-redux";
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
@@ -7,7 +7,7 @@ import {Modal} from "react-bootstrap";
 import {sendPostDelivery} from "./createPostActions";
 
 const CreatePostDelivery = (props) => {
-
+    console.log(props)
     const [state, setState] = useState({
         country1: "",
         state1: "",

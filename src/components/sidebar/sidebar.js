@@ -21,9 +21,9 @@ const Sidebar = (props) => {
             .then(function(res){
                 // setList(data);
                 res.data.map((item) => {
-                    // if(item.email === props.email){
-                    //     setName(item.first_name);
-                    // }
+                    if(item.email === props.location.state.email){
+                        setName(item.first_name);
+                    }
                 })
             })
             .catch((err) => console.log(err))

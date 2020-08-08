@@ -7,7 +7,8 @@ const initialState = {
     posts: [],
     loading: false,
     error: null,
-    res: null
+    res: null,
+    message: ""
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,13 +23,15 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: null,
-                res: action.payload
+                res: action.payload,
+                message: "Post is created, it will appear in a while!"
             };
         case SEND_POST_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error
+                error: action.payload.error,
+                message: "Post is not created, check all fields"
             };
     }
     return state

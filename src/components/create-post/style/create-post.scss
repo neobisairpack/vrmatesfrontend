@@ -10,7 +10,9 @@
   z-index: 1;
   padding: 32px;
   display: grid;
-  grid-row-end: 20px;
+  align-content: space-between;
+  justify-content: space-between;
+  //grid-row-end: 20px;
   grid-column-gap: 50px;
   grid-template-rows: 8% 30% 13% 16% 19% 12%;
   grid-template-columns: repeat(2, 45%);
@@ -20,6 +22,31 @@
     "dt dt"
     "ttl ds"
     "p p"
+    "b b";
+}
+.create-post-airport .modal-content{
+  position: absolute;
+  left: -12%;
+  top: 7%;
+  width: 150%;
+  //height: 680px;
+  overflow: hidden;
+  background: #FFFFFF;
+  border-radius: 20px;
+  z-index: 1;
+  padding: 32px;
+  display: grid;
+  align-content: space-between;
+  justify-content: space-between;
+  //grid-row-end: 20px;
+  grid-column-gap: 50px;
+  grid-template-rows: 8% 40% 20% 16% 19% 12%;
+  grid-template-columns: repeat(2, 45%);
+  grid-template-areas:
+    "t t"
+    "lf lt"
+    "dt dt"
+    "ttl ds"
     "b b";
 }
 .create-post .form-control{
@@ -55,6 +82,9 @@
 .create-post__photos{
   grid-area: p;
   width: 470px;
+}
+.create-post__host-preferences{
+  grid-area: p;
 }
 .create-post__photo{
   width: 116px;
@@ -118,6 +148,13 @@
   //line-height: 20px;
   color: #424141;
   padding-bottom: 3px;
+}
+.create-post__host-preference-type{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  color: #424141;
+  margin-left: 5px;
 }
 //"t t"
 //    "lf lt"

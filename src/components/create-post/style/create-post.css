@@ -9,11 +9,31 @@
   z-index: 1;
   padding: 32px;
   display: grid;
-  grid-row-end: 20px;
+  align-content: space-between;
+  justify-content: space-between;
   grid-column-gap: 50px;
   grid-template-rows: 8% 30% 13% 16% 19% 12%;
   grid-template-columns: repeat(2, 45%);
   grid-template-areas: "t t" "lf lt" "dt dt" "ttl ds" "p p" "b b";
+}
+
+.create-post-airport .modal-content {
+  position: absolute;
+  left: -12%;
+  top: 7%;
+  width: 150%;
+  overflow: hidden;
+  background: #FFFFFF;
+  border-radius: 20px;
+  z-index: 1;
+  padding: 32px;
+  display: grid;
+  align-content: space-between;
+  justify-content: space-between;
+  grid-column-gap: 50px;
+  grid-template-rows: 8% 40% 20% 16% 19% 12%;
+  grid-template-columns: repeat(2, 45%);
+  grid-template-areas: "t t" "lf lt" "dt dt" "ttl ds" "b b";
 }
 
 .create-post .form-control {
@@ -35,16 +55,32 @@
   color: #202A49;
 }
 
+.create-post-airport .modal-content > .create-post__type {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+}
+
 .create-post__location-from {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   grid-area: lf;
 }
 
+.create-post-airport .modal-content > .create-post__location-from {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+}
+
 .create-post__location-to {
   -ms-grid-row: 2;
   -ms-grid-column: 3;
   grid-area: lt;
+}
+
+.create-post-airport .modal-content > .create-post__location-to {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
 }
 
 .create-post__date {
@@ -55,10 +91,21 @@
   display: inline-block;
 }
 
+.create-post-airport .modal-content > .create-post__date {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+}
+
 .create-post__title {
   -ms-grid-row: 4;
   -ms-grid-column: 1;
   grid-area: ttl;
+}
+
+.create-post-airport .modal-content > .create-post__title {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
 }
 
 .create-post__description {
@@ -67,12 +114,24 @@
   grid-area: ds;
 }
 
+.create-post-airport .modal-content > .create-post__description {
+  -ms-grid-row: 4;
+  -ms-grid-column: 3;
+}
+
 .create-post__photos {
   -ms-grid-row: 5;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: p;
   width: 470px;
+}
+
+.create-post__host-preferences {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: p;
 }
 
 .create-post__photo {
@@ -118,6 +177,12 @@
   align-items: flex-end;
 }
 
+.create-post-airport .modal-content > .create-post__buttons {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+}
+
 .create-post__buttons button {
   width: 200px;
   height: 46px;
@@ -146,4 +211,12 @@
   font-size: 20px;
   color: #424141;
   padding-bottom: 3px;
+}
+
+.create-post__host-preference-type {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  color: #424141;
+  margin-left: 5px;
 }

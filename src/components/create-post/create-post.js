@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
 import {Modal} from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import {addPost, sendPost} from "./createPostActions";
+import {sendPost} from "./createPostActions";
 
 const CreatePost = (props) => {
-
+    console.log(props.type)
     const [state, setState] = useState({
         country1: "",
         state1: "",
@@ -165,7 +164,7 @@ const CreatePost = (props) => {
                         </div>
                     </Col>
                 </Row>
-             </div>
+            </div>
             <div className={"create-post__buttons"}>
                 <button className={"create-post__cancel-button"}>Cancel</button>
                 <button onClick={sendPost} className={"create-post__save-button"}>Save</button>

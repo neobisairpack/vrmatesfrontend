@@ -10,17 +10,17 @@ import filter from './icons/filter-icon.svg';
 import Filter from "../pop-up/popup-filter";
 import {withRouter} from 'react-router-dom';
 import CreatePost from "../create-post";
+import CreatePostDelivery from "../create-post/createDeliveryPost";
+import CreatePostAirport from "../create-post/createAirportPost";
+import CreatePostHosting from "../create-post/createHostingPost";
 
 const Main = (props) => {
     const [popUpState, setPopUpState] = useState(false);
     const [filterState, setFilterState] = useState(false);
     const [createPostState, setCreatePostState] = useState(false);
     const [modalShow, setModalShow] = useState(false)
-    const [radio, setRadio] = useState({
-        package: "",
-        pickup: "",
-        hosting: ""
-    })
+    const [radio, setRadio] = useState("")
+    const [type, setType] = useState("")
 
     function togglePopUpSwitch() {
         setPopUpState(!popUpState);
@@ -29,22 +29,25 @@ const Main = (props) => {
     function togglePopUpFilter() {
         setFilterState(!filterState);
     }
+
     function setModalFunc() {
-        setModalShow(true);
-        togglePopUpSwitch();
+        if (radio) {
+            setType(radio);
+            setModalShow(true);
+            togglePopUpSwitch();
+        } else {
+            alert("Please, choose the service type");
+        }
     }
 
     const handleChange = (e) => {
         const value = e.target.value
-        setRadio({
-            ...radio,
-            [e.target.name]: value
-        })
+        setRadio(value)
     }
     return (
         <div className={"dashboard"}>
             <ScrollToTopControlller/>
-            <Sidebar  />
+            <Sidebar/>
             <Header/>
             <div>
                 <div className={"dashboard__submenu"}>
@@ -72,15 +75,18 @@ const Main = (props) => {
                         <p className={"switch__title"}>Providers</p>
                         <ul>
                             <li>
-                                <input type={"radio"} name={"radio"} value={"package"}/>
+                                <input type={"radio"} name={"radio"} value={"delivery"}
+                                       defaultChecked={radio === "delivery"} onChange={(e) => handleChange(e)}/>
                                 <label>Package Delivery</label>
                             </li>
                             <li>
-                                <input type={"radio"} name={"radio"} value={"pickup"}/>
+                                <input type={"radio"} name={"radio"} value={"pickup"}
+                                       defaultChecked={radio === "pickup"} onChange={(e) => handleChange(e)}/>
                                 <label>Airport pick up/drop off</label>
                             </li>
                             <li>
-                                <input type={"radio"} name={"radio"} value={"hosting"}/>
+                                <input type={"radio"} name={"radio"} value={"hosting"}
+                                       defaultChecked={radio === "hosting"} onChange={(e) => handleChange(e)}/>
                                 <label>Hosting</label>
                             </li>
                         </ul>
@@ -101,8 +107,14 @@ const Main = (props) => {
                 </div>
                 <Post {...props} size={"dashboard-post"} btn={"true"}/>
             </div>
-            <CreatePost show={modalShow}
-                               onHide={() => setModalShow(false)}/>
+            {type === "delivery" ? <CreatePostDelivery show={modalShow}
+                                                       onHide={() => setModalShow(false)}/> : type === "pickup" ?
+                <CreatePostAirport show={modalShow}
+                                   onHide={() => setModalShow(false)}/> : type === "hosting" ?
+                    <CreatePostHosting show={modalShow}
+                                       onHide={() => setModalShow(false)}/> : null}
+            {/*<CreatePost type={type} show={modalShow}*/}
+            {/*            onHide={() => setModalShow(false)}/>*/}
             <Footer/>
         </div>
     );

@@ -5,7 +5,7 @@ import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
 import {Modal} from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import {addPost, sendPost} from "./createPostActions";
+import {sendPostAirport} from "./createPostActions";
 
 const CreatePostAirport = (props) => {
 
@@ -23,7 +23,7 @@ const CreatePostAirport = (props) => {
         text: ""
     })
     const sendPost = () => {
-        props.sendPost(state)
+        props.sendPostAirport(state)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -164,8 +164,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        sendPost: post =>
-            dispatch(sendPost(post)),
+        sendPostAirport: post =>
+            dispatch(sendPostAirport(post)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostAirport);

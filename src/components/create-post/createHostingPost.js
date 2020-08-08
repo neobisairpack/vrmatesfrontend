@@ -3,10 +3,14 @@ import './style/create-post.css';
 import { connect } from "react-redux";
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {sendPost} from "./createPostActions";
+import {sendPostHosting} from "./createPostActions";
 
 const CreatePostHosting = (props) => {
-    const [isChecked, setIsChecked] = useState({});
+    const [isChecked, setIsChecked] = useState({
+        private_bedroom: false,
+        living_room: false,
+        common_space: false
+    });
     const [state, setState] = useState({
         country1: "",
         state1: "",
@@ -22,7 +26,8 @@ const CreatePostHosting = (props) => {
         preferences: []
     })
     const sendPost = () => {
-        props.sendPost(state)
+        console.log(isChecked)
+        props.sendPostHosting(state)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -46,8 +51,23 @@ const CreatePostHosting = (props) => {
             [e.target.name]: value
         })
     }
-    const setChecked = () =>{
-
+    const setChecked = (e) =>{
+        const name = e.target.name
+        setIsChecked({
+            ...isChecked,
+            [name]: !e.target.value
+        })
+       //  if(isChecked.name === true){
+       //      state.preferences.push(e.target.name);
+       //  }
+       // else{
+       //     state.preferences.splice(e.target.name, 1)
+       //  }
+        // const value = e.target.value;
+        // setIsChecked({
+        //     ...state,
+        //     [e.target.name]: value
+        // })
     }
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post create-post-hosting"}>
@@ -155,18 +175,18 @@ const CreatePostHosting = (props) => {
             <div className={"create-post__host-preferences"}>
                 <Label className={"create-post__form-title"}>Please, choose if you have any preferences:</Label>
                 <div>
-                    <input type="checkbox" name="hobbies" value="Private bedroom"
-                           onChange={(e) => setIsChecked(e)}/>
+                    <input type="checkbox" name="Private bedroom" value={isChecked.private_bedroom}
+                           onChange={(e) => setChecked(e)}/>
                     <label className={"create-post__host-preference-type"}>Private bedroom</label>
                 </div>
                 <div>
-                    <input type="checkbox" name="hobbies" value="Living room"
-                           onChange={(e) => setIsChecked(e)}/>
+                    <input type="checkbox" name="Living room" value={isChecked.living_room}
+                           onChange={(e) => setChecked(e)}/>
                     <label className={"create-post__host-preference-type"}>Living room</label>
                 </div>
                 <div>
-                    <input type="checkbox" name="hobbies" value="Common space"
-                           onChange={(e) => setIsChecked(e)}/>
+                    <input type="checkbox" name="Common space" value={isChecked.common_space}
+                           onChange={(e) => setChecked(e)}/>
                     <label className={"create-post__host-preference-type"}>Common space</label>
                 </div>
             </div>
@@ -184,8 +204,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        sendPost: post =>
-            dispatch(sendPost(post)),
+        sendPostHosting: post =>
+            dispatch(sendPostHosting(post)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostHosting);

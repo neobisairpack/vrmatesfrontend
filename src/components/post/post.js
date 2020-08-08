@@ -31,6 +31,9 @@ const Post = (props) => {
             .catch((err) => console.log(err))
     }, [])
 
+    const showFullPost = () => {
+        setModalShow(true)
+    }
 
     return (
         <div className={"post container"}>

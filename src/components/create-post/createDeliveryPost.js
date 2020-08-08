@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
 import {Modal} from "react-bootstrap";
-import {sendPost} from "./createPostActions";
+import {sendPostDelivery} from "./createPostActions";
 
 const CreatePostDelivery = (props) => {
 
@@ -22,7 +22,7 @@ const CreatePostDelivery = (props) => {
         text: ""
     })
     const sendPost = () => {
-        props.sendPost(state)
+        props.sendPostDelivery(state)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -179,8 +179,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        sendPost: post =>
-            dispatch(sendPost(post)),
+        sendPostDelivery: post =>
+            dispatch(sendPostDelivery(post)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostDelivery);

@@ -9,7 +9,6 @@ import '../pop-up/popup-switch/style/popup.css';
 import filter from './icons/filter-icon.svg';
 import Filter from "../pop-up/popup-filter";
 import {withRouter} from 'react-router-dom';
-import CreatePost from "../create-post";
 import CreatePostDelivery from "../create-post/createDeliveryPost";
 import CreatePostAirport from "../create-post/createAirportPost";
 import CreatePostHosting from "../create-post/createHostingPost";

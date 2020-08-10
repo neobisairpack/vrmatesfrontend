@@ -13,6 +13,7 @@ import LandingPage from "../landing-page";
 import RegistrationForm from "../landing-page/registrationForm";
 import LoginForm from "../landing-page/landing-login";
 import ContactUs from "../landing-page/contact-us/contact-us";
+import ResetPassword from "../landing-page/landing-login/reset-password";
 
 const App = () => {
     const [token, setToken] = useState("");
@@ -51,12 +52,12 @@ const App = () => {
                                render={() => <RegistrationForm/>}/>
                         <Route exact path={'/login'}
                                render={() => <LoginForm/>}/>
+                        <Route exact path={'/reset-password'}
+                               render={() => <ResetPassword/>}/>
                     </Switch>
-
                 </div>
             </div>
         </React.Fragment>
-
     );
 };
 

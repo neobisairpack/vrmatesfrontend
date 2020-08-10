@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import './style/register.css';
@@ -6,16 +6,15 @@ import dateformat from 'dateformat'
 import exit from '../../post/images/exit.svg';
 import DatePicker from "react-datepicker";
 import axios from "axios";
-
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 const RegistrationForm = () => {
     const [state, setState] = useState({
         name: "",
         lastName: "",
-        phone: null,
+        phone: "",
         email: "",
         address: "",
         zipcode: "",
-        country: "",
         gender: "",
         city: "",
         states: "",
@@ -135,7 +134,6 @@ const RegistrationForm = () => {
                     </FormGroup>
 
                     <DatePicker
-                        //dateFormat="yyyy-mm-dd"
                         className={"register__input"}
                         placeholderText={"   *Date Of Birth"}
                         selected={birthDate}
@@ -144,10 +142,15 @@ const RegistrationForm = () => {
                     />
 
                     <FormGroup>
-                        <Input type="select" name={"country"} className={"register__input"} value={state.country} onChange={e => handleChange(e)}>
-                            <option value={""}>Country</option>
-                            <option value={"Kyrgyzstan"}>Kyrgyzstan</option>
-                        </Input>
+                        <CountryDropdown
+                            name={"country"}
+                            className={"register__input"}
+                            defaultOptionLabel={"  Country"}
+                            value={state.country}
+                            onChange={e => setState({
+                                ...state,
+                                country: e
+                            })} />
                     </FormGroup>
 
                     <FormGroup>
@@ -160,10 +163,16 @@ const RegistrationForm = () => {
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="select" name={"city"} className={"register__input"} value={state.city} onChange={e => handleChange(e)}>
-                            <option value={""}>City</option>
-                            <option value={"Bishkek"}>Bishkek</option>
-                        </Input>
+                        <RegionDropdown
+                            className={"register__input"}
+                            blankOptionLabel={"State"}
+                            defaultOptionLabel={"State"}
+                            country={state.country}
+                            value={state.states}
+                            onChange={e => setState({
+                                ...state,
+                                states: e
+                            })} />
                     </FormGroup>
 
                     <FormGroup>
@@ -179,10 +188,12 @@ const RegistrationForm = () => {
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="select" name={"states"} className={"register__input"} value={state.states} onChange={e => handleChange(e)}>
-                            <option value={""}>State</option>
-                            <option value={"Chui"}>Chui</option>
-                        </Input>
+                        <Input type="text" name={"city"}
+                               className={"register__input"}
+                               placeholder={"City"}
+                               value={state.city}
+                               onChange={e => handleChange(e)}
+                        />
                     </FormGroup>
 
                     <FormGroup>

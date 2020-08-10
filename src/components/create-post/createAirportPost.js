@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import './style/create-post.css';
 import { connect } from "react-redux";
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
-import imgIcon from "../post/images/empty-img.svg";
 import {Modal} from "react-bootstrap";
-import DatePicker from "react-datepicker";
 import {sendPostAirport} from "./createPostActions";
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 const CreatePostAirport = (props) => {
 
@@ -54,22 +53,35 @@ const CreatePostAirport = (props) => {
                 <Form>
                     <label className={"create-post__form-title"}>Indicate pick up location:</label>
                     <FormGroup>
-                        <Input type="select" name={"country1"} value={state.country1} onChange={e => handleChange(e)}>
-                            <option>Country</option>
-                            <option value={"Kyrgyzstan"}>Kyrgyzstan</option>
-                        </Input>
+                            <CountryDropdown
+                                name={"country"}
+                                className={"form-control"}
+                                defaultOptionLabel={"  Country"}
+                                value={state.country1}
+                                onChange={e => setState({
+                                    ...state,
+                                    country1: e
+                                })} />
                     </FormGroup>
                     <FormGroup>
-                        <Input type="select" name={"state1"} value={state.state1} onChange={e => handleChange(e)}>
-                            <option>State</option>
-                            <option value={"Chui"}>Chui</option>
-                        </Input>
+                        <RegionDropdown
+                            className={"form-control"}
+                            blankOptionLabel={"State"}
+                            defaultOptionLabel={"State"}
+                            country={state.country1}
+                            value={state.state1}
+                            onChange={e => setState({
+                                ...state,
+                                state1: e
+                            })} />
                     </FormGroup>
                     <FormGroup>
-                        <Input type="select" name={"city1"} value={state.city1} onChange={e => handleChange(e)}>
-                            <option>City</option>
-                            <option value={"Bishkek"}>Bishkek</option>
-                        </Input>
+                        <Input type="text" name={"city1"}
+                               className={"form-control"}
+                               placeholder={"City"}
+                               value={state.city1}
+                               onChange={e => handleChange(e)}
+                        />
                     </FormGroup>
                 </Form>
             </div>
@@ -77,22 +89,35 @@ const CreatePostAirport = (props) => {
                 <Form>
                     <Label className={"create-post__form-title"}>Indicate drop off location:</Label>
                     <FormGroup>
-                        <Input type="select" name={"country2"} value={state.country2} onChange={e => handleChange(e)}>
-                            <option>Country</option>
-                            <option value={"Kyrgyzstan"}>Kyrgyzstan</option>
-                        </Input>
+                        <CountryDropdown
+                            name={"country"}
+                            className={"form-control"}
+                            defaultOptionLabel={"  Country"}
+                            value={state.country2}
+                            onChange={e => setState({
+                                ...state,
+                                country2: e
+                            })} />
                     </FormGroup>
                     <FormGroup>
-                        <Input type="select" name={"state2"} value={state.state2} onChange={e => handleChange(e)}>
-                            <option>State</option>
-                            <option value={"Chui"}>Chui</option>
-                        </Input>
+                        <RegionDropdown
+                            className={"form-control"}
+                            blankOptionLabel={"State"}
+                            defaultOptionLabel={"State"}
+                            country={state.country2}
+                            value={state.state2}
+                            onChange={e => setState({
+                                ...state,
+                                state2: e
+                            })} />
                     </FormGroup>
                     <FormGroup>
-                        <Input type="select" name={"city2"} value={state.city2} onChange={e => handleChange(e)}>
-                            <option>City</option>
-                            <option value={"Bishkek"}>Bishkek</option>
-                        </Input>
+                        <Input type="text" name={"city2"}
+                               className={"form-control"}
+                               placeholder={"City"}
+                               value={state.city2}
+                               onChange={e => handleChange(e)}
+                        />
                     </FormGroup>
                 </Form>
             </div>

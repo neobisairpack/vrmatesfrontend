@@ -13,6 +13,7 @@ const LoginForm = (props) => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     //console.log(email, password)
+
     const handleSubmit = () => {
         //e.preventDefault()
         console.log(email, password)
@@ -25,7 +26,7 @@ const LoginForm = (props) => {
                 //window.location.href='/dashboard';
                 props.history.push({
                     pathname: '/dashboard',
-                    state: { email: email }
+                    state: {email: email}
                 })
             })
             .catch((err) => {
@@ -38,7 +39,7 @@ const LoginForm = (props) => {
             <div className={"login-form"}>
 
                 <div className={"login-form__item"}>
-                    <label className={"login__title"}>Welcome  to Vrmates</label>
+                    <label className={"login__title"}>Welcome to Vrmates</label>
                     <Form>
                         <FormGroup>
                             <Input
@@ -46,7 +47,7 @@ const LoginForm = (props) => {
                                 placeholder={"E-mail"}
                                 type={"email"}
                                 name={"email"}
-                                onChange={(e)=>setEmail(e.target.value) }
+                                onChange={(e) => setEmail(e.target.value)}
                                 required/>
                         </FormGroup>
                         <FormGroup>
@@ -55,17 +56,20 @@ const LoginForm = (props) => {
                                 name={"password"}
                                 className={"register__input"}
                                 placeholder={"Password"}
-                                onChange={(e)=>setPassword(e.target.value) }
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </FormGroup>
+                        <Link to={"/reset-password"}>
                             <Label check className={"login__forgot-pswrd"}>
                                 Forgot password?
                             </Label>
+                        </Link>
                     </Form>
                     <button onClick={handleSubmit} type={"submit"} className={"register__sign-up-btn"}>Login</button>
                 </div>
                 <div>
-                    <Link to={"/"} className={"login__exit-link"} ><img className={"login__exit"} src={exit} alt={"exit"}/></Link>
+                    <Link to={"/"} className={"login__exit-link"}><img className={"login__exit"} src={exit}
+                                                                       alt={"exit"}/></Link>
                     <img className={"login-form__img"} src={loginImg} alt={"Login image"}/>
                 </div>
             </div>

@@ -36,7 +36,7 @@
   grid-template-areas: "t t" "lf lt" "dt dt" "ttl ds" "b b";
 }
 
-.create-post .form-control {
+.form-control {
   background: #F8F8F8;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;

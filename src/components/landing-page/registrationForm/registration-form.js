@@ -11,9 +11,8 @@ const RegistrationForm = () => {
     const [state, setState] = useState({
         name: "",
         lastName: "",
-        phone: "",
+        phone: null,
         email: "",
-        //birthDate: null,
         address: "",
         zipcode: "",
         country: "",
@@ -40,7 +39,7 @@ const RegistrationForm = () => {
         axios.post('http://167.172.178.135/users/registration/', {
             first_name: state.name,
             last_name: state.lastName,
-            username: state.name,
+            username: null,
             email: state.email,
             birthday: dateformat(birthDate, 'yyyy-mm-dd'),
             gender: state.gender,

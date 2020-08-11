@@ -7,7 +7,7 @@ import {sendPostAirport} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 const CreatePostAirport = (props) => {
-
+    console.log(new Date().getFullYear())
     const [state, setState] = useState({
         country1: "",
         state1: "",
@@ -15,9 +15,9 @@ const CreatePostAirport = (props) => {
         country2: "",
         state2: "",
         city2: "",
-        year: "",
-        month: "",
-        day: "",
+        year: (new Date().getFullYear()).toString(),
+        month: "01",
+        day: "1",
         title: "",
         text: ""
     })
@@ -51,7 +51,7 @@ const CreatePostAirport = (props) => {
             <div className={"create-post__type"}>Airport pick up/drop off</div>
             <div className={"create-post__location-from"}>
                 <Form>
-                    <label className={"create-post__form-title"}>Indicate pick up location:</label>
+                    <label className={"create-post__form-title"}>Indicate departure location:</label>
                     <FormGroup>
                             <CountryDropdown
                                 name={"country"}
@@ -87,7 +87,7 @@ const CreatePostAirport = (props) => {
             </div>
             <div className={"create-post__location-to"}>
                 <Form>
-                    <Label className={"create-post__form-title"}>Indicate drop off location:</Label>
+                    <Label className={"create-post__form-title"}>Indicate arriving location:</Label>
                     <FormGroup>
                         <CountryDropdown
                             name={"country"}
@@ -122,7 +122,7 @@ const CreatePostAirport = (props) => {
                 </Form>
             </div>
             <div className={"create-post__date"}>
-                <Label className={"create-post__form-title"}>Select the date of the pick up/drop off</Label>
+                <Label className={"create-post__form-title"}>Select the date of the pick up in the arriving location</Label>
                 <Row form>
                     <Col md={3}>
                         <FormGroup>

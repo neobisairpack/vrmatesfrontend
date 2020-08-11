@@ -16,9 +16,9 @@ const CreatePostDelivery = (props) => {
         country2: "",
         state2: "",
         city2: "",
-        year: "",
-        month: "",
-        day: "",
+        year: (new Date().getFullYear()).toString(),
+        month: "01",
+        day: "1",
         title: "",
         text: ""
     })

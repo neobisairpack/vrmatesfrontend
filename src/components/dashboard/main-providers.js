@@ -8,15 +8,15 @@ import Footer from "../footer";
 import '../pop-up/popup-switch/style/popup.css';
 import filter from './icons/filter-icon.svg';
 import Filter from "../pop-up/popup-filter";
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import CreatePostDelivery from "../create-post/createDeliveryPost";
 import CreatePostAirport from "../create-post/createAirportPost";
 import CreatePostHosting from "../create-post/createHostingPost";
+import CreateProviderDelivery from "../create-post/createProviderDelivery";
 
-const Main = (props) => {
+const MainProviders = (props) => {
     const [popUpState, setPopUpState] = useState(false);
     const [filterState, setFilterState] = useState(false);
-    const [createPostState, setCreatePostState] = useState(false);
     const [modalShow, setModalShow] = useState(false)
     const [radio, setRadio] = useState("")
     const [type, setType] = useState("")
@@ -52,8 +52,12 @@ const Main = (props) => {
                 <div className={"dashboard__submenu"}>
                     <p className={"dashboard__title"}>NEWS FEED</p>
                     <ul className={"dashboard__list"}>
-                        <li className={"dashboard__list-item"}>Providers</li>
-                        <li className={"dashboard__list-item dashboard__list-item_active"}>Requesters</li>
+                        <Link to={"/dashboard/providers"}>
+                            <li className={"dashboard__list-item"}>Providers</li>
+                        </Link>
+                        <Link to={"/dashboard/requesters"}>
+                            <li className={"dashboard__list-item dashboard__list-item_active"}>Requesters</li>
+                        </Link>
                         <li className={"dashboard__list-item "}>
                             <button onClick={togglePopUpFilter}
                                     className={"dashboard__filter "}>
@@ -105,17 +109,15 @@ const Main = (props) => {
                 </div>
                 <Post {...props} size={"dashboard-post"} btn={"true"}/>
             </div>
-            {type === "delivery" ? <CreatePostDelivery show={modalShow}
+            {type === "delivery" ? <CreateProviderDelivery show={modalShow}
                                                        onHide={() => setModalShow(false)}/> : type === "pickup" ?
                 <CreatePostAirport show={modalShow}
                                    onHide={() => setModalShow(false)}/> : type === "hosting" ?
                     <CreatePostHosting show={modalShow}
                                        onHide={() => setModalShow(false)}/> : null}
-            {/*<CreatePost type={type} show={modalShow}*/}
-            {/*            onHide={() => setModalShow(false)}/>*/}
             <Footer/>
         </div>
     );
 };
 
-export default withRouter(Main);
+export default withRouter(MainProviders);

@@ -27,6 +27,12 @@ const Header = (props) => {
             case '/dashboard':
                 setActiveLink(1);
                 break;
+            case '/dashboard/requesters':
+                setActiveLink(1);
+                break;
+            case '/dashboard/providers':
+                setActiveLink(1);
+                break;
             case '/profile/inbox':
                 setActiveLink(2);
                 break;

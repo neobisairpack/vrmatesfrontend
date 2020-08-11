@@ -14,6 +14,8 @@ import RegistrationForm from "../landing-page/registrationForm";
 import LoginForm from "../landing-page/landing-login";
 import ContactUs from "../landing-page/contact-us/contact-us";
 import ResetPassword from "../landing-page/landing-login/reset-password";
+import MainRequesters from "../dashboard/main-requesters";
+import MainProviders from "../dashboard/main-providers";
 
 const App = () => {
     const [token, setToken] = useState("");
@@ -33,7 +35,11 @@ const App = () => {
                         <Route exact path={"/"}
                                render={() => <LandingPage/>}/>
                         <Route exact path={"/dashboard"}
-                               render={() => <Main/>}/>
+                               render={() => <MainRequesters/>}/>
+                        <Route exact path={"/dashboard/requesters"}
+                               render={() => <MainRequesters/>}/>
+                        <Route exact path={"/dashboard/providers"}
+                               render={() => <MainProviders/>}/>
                         <Route exact path={"/profile"}
                                render={() => <Profile/>}/>
                         <Route exact path={"/profile/inbox"}

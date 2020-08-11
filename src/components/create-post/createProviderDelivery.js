@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style/create-post.css';
 import { connect } from "react-redux";
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {sendPostHosting} from "./createPostActions";
+import {sendPostDelivery} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+// import TimePicker from 'react-time-picker';
 
-const CreatePostHosting = (props) => {
-    //const [preference, setPreference] = useState("");
+const CreateProviderDelivery = (props) => {
+    console.log(props)
     const [state, setState] = useState({
         country1: "",
         state1: "",
@@ -15,15 +16,18 @@ const CreatePostHosting = (props) => {
         country2: "",
         state2: "",
         city2: "",
-        year: (new Date().getFullYear()).toString(),
-        month: "01",
-        day: "1",
+        year1: "",
+        month1: "",
+        day1: "",
+        year2: "",
+        month2: "",
+        day2: "",
+        time: "",
         title: "",
-        text: "",
-        preferences: ""
+        text: ""
     })
     const sendPost = () => {
-        props.sendPostHosting(state)
+        props.sendPostDelivery(state)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -48,12 +52,11 @@ const CreatePostHosting = (props) => {
         })
     }
     return (
-        <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post create-post-hosting"}>
-            <div className={"create-post__type"}>Hosting</div>
-
+        <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-provide-delivery"}>
+            <div className={"create-post__type"}>Package Delivery</div>
             <div className={"create-post__location-from"}>
                 <Form>
-                    <label className={"create-post__form-title"}>Where are you from:</label>
+                    <label className={"create-post__form-title"}>Indicate departure location:</label>
                     <FormGroup>
                         <CountryDropdown
                             name={"country"}
@@ -89,7 +92,7 @@ const CreatePostHosting = (props) => {
             </div>
             <div className={"create-post__location-to"}>
                 <Form>
-                    <Label className={"create-post__form-title"}>Where do you need hosting:</Label>
+                    <Label className={"create-post__form-title"}>Indicate arrival location:</Label>
                     <FormGroup>
                         <CountryDropdown
                             name={"country"}
@@ -124,7 +127,7 @@ const CreatePostHosting = (props) => {
                 </Form>
             </div>
             <div className={"create-post__date"}>
-                <Label className={"create-post__form-title"}>Select the date of the hosting</Label>
+                <Label className={"create-post__form-title"}>Select the date of the departure:</Label>
                 <Row form>
                     <Col md={3}>
                         <FormGroup>
@@ -159,6 +162,50 @@ const CreatePostHosting = (props) => {
                         </FormGroup>
                     </Col>
                 </Row>
+
+                <Label className={"create-post__form-title"}>Select the date of the arrival:</Label>
+                <Row form>
+                    <Col md={3}>
+                        <FormGroup>
+                            <select name={"day"} value={state.day} onChange={e => handleChange(e)} className={"form-control"}>
+                                {getDropListDay()}
+                            </select>
+                        </FormGroup>
+                    </Col>
+                    <Col md={3}>
+                        <FormGroup>
+                            <select name={"month"} value={state.month} onChange={e => handleChange(e)} className={"form-control"}>
+                                <option value={"01"}>January</option>
+                                <option value={"02"}>February</option>
+                                <option value={"03"}>March</option>
+                                <option value={"04"}>April</option>
+                                <option value={"05"}>May</option>
+                                <option value={"06"}>June</option>
+                                <option value={"07"}>July</option>
+                                <option value={"08"}>August</option>
+                                <option value={"09"}>September</option>
+                                <option value={"10"}>October</option>
+                                <option value={"11"}>November</option>
+                                <option value={"12"}>December</option>
+                            </select>
+                        </FormGroup>
+                    </Col>
+                    <Col md={3}>
+                        <FormGroup>
+                            <select name={"year"} value={state.year} onChange={e => handleChange(e)} className={"form-control"}>
+                                {getDropList()}
+                            </select>
+                        </FormGroup>
+                    </Col>
+                    {/*<TimePicker*/}
+                    {/*    onChange={time => setState({*/}
+                    {/*        ...state,*/}
+                    {/*        time: time*/}
+                    {/*    })}*/}
+                    {/*    value={state.time}*/}
+                    {/*/>*/}
+                </Row>
+
             </div>
             <div className={"create-post__title"}>
                 <Form>
@@ -176,26 +223,6 @@ const CreatePostHosting = (props) => {
                     </FormGroup>
                 </Form>
             </div>
-            <div className={"create-post__host-preferences"}>
-                <Label className={"create-post__form-title"}>Please, choose if you have any preferences:</Label>
-                <ul>
-                    <li>
-                        <input type={"radio"} name={"preferences"} value={"Private bedroom"}
-                               defaultChecked={state.preferences === "Private bedroom"} onChange={(e) => handleChange(e)}/>
-                        <label className={"create-post__host-preference-type"}>Private bedroom</label>
-                    </li>
-                    <li>
-                        <input type={"radio"} name={"preferences"} value={"Living room"}
-                               defaultChecked={state.preferences === "Living room"} onChange={(e) => handleChange(e)}/>
-                        <label className={"create-post__host-preference-type"}>Living room</label>
-                    </li>
-                    <li>
-                        <input type={"radio"} name={"preferences"} value={"Common space"}
-                               defaultChecked={state.preferences === "Common space"} onChange={(e) => handleChange(e)}/>
-                        <label className={"create-post__host-preference-type"}>Common space</label>
-                    </li>
-                </ul>
-            </div>
             <div className={"create-post__buttons"}>
                 <button onClick={props.onHide} className={"create-post__cancel-button"}>Cancel</button>
                 <button onClick={sendPost} className={"create-post__save-button"}>Save</button>
@@ -210,8 +237,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        sendPostHosting: post =>
-            dispatch(sendPostHosting(post)),
+        sendPostDelivery: post =>
+            dispatch(sendPostDelivery(post)),
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePostHosting);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProviderDelivery);

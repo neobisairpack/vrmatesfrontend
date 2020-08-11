@@ -165,6 +165,39 @@ export const sendPostHosting = (post) => {
             });
     };
 };
+
+export const sendProviderHosting = (post) => {
+    console.log(post.year, post.month, post.day, typeof post.year)
+    let token = JSON.parse(localStorage.getItem("token"));
+    return dispatch => {
+        dispatch(sendPostStarted());
+        axios
+            .post(`http://167.172.178.135/api/provide-hosting/`, {
+                    location: (post.country1).concat(" ", post.state1, " ", post.city1),
+                    hosting_date: (post.year).concat("-", post.month, "-", post.day),
+                    status: "Created, not accepted",
+                    title: post.title,
+                    text: post.text,
+                    hosting_type: post.preferences,
+                    is_checked: false
+                },
+                {
+                    headers: {
+                        "Authorization": "Token " + token
+                    }
+                }
+
+            )
+            .then(res => {
+                console.log(res.data)
+                dispatch(sendPostSuccess(res.data));
+            })
+            .catch(err => {
+                console.log(token)
+                dispatch(sendPostFailure(err));
+            });
+    };
+};
 const sendPostStarted = () => ({
     type: SEND_POST_STARTED
 });

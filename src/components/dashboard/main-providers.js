@@ -9,10 +9,9 @@ import '../pop-up/popup-switch/style/popup.css';
 import filter from './icons/filter-icon.svg';
 import Filter from "../pop-up/popup-filter";
 import {Link, withRouter} from 'react-router-dom';
-import CreatePostDelivery from "../create-post/createDeliveryPost";
-import CreatePostAirport from "../create-post/createAirportPost";
 import CreatePostHosting from "../create-post/createHostingPost";
 import CreateProviderDelivery from "../create-post/createProviderDelivery";
+import CreateProviderAirport from "../create-post/createProviderAirport";
 
 const MainProviders = (props) => {
     const [popUpState, setPopUpState] = useState(false);
@@ -111,7 +110,7 @@ const MainProviders = (props) => {
             </div>
             {type === "delivery" ? <CreateProviderDelivery show={modalShow}
                                                        onHide={() => setModalShow(false)}/> : type === "pickup" ?
-                <CreatePostAirport show={modalShow}
+                <CreateProviderAirport show={modalShow}
                                    onHide={() => setModalShow(false)}/> : type === "hosting" ?
                     <CreatePostHosting show={modalShow}
                                        onHide={() => setModalShow(false)}/> : null}

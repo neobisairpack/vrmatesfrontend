@@ -19,7 +19,6 @@ const MainRequesters = (props) => {
     const [modalShow, setModalShow] = useState(false)
     const [radio, setRadio] = useState("")
     const [type, setType] = useState("")
-
     function togglePopUpSwitch() {
         setPopUpState(!popUpState);
     }

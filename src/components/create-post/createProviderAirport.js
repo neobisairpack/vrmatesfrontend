@@ -47,7 +47,7 @@ const CreateProviderAirport = (props) => {
             <div className={"create-post__type"}>Airport pick up/drop off</div>
             <div className={"create-post__location-from"}>
                 <Form>
-                    <label className={"create-post__form-title"}>Indicate departure location:</label>
+                    <label className={"create-post__form-title"}>In which City/State/Country can you pick up:</label>
                     <FormGroup>
                         <CountryDropdown
                             name={"country"}
@@ -83,7 +83,7 @@ const CreateProviderAirport = (props) => {
             </div>
 
             <div className={"create-post__date"}>
-                <Label className={"create-post__form-title"}>Select the date of the pick up in the arriving location</Label>
+                <Label className={"create-post__form-title"}>Select the date of the pick up:</Label>
                 <Row form>
                     <Col md={3}>
                         <FormGroup>

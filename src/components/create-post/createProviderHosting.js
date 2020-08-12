@@ -49,7 +49,7 @@ const CreateProviderHosting = (props) => {
 
             <div className={"create-post__location-from"}>
                 <Form>
-                    <label className={"create-post__form-title"}>Where are you from:</label>
+                    <label className={"create-post__form-title"}>Where are you located:</label>
                     <FormGroup>
                         <CountryDropdown
                             name={"country"}
@@ -85,7 +85,7 @@ const CreateProviderHosting = (props) => {
             </div>
 
             <div className={"create-post__date"}>
-                <Label className={"create-post__form-title"}>Select the date of the hosting</Label>
+                <Label className={"create-post__form-title"}>When can you do hosting:</Label>
                 <Row form>
                     <Col md={3}>
                         <FormGroup>
@@ -138,7 +138,7 @@ const CreateProviderHosting = (props) => {
                 </Form>
             </div>
             <div className={"create-post__host-preferences"}>
-                <Label className={"create-post__form-title"}>Please, choose if you have any preferences:</Label>
+                <Label className={"create-post__form-title"}>Please, choose what type of hosting you offer:</Label>
                 <ul>
                     <li>
                         <input type={"radio"} name={"preferences"} value={"Private bedroom"}

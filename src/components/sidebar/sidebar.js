@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Sidebar = (props) => {
     const [name, setName] = useState("");
-    const [list, setList] = useState([]);
+    //const userName = props.location.state.email;
     useEffect(() => {
         getUsers();
     }, [])

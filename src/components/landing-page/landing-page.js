@@ -9,9 +9,11 @@ import hw3 from './images/how-works3.png';
 import hw4 from './images/how-works4.png';
 import RegistrationForm from "./registrationForm";
 import {Link} from "react-router-dom";
+import TermsConditions from "../popup-terms";
 
 
 const LandingPage = () => {
+    const [termsModalShow, setTermsModalShow] = useState(false)
     return (
         <div className={"landing"}>
             <ScrollToTopControlller/>
@@ -106,10 +108,13 @@ const LandingPage = () => {
                 </div>
             </div>
             <div className={"landing__footer"}>
-                <button className={"landing__footer-link"}>Terms&Conditions</button>
+                <button onClick={() => setTermsModalShow(true)} className={"landing__footer-link"}>Terms&Conditions</button>
                 <button  className={"landing__footer-link"}>faq</button>
             </div>
-
+            <div>
+                <TermsConditions show={termsModalShow}
+                                 onHide={() => setTermsModalShow(false)}/>
+            </div>
         </div>
     );
 };

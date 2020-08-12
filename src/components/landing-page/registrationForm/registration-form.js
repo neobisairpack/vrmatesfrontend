@@ -7,7 +7,9 @@ import exit from '../../post/images/exit.svg';
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import TermsConditions from "../../popup-terms";
 const RegistrationForm = () => {
+    const [termsModalShow, setTermsModalShow] = useState(false)
     const [state, setState] = useState({
         name: "",
         lastName: "",
@@ -33,31 +35,36 @@ const RegistrationForm = () => {
         })
     }
     const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(state.email, state.password, state.city, state.name)
-        axios.post('http://167.172.178.135/users/registration/', {
-            first_name: state.name,
-            last_name: state.lastName,
-            username: null,
-            email: state.email,
-            birthday: dateformat(birthDate, 'yyyy-mm-dd'),
-            gender: state.gender,
-            phone: state.phone,
-            address: state.address,
-            zip_code: state.zipcode,
-            country: state.country,
-            city: state.city,
-            state: state.states,
-            password: state.password,
-            password2: state.password2
-        })
-            .then((res) => {
-                console.log(res)
-                alert(res.data.response)
+        if(state.isChecked) {
+            e.preventDefault()
+            console.log(state.email, state.password, state.city, state.name)
+            axios.post('http://167.172.178.135/users/registration/', {
+                first_name: state.name,
+                last_name: state.lastName,
+                username: null,
+                email: state.email,
+                birthday: dateformat(birthDate, 'yyyy-mm-dd'),
+                gender: state.gender,
+                phone: state.phone,
+                address: state.address,
+                zip_code: state.zipcode,
+                country: state.country,
+                city: state.city,
+                state: state.states,
+                password: state.password,
+                password2: state.password2
             })
-            .catch((err) => {
-                console.log("Registration error " + err)
-            })
+                .then((res) => {
+                    console.log(res)
+                    alert(res.data.response)
+                })
+                .catch((err) => {
+                    console.log("Registration error " + err)
+                })
+        }
+        else{
+            alert("Please, read the Terms and Conditions and check")
+        }
     }
     return (
         <div className="register-container">
@@ -211,7 +218,7 @@ const RegistrationForm = () => {
                     <FormGroup className={"register__checkbox"} check>
                         <Label check className={"register__checkbox-lbl"}>
                             <Input type={"checkbox"} name={"isChecked"} value={state.isChecked} onChange={e => handleChange(e)}/>
-                            I agree to terms conditions
+                            <label onClick={() => setTermsModalShow(true)}>I agree to terms conditions</label>
                         </Label>
                     </FormGroup>
                 </Form>
@@ -219,6 +226,10 @@ const RegistrationForm = () => {
                     <button type={"submit"} onClick={handleSubmit} className={"register__sign-up-btn"}>Sign Up</button>
                 </div>
 
+            </div>
+            <div>
+                <TermsConditions show={termsModalShow}
+                                 onHide={() => setTermsModalShow(false)}/>
             </div>
         </div>
     );

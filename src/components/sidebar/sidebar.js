@@ -13,18 +13,15 @@ const Sidebar = (props) => {
     }, [])
     const getUsers = () =>{
         let token = JSON.parse(localStorage.getItem("token"));
-        axios.get('http://167.172.178.135/users/', {
+        axios.get('http://167.172.178.135/users/me/', {
             headers: {
                 "Authorization": "Token " + token
             }
         })
             .then(function(res){
                 // setList(data);
-                res.data.map((item) => {
-                    if(item.email === props.location.state.email){
-                        setName(item.first_name);
-                    }
-                })
+                   setName(res.data.first_name);
+
             })
             .catch((err) => console.log(err))
     }

@@ -1,19 +1,33 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/reviews.css';
 import star from '../post/images/star-icon.png';
 import FullReview from "./full-review";
-import LogOut from "../pop-up/popup-logout";
+import axios from "axios";
 
 const Reviews = () => {
-    const [reviewState, setReviewState] = useState(false);
-    const [modalShow, setModalShow] = useState(false)
-    function reviewView() {
-        setReviewState(!reviewState)
+    const [modalShow, setModalShow] = useState(false);
+    const [rate, setRate] = useState([]);
+    const [rateNum, setRateNum] = useState([]);
+    useEffect(() => {
+        getReviews();
+    }, [])
+    const getReviews = () =>{
+        let token = JSON.parse(localStorage.getItem("token"));
+        axios.get('http://167.172.178.135/api/rating/', {
+            headers: {
+                "Authorization": "Token " + token
+            }
+        })
+            .then(function(res){
+                setRate(res.data);
+            })
+            .catch((err) => console.log(err))
     }
     return (
         <div className={"reviews"}>
-            <div onClick={() => setModalShow(true)} className={"review review-orange"}>
+            {rate.map((item) =>
+            <div key={item.id} onClick={() => setModalShow(true)} className={"review review-orange"}>
                 <div className={"review__rating"}>
                     <img src={star} className={"review__rating-star"} alt={"Rating"}/>
                     <img src={star} className={"review__rating-star"} alt={"Rating"}/>
@@ -22,76 +36,13 @@ const Reviews = () => {
                     <img src={star} className={"review__rating-star"} alt={"Rating"}/>
                 </div>
                 <div className={"review__text"}>
-                    Over the past four years, I have become ...
+                    {item.text}
                 </div>
                 <div className={"review__time"}>
-                    1 week ago
+                    {item.date}
                 </div>
             </div>
-
-            <div className={"review review-blue"}>
-                <div className={"review__rating"}>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                </div>
-                <div className={"review__text"}>
-                    Over the past four years, I have become ...
-                </div>
-                <div className={"review__time"}>
-                    1 week ago
-                </div>
-            </div>
-
-            <div className={"review review-orange"}>
-                <div className={"review__rating"}>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                </div>
-                <div className={"review__text"}>
-                    Over the past four years, I have become ...
-                </div>
-                <div className={"review__time"}>
-                    1 week ago
-                </div>
-            </div>
-
-            <div className={"review review-blue"}>
-                <div className={"review__rating"}>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                </div>
-                <div className={"review__text"}>
-                    Over the past four years, I have become ...
-                </div>
-                <div className={"review__time"}>
-                    1 week ago
-                </div>
-            </div>
-
-            <div className={"review review-orange"}>
-                <div className={"review__rating"}>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                    <img src={star} className={"review__rating-star"} alt={"Rating"}/>
-                </div>
-                <div className={"review__text"}>
-                    Over the past four years, I have become ...
-                </div>
-                <div className={"review__time"}>
-                    1 week ago
-                </div>
-            </div>
+            )}
             <div>
                <FullReview show={modalShow}
                            onHide={() => setModalShow(false)}/>

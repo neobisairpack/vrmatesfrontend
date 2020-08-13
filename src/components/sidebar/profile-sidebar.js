@@ -7,27 +7,45 @@ import axios from "axios";
 import './style/sidebar.css';
 
 const ProfileSidebar = () => {
-    const [name, setName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [list, setList] = useState([]);
+    const [userData, setUserData] = useState({
+        name: "",
+        last_name: "",
+        country: "",
+        city: "",
+        age: "",
+        image: "",
+        cancel_rate: "",
+        rating: "",
+        phone: "",
+        about_me: "",
+        points: "",
+        email: ""
+    });
+
 
     useEffect(() => {
         getUsers();
     }, [])
     const getUsers = () => {
         let token = JSON.parse(localStorage.getItem("token"));
-        axios.get('http://167.172.178.135/users/', {
+        axios.get('http://167.172.178.135/users/me/', {
             headers: {
                 "Authorization": "Token " + token
             }
         })
             .then(function (res) {
-                // setList(data);
-                res.data.map((item) => {
-                    if (item.email === "aidana.niiazova@gmail.com") {
-                        setName(item.first_name);
-                        setLastName(item.last_name)
-                    }
+                setUserData({
+                    ...userData,
+                    name: res.data.first_name,
+                    last_name: res.data.last_name,
+                    country: res.data.country,
+                    city: res.data.city,
+                    age: res.data.age,
+                    image: res.data.image,
+                    phone: res.data.phone,
+                    about_me: res.data.about_me,
+                    points: res.data.points,
+                    email: res.data.email
                 })
             })
             .catch((err) => console.log(err))
@@ -38,23 +56,21 @@ const ProfileSidebar = () => {
             <div className={"profile-sidebar__top"}>
                 <img src={profilePhoto} className={"sidebar__item-photo"} alt={"Profile"}/>
                 <div className={"profile-sidebar__user-info"}>
-                <p className={"profile-sidebar__name"}> {name} <br/> {lastName} </p>
-                    <p className={"profile-sidebar__detail"}>New York, USA</p>
-                    <p className={"profile-sidebar__detail"}>20 years</p>
+                    <p className={"profile-sidebar__name"}> {userData.name} <br/> {userData.last_name} </p>
+                    <p className={"profile-sidebar__detail"}>{userData.city}, {userData.country}</p>
+                    <p className={"profile-sidebar__detail"}>{userData.age} years</p>
                 </div>
             </div>
             <div className={"profile-sidebar__status"}>
                 <div className={"profile-sidebar__cancellation"}>Cancellation Rate: <label>5/100</label></div>
-                <div className={"profile-sidebar__points"}>60 points</div>
+                <div className={"profile-sidebar__points"}>{userData.points} points</div>
             </div>
             <div className={"profile-sidebar__about"}>
                 <div className={"profile-sidebar__about-me"}>About me</div>
-                <div className={"profile-sidebar__detail-text"}>Hi, I’m Aelina.
-                    My favorite hobby is travelling. I like all kinds of travel: by car, by train, by plane, and
-                    travelling on foot. But I have never travel by the ship yet.
+                <div className={"profile-sidebar__detail-text"}>{userData.about_me}
                 </div>
-                <div className={"profile-sidebar__detail-text"}>0550345678</div>
-                <div className={"profile-sidebar__detail-text"}>aelina10@gmail.com</div>
+                <div className={"profile-sidebar__detail-text"}>{userData.phone}</div>
+                <div className={"profile-sidebar__detail-text"}>{userData.email}</div>
             </div>
             <div className={"profile-sidebar__buttons"}>
                 <button className={"profile-sidebar__update"}>Update</button>

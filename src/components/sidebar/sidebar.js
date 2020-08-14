@@ -18,7 +18,7 @@ const Sidebar = (props) => {
             color: '#8c8c8c',
         }
     })(Rating);
-    const [name, setName] = useState("");
+    const [user, setUser] = useState({});
     //const userName = props.location.state.email;
     useEffect(() => {
         getUsers();
@@ -32,7 +32,7 @@ const Sidebar = (props) => {
         })
             .then(function(res){
                 // setList(data);
-                   setName(res.data.first_name);
+                setUser(res.data);
 
             })
             .catch((err) => console.log(err))
@@ -42,10 +42,10 @@ const Sidebar = (props) => {
           <img src={logo} className={"sidebar__item-logo"} alt={"Vrmates"}/>
 
               <img src={profilePhoto} className={"sidebar__item-photo"} alt={"Profile"}/>
-              <p className={"sidebar__item-greeting"}>Hello, <br/> {name}! </p>
+              <p className={"sidebar__item-greeting"}>Hello, <br/> {user.first_name}! </p>
               <div className={"sidebar__item-rating"} >
                   <Box>
-                      <StyledRating name="read-only" value={3.5} size="large" readOnly precision={0.5}/>
+                      <StyledRating name="read-only" value={user.avg_rating_last_ten} size="large" readOnly precision={0.5}/>
                   </Box>
               </div>
             <div className={"sidebar__weather"}></div>

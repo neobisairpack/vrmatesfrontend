@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import './style/sidebar.css';
 import logo from './images/logo.svg';
 import profilePhoto from './images/profilephoto.svg';
-import star from './images/star.svg';
 import axios from "axios";
 import './style/sidebar.css';
+import UpdateInfo from "../update-info";
 
 const ProfileSidebar = () => {
+    const [modalShow, setModalShow] = useState(false)
     const [userData, setUserData] = useState({
         name: "",
         last_name: "",
@@ -73,8 +74,10 @@ const ProfileSidebar = () => {
                 <div className={"profile-sidebar__detail-text"}>{userData.email}</div>
             </div>
             <div className={"profile-sidebar__buttons"}>
-                <button className={"profile-sidebar__update"}>Update</button>
+                <button onClick={() => setModalShow(true)} className={"profile-sidebar__update"}>Update</button>
             </div>
+            <UpdateInfo show={modalShow}
+                     onHide={() => setModalShow(false)}/>
         </div>
     );
 }

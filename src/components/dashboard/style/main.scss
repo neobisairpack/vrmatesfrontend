@@ -16,7 +16,6 @@
 .dashboard__title{
   margin-left: 7.8%;
   margin-right: auto;
-  font-family: Muller;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -26,6 +25,11 @@
 .dashboard__list{
   list-style: none;
   margin-right: 7%;
+  a{
+    &:hover{
+      text-decoration: none;
+    }
+  }
 }
 .dashboard__list-item{
   font-style: normal;
@@ -37,6 +41,9 @@
   margin-left: 48px;
   display: inline;
   color: #000000;
+  &:hover{
+    text-decoration: none;
+  }
 }
 .dashboard__label{
   color: black;
@@ -74,7 +81,6 @@
   border: 1px solid #FD5A01;
   background: #FD5A01;
   border-radius: 12px;
-  font-family: Muller;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -84,6 +90,7 @@
   }
 }
 .dashboard__list-item_active{
+  //border-bottom: 1px solid #202A49;;
   position: relative;
   &:before{
     content: "";

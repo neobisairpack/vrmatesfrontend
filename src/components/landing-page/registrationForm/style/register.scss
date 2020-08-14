@@ -95,7 +95,6 @@
   justify-content: flex-end;
 }
 .register__sign-up-btn{
-  font-family: Muller;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -108,6 +107,7 @@
   border-radius: 12px;
   outline: none;
   &:focus{
-    outline: none
+    outline: none;
+    border: none;
   }
 }

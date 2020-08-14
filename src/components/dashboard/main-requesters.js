@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style/main.css';
 import Post from '../post';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
@@ -16,9 +16,26 @@ import CreatePostHosting from "../create-post/createHostingPost";
 const MainRequesters = (props) => {
     const [popUpState, setPopUpState] = useState(false);
     const [filterState, setFilterState] = useState(false);
-    const [modalShow, setModalShow] = useState(false)
-    const [radio, setRadio] = useState("")
-    const [type, setType] = useState("")
+    const [modalShow, setModalShow] = useState(false);
+    const [activeLink, setActiveLink] = useState(null)
+    const [radio, setRadio] = useState("");
+    const [type, setType] = useState("");
+    useEffect(() => {
+        const path = props.location.pathname;
+        switch (path) {
+            case '/dashboard':
+                setActiveLink(1);
+                break;
+            case '/dashboard/requesters':
+                setActiveLink(1);
+                break;
+            case '/dashboard/providers':
+                setActiveLink(2);
+                break;
+            default:
+                setActiveLink(null);
+        }
+    }, [])
     function togglePopUpSwitch() {
         setPopUpState(!popUpState);
     }
@@ -51,10 +68,10 @@ const MainRequesters = (props) => {
                     <p className={"dashboard__title"}>NEWS FEED</p>
                     <ul className={"dashboard__list"}>
                         <Link to={"/dashboard/providers"}>
-                            <li className={"dashboard__list-item"}>Providers</li>
+                            <li className={"dashboard__list-item "  + (activeLink === 2 ? "dashboard__list-item_active" : "")}>Providers</li>
                         </Link>
                         <Link to={"/dashboard/requesters"}>
-                            <li className={"dashboard__list-item dashboard__list-item_active"}>Requesters</li>
+                            <li className={"dashboard__list-item " + (activeLink === 1 ? "dashboard__list-item_active" : "")}>Requesters</li>
                         </Link>
                         <li className={"dashboard__list-item "}>
                             <button onClick={togglePopUpFilter}

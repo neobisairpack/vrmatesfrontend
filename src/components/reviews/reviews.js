@@ -41,7 +41,7 @@ const Reviews = () => {
             <div key={item.id} onClick={() => setModalShow(true)} className={"review " + ((item.id) % 2 !== 0 ? "review-orange" : "review-blue") }>
                 <div className={"review__rating"}>
                     <Box>
-                        <StyledRating name="read-only" value={3.5} size="small" readOnly precision={0.5}/>
+                        <StyledRating name="read-only" value={item.rating} size="small" readOnly precision={0.5}/>
                     </Box>
                 </div>
                 <div className={"review__text"}>

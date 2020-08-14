@@ -14,6 +14,9 @@ const Profile = (props) => {
     useEffect(() => {
         const path = props.location.pathname;
         switch (path) {
+            case '/profile':
+                setActiveLink(1);
+                break;
             case '/profile/inbox':
                 setActiveLink(1);
                 break;

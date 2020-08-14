@@ -1,4 +1,5 @@
 $font-family: Muller;
+$percent: calc(var(--rating) / 5 * 100%);
 .sidebar {
   overflow: hidden;
   display: grid;
@@ -48,6 +49,7 @@ $font-family: Muller;
   padding-left: 10%;
   margin-top: 50px;
 }
+//'★★★★★'
 .profile-sidebar__name{
   //align-self: center;
   font-style: normal;

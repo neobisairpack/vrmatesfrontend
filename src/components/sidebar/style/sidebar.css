@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .sidebar {
   overflow: hidden;
   display: grid;
@@ -167,6 +168,21 @@
   -ms-grid-column-span: 3;
   grid-area: r;
   align-self: end;
+  display: inline-block;
+  font-size: 35px;
+  color: #FFFFFF;
+  line-height: 1;
+}
+.sidebar__item-rating::before {
+  content: "★★★★★";
+  letter-spacing: 5px;
+  background: linear-gradient(90deg, #FD5A01 calc(var(--rating) / 5 * 100%), #8c8c8c 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rating-star-container {
+  color: #FD5A01;
 }
 
 .sidebar__item-rating-star {

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
+import React, {useState} from 'react';
+import {Form, FormGroup, Input} from 'reactstrap';
 import '../landing-page/registrationForm/style/register.css';
 import dateformat from 'dateformat'
 import DatePicker from "react-datepicker";
@@ -19,7 +19,6 @@ const UpdateInfo = (props) => {
         city: props.city ? props.city : "",
         states: props.state ? props.state : "",
         about_me: props.about_me ? props.about_me : "",
-        //image: props.image ? props.image : "",
     })
     const [birthDate, setBirthDate] = useState(new Date(props.birthday));
     const [imageFile, setImageFile] = useState("")
@@ -33,27 +32,24 @@ const UpdateInfo = (props) => {
     }
     const imageInputChange = (e) =>{
         setImageFile(e.target.files[0]);
-        //console.log(e.target.files[0])
     }
     const handleSubmit = (e) => {
         const fd = new FormData();
         fd.append("about_me", state.about_me)
         fd.append('image', imageFile)
+        fd.append('first_name', state.name)
+        fd.append('last_name', state.lastName)
+        fd.append('birthday', dateformat(birthDate, 'yyyy-mm-dd'))
+        fd.append('gender', state.gender)
+        fd.append('phone', state.phone)
+        fd.append('address', state.address)
+        fd.append('zipcode', state.zipcode)
+        fd.append('country', state.country)
+        fd.append('city', state.city)
+        fd.append('states', state.states)
             e.preventDefault()
         let token = JSON.parse(localStorage.getItem("token"));
              axios.post('http://167.172.178.135/users/update/', fd,
-                 //{
-            //     // first_name: state.name,
-            //     // last_name: state.lastName,
-            //     // birthday: dateformat(birthDate, 'yyyy-mm-dd'),
-            //     // gender: state.gender,
-            //     // phone: state.phone,
-            //     // address: state.address,
-            //     // zip_code: state.zipcode,
-            //     // country: state.country,
-            //     // city: state.city,
-            //     // state: state.states,
-            //     about_me: state.about_me },
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data',

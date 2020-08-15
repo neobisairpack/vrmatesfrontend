@@ -37,15 +37,3 @@ const reducer = (state = initialState, action) => {
     return state
 }
 export default reducer
-
-/*
-requester: 1,
-                provider: null,
-                pickup_location: "d",
-                drop_off_location: "fdv",
-                deadline: "2020-09-23",
-                status: "Created, not accepted",
-                title: "dvfd",
-                text: "fvfd",
-                image: null,
-                is_checked: false */

@@ -38,24 +38,26 @@ const Reviews = () => {
     return (
         <div className={"reviews"}>
             {rate.map((item) =>
-            <div key={item.id} onClick={() => setModalShow(true)} className={"review " + ((item.id) % 2 !== 0 ? "review-orange" : "review-blue") }>
-                <div className={"review__rating"}>
-                    <Box>
-                        <StyledRating name="read-only" value={item.rating} size="small" readOnly precision={0.5}/>
-                    </Box>
-                </div>
-                <div className={"review__text"}>
-                    {item.text}
-                </div>
-                <div className={"review__time"}>
-                    {item.date}
-                </div>
-            </div>
+            <div key={item.id}>
+               <div onClick={() => setModalShow(true)} className={"review " + ((item.id) % 2 !== 0 ? "review-orange" : "review-blue") }>
+                   <div className={"review__rating"}>
+                       <Box>
+                           <StyledRating name="read-only" value={item.rating} size="small" readOnly precision={0.5}/>
+                       </Box>
+                   </div>
+                   <div className={"review__text"}>
+                       {item.text}
+                   </div>
+                   <div className={"review__time"}>
+                       {item.date}
+                   </div>
+               </div>
+
+                <FullReview show={modalShow}
+                onHide={() => setModalShow(false)}/>
+             </div>
             )}
-            <div>
-               <FullReview show={modalShow}
-                           onHide={() => setModalShow(false)}/>
-            </div>
+
         </div>
     );
 };

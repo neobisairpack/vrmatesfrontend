@@ -10,19 +10,18 @@ import './style/update-info.css';
 
 const UpdateInfo = (props) => {
     const [state, setState] = useState({
-        name: "",
-        lastName: "",
-        phone: "",
-        address: "",
-        zipcode: "",
-        gender: "",
-        city: "",
-        states: "",
-        about_me: "",
-        image: ""
-
+        name: props.first_name ? props.first_name : "",
+        lastName: props.last_name ? props.last_name : "",
+        phone: props.phone ? props.phone : "",
+        address: props.address ? props.address : "",
+        zipcode: props.zip_code ? props.zip_code : "",
+        gender: props.gender ? props.gender : "",
+        city: props.city ? props.city : "",
+        states: props.state ? props.state : "",
+        about_me: props.about_me ? props.about_me : "",
+        image: props.image ? props.image : "",
     })
-    const [birthDate, setBirthDate] = useState(null)
+    const [birthDate, setBirthDate] = useState(new Date(props.birthday))
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -52,6 +51,7 @@ const UpdateInfo = (props) => {
                     alert(res.data.response)
                 })
                 .catch((err) => {
+                    console.log(state, dateformat(birthDate, 'yyyy-mm-dd'))
                     console.log("Update " + err)
                 })
     }
@@ -65,7 +65,7 @@ const UpdateInfo = (props) => {
                     <FormGroup>
                         <Input
                             className={"register__input required"}
-                            placeholder={"First Name"}
+                            placeholder={state.name}
                             type={"text"}
                             name={"name"}
                             value={state.name}
@@ -76,7 +76,7 @@ const UpdateInfo = (props) => {
                     <FormGroup>
                         <Input
                             className={"register__input"}
-                            placeholder={"Phone Number"}
+                            placeholder={state.phone}
                             type={"tel"}
                             name={"phone"}
                             value={state.phone}
@@ -86,7 +86,7 @@ const UpdateInfo = (props) => {
                     <FormGroup>
                         <Input
                             className={"register__input"}
-                            placeholder={"Last Name"}
+                            placeholder={state.lastName}
                             type={"text"}
                             name={"lastName"}
                             value={state.lastName}
@@ -97,7 +97,7 @@ const UpdateInfo = (props) => {
                     <FormGroup>
                         <Input
                             className={"register__input"}
-                            placeholder={"Address"}
+                            placeholder={state.address ? state.address : "Address"}
                             type={"address"}
                             name={"address"}
                             value={state.address}
@@ -105,10 +105,17 @@ const UpdateInfo = (props) => {
                         />
                     </FormGroup>
 
+                    <DatePicker
+                        className={"register__input"}
+                        placeholderText={birthDate ? birthDate : "Date of birth"}
+                        selected={birthDate}
+                        onChange={date => setBirthDate(date)}
+                    />
+
                     <FormGroup>
                         <Input
                             className={"register__input"}
-                            placeholder={"Zip Code"}
+                            placeholder={state.zipcode ? state.zipcode : "Zip code"}
                             type={"number"}
                             name={"zipcode"}
                             value={state.zipcode}
@@ -116,29 +123,9 @@ const UpdateInfo = (props) => {
                         />
                     </FormGroup>
 
-                    <DatePicker
-                        className={"register__input"}
-                        placeholderText={"   Date Of Birth"}
-                        selected={birthDate}
-                        onChange={date => setBirthDate(date)}
-                        reqiured="true"
-                    />
-
-                    <FormGroup>
-                        <CountryDropdown
-                            name={"country"}
-                            className={"register__input"}
-                            defaultOptionLabel={"  Country"}
-                            value={state.country}
-                            onChange={e => setState({
-                                ...state,
-                                country: e
-                            })} />
-                    </FormGroup>
-
                     <FormGroup>
                         <Input type="select" name={"gender"} reqiured="true" className={"register__input"} value={state.gender} onChange={e => handleChange(e)}>
-                            <option>Gender</option>
+                            <option>{state.gender ? state.gender : "Gender"}</option>
                             <option>Male</option>
                             <option>Female</option>
                             <option>Other</option>
@@ -146,10 +133,23 @@ const UpdateInfo = (props) => {
                     </FormGroup>
 
                     <FormGroup>
+                        <CountryDropdown
+                            name={"country"}
+                            className={"register__input"}
+                            defaultOptionLabel={state.country ? state.country : "Country"}
+                            value={state.country}
+                            onChange={e => setState({
+                                ...state,
+                                country: e
+                            })} />
+                    </FormGroup>
+
+
+                    <FormGroup>
                         <RegionDropdown
                             className={"register__input"}
-                            blankOptionLabel={"State"}
-                            defaultOptionLabel={"State"}
+                            blankOptionLabel={state.states ? state.states : "State"}
+                            defaultOptionLabel={state.states}
                             country={state.country}
                             value={state.states}
                             onChange={e => setState({
@@ -161,7 +161,7 @@ const UpdateInfo = (props) => {
                     <FormGroup>
                         <Input type="text" name={"city"}
                                className={"register__input"}
-                               placeholder={"City"}
+                               placeholder={state.city ? state.city : "City"}
                                value={state.city}
                                onChange={e => handleChange(e)}
                         />
@@ -169,7 +169,7 @@ const UpdateInfo = (props) => {
                     <FormGroup>
                         <Input type="textarea" name={"about_me"}
                                className={"update__about-me"}
-                               placeholder={"About me"}
+                               placeholder={state.about_me ? state.about_me : "About me"}
                                value={state.about_me}
                                onChange={e => handleChange(e)}
                         />

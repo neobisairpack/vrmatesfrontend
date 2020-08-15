@@ -10,9 +10,9 @@ import './style/update-info.css';
 
 const UpdateInfo = (props) => {
     const [state, setState] = useState({
-        name: props.first_name ? props.first_name : "",
-        lastName: props.last_name ? props.last_name : "",
-        phone: props.phone ? props.phone : "",
+        name: props.first_name,
+        lastName: props.last_name,
+        phone: props.phone,
         address: props.address ? props.address : "",
         zipcode: props.zip_code ? props.zip_code : "",
         gender: props.gender ? props.gender : "",

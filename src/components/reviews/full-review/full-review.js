@@ -6,8 +6,20 @@ import './style/full-review.css';
 import exit from "../../post/images/exit.svg";
 import '../../post/full-view/style/full-post.css'
 import {Modal} from "react-bootstrap";
+import Box from "@material-ui/core/Box";
+import {withStyles} from "@material-ui/core/styles";
+import Rating from "@material-ui/lab/Rating";
 
 const FullReview = (props) => {
+    const StyledRating = withStyles({
+        iconFilled: {
+            color: '#FFF',
+        },
+        iconEmpty: {
+            color: '#b3b3b3',
+        }
+    })(Rating);
+
     return (
         <Modal aria-labelledby="contained-modal-title-vcenter"
                centered
@@ -15,27 +27,22 @@ const FullReview = (props) => {
                dialogClassName="full-review" >
 
             <div className={"full-review__rating"}>
-                <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
-                <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
-                <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
-                <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
-                <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
+                    <Box>
+                        <StyledRating name="read-only" value={props.rating} size="large" readOnly precision={0.5}/>
+                    </Box>
                 <img className={"full-review__exit"} src={exit}/>
             </div>
 
-
-
             <div className={"full-review__text"}>
-                Over the past four years, I have become is simply dummy text of the printing
-                and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
-                1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                book.is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown printer took a galley
+                {props.text}
             </div>
             <div className={"review__time"}>
-                1 week ago
+                {props.date}
             </div>
-            <div><div className={"full-review__image"}><img src={imgIcon} className={"full-post__icon"}/></div>
+            <div><div className={"full-review__image"}>
+                <img src={props.image}/>
+                {/*<img src={imgIcon} className={"full-post__icon"}/>*/}
+            </div>
             </div>
         </Modal>
 

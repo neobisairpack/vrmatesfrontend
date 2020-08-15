@@ -19,9 +19,10 @@ const UpdateInfo = (props) => {
         city: props.city ? props.city : "",
         states: props.state ? props.state : "",
         about_me: props.about_me ? props.about_me : "",
-        image: props.image ? props.image : "",
+        //image: props.image ? props.image : "",
     })
-    const [birthDate, setBirthDate] = useState(new Date(props.birthday))
+    const [birthDate, setBirthDate] = useState(new Date(props.birthday));
+    const [imageFile, setImageFile] = useState("")
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -30,22 +31,36 @@ const UpdateInfo = (props) => {
             [e.target.name]: value
         })
     }
+    const imageInputChange = (e) =>{
+        setImageFile(e.target.files[0]);
+        //console.log(e.target.files[0])
+    }
     const handleSubmit = (e) => {
+        const fd = new FormData();
+        fd.append("about_me", state.about_me)
+        fd.append('image', imageFile)
             e.preventDefault()
-            axios.post('http://167.172.178.135/users/update/', {
-                first_name: state.name,
-                last_name: state.lastName,
-                birthday: dateformat(birthDate, 'yyyy-mm-dd'),
-                gender: state.gender,
-                phone: state.phone,
-                address: state.address,
-                zip_code: state.zipcode,
-                country: state.country,
-                city: state.city,
-                state: state.states,
-                about_me: state.about_me,
-                image: null
-            })
+        let token = JSON.parse(localStorage.getItem("token"));
+             axios.post('http://167.172.178.135/users/update/', fd,
+                 //{
+            //     // first_name: state.name,
+            //     // last_name: state.lastName,
+            //     // birthday: dateformat(birthDate, 'yyyy-mm-dd'),
+            //     // gender: state.gender,
+            //     // phone: state.phone,
+            //     // address: state.address,
+            //     // zip_code: state.zipcode,
+            //     // country: state.country,
+            //     // city: state.city,
+            //     // state: state.states,
+            //     about_me: state.about_me },
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        "Authorization": "Token " + token
+                    }
+                }
+            )
                 .then((res) => {
                     console.log(res)
                     alert(res.data.response)
@@ -177,7 +192,7 @@ const UpdateInfo = (props) => {
                     <FormGroup>
                         <Input type="file" name={"image"}
                                value={state.image}
-                               onChange={e => handleChange(e)}
+                               onChange={e => imageInputChange(e)}
                         />
                     </FormGroup>
                 </Form>

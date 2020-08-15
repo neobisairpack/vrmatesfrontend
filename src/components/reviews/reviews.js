@@ -26,15 +26,19 @@ const Reviews = () => {
     const getReviews = () =>{
         let token = JSON.parse(localStorage.getItem("token"));
         axios.get('http://167.172.178.135/api/rating/', {
+            //responseType: 'arraybuffer',
             headers: {
                 "Authorization": "Token " + token
             }
         })
             .then(function(res){
+                //Buffer.from(res.data, 'binary').toString('base64')
+                console.log(res)
                 setRate(res.data);
             })
             .catch((err) => console.log(err))
     }
+
     return (
         <div className={"reviews"}>
             {rate.map((item) =>
@@ -53,11 +57,10 @@ const Reviews = () => {
                    </div>
                </div>
 
-                <FullReview show={modalShow}
+                <FullReview {...item} show={modalShow}
                 onHide={() => setModalShow(false)}/>
              </div>
             )}
-
         </div>
     );
 };

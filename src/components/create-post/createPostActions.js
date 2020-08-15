@@ -9,13 +9,14 @@ export const sendPostDelivery = (post) => {
 
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/delivery/`, {
+            .post(`http://167.172.178.135/api/service/`, {
                 pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
                 drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
                 deadline: (post.year).concat("-", post.month, "-", post.day),
                 status: "Created, not accepted",
                 title: post.title,
                 text: post.text,
+                service_type: "Delivery",
                 image: null,
                 is_checked: false
                 },
@@ -42,12 +43,13 @@ export const sendProviderDelivery = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/provide-delivery/`, {
-                    departure_location: (post.country1).concat(" ", post.state1, " ", post.city1),
-                    departure_date: (post.year1).concat("-", post.month1, "-", post.day1),
-                    arrival_location: (post.country2).concat(" ", post.state2, " ", post.city2),
-                    arrival_date: (post.year2).concat("-", post.month2, "-", post.day2, "T12:07:46Z"),
+            .post(`http://167.172.178.135/api/provide-service/`, {
+                    pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
+                    deadline: (post.year1).concat("-", post.month1, "-", post.day1),
+                    drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
+                    //arrival_date: (post.year2).concat("-", post.month2, "-", post.day2, "T12:07:46Z"),
                     status: "Created, not accepted",
+                    service_type: "Delivery",
                     title: post.title,
                     text: post.text,
                     is_checked: false
@@ -75,11 +77,12 @@ export const sendPostAirport = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/pickup/`, {
+            .post(`http://167.172.178.135/api/service/`, {
                     pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
                     drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
                     deadline: (post.year).concat("-", post.month, "-", post.day, "T12:07:46Z"),
                     status: "Created, not accepted",
+                    service_type: "Pick Up",
                     title: post.title,
                     text: post.text,
                     is_checked: false
@@ -108,10 +111,11 @@ export const sendProviderAirport = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/provide-pickup/`, {
+            .post(`http://167.172.178.135/api/provide-service/`, {
                     pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
-                    pickup_date: (post.year).concat("-", post.month, "-", post.day),
+                    deadline: (post.year).concat("-", post.month, "-", post.day),
                     status: "Created, not accepted",
+                    service_type: "Pick Up",
                     title: post.title,
                     text: post.text,
                 },
@@ -138,11 +142,12 @@ export const sendPostHosting = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/hosting/`, {
+            .post(`http://167.172.178.135/api/service/`, {
                     requester_from: (post.country1).concat(" ", post.state1, " ", post.city1),
                     location: (post.country2).concat(" ", post.state2, " ", post.city2),
-                    date: (post.year).concat("-", post.month, "-", post.day),
+                    deadline: (post.year).concat("-", post.month, "-", post.day),
                     status: "Created, not accepted",
+                    service_type: "Hosting",
                     title: post.title,
                     text: post.text,
                     preferences: post.preferences,
@@ -172,13 +177,14 @@ export const sendProviderHosting = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/provide-hosting/`, {
+            .post(`http://167.172.178.135/api/provide-service/`, {
                     location: (post.country1).concat(" ", post.state1, " ", post.city1),
-                    hosting_date: (post.year).concat("-", post.month, "-", post.day),
+                    deadline: (post.year).concat("-", post.month, "-", post.day),
                     status: "Created, not accepted",
+                    service_type: "Hosting",
                     title: post.title,
                     text: post.text,
-                    hosting_type: post.preferences,
+                    preferences: post.preferences,
                     is_checked: false
                 },
                 {

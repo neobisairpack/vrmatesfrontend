@@ -32,6 +32,8 @@
   float: right;
 }
 .full-review__image{
+  position: relative;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   width: 96%;
@@ -40,4 +42,8 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border-radius: 6px;
+}
+.full-review__image-item{
+  //width: 96%;
+  position: absolute;
 }

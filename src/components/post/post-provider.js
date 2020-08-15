@@ -12,16 +12,17 @@ import {
     CardSubtitle,
 } from 'reactstrap';
 
-const Post = (props) => {
+const PostProvider = (props) => {
     const [dataAll, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
+        "Hosting": "Hosting"
     }
     const [currentPost, setCurrentPost] = useState({
-        requester: {
+        provider: {
             first_name: "",
             last_name: "",
             email: "",
@@ -31,10 +32,9 @@ const Post = (props) => {
         deadline: "",
         title: "",
     })
-
     useEffect(() => {
         let token = JSON.parse(localStorage.getItem("token"));
-        axios.get('http://167.172.178.135/api/service/', {
+        axios.get('http://167.172.178.135/api/provide-service/', {
             headers: {
                 "Authorization": "Token " + token
             }
@@ -54,7 +54,7 @@ const Post = (props) => {
     return (
         <div className={"post container"}>
             <div className={"row"}>
-                {dataAll.map((item) => item.requester ?
+                {dataAll.map((item) => item.provider ?
                     <div key={item.id} className={"col-4"}>
                         <Card onClick={() => showFullPost(item)} className={props.size}>
                             <div className={"post__content"}>
@@ -65,7 +65,7 @@ const Post = (props) => {
                                                                                    alt="Card image cap"/></li>
                                         <li className={"post__top-list-item"}>
                                             <div
-                                                className={"post__user-name"}>{item.requester.first_name}</div>
+                                                className={"post__user-name"}>{item.provider.first_name}</div>
                                             <div className={"post__item-rating"}>
                                                 <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
                                                 <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
@@ -75,7 +75,7 @@ const Post = (props) => {
                                             </div>
                                         </li>
                                         <li className={"post__top-list-item"}><CardText
-                                            className={"post__package-provider"}>Requester</CardText></li>
+                                            className={"post__package-provider"}>Provider</CardText></li>
                                     </ul>
                                 </div>
 
@@ -97,7 +97,7 @@ const Post = (props) => {
                             </div>
                             <div>
                                 <CardText className={"post__text"}>{item.text} </CardText>
-                                <CardText className={"post__email"}>{item.requester.email}</CardText>
+                                <CardText className={"post__email"}>{item.provider.email}</CardText>
                                 {props.btn ?
                                     <button className={"post__interested-btn"}>Interested</button> :
                                     null
@@ -105,7 +105,7 @@ const Post = (props) => {
                             </div>
                         </Card>
                         <div className={"full-post"}>
-                            <FullPost data={currentPost} show={modalShow}
+                            <FullPost host={"provider"} data={currentPost} show={modalShow}
                                       onHide={() => setModalShow(false)}
                             />
                         </div>
@@ -116,4 +116,4 @@ const Post = (props) => {
     );
 };
 
-export default Post;
+export default PostProvider;

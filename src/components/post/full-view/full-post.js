@@ -14,6 +14,7 @@ const FullPost = (props) => {
         const data = props.data;
     }, [])
     const data = props.data;
+    const {host} = props;
     return (
         <div>
             <Modal {...props} dialogClassName={"full-post"}>
@@ -27,7 +28,7 @@ const FullPost = (props) => {
                                     <li className={"post__top-list-item"}><img className={"post__avatar"} src={profile}
                                                                                alt="Card image cap"/></li>
                                     <li className={"post__top-list-item"}>
-                                        <div className={"post__user-name"}>{data.requester.first_name}</div>
+                                        <div className={"post__user-name"}>{ host !== "provider" ? data.requester.first_name : data.provider.first_name}</div>
                                         <div className={"post__item-rating"}>
                                             <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
                                             <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
@@ -60,7 +61,7 @@ const FullPost = (props) => {
                         <CardText className={"full-post__text"}>{data.text}Coming to Bishkek to participate at some
                             conference.
                             is simply dummy text of theindustry. </CardText>
-                        <CardText className={"full-post__email"}>{data.requester.email}</CardText>
+                        <CardText className={"full-post__email"}>{host !== "provider" ? data.requester.email : data.provider.email}</CardText>
                         <div className={"full-post__images"}>
                             <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div>
                             <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div>

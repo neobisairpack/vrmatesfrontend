@@ -47,7 +47,6 @@ const UpdateInfo = (props) => {
         fd.append('country', state.country)
         fd.append('city', state.city)
         fd.append('states', state.states)
-            e.preventDefault()
         let token = JSON.parse(localStorage.getItem("token"));
              axios.post('http://167.172.178.135/users/update/', fd,
                 {

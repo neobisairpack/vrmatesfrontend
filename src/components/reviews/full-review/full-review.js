@@ -39,8 +39,9 @@ const FullReview = (props) => {
             <div className={"review__time"}>
                 {props.date}
             </div>
-            <div><div className={"full-review__image"}>
-                <img src={props.image}/>
+            <div>
+                <div className={"full-review__image"}>
+                <img className={"full-review__image-item"} src={ 'http://167.172.178.135' + props.image}/>
                 {/*<img src={imgIcon} className={"full-post__icon"}/>*/}
             </div>
             </div>

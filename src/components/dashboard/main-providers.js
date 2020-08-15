@@ -12,6 +12,7 @@ import {Link, withRouter} from 'react-router-dom';
 import CreateProviderDelivery from "../create-post/createProviderDelivery";
 import CreateProviderAirport from "../create-post/createProviderAirport";
 import CreateProviderHosting from "../create-post/createProviderHosting";
+import PostProvider from "../post/post-provider";
 
 const MainProviders = (props) => {
     const [popUpState, setPopUpState] = useState(false);
@@ -123,7 +124,7 @@ const MainProviders = (props) => {
                     {filterState ? <Filter/> : null}
 
                 </div>
-                <Post {...props} size={"dashboard-post"} btn={"true"}/>
+                <PostProvider {...props} size={"dashboard-post"} btn={"true"}/>
             </div>
             {type === "delivery" ? <CreateProviderDelivery show={modalShow}
                                                            onHide={() => setModalShow(false)}/> : type === "pickup" ?

@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './style/sidebar.css';
 import logo from './images/logo.svg';
-import profilePhoto from './images/profilephoto.svg';
-import axios from "axios";
 import './style/sidebar.css';
 import UpdateInfo from "../update-info";
 import {connect} from "react-redux";
@@ -23,7 +21,12 @@ const ProfileSidebar = (props) => {
                 <>
                     <img src={logo} className={""} alt={"Vrmates"}/>
                     <div className={"profile-sidebar__top"}>
-                        <img src={profilePhoto} className={"sidebar__item-photo"} alt={"Profile"}/>
+                        <div className={"profile-sidebar__profile-photos"}>
+                            {user.image === null ?
+                                <img src={'http://167.172.178.135' + user.image} className={"profile-sidebar__item-photo"}  alt={"Profile"}/>
+                                : <img src="https://img.icons8.com/material-sharp/96/000000/user.png" className={"profile-sidebar__item-icon"} alt={user.first_name}/>
+                            }
+                        </div>
                         <div className={"profile-sidebar__user-info"}>
                             <p className={"profile-sidebar__name"}> {user.first_name} <br/> {user.last_name} </p>
                             <p className={"profile-sidebar__detail"}>{user.city}, {user.country}</p>

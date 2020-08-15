@@ -130,10 +130,43 @@ $percent: calc(var(--rating) / 5 * 100%);
 .sidebar__item-logo {
   grid-area: l;
 }
-
-.sidebar__item-photo {
+.sidebar__profile-photos{
   grid-area: p;
+  overflow: hidden;
+  position: relative;
+}
+.profile-sidebar__profile-photos{
+  overflow: hidden;
+  position: relative;
+}
+.sidebar__item-photo{
+  position: absolute;
   align-self: center;
+  width: 80%;
+  height: 100%;
+ border-radius: 50%;
+}
+.profile-sidebar__item-photo{
+  align-self: center;
+  width: 100%;
+  border-radius: 50%;
+}
+.profile-sidebar__item-icon{
+  align-self: center;
+  width: 100%;
+  padding: 5px;
+  background-color: #666666;
+  border-radius: 50%;
+  filter: invert(66%) sepia(0%) saturate(609%) hue-rotate(187deg) brightness(107%) contrast(98%);
+}
+.sidebar__item-icon {
+  position: absolute;
+  align-self: center;
+  width: 80%;
+  padding: 5px;
+  background-color: #666666;
+  border-radius: 50%;
+  filter: invert(66%) sepia(0%) saturate(609%) hue-rotate(187deg) brightness(107%) contrast(98%);
 }
 .sidebar__item-greeting{
   grid-area: g;

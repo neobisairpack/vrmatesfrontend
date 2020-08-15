@@ -104,13 +104,13 @@ const Post = (props) => {
                                 }
                             </div>
                         </Card>
-                        <div className={"full-post"}>
-                            <FullPost data={currentPost} show={modalShow}
-                                      onHide={() => setModalShow(false)}
-                            />
-                        </div>
                     </div> : null
                 )}
+                <div className={"full-post"}>
+                    <FullPost data={currentPost} show={modalShow}
+                              onHide={() => setModalShow(false)}
+                    />
+                </div>
             </div>
         </div>
     );

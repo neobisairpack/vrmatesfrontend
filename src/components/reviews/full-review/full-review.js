@@ -11,6 +11,7 @@ import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 
 const FullReview = (props) => {
+    console.log(props)
     const StyledRating = withStyles({
         iconFilled: {
             color: '#FD5A01',
@@ -41,8 +42,11 @@ const FullReview = (props) => {
             </div>
             <div>
                 <div className={"full-review__image"}>
+                    {props.image  ?
                 <img className={"full-review__image-item"} src={ 'http://167.172.178.135' + props.image}/>
-                {/*<img src={imgIcon} className={"full-post__icon"}/>*/}
+                : <img src={imgIcon} className={"full-post__icon"}/>
+                    }
+
             </div>
             </div>
         </Modal>

@@ -3,7 +3,7 @@ import {Modal, Button} from "react-bootstrap";
 import './style/logout.css';
 
 const LogOut = (props) => {
-    const Exit = (e)=>{
+    const Exit = ()=>{
 
         localStorage.removeItem("token");
         window.location.href = "/";

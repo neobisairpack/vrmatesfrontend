@@ -7,7 +7,6 @@ import hw1 from './images/how-works1.png';
 import hw2 from './images/how-works2.png';
 import hw3 from './images/how-works3.png';
 import hw4 from './images/how-works4.png';
-import RegistrationForm from "./registrationForm";
 import {Link} from "react-router-dom";
 import TermsConditions from "../popup-terms";
 

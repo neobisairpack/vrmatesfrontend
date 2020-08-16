@@ -1,7 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/interested.css';
-import profile from '../../../sidebar/images/profilephoto.svg';
 import {withRouter} from "react-router-dom";
 
 
@@ -21,7 +20,7 @@ const InterestedUser = (props) => {
                         <div className={"interested-user-card "}>
                             <ul className={"interested-user__info"} onClick={() => redirect("Marsel'")}>
                                 <li className={"interested__list-item"}><img className={"interested__photo"}
-                                                                             src={profile}/></li>
+                                                                             src={"https://img.icons8.com/material-sharp/96/000000/user.png"}/></li>
                                 <li className={"interested__list-item"}>
                                     <div className={"interested__user-type"}>Provider</div>
                                     <div className={"interested__user-name"}>Marsel'</div>

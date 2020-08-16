@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import './style/sidebar.css';
 import logo from './images/logo.svg';
-import profilePhoto from './images/profilephoto.svg';
 import {withStyles} from '@material-ui/core/styles';
 import {connect} from "react-redux";
 import Rating from '@material-ui/lab/Rating';
@@ -25,7 +24,7 @@ const Sidebar = (props) => {
 
     let {loading} = props.userData;
     let {user} = props.userData;
-    const url = "http://167.172.178.135";
+    const url = 'http://167.172.178.135';
     console.log(user.image)
     return (
         <div className="sidebar">
@@ -34,7 +33,7 @@ const Sidebar = (props) => {
                     <img src={logo} className={"sidebar__item-logo"} alt={"Vrmates"}/>
                     <div className={"sidebar__profile-photos"}>
                         {user.image ?
-                            <img src={'http://167.172.178.135' + user.image} className={"sidebar__item-photo"}  alt={"Profile"}/>
+                            <img src={url + user.image} className={"sidebar__item-photo"}  alt={"Profile"}/>
                             : <img src="https://img.icons8.com/material-sharp/96/000000/user.png" className={"sidebar__item-icon"} alt={user.first_name}/>
                         }
                     </div>

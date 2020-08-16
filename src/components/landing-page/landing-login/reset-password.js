@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Form, FormGroup, Input} from 'reactstrap';
 import '../registrationForm/style/register.css';
 import './style/login.css';
 import exit from '../../post/images/exit.svg';
 import axios from 'axios';
 
 
-const ResetPassword = (props) => {
+const ResetPassword = () => {
     const [email, setEmail] = useState(null)
 
     const handleSubmit = () => {

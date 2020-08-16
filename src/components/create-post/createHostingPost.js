@@ -7,7 +7,6 @@ import {sendPostHosting} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 const CreatePostHosting = (props) => {
-    //const [preference, setPreference] = useState("");
     const [state, setState] = useState({
         country1: "",
         state1: "",

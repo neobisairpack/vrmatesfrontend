@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Form, FormGroup, Label, Input} from 'reactstrap';
 import './style/register.css';
 import dateformat from 'dateformat'
 import exit from '../../post/images/exit.svg';

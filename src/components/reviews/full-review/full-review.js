@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../post/full-view/style/full-post.css';
-import star from "../../sidebar/images/star.svg";
 import imgIcon from "../../post/images/empty-img.svg";
 import './style/full-review.css';
 import exit from "../../post/images/exit.svg";

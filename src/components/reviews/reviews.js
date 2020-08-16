@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/reviews.css';
-import star from '../post/images/star-icon.png';
 import FullReview from "./full-review";
 import axios from "axios";
 import Box from "@material-ui/core/Box";

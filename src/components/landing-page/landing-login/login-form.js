@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Form, FormGroup, Label, Input} from 'reactstrap';
 import '../registrationForm/style/register.css';
 import './style/login.css';
 import exit from '../../post/images/exit.svg';
@@ -12,10 +11,8 @@ import axios from 'axios';
 const LoginForm = (props) => {
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
-    //console.log(email, password)
 
     const handleSubmit = () => {
-        //e.preventDefault()
         console.log(email, password)
         axios.post('http://167.172.178.135/users/login/', {
             email: email,
@@ -23,7 +20,6 @@ const LoginForm = (props) => {
         })
             .then((res) => {
                 localStorage.setItem("token", JSON.stringify(res.data.token));
-                //window.location.href='/dashboard';
                 props.history.push({
                     pathname: '/dashboard',
                     state: {email: email}

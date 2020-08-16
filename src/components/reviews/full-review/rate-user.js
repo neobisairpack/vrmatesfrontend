@@ -1,11 +1,10 @@
 import React from 'react';
 import '../../post/full-view/style/full-post.css';
-import star from "../../sidebar/images/star.svg";
 import imgIcon from "../../post/images/empty-img.svg";
 import './style/full-review.css';
 import exit from "../../post/images/exit.svg";
 import '../../post/full-view/style/full-post.css';
-import {Modal, Button} from "react-bootstrap";
+import {Modal} from "react-bootstrap";
 
 const RateUser = (props) => {
     return (
@@ -15,11 +14,11 @@ const RateUser = (props) => {
                dialogClassName="full-review">
 
             <div className={"full-review__rating"}>
-                <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
-                <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
-                <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
-                <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
-                <img src={star} className={"full-review__rating-star"} alt={"Rating"}/>
+                {/*<img src={star} className={"full-review__rating-star"} alt={"Rating"}/>*/}
+                {/*<img src={star} className={"full-review__rating-star"} alt={"Rating"}/>*/}
+                {/*<img src={star} className={"full-review__rating-star"} alt={"Rating"}/>*/}
+                {/*<img src={star} className={"full-review__rating-star"} alt={"Rating"}/>*/}
+                {/*<img src={star} className={"full-review__rating-star"} alt={"Rating"}/>*/}
                 <img className={"full-review__exit"} src={exit}/>
             </div>
 

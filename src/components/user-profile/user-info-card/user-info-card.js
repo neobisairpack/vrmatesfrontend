@@ -1,8 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/user-info-card.css';
-import profile from '../../sidebar/images/profilephoto.svg'
-import star from "../../sidebar/images/star.svg";
 import phone from '../icons/phone-icon.svg';
 import fb from '../icons/fb-icon.svg';
 import insta from '../icons/insta-icon.png';
@@ -16,15 +14,15 @@ const UserInfoCard = () => {
             <div>
                 <ul className={"user-info__list"}>
                     <li className={"user-info__list-item"}><img className={"user-info__photo"}
-                                                                 src={profile}/></li>
+                                                                 src={"https://img.icons8.com/material-sharp/96/000000/user.png"}/></li>
                     <li className={"user-info__list-item"}>
                         <div className={"user-info__user-name"}>Matt Tender</div>
                         <div className={"user-info__item-rating"}>
-                            <img src={star} className={"user-info__rating-star"} alt={"Rating"}/>
-                            <img src={star} className={"user-info__rating-star"} alt={"Rating"}/>
-                            <img src={star} className={"user-info__rating-star"} alt={"Rating"}/>
-                            <img src={star} className={"user-info__rating-star"} alt={"Rating"}/>
-                            <img src={star} className={"user-info__rating-star"} alt={"Rating"}/>
+                            {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
+                            {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
+                            {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
+                            {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
+                            {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
                         </div>
                         <div className={"user-info__cancellation"}>Cancellation Rate:
                             <label className={"user-info__cancel-num"}>5/100</label></div>

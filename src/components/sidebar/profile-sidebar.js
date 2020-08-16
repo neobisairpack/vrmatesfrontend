@@ -15,6 +15,7 @@ const ProfileSidebar = (props) => {
 
     let {loading} = props.userData;
     let {user} = props.userData;
+    const url = 'http://167.172.178.135';
     return (
         <div className="profile-sidebar">
             {loading ? "Loading" :
@@ -22,8 +23,8 @@ const ProfileSidebar = (props) => {
                     <img src={logo} className={""} alt={"Vrmates"}/>
                     <div className={"profile-sidebar__top"}>
                         <div className={"profile-sidebar__profile-photos"}>
-                            {user.image === null ?
-                                <img src={'http://167.172.178.135' + user.image} className={"profile-sidebar__item-photo"}  alt={"Profile"}/>
+                            {user.image ?
+                                <img src={url + user.image} className={"profile-sidebar__item-photo"}  alt={"Profile"}/>
                                 : <img src="https://img.icons8.com/material-sharp/96/000000/user.png" className={"profile-sidebar__item-icon"} alt={user.first_name}/>
                             }
                         </div>

@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/post.css';
-import profile from '../sidebar/images/profilephoto.svg';
-import star from "../sidebar/images/star.svg";
 import arrow from './images/arrow.svg';
 import axios from 'axios';
 import FullPost from './full-view';
@@ -61,17 +59,17 @@ const PostProvider = (props) => {
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
                                         <li className={"post__top-list-item"}><img className={"post__avatar"}
-                                                                                   src={profile}
+                                                                                   src={"https://img.icons8.com/material-sharp/96/000000/user.png"}
                                                                                    alt="Card image cap"/></li>
                                         <li className={"post__top-list-item"}>
                                             <div
                                                 className={"post__user-name"}>{item.provider.first_name}</div>
                                             <div className={"post__item-rating"}>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
+                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
+                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
+                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
+                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
+                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
                                             </div>
                                         </li>
                                         <li className={"post__top-list-item"}><CardText

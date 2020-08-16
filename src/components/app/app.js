@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import Main from '../dashboard';
 import Profile from "../profile";
 import 'bootstrap/dist/css/bootstrap.css';
-import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import './style/app.css';
 import Inbox from "../inbox";
 import InProgress from "../in-progress";

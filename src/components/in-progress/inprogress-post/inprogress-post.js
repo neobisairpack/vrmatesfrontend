@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
 import '../../post/style/post.css';
 import arrow from '../../post/images/arrow.svg';
 import '../../inbox/inbox-post/style/inbox-post.css';
@@ -9,12 +8,9 @@ import {
     CardText,
     CardSubtitle,
 } from 'reactstrap';
-import profile from "../../sidebar/images/profilephoto.svg";
-import star from "../../sidebar/images/star.svg";
 import './style/inprogress-post.css';
 import {DropdownButton, Dropdown} from "react-bootstrap";
 import RateUser from "../../reviews/full-review/rate-user";
-import LogOut from "../../pop-up/popup-logout";
 
 const InProgressPost = (props) => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -30,16 +26,16 @@ const InProgressPost = (props) => {
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
                                         <li className={"post__top-list-item"}><img className={"post__avatar"}
-                                                                                   src={profile}
+                                                                                   src={"https://img.icons8.com/material-sharp/96/000000/user.png"}
                                                                                    alt="Card image cap"/></li>
                                         <li className={"post__top-list-item"}>
                                             <div className={"post__user-name"}>Aelina</div>
                                             <div className={"post__item-rating"}>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
-                                                <img src={star} className={"post__item-rating-star"} alt={"Rating"}/>
+                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
+                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
+                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
+                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
+                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
                                             </div>
                                         </li>
                                         <li className={"post__top-list-item inbox-post__item"}>

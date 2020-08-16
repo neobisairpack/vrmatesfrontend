@@ -19,6 +19,7 @@
 
 .card {
   width: 93%;
+  height: 224px;
   margin-bottom: 4%;
   background-color: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
@@ -26,6 +27,7 @@
   display: block !important;
   padding: 16px;
   cursor: pointer;
+  overflow: hidden;
 }
 .card:hover {
   opacity: 0.8;
@@ -54,6 +56,16 @@
   height: 35px;
   border-radius: 50%;
   margin-right: 11px;
+}
+
+.post_avatar-empty {
+  align-self: center;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  background-color: #666666;
+  border-radius: 50%;
+  filter: invert(66%) sepia(0%) saturate(609%) hue-rotate(187deg) brightness(107%) contrast(98%);
 }
 
 .post__user-name {

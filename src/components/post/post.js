@@ -9,6 +9,9 @@ import {
     CardText,
     CardSubtitle,
 } from 'reactstrap';
+import Box from "@material-ui/core/Box";
+import {withStyles} from "@material-ui/core/styles";
+import Rating from "@material-ui/lab/Rating";
 
 const Post = (props) => {
     const [dataAll, setData] = useState([]);
@@ -17,19 +20,24 @@ const Post = (props) => {
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
+        "Hosting": "Hosting"
     }
-    const [currentPost, setCurrentPost] = useState({
-        requester: {
-            first_name: "",
-            last_name: "",
-            email: "",
+   const splitStr = (str, n) => {
+       if(str){
+        let res = str.split(" ")
+            return res[n];
+        }
+   }
+    const StyledRating = withStyles({
+        iconFilled: {
+            color: '#FD5A01',
         },
-        pickup_location: "",
-        drop_off_location: "",
-        deadline: "",
-        title: "",
-    })
-    const {url} = props
+        iconEmpty: {
+            color: '#8c8c8c',
+        }
+    })(Rating);
+    const urlImg = 'http://167.172.178.135';
+    const {url} = props;
     useEffect(() => {
         let token = JSON.parse(localStorage.getItem("token"));
         axios.get(`http://167.172.178.135/api/${url}/`, {
@@ -44,49 +52,55 @@ const Post = (props) => {
             .catch((err) => console.log(err))
     }, [])
 
-    const showFullPost = (post) => {
-        setCurrentPost(post);
-        setModalShow(true)
-        console.log(currentPost)
-    }
     return (
         <div className={"post container"}>
             <div className={"row"}>
                 {dataAll.map((item) =>
                     <div key={item.id} className={"col-4"}>
-                        <Card onClick={() => showFullPost(item)} className={props.size}>
+                        <Card onClick={() => setModalShow(true)} className={props.size}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
-                                        <li className={"post__top-list-item"}><img className={"post__avatar"}
-                                                                                   src={"https://img.icons8.com/material-sharp/96/000000/user.png"}
-                                                                                   alt="Card image cap"/></li>
+                                        <li className={"post__top-list-item"}>
+                                            {item.requester ?
+                                                item.requester.image ?
+                                                    <img src={urlImg + item.requester.image} className={"post__avatar"}
+                                                         alt={"User"}/> : <img className={"post_avatar-empty"}
+                                                                               src={"https://img.icons8.com/material-sharp/96/000000/user.png"}
+                                                                               alt="Card image cap"/> :
+
+                                                item.provider.image ?
+                                                    <img src={urlImg + item.provider.image} className={"post__avatar"}
+                                                         alt={"User"}/> : <img className={"post_avatar-empty"}
+                                                                               src={"https://img.icons8.com/material-sharp/96/000000/user.png"}
+                                                                               alt="Card image cap"/>}
+                                        </li>
                                         <li className={"post__top-list-item"}>
                                             <div
-                                                className={"post__user-name"}>{ url === 'service' ? item.requester.first_name : item.provider.first_name}</div>
+                                                className={"post__user-name"}>{item.requester ? item.requester.first_name : item.provider.first_name}</div>
                                             <div className={"post__item-rating"}>
-                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
-                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
-                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
-                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
-                                                {/*<img src={star} className={"post__item-rating-star"} alt={"Rating"}/>*/}
+                                                <Box width={1/4}>
+                                                    <StyledRating name="read-only" value={ item.requester ? item.requester.avg_rating_last_ten : item.provider.avg_rating_last_ten} size="small" readOnly
+                                                                  precision={0.5}/>
+                                                </Box>
                                             </div>
                                         </li>
                                         <li className={"post__top-list-item"}><CardText
-                                            className={"post__package-provider"}>{url === 'service' ? "Requester" : "Provider"}</CardText></li>
+                                            className={"post__package-provider"}>{url === 'service' ? "Requester" : "Provider"}</CardText>
+                                        </li>
                                     </ul>
                                 </div>
 
                                 <label className={"post__type"}>{types[item.service_type]}</label>
                                 <div>
                                     <div className={"post__address"}>
-                                        <CardText className={"post__city"}>{item.pickup_location}</CardText>
-                                        <CardSubtitle className={"post__country"}>{item.start_location}</CardSubtitle>
+                                        <CardText className={"post__city"}>{splitStr(item.pickup_location, 0)}</CardText>
+                                        <CardSubtitle className={"post__country"}>{splitStr(item.pickup_location, 1)}</CardSubtitle>
                                     </div>
                                     <img className={"post__arrow"} src={arrow}/>
                                     <div className={"post__address"}>
-                                        <CardText className={"post__city"}>{item.drop_off_location}</CardText>
-                                        <CardSubtitle className={"post__country"}>{item.end_location}</CardSubtitle>
+                                        <CardText className={"post__city"}>{splitStr(item.drop_off_location, 0)}</CardText>
+                                        <CardSubtitle className={"post__country"}>{splitStr(item.drop_off_location, 1)}</CardSubtitle>
                                         <div className={"post__deadline"}>{item.deadline}</div>
                                     </div>
 
@@ -95,20 +109,22 @@ const Post = (props) => {
                             </div>
                             <div>
                                 <CardText className={"post__text"}>{item.text} </CardText>
-                                <CardText className={"post__email"}>{ url === 'service' ? item.requester.email : item.provider.email}</CardText>
+                                <CardText
+                                    className={"post__email"}>{item.requester ? item.requester.email : item.provider.email}</CardText>
                                 {props.btn ?
                                     <button className={"post__interested-btn"}>Interested</button> :
                                     null
                                 }
                             </div>
                         </Card>
+                        <div className={"full-post"}>
+                            <FullPost data={item} show={modalShow}
+                                      onHide={() => setModalShow(false)}
+                            />
+                        </div>
                     </div>
                 )}
-                <div className={"full-post"}>
-                    <FullPost data={currentPost} show={modalShow}
-                              onHide={() => setModalShow(false)}
-                    />
-                </div>
+
             </div>
         </div>
     );

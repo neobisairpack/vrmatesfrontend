@@ -159,6 +159,9 @@ $percent: calc(var(--rating) / 5 * 100%);
   border-radius: 50%;
   filter: invert(66%) sepia(0%) saturate(609%) hue-rotate(187deg) brightness(107%) contrast(98%);
 }
+.MuiRating-sizeSmall{
+  width: 10px;
+}
 .sidebar__item-icon {
   position: absolute;
   align-self: center;

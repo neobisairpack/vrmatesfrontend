@@ -19,7 +19,6 @@
 
 .card {
   width: 93%;
-  height: 224px;
   margin-bottom: 4%;
   background-color: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
@@ -38,6 +37,10 @@
   padding: 0 0 9px 0;
   list-style: none;
   margin: 0;
+}
+
+.post__location {
+  height: 70px;
 }
 
 .post__package-provider {
@@ -80,13 +83,6 @@
 .post__top-list-item {
   padding: 0;
   margin: 0;
-}
-
-.post__item-rating-star {
-  margin-top: 0;
-  padding-top: 0;
-  margin-right: 3px;
-  width: 7px;
 }
 
 .post__type {

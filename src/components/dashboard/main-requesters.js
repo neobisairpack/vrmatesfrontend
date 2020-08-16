@@ -122,7 +122,7 @@ const MainRequesters = (props) => {
                     {filterState ? <Filter/> : null}
 
                 </div>
-                <Post url={'service'} {...props} size={"dashboard-post"} btn={"true"}/>
+                <Post url={'services'} {...props} size={"dashboard-post"} btn={"true"}/>
             </div>
             {type === "delivery" ? <CreatePostDelivery show={modalShow}
                                                        onHide={() => setModalShow(false)}/> : type === "pickup" ?
@@ -130,7 +130,6 @@ const MainRequesters = (props) => {
                                    onHide={() => setModalShow(false)}/> : type === "hosting" ?
                     <CreatePostHosting show={modalShow}
                                        onHide={() => setModalShow(false)}/> : null}
-
             <Footer/>
         </div>
     );

@@ -92,7 +92,7 @@ const Post = (props) => {
                                 </div>
 
                                 <label className={"post__type"}>{types[item.service_type]}</label>
-                                <div>
+                                <div className={"post__location"}>
                                     <div className={"post__address"}>
                                         <CardText className={"post__city"}>{splitStr(item.pickup_location, 0)}</CardText>
                                         <CardSubtitle className={"post__country"}>{splitStr(item.pickup_location, 1)}</CardSubtitle>

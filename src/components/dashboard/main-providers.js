@@ -124,7 +124,7 @@ const MainProviders = (props) => {
                     {filterState ? <Filter/> : null}
 
                 </div>
-                <Post url={'provide-service'} {...props} size={"dashboard-post"} btn={"true"}/>
+                <Post url={'provide-services'} {...props} size={"dashboard-post"} btn={"true"}/>
             </div>
             {type === "delivery" ? <CreateProviderDelivery show={modalShow}
                                                            onHide={() => setModalShow(false)}/> : type === "pickup" ?

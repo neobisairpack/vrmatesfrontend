@@ -6,8 +6,10 @@ import '../dashboard/style/main.css';
 import {Link, withRouter} from 'react-router-dom';
 import InboxPost from "../inbox/inbox-post";
 import ProfileSidebar from "../sidebar/profile-sidebar";
+import {connect} from "react-redux";
 import Header from "../header";
 import Footer from "../footer";
+import {getPosts} from "./profileActions";
 
 const Profile = (props) => {
     const [activeLink, setActiveLink] = useState(null)
@@ -58,4 +60,4 @@ const Profile = (props) => {
     );
 };
 
-export default withRouter(Profile);
+export default (withRouter(Profile));

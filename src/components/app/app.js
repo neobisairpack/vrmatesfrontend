@@ -42,7 +42,7 @@ const App = () => {
                         <Route exact path={"/profile"}
                                render={() => <Profile/>}/>
                         <Route exact path={"/profile/inbox"}
-                               render={() => <Inbox/>}/>
+                               render={() => <Profile/>}/>
                         <Route exact path={"/profile/in-progress"}
                                render={() => <InProgress/>}/>
                         <Route exact path={"/profile/completed"}

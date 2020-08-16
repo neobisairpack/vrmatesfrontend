@@ -149,6 +149,7 @@ $percent: calc(var(--rating) / 5 * 100%);
 .profile-sidebar__item-photo{
   align-self: center;
   width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 .profile-sidebar__item-icon{

@@ -4,12 +4,12 @@
   display: grid;
   grid-template-columns: 25% 75%;
   grid-template-rows: 80px minmax(893px, auto) 51px;
+  overflow: hidden;
 }
 
 .profile__title {
   margin-left: 7.8%;
   margin-bottom: 0;
-  font-family: Muller;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -17,6 +17,18 @@
   text-transform: uppercase;
   color: #000000;
   padding-top: 2%;
+}
+
+.profile__list-item {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+  color: black;
+}
+.profile__list-item:hover {
+  color: #FD5A01;
+  text-decoration: none;
 }
 
 .profile__list-item_active {

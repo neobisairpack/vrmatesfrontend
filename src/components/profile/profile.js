@@ -41,13 +41,13 @@ const Profile = (props) => {
                 <div className={"dashboard__submenu"}>
                     <ul className={"dashboard__list"}>
                         <li className={"dashboard__list-item "}><Link to={'/profile/inbox'}
-                                                                      className={"dashboard__label " + (activeLink === 1 ? "profile__list-item_active" : "")}>Inbox</Link>
+                                                                      className={"profile__list-item " + (activeLink === 1 ? "profile__list-item_active" : "")}>Inbox</Link>
                         </li>
                         <li className={"dashboard__list-item "}><Link to={'/profile/in-progress'}
-                                                                      className={"dashboard__label " + (activeLink === 2 ? "profile__list-item_active" : "")}>In progress</Link>
+                                                                      className={"profile__list-item " + (activeLink === 2 ? "profile__list-item_active" : "")}>In progress</Link>
                         </li>
                         <li className={"dashboard__list-item "}><Link to={'/profile/completed'}
-                                                                      className={"dashboard__label " + (activeLink === 3 ? "profile__list-item_active" : "")}>Completed</Link>
+                                                                      className={"profile__list-item " + (activeLink === 3 ? "profile__list-item_active" : "")}>Completed</Link>
                         </li>
                     </ul>
                 </div>

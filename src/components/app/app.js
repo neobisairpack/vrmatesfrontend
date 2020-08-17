@@ -3,7 +3,6 @@ import Profile from "../profile";
 import 'bootstrap/dist/css/bootstrap.css';
 import {Route, Switch} from 'react-router-dom'
 import './style/app.css';
-import Inbox from "../inbox";
 import InProgress from "../in-progress";
 import Completed from "../completed";
 import InboxPage from "../inbox/inbox-page/inbox-page";

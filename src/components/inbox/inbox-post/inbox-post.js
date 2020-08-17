@@ -17,10 +17,11 @@ const InboxPost = (props) => {
     useEffect(() => {
         props.getPosts();
     }, [])
-    const redirect = () => {
-        console.log(props)
+    const redirect = (item) => {
+        //console.log(item)
         props.history.push({
             pathname: '/profile/inbox-page',
+            state: {post: item}
         })
     }
     let types = {
@@ -28,15 +29,21 @@ const InboxPost = (props) => {
         "Pick Up": "Airport Pick Up",
         "Hosting": "Hosting"
     }
+    const splitStr = (str, n) => {
+        if(str){
+            let res = str.split(" ")
+            return res[n];
+        }
+    }
     const {inbox_posts} = props.profilePost;
     console.log(inbox_posts)
     console.log(props)
     return (
         <div className={"post container"}>
             <div className={"row"}>
-                {inbox_posts.map((item) =>
-                    <div key={item.id} className={"col-4"}>
-                        <Card onClick={() => redirect()}>
+                {inbox_posts.map((item, id) =>
+                    <div key={id} className={"col-4"}>
+                        <Card onClick={() => redirect(item)}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
@@ -49,13 +56,13 @@ const InboxPost = (props) => {
                                 </div>
                                 <div className={"post__location"}>
                                     <div className={"post__address"}>
-                                        <CardText className={"post__city"}>{item.pickup_location}</CardText>
-                                        <CardSubtitle className={"post__country"}>Kyrgyzstan</CardSubtitle>
+                                        <CardText className={"post__city"}>{splitStr(item.pickup_location, 0)}</CardText>
+                                        <CardSubtitle className={"post__country"}>{splitStr(item.pickup_location, 1)}</CardSubtitle>
                                     </div>
                                     <img className={"post__arrow"} src={arrow}/>
                                     <div className={"post__address"}>
-                                        <CardText className={"post__city"}>{item.drop_off_location}</CardText>
-                                        <CardSubtitle className={"post__country"}>Russia</CardSubtitle>
+                                        <CardText className={"post__city"}>{splitStr(item.drop_off_location, 0)}</CardText>
+                                        <CardSubtitle className={"post__country"}>{splitStr(item.drop_off_location, 1)}</CardSubtitle>
                                         <CardSubtitle className={"post__deadline"}>{item.deadline}</CardSubtitle>
                                     </div>
                                 </div>

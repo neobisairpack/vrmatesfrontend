@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import '../../../profile/style/profile.css';
 import '../style/inbox-page.css';
 import logo from "../../../sidebar/images/logo.svg";
@@ -9,10 +9,6 @@ import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
 const InboxPageSidebar = (props) => {
-    const {inbox_posts} = props.profilePost
-    useEffect(() => {
-        //console.log(props.location.state.post)
-    }, [])
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",

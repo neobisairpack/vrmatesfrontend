@@ -48,6 +48,7 @@ const Post = (props) => {
             .then(res => {
                 setData(res.data)
                 setLoading(true)
+                console.log(res)
             })
             .catch((err) => console.log(err))
     }, [])

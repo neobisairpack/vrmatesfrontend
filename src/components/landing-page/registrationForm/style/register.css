@@ -72,6 +72,27 @@
   color: #000000;
 }
 
+.register__input.form-control {
+  width: 350px;
+  height: 46px;
+  border: 1px solid rgba(0, 0, 0, 0.27);
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  color: #000000;
+}
+.register__input.form-control::placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 14px;
+  color: #000000;
+}
+
 .required::before {
   content: "*";
   color: tomato;
@@ -100,7 +121,6 @@
 }
 
 .register__sign-up-btn {
-  font-family: Muller;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -113,6 +133,10 @@
   border-radius: 12px;
   outline: none;
 }
+.register__sign-up-btn:disabled {
+  opacity: 0.5;
+}
 .register__sign-up-btn:focus {
   outline: none;
+  border: none;
 }

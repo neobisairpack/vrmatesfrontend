@@ -1,0 +1,24 @@
+@font-face{
+  font-family: 'muller';
+  src: url('../../../font/Fontfabric - MullerRegular.otf');
+}
+.notification .modal-content{
+  font-family: muller;
+  font-size: 18px;
+  padding: 20px;
+  //width: 300px;
+  //height: 150px;
+  border-radius: 0;
+}
+button.notif__btn.btn.btn-primary{
+  background-color: #FFFFFF;
+  border: 1px solid #202A49;
+  color: black;
+  margin-left: auto;
+  margin-top: auto;
+  width: 100px;
+  &:hover{
+    background-color: #FD5A01;
+    color: #FFFFFF;
+  }
+}

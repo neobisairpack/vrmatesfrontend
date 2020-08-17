@@ -8,8 +8,11 @@ import DatePicker from "react-datepicker";
 import axios from "axios";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import TermsConditions from "../../popup-terms";
+import Notification from "../../notification/notification";
 const RegistrationForm = () => {
     const [termsModalShow, setTermsModalShow] = useState(false)
+    const [notShow, setNotShow] = useState(false)
+    const [notMessage, setNotMessage] = useState("")
     const [state, setState] = useState({
         name: "",
         lastName: "",
@@ -35,7 +38,7 @@ const RegistrationForm = () => {
         })
     }
     const handleSubmit = (e) => {
-        if(state.isChecked) {
+        if(state.isChecked && state.name && state.lastName && state.gender && birthDate && state.password && state.password2 && state.email && state.phone) {
             e.preventDefault()
             axios.post('http://167.172.178.135/users/registration/', {
                 first_name: state.name,
@@ -64,7 +67,8 @@ const RegistrationForm = () => {
                 })
         }
         else{
-            alert("Please, read the Terms and Conditions and check")
+            setNotMessage("Please, fill in the required fields")
+            setNotShow(true);
         }
     }
     return (
@@ -162,7 +166,7 @@ const RegistrationForm = () => {
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="select" name={"gender"} reqiured="true" className={"register__input"} value={state.gender} onChange={e => handleChange(e)}>
+                        <Input type="select" name={"gender"} reqiured="true" className={"register__input "} value={state.gender} onChange={e => handleChange(e)}>
                             <option>*Gender</option>
                             <option>Male</option>
                             <option>Female</option>
@@ -224,7 +228,7 @@ const RegistrationForm = () => {
                     </FormGroup>
                 </Form>
                 <div className={"register__sign-up"}>
-                    <button type={"submit"} onClick={handleSubmit} className={"register__sign-up-btn"}>Sign Up</button>
+                    <button type={"submit"} disabled={!state.isChecked} onClick={handleSubmit} className={"register__sign-up-btn"}>Sign Up</button>
                 </div>
 
             </div>
@@ -232,6 +236,11 @@ const RegistrationForm = () => {
                 <TermsConditions show={termsModalShow}
                                  onHide={() => setTermsModalShow(false)}/>
             </div>
+            <div>
+                <Notification show={notShow} message={notMessage}
+                              onHide={() => setNotShow(false)}/>
+            </div>
+
         </div>
     );
 }

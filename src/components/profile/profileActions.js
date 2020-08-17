@@ -13,7 +13,7 @@ export const getPosts = () => {
             axios.get('http://167.172.178.135/api/services/', {headers: {
                     "Authorization": "Token " + token
                 }}),
-            axios.get('http://167.172.178.135/api/services/', {headers: {
+            axios.get('http://167.172.178.135/api/provide-services/', {headers: {
                     "Authorization": "Token " + token
                 }})
         ])

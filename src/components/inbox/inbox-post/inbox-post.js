@@ -68,7 +68,7 @@ const InboxPost = (props) => {
                                 </div>
                             </div>
                             <CardText className={"post__text"}>{item.text}</CardText>
-                            <CardText className={"post__email"}>{item.requester.email || item.provider.email}</CardText>
+                            <CardText className={"post__email"}>{item.requester ? item.requester.email : item.provider.email}</CardText>
                         </Card>
                     </div>
                 )}

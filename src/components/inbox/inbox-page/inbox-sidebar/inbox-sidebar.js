@@ -46,7 +46,7 @@ const InboxPageSidebar = (props) => {
             <div className={"inbox-page__post-body"}>
                 <label className={"inbox-page__category"}>Post body: </label>
                 <label className={"inbox-page__text"}>{post.text}</label>
-                <p className={"inbox-page__email"}>{post.requester.email || post.provider.email}</p>
+                <p className={"inbox-page__email"}>{ post.requester ? post.requester.email : post.provider.email}</p>
                 {post.service_type === 'Delivery' && post.requester || post.service_type === 'Hosting' && post.provider ?
                     <>
                         <p className={"inbox-page__category"}>Photo:</p>

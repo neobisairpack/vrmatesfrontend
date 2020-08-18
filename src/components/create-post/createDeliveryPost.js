@@ -8,6 +8,8 @@ import {sendPostDelivery} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 const CreatePostDelivery = (props) => {
+    const [imageFile1, setImageFile1] = useState("")
+    const [imageFile2, setImageFile2] = useState("")
     const [state, setState] = useState({
         country1: "",
         state1: "",
@@ -45,6 +47,9 @@ const CreatePostDelivery = (props) => {
             ...state,
             [e.target.name]: value
         })
+    }
+    const imageInputChange = (e) =>{
+        setImageFile1(e.target.files[0]);
     }
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post"}>
@@ -176,17 +181,21 @@ const CreatePostDelivery = (props) => {
             </div>
             <div className={"create-post__photos"}>
                 <label className={"create-post__form-title"}>Attach photos of the package(max 2 photos) </label>
+                {/*<Input type="file" name={"image"}*/}
+                {/*       value={state.image}*/}
+                {/*       onChange={e => imageInputChange(e)}*/}
+                {/*/>*/}
                 <Row>
                     <Col md={3}>
                         <div className={"create-post__photo"}>
                             <img src={imgIcon} className={"create-post__icon"}/>
-                            <button className={"create-post__add-photo"}/>
+                            <div className={"create-post__add-photo"}/>
                         </div>
                     </Col>
                     <Col md={3}>
                         <div className={"create-post__photo"}>
                             <img src={imgIcon} className={"create-post__icon"}/>
-                            <button className={"create-post__add-photo"}/>
+                            <div className={"create-post__add-photo"}/>
                         </div>
                     </Col>
                 </Row>

@@ -55,6 +55,7 @@ const Reviews = () => {
                    </div>
                </div>
                 <FullReview {...item} show={activeModal === item.id}
+
                             onHide={() => setActiveModal(null)}/>
              </div>
 

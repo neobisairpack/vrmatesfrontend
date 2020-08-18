@@ -53,3 +53,56 @@ textarea.update__about-me.form-control{
     color: #000000;
   }
 }
+[type="file"]{
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+[type="file"] + label{
+  position: relative;
+  cursor: pointer;
+  width: 116px;
+  height: 80px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #F8F8F8;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-radius: 6px;
+
+  &.update__input-file-fake{
+    overflow: hidden;
+    img{
+      display: inline-block;
+      transition: all 0.3s;
+    }
+    &::before{
+      content: "";
+      font-size: 130%;
+      height: 100%;
+      outline: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      background: url('../../create-post/images/plus.svg') no-repeat center;
+      left: 0;
+      line-height: 2.6;
+      position: absolute;
+      top: -180%;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    &:hover {
+      img {
+        transform: translateY(300%);
+      }
+      &::before{
+        top: 5px;
+      }
+    }
+  }
+}

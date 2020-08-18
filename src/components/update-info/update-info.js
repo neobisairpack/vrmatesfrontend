@@ -7,6 +7,7 @@ import axios from "axios";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import {Modal} from 'react-bootstrap';
 import './style/update-info.css';
+import imgIcon from "../post/images/empty-img.svg";
 
 const UpdateInfo = (props) => {
     const [state, setState] = useState({
@@ -185,10 +186,17 @@ const UpdateInfo = (props) => {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Input type="file" name={"image"}
-                               value={state.image}
-                               onChange={e => imageInputChange(e)}
-                        />
+                        <div>
+                            <Input className={"update__input-file-btn"} type="file" id={"file"} name={"image"}
+                                   value={imageFile}
+                                   onChange={e => imageInputChange(e)}
+                            />
+                            <label htmlFor={"file"} className={"update__input-file-fake"}>
+                                <img src={imgIcon} className={"update-photo"}/>
+                                {/*<div className={"create-post__add-photo"}/>*/}
+                            </label>
+
+                        </div>
                     </FormGroup>
                 </Form>
                 <div className={"register__sign-up"}>

@@ -210,6 +210,7 @@ ul {
   outline: none;
   border: none;
   padding: 0;
+  cursor: pointer;
   background-image: url("../images/plus.svg");
 }
 .create-post__add-photo:focus {

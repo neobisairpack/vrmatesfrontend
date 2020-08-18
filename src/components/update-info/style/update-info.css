@@ -56,3 +56,54 @@ textarea.update__about-me.form-control::placeholder {
   line-height: 14px;
   color: #000000;
 }
+
+[type=file] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
+[type=file] + label {
+  position: relative;
+  cursor: pointer;
+  width: 116px;
+  height: 80px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #F8F8F8;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+[type=file] + label.update__input-file-fake {
+  overflow: hidden;
+}
+[type=file] + label.update__input-file-fake img {
+  display: inline-block;
+  transition: all 0.3s;
+}
+[type=file] + label.update__input-file-fake::before {
+  content: "";
+  font-size: 130%;
+  height: 100%;
+  outline: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: url("../../create-post/images/plus.svg") no-repeat center;
+  left: 0;
+  line-height: 2.6;
+  position: absolute;
+  top: -180%;
+  transition: all 0.3s;
+  width: 100%;
+}
+[type=file] + label.update__input-file-fake:hover img {
+  transform: translateY(300%);
+}
+[type=file] + label.update__input-file-fake:hover::before {
+  top: 5px;
+}

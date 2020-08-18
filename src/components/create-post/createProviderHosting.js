@@ -5,6 +5,7 @@ import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import {Modal} from "react-bootstrap";
 import {sendProviderHosting} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import imgIcon from "../post/images/empty-img.svg";
 
 const CreateProviderHosting = (props) => {
     const [state, setState] = useState({
@@ -44,7 +45,7 @@ const CreateProviderHosting = (props) => {
         })
     }
     return (
-        <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post create-post-hosting"}>
+        <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post"}>
             <div className={"create-post__type"}>Hosting</div>
 
             <div className={"create-post__location-from"}>
@@ -83,7 +84,26 @@ const CreateProviderHosting = (props) => {
                     </FormGroup>
                 </Form>
             </div>
-
+            <div className={"create-post__location-to"}>
+                <Label className={"create-post__form-title"}>Please, choose what type of hosting you offer:</Label>
+                <ul>
+                    <li>
+                        <input type={"radio"} name={"preferences"} value={"Private bedroom"}
+                               defaultChecked={state.preferences === "Private bedroom"} onChange={(e) => handleChange(e)}/>
+                        <label className={"create-post__host-preference-type"}>Private bedroom</label>
+                    </li>
+                    <li>
+                        <input type={"radio"} name={"preferences"} value={"Living room"}
+                               defaultChecked={state.preferences === "Living room"} onChange={(e) => handleChange(e)}/>
+                        <label className={"create-post__host-preference-type"}>Living room</label>
+                    </li>
+                    <li>
+                        <input type={"radio"} name={"preferences"} value={"Common space"}
+                               defaultChecked={state.preferences === "Common space"} onChange={(e) => handleChange(e)}/>
+                        <label className={"create-post__host-preference-type"}>Common space</label>
+                    </li>
+                </ul>
+            </div>
             <div className={"create-post__date"}>
                 <Label className={"create-post__form-title"}>When can you do hosting:</Label>
                 <Row form>
@@ -137,25 +157,23 @@ const CreateProviderHosting = (props) => {
                     </FormGroup>
                 </Form>
             </div>
-            <div className={"create-post__host-preferences"}>
-                <Label className={"create-post__form-title"}>Please, choose what type of hosting you offer:</Label>
-                <ul>
-                    <li>
-                        <input type={"radio"} name={"preferences"} value={"Private bedroom"}
-                               defaultChecked={state.preferences === "Private bedroom"} onChange={(e) => handleChange(e)}/>
-                        <label className={"create-post__host-preference-type"}>Private bedroom</label>
-                    </li>
-                    <li>
-                        <input type={"radio"} name={"preferences"} value={"Living room"}
-                               defaultChecked={state.preferences === "Living room"} onChange={(e) => handleChange(e)}/>
-                        <label className={"create-post__host-preference-type"}>Living room</label>
-                    </li>
-                    <li>
-                        <input type={"radio"} name={"preferences"} value={"Common space"}
-                               defaultChecked={state.preferences === "Common space"} onChange={(e) => handleChange(e)}/>
-                        <label className={"create-post__host-preference-type"}>Common space</label>
-                    </li>
-                </ul>
+
+            <div className={"create-post__photos"}>
+                <label className={"create-post__form-title"}>Attach photos of the package(max 2 photos) </label>
+                <Row>
+                    <Col md={3}>
+                        <div className={"create-post__photo"}>
+                            <img src={imgIcon} className={"create-post__icon"}/>
+                            <button className={"create-post__add-photo"}/>
+                        </div>
+                    </Col>
+                    <Col md={3}>
+                        <div className={"create-post__photo"}>
+                            <img src={imgIcon} className={"create-post__icon"}/>
+                            <button className={"create-post__add-photo"}/>
+                        </div>
+                    </Col>
+                </Row>
             </div>
             <div className={"create-post__buttons"}>
                 <button onClick={props.onHide} className={"create-post__cancel-button"}>Cancel</button>

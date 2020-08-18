@@ -82,7 +82,7 @@ const Post = (props) => {
                                             <div
                                                 className={"post__user-name"}>{item.requester ? item.requester.first_name : item.provider.first_name}</div>
                                             <div className={"post__item-rating"}>
-                                                <Box width={1/4}>
+                                                <Box>
                                                     <StyledRating name="read-only" value={ item.requester ? item.requester.avg_rating_last_ten : item.provider.avg_rating_last_ten} size="small" readOnly
                                                                   precision={0.5}/>
                                                 </Box>
@@ -111,7 +111,7 @@ const Post = (props) => {
 
                             </div>
                             <div>
-                                <CardText className={"post__text"}>{item.text} </CardText>
+                                <CardText className={"post__text"}>{item.title} {item.text} </CardText>
                                 <CardText
                                     className={"post__email"}>{item.requester ? item.requester.email : item.provider.email}</CardText>
                                 {props.btn ?

@@ -1,4 +1,9 @@
+@font-face {
+  font-family: "muller";
+  src: url("../../../../font/Fontfabric - MullerRegular.otf");
+}
 .full-post .modal-content {
+  font-family: muller;
   padding: 27px 32px;
   border-radius: 20px;
   width: 100%;
@@ -12,7 +17,6 @@
   height: 162px;
   overflow: auto;
   font-size: 16px;
-  font-family: Muller;
   font-style: normal;
   font-weight: normal;
   line-height: 170%;
@@ -53,7 +57,6 @@
   width: 140px;
   height: 14px;
   font-size: 14px;
-  font-family: Muller;
   font-style: normal;
   font-weight: normal;
   line-height: 100%;
@@ -74,4 +77,61 @@
 
 .full-post__exit-img {
   width: 50px;
+}
+
+.full-post__avatar {
+  vertical-align: top;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  margin-right: 11px;
+}
+
+.full-post_avatar-empty {
+  align-self: center;
+  width: 65px;
+  height: 65px;
+  padding: 5px;
+  background-color: #666666;
+  border-radius: 50%;
+  filter: invert(66%) sepia(0%) saturate(609%) hue-rotate(187deg) brightness(107%) contrast(98%);
+}
+
+.full-post__top-list {
+  display: flex;
+  padding: 0 0 9px 0;
+  list-style: none;
+  margin: 0;
+}
+
+.full-post__user-name {
+  font-size: 28px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 28px;
+  color: #000000;
+  margin: 0;
+}
+
+.full-post__package-provider {
+  font-family: muller;
+  position: absolute;
+  right: 5%;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  color: #FD5A01;
+}
+
+.full-post__address {
+  margin-top: 10px;
+  display: inline-block;
+  width: 30%;
+}
+
+.full-post__details {
+  display: flex;
+  align-content: flex-end;
+  height: 60px;
 }

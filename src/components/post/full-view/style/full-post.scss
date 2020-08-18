@@ -1,12 +1,16 @@
-@mixin fontFunc($size, $family, $style, $weight, $line, $color){
+@font-face{
+  font-family: 'muller';
+  src: url('../../../../font/Fontfabric - MullerRegular.otf');
+}
+@mixin fontFunc($size, $style, $weight, $line, $color){
   font-size: $size;
-  font-family: $family;
   font-style: $style;
   font-weight: $weight;
   line-height: $line;
   color: $color;
 }
 .full-post .modal-content{
+  font-family: muller;
   padding: 27px 32px;
   border-radius: 20px;
   width: 100%;
@@ -18,7 +22,7 @@
   width: 380px;
   height: 162px;
   overflow: auto;
-  @include fontFunc(16px, Muller, normal, normal, 170%, #424141);
+  @include fontFunc(16px, normal, normal, 170%, #424141);
   text-transform: capitalize;
   display: flex;
   align-items: center;
@@ -49,7 +53,7 @@
   margin-bottom: 32px;
   width: 140px;
   height: 14px;
-  @include fontFunc(14px, Muller, normal, normal, 100%, rgba(0, 0, 0, 0.5));
+  @include fontFunc(14px, normal, normal, 100%, rgba(0, 0, 0, 0.5));
   display: flex;
   align-items: center;
   text-transform: capitalize;
@@ -63,4 +67,46 @@
 }
 .full-post__exit-img{
   width: 50px;
+}
+.full-post__avatar{
+  vertical-align: top;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  margin-right: 11px;
+}
+.full-post_avatar-empty{
+  align-self: center;
+  width: 65px;
+  height: 65px;
+  padding: 5px;
+  background-color: #666666;
+  border-radius: 50%;
+  filter: invert(66%) sepia(0%) saturate(609%) hue-rotate(187deg) brightness(107%) contrast(98%);
+}
+.full-post__top-list{
+  display: flex;
+  padding: 0 0 9px 0;
+  list-style: none;
+  margin: 0;
+}
+.full-post__user-name{
+    @include fontFunc(28px, normal, bold, 28px, #000000);
+    margin: 0;
+}
+.full-post__package-provider{
+  font-family: muller;
+  position: absolute;
+  right: 5%;
+  @include fontFunc(16px, normal, 500, 16px, #FD5A01);
+}
+.full-post__address{
+  margin-top: 10px;
+  display: inline-block;
+  width: 30%;
+}
+.full-post__details{
+  display: flex;
+  align-content: flex-end;
+  height: 60px;
 }

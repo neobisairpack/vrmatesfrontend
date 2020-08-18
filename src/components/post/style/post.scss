@@ -52,7 +52,6 @@ $font-color-orange: #FD5A01;
  position: absolute;
   right: 5%;
   @include font(14px, normal, 500, 14px, $font-color-orange);
-  //width: 58px;
 }
 .post__avatar{
   vertical-align: top;
@@ -112,10 +111,11 @@ $font-color-orange: #FD5A01;
   //margin-left: 50px;
 }
 .post__deadline{
+  display: flex;
+  align-self: flex-end;
+  margin-left: auto;
   padding-bottom: 5px;
   float: right;
-  //width: 72px;
-  //height: 12px;
   @include font(12px, normal, normal, 12px, rgba(0, 0, 0, 0.5));
   margin-top: 3px;
 }

@@ -19,11 +19,11 @@ const UpdateInfo = (props) => {
         gender: props.gender ? props.gender : "",
         city: props.city ? props.city : "",
         states: props.state ? props.state : "",
+        country: props.country ? props.country : "",
         about_me: props.about_me ? props.about_me : "",
     })
-    console.log(state.image)
     const [birthDate, setBirthDate] = useState(new Date(props.birthday));
-    const [imageFile, setImageFile] = useState("")
+    const [imageFile, setImageFile] = useState(props.image)
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -32,6 +32,7 @@ const UpdateInfo = (props) => {
             [e.target.name]: value
         })
     }
+
     const imageInputChange = (e) =>{
         setImageFile(e.target.files[0]);
     }

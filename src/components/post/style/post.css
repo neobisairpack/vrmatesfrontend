@@ -133,6 +133,9 @@
 }
 
 .post__deadline {
+  display: flex;
+  align-self: flex-end;
+  margin-left: auto;
   padding-bottom: 5px;
   float: right;
   font-size: 12px;

@@ -4,12 +4,13 @@ import { connect } from "react-redux";
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
 import {Modal} from "react-bootstrap";
+import '../update-info/style/update-info.css';
 import {sendPostDelivery} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 const CreatePostDelivery = (props) => {
     const [imageFile1, setImageFile1] = useState("")
-    const [imageFile2, setImageFile2] = useState("")
+    //const [imageFile2, setImageFile2] = useState("")
     const [state, setState] = useState({
         country1: "",
         state1: "",
@@ -24,7 +25,7 @@ const CreatePostDelivery = (props) => {
         text: ""
     })
     const sendPost = () => {
-        props.sendPostDelivery(state)
+        props.sendPostDelivery(state, imageFile1)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -49,7 +50,9 @@ const CreatePostDelivery = (props) => {
         })
     }
     const imageInputChange = (e) =>{
+        console.log(e.target.files[0])
         setImageFile1(e.target.files[0]);
+            // setImageFile2(e.target.files[0]);
     }
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post"}>
@@ -181,22 +184,29 @@ const CreatePostDelivery = (props) => {
             </div>
             <div className={"create-post__photos"}>
                 <label className={"create-post__form-title"}>Attach photos of the package(max 2 photos) </label>
-                {/*<Input type="file" name={"image"}*/}
-                {/*       value={state.image}*/}
-                {/*       onChange={e => imageInputChange(e)}*/}
-                {/*/>*/}
                 <Row>
                     <Col md={3}>
-                        <div className={"create-post__photo"}>
-                            <img src={imgIcon} className={"create-post__icon"}/>
-                            <div className={"create-post__add-photo"}/>
+                        <div>
+                            <Input className={"update__input-file-btn"} type="file" id={"file"} name={"image"}
+                                   onChange={e => imageInputChange(e)}
+                            />
+                            <label htmlFor={"file"} className={"update__input-file-fake"}>
+                                <img src={imgIcon} className={"update-photo"}/>
+                            </label>
+
                         </div>
                     </Col>
                     <Col md={3}>
-                        <div className={"create-post__photo"}>
-                            <img src={imgIcon} className={"create-post__icon"}/>
-                            <div className={"create-post__add-photo"}/>
-                        </div>
+                        {/*<div>*/}
+                        {/*    <Input className={"update__input-file-btn"} type="file" id={"file"} name={"image"}*/}
+                        {/*           value={imageFile2}*/}
+                        {/*           onChange={e => imageInputChange(e, 2)}*/}
+                        {/*    />*/}
+                        {/*    <label htmlFor={"file"} className={"update__input-file-fake"}>*/}
+                        {/*        <img src={imgIcon} className={"update-photo"}/>*/}
+                        {/*    </label>*/}
+
+                        {/*</div>*/}
                     </Col>
                 </Row>
             </div>
@@ -214,8 +224,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        sendPostDelivery: post =>
-            dispatch(sendPostDelivery(post)),
+        sendPostDelivery: (post, img) =>
+            dispatch(sendPostDelivery(post, img)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostDelivery);

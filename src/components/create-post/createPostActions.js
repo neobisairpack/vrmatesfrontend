@@ -2,24 +2,22 @@ import axios from 'axios';
 export const SEND_POST_STARTED = "SEND_POST_STARTED";
 export const SEND_POST_SUCCESS = "SEND_POST_SUCCESS";
 export const SEND_POST_FAILURE = "SEND_POST_FAILURE";
+export const GET_POST_IMAGES_SUCCESS = "GET_POST_IMAGES_SUCCESS";
+export const GET_POST_IMAGES_FAILURE = "GET_POST_IMAGES_FAILURE";
 
-export const sendPostDelivery = (post) => {
+export const sendPostDelivery = (post, image) => {
+    const fd = new FormData();
+    fd.append("pickup_location", (post.country1).concat(" ", post.state1, " ", post.city1))
+    fd.append('drop_off_location', (post.country2).concat(" ", post.state2, " ", post.city2))
+    fd.append('deadline', (post.year).concat("-", post.month, "-", post.day))
+    fd.append('title', post.title)
+    fd.append('text', post.text)
+    fd.append('image', image)
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
-
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/services/`, {
-                pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
-                drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
-                deadline: (post.year).concat("-", post.month, "-", post.day),
-                status: "Created, not accepted",
-                title: post.title,
-                text: post.text,
-                service_type: "Delivery",
-                image: null,
-                is_checked: false
-                },
+            .post(`http://167.172.178.135/api/services/`, fd,
                 {
                     headers: {
                         "Authorization": "Token " + token
@@ -204,6 +202,33 @@ export const sendProviderHosting = (post) => {
             });
     };
 };
+
+export const getPostImages = (id) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    return dispatch => {
+
+        axios
+            .get(`http://167.172.178.135/api/services-images/`,
+                {
+                    headers: {
+                        "Authorization": "Token " + token
+                    }
+                }
+
+            )
+            .then(res => {
+                res.data.map((item) => {
+                    if(item.post === id){
+                        dispatch(getPostImagesSuccess(item));
+                    }
+                })
+            })
+            .catch(err => {
+                console.log(token)
+                dispatch(getPostImagesFailure(err));
+            });
+    };
+};
 const sendPostStarted = () => ({
     type: SEND_POST_STARTED
 });
@@ -215,5 +240,14 @@ const sendPostSuccess = (data) => ({
 
 const sendPostFailure = (error) => ({
     type: SEND_POST_FAILURE,
+    payload: error
+});
+const getPostImagesSuccess = (data) => ({
+    type: GET_POST_IMAGES_SUCCESS,
+    payload: data
+});
+
+const getPostImagesFailure = (error) => ({
+    type: GET_POST_IMAGES_FAILURE,
     payload: error
 });

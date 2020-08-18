@@ -21,6 +21,7 @@ const UpdateInfo = (props) => {
         states: props.state ? props.state : "",
         about_me: props.about_me ? props.about_me : "",
     })
+    console.log(state.image)
     const [birthDate, setBirthDate] = useState(new Date(props.birthday));
     const [imageFile, setImageFile] = useState("")
 
@@ -188,12 +189,10 @@ const UpdateInfo = (props) => {
                     <FormGroup>
                         <div>
                             <Input className={"update__input-file-btn"} type="file" id={"file"} name={"image"}
-                                   value={imageFile}
                                    onChange={e => imageInputChange(e)}
                             />
                             <label htmlFor={"file"} className={"update__input-file-fake"}>
                                 <img src={imgIcon} className={"update-photo"}/>
-                                {/*<div className={"create-post__add-photo"}/>*/}
                             </label>
 
                         </div>

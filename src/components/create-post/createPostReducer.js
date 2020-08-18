@@ -1,14 +1,15 @@
 import {
     SEND_POST_STARTED,
     SEND_POST_SUCCESS,
-    SEND_POST_FAILURE} from './createPostActions';
+    SEND_POST_FAILURE, GET_POST_IMAGES_SUCCESS, GET_POST_IMAGES_FAILURE
+} from './createPostActions';
 
 const initialState = {
     posts: [],
+    image: {},
     loading: false,
     error: null,
     res: null,
-    message: ""
 }
 
 const reducer = (state = initialState, action) => {
@@ -24,14 +25,24 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: null,
                 res: action.payload,
-                message: "Post is created, it will appear in a while!"
             };
         case SEND_POST_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload.error,
-                message: "Post is not created, check all fields"
+            };
+        case GET_POST_IMAGES_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                image: action.payload,
+            };
+        case GET_POST_IMAGES_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
             };
     }
     return state

@@ -30,12 +30,17 @@
 .full-post__image {
   display: flex;
   justify-content: center;
-  width: 40.4%;
+  width: 172px;
   height: 149px;
   background: #F8F8F8;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border-radius: 6px;
+}
+
+.full-post__photo {
+  width: 172px;
+  height: 149px;
 }
 
 .full-post__icon {

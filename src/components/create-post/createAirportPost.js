@@ -7,7 +7,6 @@ import {sendPostAirport} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 const CreatePostAirport = (props) => {
-    console.log(new Date().getFullYear())
     const [state, setState] = useState({
         country1: "",
         state1: "",

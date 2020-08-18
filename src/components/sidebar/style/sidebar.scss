@@ -46,7 +46,8 @@ $percent: calc(var(--rating) / 5 * 100%);
   border-bottom: 1px solid rgba(196, 196, 196, 0.23);
 }
 .profile-sidebar__user-info{
-  padding-left: 10%;
+  width: 45%;
+ // padding-left: 10%;
   margin-top: 50px;
 }
 //'★★★★★'
@@ -146,7 +147,7 @@ $percent: calc(var(--rating) / 5 * 100%);
 .sidebar__item-photo{
   position: absolute;
   align-self: center;
-  width: 80%;
+  width: 100%;
   height: 100%;
  border-radius: 50%;
 }
@@ -157,7 +158,7 @@ $percent: calc(var(--rating) / 5 * 100%);
   border-radius: 50%;
 }
 .profile-sidebar__item-icon{
-  position: absolute;
+  //position: absolute;
   align-self: center;
   width: 100%;
   height: 100%;
@@ -165,9 +166,6 @@ $percent: calc(var(--rating) / 5 * 100%);
   background-color: #666666;
   border-radius: 50%;
   filter: invert(66%) sepia(0%) saturate(609%) hue-rotate(187deg) brightness(107%) contrast(98%);
-}
-.MuiRating-sizeSmall{
-  width: 10px;
 }
 .sidebar__item-icon {
   position: absolute;

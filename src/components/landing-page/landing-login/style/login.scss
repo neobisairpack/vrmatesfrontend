@@ -98,6 +98,9 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 14px;
-  text-decoration-line: underline;
   color: #FD5A01;
+  &:hover{
+  text-decoration-line: underline;
+    cursor: pointer;
+}
 }

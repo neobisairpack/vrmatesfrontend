@@ -108,7 +108,10 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 14px;
+  color: #FD5A01;
+}
+.login__forgot-pswrd:hover {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
-  color: #FD5A01;
+  cursor: pointer;
 }

@@ -16,9 +16,8 @@ const Reviews = () => {
             color: '#b3b3b3',
         }
     })(Rating);
-    const [modalShow, setModalShow] = useState(false);
     const [rate, setRate] = useState([]);
-    const [current, setCurrent] = useState({} )
+    const [activeModal, setActiveModal] = useState(null);
     useEffect(() => {
         getReviews();
     }, [])
@@ -35,15 +34,14 @@ const Reviews = () => {
             })
             .catch((err) => console.log(err))
     }
-    const showFullReview = (item) => {
-        setCurrent(item);
-        setModalShow(true);
+    const showFullReview = (index) => {
+        setActiveModal(index);
     }
     return (
         <div className={"reviews"}>
             {rate.map((item) =>
             <div key={item.id} className={"review"}>
-               <div onClick={(item) => showFullReview(item)} className={"review " + ((item.id) % 2 !== 0 ? "review-orange" : "review-blue") }>
+               <div onClick={() => showFullReview(item.id)} className={"review " + ((item.id) % 2 !== 0 ? "review-orange" : "review-blue") }>
                    <div className={"review__rating"}>
                        <Box>
                            <StyledRating name="read-only" value={item.rating} size="small" readOnly precision={0.5}/>
@@ -56,8 +54,8 @@ const Reviews = () => {
                        {item.date}
                    </div>
                </div>
-                <FullReview {...item} show={modalShow}
-                            onHide={() => setModalShow(false)}/>
+                <FullReview {...item} show={activeModal === item.id}
+                            onHide={() => setActiveModal(null)}/>
              </div>
 
             )}

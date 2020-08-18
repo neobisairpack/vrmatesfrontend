@@ -33,6 +33,7 @@
 }
 
 .post__top-list {
+  height: 53px;
   display: flex;
   padding: 0 0 9px 0;
   list-style: none;
@@ -41,6 +42,7 @@
 
 .post__location {
   height: 70px;
+  overflow: hidden;
 }
 
 .post__package-provider {

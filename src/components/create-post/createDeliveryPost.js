@@ -8,7 +8,6 @@ import {sendPostDelivery} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 const CreatePostDelivery = (props) => {
-    console.log(props)
     const [state, setState] = useState({
         country1: "",
         state1: "",

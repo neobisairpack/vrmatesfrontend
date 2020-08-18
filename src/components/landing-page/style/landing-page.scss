@@ -32,7 +32,7 @@
   padding-right: 5%;
   padding-left: 5%;
 }
-.landing__join-btn{
+button.landing__join-btn{
   position: relative;
   z-index: 1;
   width: 300px;
@@ -42,14 +42,32 @@
   border: none;
   margin-left: 5%;
   margin-top: 5%;
-
-  font-family: Muller;
+  transition: all 0.5s;
+  font-family: muller;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
   line-height: 18px;
   text-align: center;
   color: #000000;
+  &:after{
+    content: "";
+    background: #90EE90;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+  &:hover:after{
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
   &:focus{
     outline: none;
   }

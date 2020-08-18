@@ -16,7 +16,7 @@ import Rating from "@material-ui/lab/Rating";
 const Post = (props) => {
     const [dataAll, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [modalShow, setModalShow] = useState(false);
+    const [activeModal, setActiveModal] = useState(null);
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -52,13 +52,15 @@ const Post = (props) => {
             })
             .catch((err) => console.log(err))
     }, [])
-
+        const modalHandler = (index) => {
+            setActiveModal(index);
+        }
     return (
         <div className={"post container"}>
             <div className={"row"}>
                 {dataAll.map((item) =>
                     <div key={item.id} className={"col-4"}>
-                        <Card onClick={() => setModalShow(true)} className={props.size}>
+                        <Card onClick={() => modalHandler(item.id)} className={props.size}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
@@ -119,8 +121,8 @@ const Post = (props) => {
                             </div>
                         </Card>
                         <div className={"full-post"}>
-                            <FullPost data={item} show={modalShow}
-                                      onHide={() => setModalShow(false)}
+                            <FullPost data={item} show={activeModal === item.id}
+                                      onHide={() => setActiveModal(null)}
                             />
                         </div>
                     </div>

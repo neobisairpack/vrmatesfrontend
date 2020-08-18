@@ -99,6 +99,8 @@
 }
 
 .register__checkbox {
+  display: flex;
+  align-content: flex-end;
   margin-right: auto;
   padding-left: 9%;
 }
@@ -110,9 +112,15 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 14px;
+  color: #FD5A01;
+}
+.register__checkbox-lbl label {
+  margin: 0;
+}
+.register__checkbox-lbl label:hover {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
-  color: #FD5A01;
+  cursor: pointer;
 }
 
 .register__sign-up {

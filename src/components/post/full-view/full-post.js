@@ -35,7 +35,6 @@ const FullPost = (props) => {
         "Hosting": "Hosting"
     }
     const {image} = props.createPost;
-    console.log(image.image)
     return (
         <div>
             <Modal show={props.show} onHide={props.onHide} dialogClassName={"full-post"}>

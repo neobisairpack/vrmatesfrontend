@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: null,
-                res: action.payload,
+                res: action.payload
             };
         case SEND_POST_FAILURE:
             return {

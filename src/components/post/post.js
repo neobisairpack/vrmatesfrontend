@@ -12,6 +12,9 @@ import {
 import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
+import {connect} from "react-redux";
+import {getPostImages} from "../create-post/createPostActions";
+import {sendInterestedRequest} from "./postActions";
 
 const Post = (props) => {
     const [dataAll, setData] = useState([]);
@@ -54,6 +57,10 @@ const Post = (props) => {
     }, [])
         const modalHandler = (index) => {
             setActiveModal(index);
+        }
+
+        const sendRequest = (id) => {
+            props.sendInterestedRequest(id);
         }
     return (
         <div className={"post container"}>
@@ -115,7 +122,7 @@ const Post = (props) => {
                                 <CardText
                                     className={"post__email"}>{item.requester ? item.requester.email : item.provider.email}</CardText>
                                 {props.btn ?
-                                    <button className={"post__interested-btn"}>Interested</button> :
+                                    <button onClick={() => {sendRequest(item.id)}} className={"post__interested-btn"}>Interested</button> :
                                     null
                                 }
                             </div>
@@ -132,5 +139,16 @@ const Post = (props) => {
         </div>
     );
 };
+const mapStateToProps = state => {
+    return {
+        post: state.post,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        sendInterestedRequest: (id) =>
+            dispatch(sendInterestedRequest(id)),
+    }
+}
 
-export default Post;
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

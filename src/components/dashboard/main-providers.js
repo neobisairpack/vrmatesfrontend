@@ -12,7 +12,6 @@ import {Link, withRouter} from 'react-router-dom';
 import CreateProviderDelivery from "../create-post/createProviderDelivery";
 import CreateProviderAirport from "../create-post/createProviderAirport";
 import CreateProviderHosting from "../create-post/createProviderHosting";
-import PostProvider from "../post/post-provider";
 
 const MainProviders = (props) => {
     const [popUpState, setPopUpState] = useState(false);

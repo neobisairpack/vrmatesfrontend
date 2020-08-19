@@ -206,7 +206,7 @@ export const sendProviderHosting = (post) => {
 export const getPostImages = (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
-
+        dispatch(sendPostStarted())
         axios
             .get(`http://167.172.178.135/api/services-images/`,
                 {

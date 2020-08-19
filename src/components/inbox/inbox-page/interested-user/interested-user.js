@@ -1,32 +1,45 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/interested.css';
 import {withRouter} from "react-router-dom";
+import {getInterestedRequest} from "../../../post/postActions";
+import {connect} from "react-redux";
 
 
 const InterestedUser = (props) => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    const redirect = (userName) => {
-        console.log(props)
+    console.log(props)
+    useEffect(() => {
+        props.getInterestedRequest(props.location.state.post.id)
+    }, [])
+    const redirect = (user) => {
+        //console.log(props)
         props.history.push({
-            pathname: `/profile/inbox-page/${userName}`,
+            pathname: `/profile/inbox-page/${user.first_name}`,
+            state: {user: user}
         })
     }
+    const {interested} = props.post;
+    const urlImg = 'http://167.172.178.135'
     return (
         <div className={"interested-user container"}>
             <div className={"row"}>
-                {array.map((item) =>
-                    <div key={item} className={"col-4"}>
+                {interested.map((item) =>
+                    <div key={item.id} className={"col-4"}>
                         <div className={"interested-user-card "}>
-                            <ul className={"interested-user__info"} onClick={() => redirect("Marsel'")}>
-                                <li className={"interested__list-item"}><img className={"interested__photo"}
-                                                                             src={"https://img.icons8.com/material-sharp/96/000000/user.png"}/></li>
+                            <ul className={"interested-user__info"} onClick={() => redirect(item.requester)}>
+                                <li className={"interested__list-item"}>
+                                    {item.requester.image ?
+                                    <img src={urlImg + item.requester.image} className={"interested__photo"}
+                                         alt={"User"}/> :
+                                    <img className={"interested__photo_empty"}  src={"https://img.icons8.com/material-sharp/96/000000/user.png"}/>}
+                                </li>
                                 <li className={"interested__list-item"}>
                                     <div className={"interested__user-type"}>Provider</div>
-                                    <div className={"interested__user-name"}>Marsel'</div>
+                                    <div className={"interested__user-name"}>{item.requester.first_name || ""}</div>
                                 </li>
                             </ul>
-                            <div className={"interested__service-type"}>Package delivery</div>
+                            <div className={"interested__service-type"}>{item.service.service_type}</div>
                             <div className={"interested__buttons"}>
                                 <button className={"interested__button interested__button_accept"}>Accept</button>
                                 <button className={"interested__button interested__button_cancel"}>Cancel</button>
@@ -40,4 +53,16 @@ const InterestedUser = (props) => {
     );
 };
 
-export default withRouter(InterestedUser);
+const mapStateToProps = state => {
+    return {
+        post: state.post,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getInterestedRequest: (id) =>
+            dispatch(getInterestedRequest(id)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(InterestedUser));

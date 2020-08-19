@@ -78,7 +78,7 @@ export const sendPostAirport = (post) => {
             .post(`http://167.172.178.135/api/services/`, {
                     pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
                     drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
-                    deadline: (post.year).concat("-", post.month, "-", post.day, "T12:07:46Z"),
+                    deadline: (post.year).concat("-", post.month, "-", post.day),
                     status: "Created, not accepted",
                     service_type: "Pick Up",
                     title: post.title,
@@ -97,7 +97,7 @@ export const sendPostAirport = (post) => {
                 dispatch(sendPostSuccess(res.data));
             })
             .catch(err => {
-                console.log(token)
+                console.log(post)
                 dispatch(sendPostFailure(err));
             });
     };

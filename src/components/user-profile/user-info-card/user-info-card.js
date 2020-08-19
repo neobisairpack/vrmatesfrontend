@@ -6,17 +6,24 @@ import fb from '../icons/fb-icon.svg';
 import insta from '../icons/insta-icon.png';
 import whats from '../icons/whatsapp-icon.png';
 import telegram from '../icons/tele-icon.png';
+import {withRouter} from "react-router-dom";
 
-const UserInfoCard = () => {
-
+const UserInfoCard = (props) => {
+    console.log(props)
+    const {user} = props.location.state
+    const urlImg = 'http://167.172.178.135'
     return (
         <div className={"user-info-card"}>
             <div>
                 <ul className={"user-info__list"}>
-                    <li className={"user-info__list-item"}><img className={"user-info__photo"}
-                                                                 src={"https://img.icons8.com/material-sharp/96/000000/user.png"}/></li>
                     <li className={"user-info__list-item"}>
-                        <div className={"user-info__user-name"}>Matt Tender</div>
+                        {user.image ?
+                            <img src={urlImg + user.image} className={"user-info__photo"}
+                                 alt={"User"}/> :
+                            <img className={"user-info__photo-empty"}  src={"https://img.icons8.com/material-sharp/96/000000/user.png"}/>}
+                    </li>
+                    <li className={"user-info__list-item"}>
+                        <div className={"user-info__user-name"}>{user.first_name} {user.last_name}</div>
                         <div className={"user-info__item-rating"}>
                             {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
                             {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
@@ -25,18 +32,18 @@ const UserInfoCard = () => {
                             {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
                         </div>
                         <div className={"user-info__cancellation"}>Cancellation Rate:
-                            <label className={"user-info__cancel-num"}>5/100</label></div>
+                            <label className={"user-info__cancel-num"}>{user.canceled_posts_count}/100</label></div>
                     </li>
                 </ul>
             </div>
             <div className={"user-info__details"}>
-                <div className={"user-info__detail"}>Age: <label className={"user-info__detail-l"}>35 years</label></div>
-                <div className={"user-info__detail"}>Gender: <label className={"user-info__detail-l"}>The man</label></div>
+                <div className={"user-info__detail"}>Age: <label className={"user-info__detail-l"}>{user.age} years</label></div>
+                <div className={"user-info__detail"}>Gender: <label className={"user-info__detail-l"}>The {user.gender}</label></div>
                 <div className={"user-info__detail"}>Location: <label className={"user-info__detail-l"}>Spain, Madrid</label></div>
             </div>
             <div className={"user-info__contacts"}>
-                <div className={"user-info__detail"}><img className={"user-info__contact-img"} src={phone}/><label className={"user-info__detail-l"}>0550345678</label></div>
-                <div className={"user-info__detail"}><img className={"user-info__contact-img"} src="https://img.icons8.com/ios-filled/24/000000/filled-message.png"/><label className={"user-info__detail-l"}>aelina10@gmail.com</label></div>
+                <div className={"user-info__detail"}><img className={"user-info__contact-img"} src={phone}/><label className={"user-info__detail-l"}>{user.phone}</label></div>
+                <div className={"user-info__detail"}><img className={"user-info__contact-img"} src="https://img.icons8.com/ios-filled/24/000000/filled-message.png"/><label className={"user-info__detail-l"}>{user.email}</label></div>
                 <div>
                     <img className={"user-info__social"} src={fb}/>
                     <img className={"user-info__social"} src={insta}/>
@@ -47,4 +54,4 @@ const UserInfoCard = () => {
         </div>
     );
 };
-export default UserInfoCard;
+export default withRouter(UserInfoCard);

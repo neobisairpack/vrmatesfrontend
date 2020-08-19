@@ -29,6 +29,40 @@ export const getPosts = () => {
     };
 };
 
+export const editPost = (post) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    return dispatch => {
+        dispatch(getInboxPostStarted());
+        console.log(post)
+        // axios
+        //     .post(`http://167.172.178.135/api/services/`, {
+        //             pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
+        //             drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
+        //             deadline: (post.year).concat("-", post.month, "-", post.day),
+        //             status: "Created, not accepted",
+        //             service_type: "Pick Up",
+        //             title: post.title,
+        //             text: post.text,
+        //             is_checked: false
+        //         },
+        //         {
+        //             headers: {
+        //                 "Authorization": "Token " + token
+        //             }
+        //         }
+        //
+        //     )
+        //     .then(res => {
+        //         console.log(res.data)
+        //         dispatch(sendPostSuccess(res.data));
+        //     })
+        //     .catch(err => {
+        //         console.log(post)
+        //         dispatch(sendPostFailure(err));
+        //     });
+    };
+};
+
 const getInboxPostStarted = () => ({
     type: GET_INBOX_POST_STARTED
 });

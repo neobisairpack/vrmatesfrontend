@@ -29,6 +29,13 @@ const FullPost = (props) => {
         }
     })(Rating);
 
+    const splitStr = (str, n) => {
+        if(str){
+            let res = str.split(" ")
+            return res[n];
+        }
+    }
+
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -76,16 +83,15 @@ const FullPost = (props) => {
                             <p className={"post__type"}>{types[data.service_type]}</p>
                             <div className={"full-post__details"}>
                                 <div className={"full-post__address"}>
-                                    <CardText className={"post__city"}>{data.pickup_location}</CardText>
-                                    <CardSubtitle className={"post__country"}>{data.pickup_location}</CardSubtitle>
+                                    <CardText className={"post__city"}>{splitStr(data.pickup_location, 0)}</CardText>
+                                    <CardSubtitle className={"post__country"}>{splitStr(data.pickup_location, 1)}</CardSubtitle>
                                 </div>
                                 <img className={"post__arrow"} src={arrow}/>
                                 <div className={"full-post__address"}>
-                                    <CardText className={"post__city"}>{data.drop_off_location}</CardText>
-                                    <CardSubtitle className={"post__country"}>{data.drop_off_location}</CardSubtitle>
+                                    <CardText className={"post__city"}>{splitStr(data.drop_off_location, 0)}</CardText>
+                                    <CardSubtitle className={"post__country"}>{splitStr(data.drop_off_location, 0)}</CardSubtitle>
                                 </div>
                                 <CardSubtitle className={"post__deadline"}>{data.deadline}</CardSubtitle>
-
                             </div>
 
                         </div>

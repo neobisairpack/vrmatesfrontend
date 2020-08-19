@@ -6,8 +6,10 @@ import './style/user-profile.css';
 import back from "../inbox/inbox-page/icons/back-icon.png";
 import UserInfoCard from "./user-info-card/user-info-card";
 import Reviews from "../reviews/reviews";
+import {withRouter} from "react-router-dom";
 
-const UserProfile = () => {
+const UserProfile = (props) => {
+    console.log(props)
     return (
         <div className={"user-profile"}>
             <ScrollToTopControlller/>
@@ -15,7 +17,7 @@ const UserProfile = () => {
             <div className={"user-profile__content"}>
                 <div className={"user-profile__gen-info"}>
                     <div className={"inbox-page__title"}><label><img src={back}/> Profile</label></div>
-                    <UserInfoCard/>
+                    <UserInfoCard {...props}/>
                 </div>
                 <div className={"user-profile__second-info"}>
                     <div>
@@ -41,4 +43,4 @@ const UserProfile = () => {
     );
 };
 
-export default UserProfile;
+export default withRouter(UserProfile);

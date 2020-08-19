@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../../../profile/style/profile.css';
 import '../style/inbox-page.css';
 import logo from "../../../sidebar/images/logo.svg";
@@ -7,8 +7,11 @@ import imgIcon from "../../../post/images/empty-img.svg";
 import '../../../create-post/style/create-post.css';
 import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
+import {editPost} from "../../../profile/profileActions";
 
 const InboxPageSidebar = (props) => {
+    const [modalShow, setModalShow] = useState(false);
+
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -19,6 +22,10 @@ const InboxPageSidebar = (props) => {
             let res = str.split(" ")
             return res[n];
         }
+    }
+    const editHandler = (post) => {
+        setModalShow(true)
+        props.editPost(post);
     }
     const {post} = props.location.state
     return (
@@ -60,7 +67,7 @@ const InboxPageSidebar = (props) => {
             </div>
 
             <div className={"inbox-page__post-buttons"}>
-                <button className={"create-post__cancel-button"}>Edit</button>
+                <button onClick={() => editHandler(post)} className={"create-post__cancel-button"}>Edit</button>
                 <button className={"create-post__save-button"}>Cancel</button>
             </div>
         </div>
@@ -72,4 +79,11 @@ const mapStateToProps = state => {
         profilePost: state.profilePost,
     }
 }
-export default connect(mapStateToProps)(withRouter(InboxPageSidebar));
+
+const mapDispatchToProps = dispatch => {
+    return {
+        editPost: (post) =>
+            dispatch(editPost(post)),
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(InboxPageSidebar));

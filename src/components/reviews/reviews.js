@@ -40,6 +40,7 @@ const Reviews = () => {
     return (
         <div className={"reviews"}>
             {rate.map((item) =>
+
             <div key={item.id} className={"review"}>
                <div onClick={() => showFullReview(item.id)} className={"review " + ((item.id) % 2 !== 0 ? "review-orange" : "review-blue") }>
                    <div className={"review__rating"}>

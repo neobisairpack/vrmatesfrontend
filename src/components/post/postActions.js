@@ -3,6 +3,7 @@ export const SEND_REQUEST_SUCCESS = "SEND_REQUEST_SUCCESS";
 export const SEND_REQUEST_FAILURE = "SEND_REQUEST_FAILURE";
 export const GET_REQUEST_SUCCESS = "GET_REQUEST_SUCCESS";
 export const GET_REQUEST_FAILURE = "GET_REQUEST_SUCCESS";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 export const sendInterestedRequest = (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
@@ -69,4 +70,8 @@ const getRequestSuccess = (data) => ({
 const getRequestFailure = (error) => ({
     type: GET_REQUEST_FAILURE,
     payload: error
+});
+export const setCurrentUser = (user) => ({
+    type: SET_CURRENT_USER,
+    payload: user
 });

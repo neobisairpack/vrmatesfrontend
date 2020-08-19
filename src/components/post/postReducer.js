@@ -2,12 +2,14 @@ import {
     SEND_REQUEST_SUCCESS,
     SEND_REQUEST_FAILURE,
     GET_REQUEST_SUCCESS,
-    GET_REQUEST_FAILURE
+    GET_REQUEST_FAILURE,
+    SET_CURRENT_USER
 } from './postActions';
 
 const initialState = {
     posts: [],
     interested: [],
+    curUser: {},
     image: {},
     loading: false,
     error: null,
@@ -40,6 +42,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.payload
+            };
+        case SET_CURRENT_USER:
+            return {
+                ...state,
+                loading: false,
+                curUser: action.payload
             };
     }
     return state

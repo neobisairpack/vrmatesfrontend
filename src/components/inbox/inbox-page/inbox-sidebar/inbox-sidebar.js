@@ -8,6 +8,7 @@ import '../../../create-post/style/create-post.css';
 import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {editPost} from "../../../profile/profileActions";
+import {setCurrentUser} from "../../../post/postActions";
 
 const InboxPageSidebar = (props) => {
     const [modalShow, setModalShow] = useState(false);
@@ -24,7 +25,7 @@ const InboxPageSidebar = (props) => {
         }
     }
     const editHandler = (post) => {
-        setModalShow(true)
+        setModalShow(true);
         props.editPost(post);
     }
     const {post} = props.location.state

@@ -2,23 +2,27 @@ import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/interested.css';
 import {withRouter} from "react-router-dom";
-import {getInterestedRequest} from "../../../post/postActions";
+import {getInterestedRequest, setCurrentUser} from "../../../post/postActions";
 import {connect} from "react-redux";
 
 
 const InterestedUser = (props) => {
     const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    console.log(props)
+    //console.log(props)
     useEffect(() => {
         props.getInterestedRequest(props.location.state.post.id)
     }, [])
-    const redirect = (user) => {
-        //console.log(props)
+    const setUserFunc = (user) => {
+        props.setUser(user)
+        redirect(user.first_name)
+    }
+    const redirect = (name) =>{
+        console.log(props, new Date().toLocaleString())
         props.history.push({
-            pathname: `/profile/inbox-page/${user.first_name}`,
-            state: {user: user}
+            pathname: `/profile/inbox-page/${name}`,
         })
     }
+    console.log(props, new Date().toLocaleString())
     const {interested} = props.post;
     const urlImg = 'http://167.172.178.135'
     return (
@@ -27,7 +31,7 @@ const InterestedUser = (props) => {
                 {interested.map((item) =>
                     <div key={item.id} className={"col-4"}>
                         <div className={"interested-user-card "}>
-                            <ul className={"interested-user__info"} onClick={() => redirect(item.requester)}>
+                            <ul className={"interested-user__info"} onClick={() => setUserFunc(item.requester)}>
                                 <li className={"interested__list-item"}>
                                     {item.requester.image ?
                                     <img src={urlImg + item.requester.image} className={"interested__photo"}
@@ -62,6 +66,8 @@ const mapDispatchToProps = dispatch => {
     return {
         getInterestedRequest: (id) =>
             dispatch(getInterestedRequest(id)),
+        setUser: (user) =>
+            dispatch(setCurrentUser(user))
     }
 }
 

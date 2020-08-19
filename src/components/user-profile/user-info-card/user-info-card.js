@@ -7,11 +7,22 @@ import insta from '../icons/insta-icon.png';
 import whats from '../icons/whatsapp-icon.png';
 import telegram from '../icons/tele-icon.png';
 import {withRouter} from "react-router-dom";
+import Box from "@material-ui/core/Box";
+import {withStyles} from "@material-ui/core/styles";
+import Rating from "@material-ui/lab/Rating";
 
 const UserInfoCard = (props) => {
     console.log(props)
-    const {user} = props.location.state
-    const urlImg = 'http://167.172.178.135'
+    const user = props.user;
+    const urlImg = 'http://167.172.178.135';
+    const StyledRating = withStyles({
+        iconFilled: {
+            color: '#FD5A01',
+        },
+        iconEmpty: {
+            color: '#8c8c8c',
+        }
+    })(Rating);
     return (
         <div className={"user-info-card"}>
             <div>
@@ -24,12 +35,11 @@ const UserInfoCard = (props) => {
                     </li>
                     <li className={"user-info__list-item"}>
                         <div className={"user-info__user-name"}>{user.first_name} {user.last_name}</div>
-                        <div className={"user-info__item-rating"}>
-                            {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
-                            {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
-                            {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
-                            {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
-                            {/*<img src={star} className={"user-info__rating-star"} alt={"Rating"}/>*/}
+                        <div className={"post__item-rating"}>
+                            <Box>
+                                <StyledRating name="read-only" value={ user.avg_rating_last_ten} readOnly
+                                              precision={0.5}/>
+                            </Box>
                         </div>
                         <div className={"user-info__cancellation"}>Cancellation Rate:
                             <label className={"user-info__cancel-num"}>{user.canceled_posts_count}/100</label></div>
@@ -39,7 +49,7 @@ const UserInfoCard = (props) => {
             <div className={"user-info__details"}>
                 <div className={"user-info__detail"}>Age: <label className={"user-info__detail-l"}>{user.age} years</label></div>
                 <div className={"user-info__detail"}>Gender: <label className={"user-info__detail-l"}>The {user.gender}</label></div>
-                <div className={"user-info__detail"}>Location: <label className={"user-info__detail-l"}>Spain, Madrid</label></div>
+                <div className={"user-info__detail"}>Location: <label className={"user-info__detail-l"}>{user.city} {user.state}, {user.country}</label></div>
             </div>
             <div className={"user-info__contacts"}>
                 <div className={"user-info__detail"}><img className={"user-info__contact-img"} src={phone}/><label className={"user-info__detail-l"}>{user.phone}</label></div>
@@ -54,4 +64,4 @@ const UserInfoCard = (props) => {
         </div>
     );
 };
-export default withRouter(UserInfoCard);
+export default (withRouter(UserInfoCard));

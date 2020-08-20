@@ -5,24 +5,39 @@ import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import {Modal} from "react-bootstrap";
 import {sendPostHosting} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import {editPost, editPostProvide} from "../profile/profileActions";
 
 const CreatePostHosting = (props) => {
+    const splitStr = (str, n) => {
+        if(str){
+            let res = str.split(" ")
+            return res[n];
+        }
+    }
+    const splitDate = (str, n) => {
+        if(str){
+            let res = str.split("-")
+            return res[n];
+        }
+    }
+    console.log(props.post.preferences)
     const [state, setState] = useState({
-        country1: "",
-        state1: "",
-        city1: "",
-        country2: "",
-        state2: "",
-        city2: "",
-        year: (new Date().getFullYear()).toString(),
-        month: "01",
-        day: "1",
-        title: "",
-        text: "",
-        preferences: ""
+        country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
+        state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
+        city1: props.post ? splitStr(props.post.pickup_location, 2) : "",
+        country2: props.post ? splitStr(props.post.drop_off_location, 0) : "",
+        state2: props.post ? splitStr(props.post.drop_off_location, 1) : "",
+        city2: props.post ? splitStr(props.post.drop_off_location, 2) : "",
+        year: props.post ? splitDate(props.post.deadline, 0) : (new Date().getFullYear()).toString(),
+        month: props.post ? splitDate(props.post.deadline, 1) : "01",
+        day: props.post ? splitDate(props.post.deadline, 2) : "1",
+        title: props.post.title ? props.post.title : "",
+        text: props.post.text ? props.post.text : "",
+        preferences: props.post ? props.preferences : "",
+        id: props.post.id || ""
     })
     const sendPost = () => {
-        props.sendPostHosting(state)
+        props.post ? props.editPost(state) : props.sendPostHosting(state)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -194,6 +209,8 @@ const CreatePostHosting = (props) => {
                         <label className={"create-post__host-preference-type"}>Common space</label>
                     </li>
                 </ul>
+
+                
             </div>
             <div className={"create-post__buttons"}>
                 <button onClick={props.onHide} className={"create-post__cancel-button"}>Cancel</button>
@@ -211,6 +228,10 @@ const mapDispatchToProps = dispatch => {
     return {
         sendPostHosting: post =>
             dispatch(sendPostHosting(post)),
+        editPost: (post) =>
+            dispatch(editPost(post)),
+        editPostProvide: (post) =>
+            dispatch(editPostProvide(post)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostHosting);

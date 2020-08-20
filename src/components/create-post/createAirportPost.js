@@ -8,6 +8,7 @@ import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import {editPost} from "../profile/profileActions";
 
 const CreatePostAirport = (props) => {
+    console.log(props.post)
     const splitStr = (str, n) => {
         if(str){
             let res = str.split(" ")
@@ -31,7 +32,8 @@ const CreatePostAirport = (props) => {
         month: props.post ? splitDate(props.post.deadline, 1) : "01",
         day: props.post ? splitDate(props.post.deadline, 2) : "1",
         title: props.post ? props.post.title : "",
-        text: props.post ? props.post.text : ""
+        text: props.post ? props.post.text : "",
+        id: props.post.id || ""
     })
     const sendPost = () => {
         props.post ? props.editPost(state) : props.sendPostAirport(state)
@@ -57,15 +59,6 @@ const CreatePostAirport = (props) => {
             ...state,
             [e.target.name]: value
         })
-    }
-
-    if(props.post){
-        let country1 = splitStr(props.post.pickup_location, 0)
-        let state1 = splitStr(props.post.pickup_location, 1)
-        let city1 = splitStr(props.pickup_location, 2)
-        let country2 = splitStr(props.post.drop_off_location, 0)
-        let state2 = splitStr(props.post.drop_off_location, 1)
-        let city2 = splitStr(props.drop_off_location, 2)
     }
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post-airport"}>

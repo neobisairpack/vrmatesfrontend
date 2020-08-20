@@ -13,12 +13,16 @@ import Notification from "../../../notification/notification";
 import CreatePostDelivery from "../../../create-post/createDeliveryPost";
 import CreatePostAirport from "../../../create-post/createAirportPost";
 import CreatePostHosting from "../../../create-post/createHostingPost";
+import CreateProviderDelivery from "../../../create-post/createProviderDelivery";
+import CreateProviderAirport from "../../../create-post/createProviderAirport";
+import CreateProviderHosting from "../../../create-post/createProviderHosting";
 
 const InboxPageSidebar = (props) => {
     const [modalShow, setModalShow] = useState(false);
     const [notShow, setNotShow] = useState(false)
     const [notMessage, setNotMessage] = useState("")
     const [type, setType] = useState("")
+    const [typeProvide, setTypeProvide] = useState("")
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -31,14 +35,21 @@ const InboxPageSidebar = (props) => {
         }
     }
     const editHandler = (post) => {
-        if(props.post.interested){
-            setNotMessage("You have interested users, reject them all and try again!")
-            setNotShow(true)
-        }
-        else{
-            setType(post.service_type)
-            setModalShow(true);
-        }
+        console.log(props.post.interested)
+        // if(props.post.interested.length){
+        //     setNotMessage("You have interested users, reject them all and try again!")
+        //     setNotShow(true)
+        // }
+        // else{
+            if(post.requester){
+                setType(post.service_type)
+                setModalShow(true)
+            }
+            else{
+                setTypeProvide(post.service_type)
+                setModalShow(true)
+            }
+       // }
     }
     const {post} = props.location.state
     return (
@@ -87,11 +98,17 @@ const InboxPageSidebar = (props) => {
                 <Notification show={notShow} message={notMessage}
                               onHide={() => setNotShow(false)}/>
             </div>
-            {type === "Delivery" ? <CreatePostDelivery show={modalShow}
+            {type === "Delivery" ? <CreatePostDelivery post={post} show={modalShow}
                                                        onHide={() => setModalShow(false)}/> : type === "Pick Up" ?
                 <CreatePostAirport post={post} show={modalShow}
                                    onHide={() => setModalShow(false)}/> : type === "Hosting" ?
-                    <CreatePostHosting show={modalShow}
+                    <CreatePostHosting post={post} show={modalShow}
+                                       onHide={() => setModalShow(false)}/> : null}
+            {typeProvide === "Delivery" ? <CreateProviderDelivery post={post} show={modalShow}
+                                                       onHide={() => setModalShow(false)}/> : typeProvide === "Pick Up" ?
+                <CreateProviderAirport post={post} show={modalShow}
+                                   onHide={() => setModalShow(false)}/> : typeProvide === "Hosting" ?
+                    <CreateProviderHosting post={post} show={modalShow}
                                        onHide={() => setModalShow(false)}/> : null}
         </div>
     );

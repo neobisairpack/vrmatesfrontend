@@ -5,27 +5,40 @@ import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import {Modal} from "react-bootstrap";
 import {sendProviderDelivery} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import {editPost, editPostProvide} from "../profile/profileActions";
 
 const CreateProviderDelivery = (props) => {
+    const splitStr = (str, n) => {
+        if(str){
+            let res = str.split(" ")
+            return res[n];
+        }
+    }
+    const splitDate = (str, n) => {
+        if(str){
+            let res = str.split("-")
+            return res[n];
+        }
+    }
     const [state, setState] = useState({
-        country1: "",
-        state1: "",
-        city1: "",
-        country2: "",
-        state2: "",
-        city2: "",
-        year1: (new Date().getFullYear()).toString(),
-        month1: "01",
-        day1: "1",
-        year2: (new Date().getFullYear()).toString(),
-        month2: "01",
-        day2: "1",
-        time: "",
-        title: "",
-        text: ""
+        country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
+        state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
+        city1: props.post ? splitStr(props.post.pickup_location, 2) : "",
+        country2: props.post ? splitStr(props.post.drop_off_location, 0) : "",
+        state2: props.post ? splitStr(props.post.drop_off_location, 1) : "",
+        city2: props.post ? splitStr(props.post.drop_off_location, 2) : "",
+        year: props.post ? splitDate(props.post.deadline, 0) : (new Date().getFullYear()).toString(),
+        month: props.post ? splitDate(props.post.deadline, 1) : "01",
+        day: props.post ? splitDate(props.post.deadline, 2) : "1",
+        year2: props.post ? splitDate(props.post.deadline, 0) : (new Date().getFullYear()).toString(),
+        month2: props.post ? splitDate(props.post.deadline, 1) : "01",
+        day2: props.post ? splitDate(props.post.deadline, 2) : "1",
+        title: props.post ? props.post.title : "",
+        text: props.post ? props.post.text : "",
+        id: props.post.id || ""
     })
     const sendPost = () => {
-        props.sendProviderDelivery(state)
+        props.post ? props.editPostProvide(state) : props.sendProviderDelivery(state)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -129,14 +142,14 @@ const CreateProviderDelivery = (props) => {
                 <Row form>
                     <Col md={3}>
                         <FormGroup>
-                            <select name={"day1"} value={state.day1} onChange={e => handleChange(e)} className={"form-control"}>
+                            <select name={"day1"} value={state.day} onChange={e => handleChange(e)} className={"form-control"}>
                                 {getDropListDay()}
                             </select>
                         </FormGroup>
                     </Col>
                     <Col md={3}>
                         <FormGroup>
-                            <select name={"month1"} value={state.month1} onChange={e => handleChange(e)} className={"form-control"}>
+                            <select name={"month1"} value={state.month} onChange={e => handleChange(e)} className={"form-control"}>
                                 <option value={"01"}>January</option>
                                 <option value={"02"}>February</option>
                                 <option value={"03"}>March</option>
@@ -154,7 +167,7 @@ const CreateProviderDelivery = (props) => {
                     </Col>
                     <Col md={3}>
                         <FormGroup>
-                            <select name={"year1"} value={state.year1} onChange={e => handleChange(e)} className={"form-control"}>
+                            <select name={"year1"} value={state.year} onChange={e => handleChange(e)} className={"form-control"}>
                                 {getDropList()}
                             </select>
                         </FormGroup>
@@ -237,6 +250,8 @@ const mapDispatchToProps = dispatch => {
     return {
         sendProviderDelivery: post =>
             dispatch(sendProviderDelivery(post)),
+        editPostProvide: (post) =>
+            dispatch(editPostProvide(post)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProviderDelivery);

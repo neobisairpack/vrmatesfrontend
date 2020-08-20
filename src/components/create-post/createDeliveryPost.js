@@ -7,25 +7,40 @@ import {Modal} from "react-bootstrap";
 import '../update-info/style/update-info.css';
 import {sendPostDelivery} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import {editPost} from "../profile/profileActions";
 
 const CreatePostDelivery = (props) => {
+    const splitStr = (str, n) => {
+        if(str){
+            let res = str.split(" ")
+            return res[n];
+        }
+    }
+    const splitDate = (str, n) => {
+        if(str){
+            let res = str.split("-")
+            return res[n];
+        }
+    }
     const [imageFile1, setImageFile1] = useState("")
     //const [imageFile2, setImageFile2] = useState("")
     const [state, setState] = useState({
-        country1: "",
-        state1: "",
-        city1: "",
-        country2: "",
-        state2: "",
-        city2: "",
-        year: (new Date().getFullYear()).toString(),
-        month: "01",
-        day: "1",
-        title: "",
-        text: ""
+        country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
+        state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
+        city1: props.post ? splitStr(props.post.pickup_location, 2) : "",
+        country2: props.post ? splitStr(props.post.drop_off_location, 0) : "",
+        state2: props.post ? splitStr(props.post.drop_off_location, 1) : "",
+        city2: props.post ? splitStr(props.post.drop_off_location, 2) : "",
+        year: props.post ? splitDate(props.post.deadline, 0) : (new Date().getFullYear()).toString(),
+        month: props.post ? splitDate(props.post.deadline, 1) : "01",
+        day: props.post ? splitDate(props.post.deadline, 2) : "1",
+        title: props.post ? props.post.title : "",
+        text: props.post ? props.post.text : "",
+        id: props.post.id || ""
     })
+    console.log(state)
     const sendPost = () => {
-        props.sendPostDelivery(state, imageFile1)
+        props.post ? props.editPost(state, imageFile1) : props.sendPostDelivery(state, imageFile1)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -226,6 +241,8 @@ const mapDispatchToProps = dispatch => {
     return {
         sendPostDelivery: (post, img) =>
             dispatch(sendPostDelivery(post, img)),
+        editPost: (post) =>
+            dispatch(editPost(post)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostDelivery);

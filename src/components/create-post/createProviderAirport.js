@@ -5,20 +5,34 @@ import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import {Modal} from "react-bootstrap";
 import {sendProviderAirport} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import {editPostProvide} from "../profile/profileActions";
 
 const CreateProviderAirport = (props) => {
+    const splitStr = (str, n) => {
+        if(str){
+            let res = str.split(" ")
+            return res[n];
+        }
+    }
+    const splitDate = (str, n) => {
+        if(str){
+            let res = str.split("-")
+            return res[n];
+        }
+    }
     const [state, setState] = useState({
-        country1: "",
-        state1: "",
-        city1: "",
-        year: (new Date().getFullYear()).toString(),
-        month: "01",
-        day: "1",
-        title: "",
-        text: ""
+        country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
+        state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
+        city1: props.post ? splitStr(props.post.pickup_location, 2) : "",
+        year: props.post ? splitDate(props.post.deadline, 0) : (new Date().getFullYear()).toString(),
+        month: props.post ? splitDate(props.post.deadline, 1) : "01",
+        day: props.post ? splitDate(props.post.deadline, 2) : "1",
+        title: props.post ? props.post.title : "",
+        text: props.post ? props.post.text : "",
+        id: props.post.id || ""
     })
     const sendPost = () => {
-        props.sendProviderAirport(state)
+        props.post ? props.editPostProvide(state) :props.sendProviderAirport(state)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -152,6 +166,8 @@ const mapDispatchToProps = dispatch => {
     return {
         sendProviderAirport: post =>
             dispatch(sendProviderAirport(post)),
+        editPostProvide: (post) =>
+            dispatch(editPostProvide(post)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProviderAirport);

@@ -5,23 +5,36 @@ import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import {Modal} from "react-bootstrap";
 import {sendPostAirport} from "./createPostActions";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import {editPost} from "../profile/profileActions";
 
 const CreatePostAirport = (props) => {
+    const splitStr = (str, n) => {
+        if(str){
+            let res = str.split(" ")
+            return res[n];
+        }
+    }
+    const splitDate = (str, n) => {
+        if(str){
+            let res = str.split("-")
+            return res[n];
+        }
+    }
     const [state, setState] = useState({
-        country1: "",
-        state1: "",
-        city1: "",
-        country2: "",
-        state2: "",
-        city2: "",
-        year: (new Date().getFullYear()).toString(),
-        month: "01",
-        day: "1",
-        title: "",
-        text: ""
+        country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
+        state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
+        city1: props.post ? splitStr(props.post.pickup_location, 2) : "",
+        country2: props.post ? splitStr(props.post.drop_off_location, 0) : "",
+        state2: props.post ? splitStr(props.post.drop_off_location, 1) : "",
+        city2: props.post ? splitStr(props.post.drop_off_location, 2) : "",
+        year: props.post ? splitDate(props.post.deadline, 0) : (new Date().getFullYear()).toString(),
+        month: props.post ? splitDate(props.post.deadline, 1) : "01",
+        day: props.post ? splitDate(props.post.deadline, 2) : "1",
+        title: props.post ? props.post.title : "",
+        text: props.post ? props.post.text : ""
     })
     const sendPost = () => {
-        props.sendPostAirport(state)
+        props.post ? props.editPost(state) : props.sendPostAirport(state)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -44,6 +57,15 @@ const CreatePostAirport = (props) => {
             ...state,
             [e.target.name]: value
         })
+    }
+
+    if(props.post){
+        let country1 = splitStr(props.post.pickup_location, 0)
+        let state1 = splitStr(props.post.pickup_location, 1)
+        let city1 = splitStr(props.pickup_location, 2)
+        let country2 = splitStr(props.post.drop_off_location, 0)
+        let state2 = splitStr(props.post.drop_off_location, 1)
+        let city2 = splitStr(props.drop_off_location, 2)
     }
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post-airport"}>
@@ -190,6 +212,8 @@ const mapDispatchToProps = dispatch => {
     return {
         sendPostAirport: post =>
             dispatch(sendPostAirport(post)),
+        editPost: (post) =>
+            dispatch(editPost(post)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostAirport);

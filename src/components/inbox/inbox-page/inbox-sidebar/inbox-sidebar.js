@@ -9,10 +9,16 @@ import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {editPost} from "../../../profile/profileActions";
 import {setCurrentUser} from "../../../post/postActions";
+import Notification from "../../../notification/notification";
+import CreatePostDelivery from "../../../create-post/createDeliveryPost";
+import CreatePostAirport from "../../../create-post/createAirportPost";
+import CreatePostHosting from "../../../create-post/createHostingPost";
 
 const InboxPageSidebar = (props) => {
     const [modalShow, setModalShow] = useState(false);
-
+    const [notShow, setNotShow] = useState(false)
+    const [notMessage, setNotMessage] = useState("")
+    const [type, setType] = useState("")
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -25,8 +31,14 @@ const InboxPageSidebar = (props) => {
         }
     }
     const editHandler = (post) => {
-        setModalShow(true);
-        props.editPost(post);
+        if(props.post.interested){
+            setNotMessage("You have interested users, reject them all and try again!")
+            setNotShow(true)
+        }
+        else{
+            setType(post.service_type)
+            setModalShow(true);
+        }
     }
     const {post} = props.location.state
     return (
@@ -71,6 +83,16 @@ const InboxPageSidebar = (props) => {
                 <button onClick={() => editHandler(post)} className={"create-post__cancel-button"}>Edit</button>
                 <button className={"create-post__save-button"}>Cancel</button>
             </div>
+            <div>
+                <Notification show={notShow} message={notMessage}
+                              onHide={() => setNotShow(false)}/>
+            </div>
+            {type === "Delivery" ? <CreatePostDelivery show={modalShow}
+                                                       onHide={() => setModalShow(false)}/> : type === "Pick Up" ?
+                <CreatePostAirport post={post} show={modalShow}
+                                   onHide={() => setModalShow(false)}/> : type === "Hosting" ?
+                    <CreatePostHosting show={modalShow}
+                                       onHide={() => setModalShow(false)}/> : null}
         </div>
     );
 };
@@ -78,6 +100,7 @@ const InboxPageSidebar = (props) => {
 const mapStateToProps = state => {
     return {
         profilePost: state.profilePost,
+        post: state.post,
     }
 }
 

@@ -6,6 +6,7 @@ export const GET_INBOX_POST_FAILURE = "GET_INBOX_POST_FAILURE";
 export const EDIT_POST_SUCCESS = "EDIT_POST_SUCCESS";
 export const EDIT_POST_FAILURE = "EDIT_POST_FAILURE";
 export const CHOOSE_YES_NO = "CHOOSE_YES_NO";
+export const SET_CURRENT_CREATED_BY = "CURRENT_CREATED_BY";
 
 export const getPosts = () => {
     let token = JSON.parse(localStorage.getItem("token"));
@@ -22,6 +23,12 @@ export const getPosts = () => {
             .then(axios.spread(function(req, prov){
                 let reqData = req.data || [];
                 let provData = prov.data || [];
+                reqData.forEach((it) =>{
+                    it["createdBy"] = "Requester"
+                })
+                provData.forEach((it) =>{
+                    it["createdBy"] = "Provider"
+                })
                 let res = reqData.concat(provData)
                 dispatch(getInboxPostSuccess(res))
             }) )
@@ -135,6 +142,11 @@ const getInboxPostSuccess = (data) => ({
 
 export const chooseYesNo = (data) => ({
     type: CHOOSE_YES_NO,
+    payload: data
+});
+
+export const setCurrentCreatedBy = (data) => ({
+    type: SET_CURRENT_CREATED_BY,
     payload: data
 });
 

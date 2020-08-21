@@ -7,7 +7,13 @@ import imgIcon from "../../../post/images/empty-img.svg";
 import '../../../create-post/style/create-post.css';
 import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {changePostStatus, chooseYesNo, editPost} from "../../../profile/profileActions";
+import {
+    changePostStatus,
+    chooseYesNo,
+    currentCreatedBy,
+    editPost,
+    setCurrentCreatedBy
+} from "../../../profile/profileActions";
 import {setCurrentUser} from "../../../post/postActions";
 import Notification from "../../../notification/notification";
 import CreatePostDelivery from "../../../create-post/createDeliveryPost";
@@ -28,12 +34,16 @@ const InboxPageSidebar = (props) => {
     const [choice, setChoice] = useState("");
     const [type, setType] = useState("");
     const [typeProvide, setTypeProvide] = useState("");
+    const {post} = props.location.state;
     useEffect(()=>{
         if(props.profilePost.choice !== "") {
             setLogoutShow(false)
             sendCancel()
         }
     }, )
+    useEffect(() => {
+        //localStorage.setItem("createBy", post.requester ? "req" : "prov")
+    }, [])
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -68,7 +78,6 @@ const InboxPageSidebar = (props) => {
     const sendCancel = () =>{
         console.log(props.profilePost.choice, new Date().toLocaleString())
         if(props.profilePost.choice === "yes"){
-            //console.log("yes")
             if(props.post.interested.length){
                 setNotMessage("You have interested users, reject them all and try again!")
                 setNotShow(true)
@@ -81,9 +90,6 @@ const InboxPageSidebar = (props) => {
             }
         }
     }
-
-
-    const {post} = props.location.state
 
     return (
         <div className={"inbox-page__sidebar"}>
@@ -130,28 +136,6 @@ const InboxPageSidebar = (props) => {
             <div>
                 <Notification show={notShow} message={notMessage}
                               onHide={() => setNotShow(false)}/>
-                              {/*<>*/}
-                              {/*    <Modal*/}
-                              {/*        aria-labelledby="contained-modal-title-vcenter"*/}
-                              {/*        centered*/}
-                              {/*        dialogClassName={"logout-content"}*/}
-                              {/*        show={props.show} onHide={props.onHide}>*/}
-                              {/*        <Modal.Header closeButton>*/}
-                              {/*            /!*<Modal.Title id="contained-modal-title-vcenter">*!/*/}
-                              {/*            /!*    Log out*!/*/}
-                              {/*            /!*</Modal.Title>*!/*/}
-                              {/*        </Modal.Header>*/}
-                              {/*        <Modal.Body>*/}
-                              {/*            <p>*/}
-                              {/*                {props.message}*/}
-                              {/*            </p>*/}
-                              {/*        </Modal.Body>*/}
-                              {/*        <Modal.Footer>*/}
-                              {/*            <Button onClick={() => choiceHandler()} className={"logout__yes"}>Yes</Button>*/}
-                              {/*            <Button onClick={props.onHide} className={"logout__no"}>No</Button>*/}
-                              {/*        </Modal.Footer>*/}
-                              {/*    </Modal>*/}
-                              {/*    </>*/}
                 <LogOut hiddenModal={() => console.log('closed')} setChoice={(c) => setChoice(c)} show={logoutShow} message={logoutMessage}
                                       onHide={() => setLogoutShow(false)}/>
             </div>
@@ -185,7 +169,9 @@ const mapDispatchToProps = dispatch => {
         changePostStatus: (post, status) =>
             dispatch(changePostStatus(post, status)),
         chooseYesNo: (data) =>
-            dispatch(chooseYesNo(data))
+            dispatch(chooseYesNo(data)),
+        setCurrentCreatedBy: (data) =>
+            dispatch(setCurrentCreatedBy(data))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(InboxPageSidebar));

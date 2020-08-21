@@ -8,6 +8,7 @@ import '../dashboard/style/main.css';
 import Header from "../header";
 import Footer from "../footer";
 import ProfileSidebar from "../sidebar/profile-sidebar";
+import CompletedPost from "./completed-post/completed-post";
 
 const Completed = (props) => {
     const [activeLink, setActiveLink] = useState(null)
@@ -48,7 +49,7 @@ const Completed = (props) => {
                         </li>
                     </ul>
                 </div>
-                <Post/>
+                <CompletedPost/>
             </div>
             <Footer/>
         </div>

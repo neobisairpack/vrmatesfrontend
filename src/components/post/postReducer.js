@@ -5,6 +5,7 @@ import {
     GET_REQUEST_FAILURE,
     SET_CURRENT_USER
 } from './postActions';
+import {CHOOSE_YES_NO} from "../profile/profileActions";
 
 const initialState = {
     posts: [],

@@ -5,6 +5,7 @@ export const GET_INBOX_POST_SUCCESS = "GET_INBOX_POST_SUCCESS";
 export const GET_INBOX_POST_FAILURE = "GET_INBOX_POST_FAILURE";
 export const EDIT_POST_SUCCESS = "EDIT_POST_SUCCESS";
 export const EDIT_POST_FAILURE = "EDIT_POST_FAILURE";
+export const CHOOSE_YES_NO = "CHOOSE_YES_NO";
 
 export const getPosts = () => {
     let token = JSON.parse(localStorage.getItem("token"));
@@ -67,9 +68,8 @@ export const editPostProvide = (post) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(getInboxPostStarted());
-        console.log(post)
         axios
-            .post(`http://167.172.178.135/api/provide-services/${post.id}/`, {
+            .put(`http://167.172.178.135/api/provide-services/${post.id}/`, {
                     pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
                     location: (post.country1).concat(" ", post.state1, " ", post.city1),
                     drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
@@ -89,11 +89,36 @@ export const editPostProvide = (post) => {
 
             )
             .then(res => {
+                dispatch(editPostSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(editPostFailure(err));
+            });
+    };
+};
+
+export const changePostStatus = (post, status) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    console.log(status)
+    return dispatch => {
+        dispatch(getInboxPostStarted());
+        axios
+            .put(`http://167.172.178.135/api/services/${post.id}/`, {
+                    status: status,
+                    deadline: post.deadline
+                },
+                {
+                    headers: {
+                        "Authorization": "Token " + token
+                    }
+                }
+
+            )
+            .then(res => {
                 console.log(res.data)
                 dispatch(editPostSuccess(res.data));
             })
             .catch(err => {
-                console.log(post)
                 dispatch(editPostFailure(err));
             });
     };
@@ -105,6 +130,11 @@ const getInboxPostStarted = () => ({
 
 const getInboxPostSuccess = (data) => ({
     type: GET_INBOX_POST_SUCCESS,
+    payload: data
+});
+
+export const chooseYesNo = (data) => ({
+    type: CHOOSE_YES_NO,
     payload: data
 });
 

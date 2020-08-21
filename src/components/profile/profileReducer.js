@@ -1,4 +1,10 @@
-import {GET_INBOX_POST_STARTED, REMOVE_INBOX_POST, GET_INBOX_POST_SUCCESS, GET_INBOX_POST_FAILURE} from "./profileActions";
+import {
+    GET_INBOX_POST_STARTED,
+    REMOVE_INBOX_POST,
+    GET_INBOX_POST_SUCCESS,
+    GET_INBOX_POST_FAILURE,
+    CHOOSE_YES_NO
+} from "./profileActions";
 
 const initialState = {
     inbox_posts: [],
@@ -6,6 +12,7 @@ const initialState = {
     completed_posts: [],
     loading: true,
     error: null,
+    choice: ""
 }
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +38,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.payload.error
+            };
+        case CHOOSE_YES_NO:
+            console.log(action)
+            return {
+                ...state,
+                loading: false,
+                choice: action.payload
             };
     }
     return state

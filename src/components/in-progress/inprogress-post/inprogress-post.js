@@ -10,12 +10,12 @@ import {
 } from 'reactstrap';
 import './style/inprogress-post.css';
 import {DropdownButton, Dropdown} from "react-bootstrap";
-import RateUser from "../../reviews/full-review/rate-user";
 import {getPosts} from "../../profile/profileActions";
 import {connect} from "react-redux";
 import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
+import RateUser from "../../reviews/rate-user/rate-user";
 
 const InProgressPost = (props) => {
     const urlImg = 'http://167.172.178.135';

@@ -193,11 +193,9 @@ export const sendProviderHosting = (post) => {
 
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(sendPostSuccess(res.data));
             })
             .catch(err => {
-                console.log(token)
                 dispatch(sendPostFailure(err));
             });
     };

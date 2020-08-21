@@ -20,7 +20,6 @@ const CreatePostHosting = (props) => {
             return res[n];
         }
     }
-    console.log(props.post.preferences)
     const [state, setState] = useState({
         country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
         state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
@@ -33,9 +32,10 @@ const CreatePostHosting = (props) => {
         day: props.post ? splitDate(props.post.deadline, 2) : "1",
         title: props.post.title ? props.post.title : "",
         text: props.post.text ? props.post.text : "",
-        preferences: props.post ? props.preferences : "",
+        preferences: props.post ? props.post.preferences : "",
         id: props.post.id || ""
     })
+
     const sendPost = () => {
         props.post ? props.editPost(state) : props.sendPostHosting(state)
     }
@@ -210,7 +210,7 @@ const CreatePostHosting = (props) => {
                     </li>
                 </ul>
 
-                
+
             </div>
             <div className={"create-post__buttons"}>
                 <button onClick={props.onHide} className={"create-post__cancel-button"}>Cancel</button>

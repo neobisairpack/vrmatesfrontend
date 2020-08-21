@@ -34,7 +34,6 @@ export const editPost = (post) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(getInboxPostStarted());
-        console.log(post)
         axios
             .put(`http://167.172.178.135/api/services/${post.id}/`, {
                     pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
@@ -56,11 +55,9 @@ export const editPost = (post) => {
 
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(editPostSuccess(res.data));
             })
             .catch(err => {
-                console.log(post)
                 dispatch(getInboxPostFailure(err));
             });
     };

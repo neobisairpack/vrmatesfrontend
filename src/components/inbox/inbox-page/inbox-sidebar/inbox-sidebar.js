@@ -36,11 +36,11 @@ const InboxPageSidebar = (props) => {
     }
     const editHandler = (post) => {
         console.log(props.post.interested)
-        // if(props.post.interested.length){
-        //     setNotMessage("You have interested users, reject them all and try again!")
-        //     setNotShow(true)
-        // }
-        // else{
+        if(props.post.interested.length){
+            setNotMessage("You have interested users, reject them all and try again!")
+            setNotShow(true)
+        }
+        else{
             if(post.requester){
                 setType(post.service_type)
                 setModalShow(true)
@@ -49,7 +49,7 @@ const InboxPageSidebar = (props) => {
                 setTypeProvide(post.service_type)
                 setModalShow(true)
             }
-       // }
+        }
     }
     const {post} = props.location.state
     return (

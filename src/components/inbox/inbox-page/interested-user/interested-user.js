@@ -2,13 +2,11 @@ import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/interested.css';
 import {withRouter} from "react-router-dom";
-import {getInterestedRequest, setCurrentUser} from "../../../post/postActions";
+import {changeStatusRequest, getInterestedRequest, setCurrentUser} from "../../../post/postActions";
 import {connect} from "react-redux";
 
 
 const InterestedUser = (props) => {
-    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    //console.log(props)
     useEffect(() => {
         props.getInterestedRequest(props.location.state.post.id)
     }, [])
@@ -21,6 +19,12 @@ const InterestedUser = (props) => {
         props.history.push({
             pathname: `/profile/inbox-page/${name}`,
         })
+    }
+    const acceptHandler = (req) =>{
+        props.changeStatusRequest(req, "Accepted")
+    }
+    const canceltHandler = (req) =>{
+        props.changeStatusRequest(req, "Canceled")
     }
     console.log(props, new Date().toLocaleString())
     const {interested} = props.post;
@@ -45,8 +49,8 @@ const InterestedUser = (props) => {
                             </ul>
                             <div className={"interested__service-type"}>{item.service.service_type}</div>
                             <div className={"interested__buttons"}>
-                                <button className={"interested__button interested__button_accept"}>Accept</button>
-                                <button className={"interested__button interested__button_cancel"}>Cancel</button>
+                                <button onClick={() => acceptHandler(item)} className={"interested__button interested__button_accept"}>Accept</button>
+                                <button onClick={() => canceltHandler(item)} className={"interested__button interested__button_cancel"}>Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -67,7 +71,9 @@ const mapDispatchToProps = dispatch => {
         getInterestedRequest: (id) =>
             dispatch(getInterestedRequest(id)),
         setUser: (user) =>
-            dispatch(setCurrentUser(user))
+            dispatch(setCurrentUser(user)),
+        changeStatusRequest: (req, status) =>
+            dispatch(changeStatusRequest(req, status)),
     }
 }
 

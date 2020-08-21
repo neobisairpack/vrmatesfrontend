@@ -53,6 +53,31 @@ export const getInterestedRequest = (id) => {
     };
 };
 
+export const changeStatusRequest = (req, status) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    console.log(req, status)
+    return dispatch => {
+        axios
+            .put(`http://167.172.178.135/api/request-services/${req.id}/`, {
+                    status: status,
+                    service: req.service.id,
+                    accept: status === "Accepted"
+                },
+                {
+                    headers: {
+                        "Authorization": "Token " + token
+                    }
+                }
+            )
+            .then(res => {
+                console.log(res.data)
+                dispatch(sendRequestSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(sendRequestFailure(err));
+            });
+    };
+};
 const sendRequestSuccess = (data) => ({
     type: SEND_REQUEST_SUCCESS,
     payload: data

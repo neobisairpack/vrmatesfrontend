@@ -57,13 +57,13 @@ textarea.update__about-me.form-control::placeholder {
   color: #000000;
 }
 
-[type=file] {
+.update__input-file-btn {
   height: 0;
   overflow: hidden;
   width: 0;
 }
 
-[type=file] + label {
+.update__input-file-btn + label {
   position: relative;
   cursor: pointer;
   width: 116px;
@@ -78,14 +78,14 @@ textarea.update__about-me.form-control::placeholder {
   box-sizing: border-box;
   border-radius: 6px;
 }
-[type=file] + label.update__input-file-fake {
+.update__input-file-btn + label.update__input-file-fake {
   overflow: hidden;
 }
-[type=file] + label.update__input-file-fake img {
+.update__input-file-btn + label.update__input-file-fake img {
   display: inline-block;
   transition: all 0.3s;
 }
-[type=file] + label.update__input-file-fake::before {
+.update__input-file-btn + label.update__input-file-fake::before {
   content: "";
   font-size: 130%;
   height: 100%;
@@ -101,9 +101,9 @@ textarea.update__about-me.form-control::placeholder {
   transition: all 0.3s;
   width: 100%;
 }
-[type=file] + label.update__input-file-fake:hover img {
+.update__input-file-btn + label.update__input-file-fake:hover img {
   transform: translateY(300%);
 }
-[type=file] + label.update__input-file-fake:hover::before {
+.update__input-file-btn + label.update__input-file-fake:hover::before {
   top: 5px;
 }

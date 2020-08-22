@@ -13,14 +13,22 @@ import LogOutImg from './images/logout.svg';
 import {Link} from "react-router-dom";
 import {withRouter} from 'react-router-dom';
 import LogOut from "../pop-up/popup-logout";
+import {connect} from "react-redux";
 
 
 const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeLink, setActiveLink] = useState(null)
     const [modalShow, setModalShow] = useState(false)
+    const [logoutMessage, setLogoutMessage] = useState("")
 
     const toggle = () => setIsOpen(!isOpen);
+    useEffect(()=>{
+        if(props.profilePost.choice !== "") {
+            localStorage.removeItem("token");
+            window.location.href = "/";
+        }
+    }, )
     useEffect(() => {
         const path = props.location.pathname;
         switch (path) {
@@ -49,6 +57,11 @@ const Header = (props) => {
                 setActiveLink(null);
         }
     }, [])
+
+    const logoutHandler = () =>{
+        setLogoutMessage("Are you sure you want to logout?");
+        setModalShow(true)
+    }
     return (
         <div className={(props.style ? "inbox-header" : "header")}>
             <Navbar light expand="md">
@@ -65,7 +78,7 @@ const Header = (props) => {
                         </NavItem>
                     </Nav>
                     <NavbarText className={"nav__item_logout "}>
-                        <button onClick={() => setModalShow(true)} className={
+                        <button onClick={() => logoutHandler()} className={
                             "nav__logout-btn"
                         }><img src={LogOutImg}
                                                                         className={"nav__item-logout-icon"}
@@ -74,11 +87,17 @@ const Header = (props) => {
                     </NavbarText>
                 </Collapse>
             </Navbar>
-            <LogOut show={modalShow}
+            <LogOut message={logoutMessage} show={modalShow}
                     onHide={() => setModalShow(false)}/>
         </div>
     );
 }
 
-export default withRouter(Header);
+const mapStateToProps = state => {
+    return {
+        profilePost: state.profilePost,
+    }
+}
+
+export default connect(mapStateToProps)(withRouter(Header));
 

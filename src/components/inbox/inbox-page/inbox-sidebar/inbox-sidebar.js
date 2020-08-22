@@ -41,9 +41,7 @@ const InboxPageSidebar = (props) => {
             sendCancel()
         }
     }, )
-    useEffect(() => {
-        //localStorage.setItem("createBy", post.requester ? "req" : "prov")
-    }, [])
+
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",

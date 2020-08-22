@@ -22,7 +22,7 @@ const CreatePostDelivery = (props) => {
             return res[n];
         }
     }
-    const [imageFile1, setImageFile1] = useState("")
+    const [imageFile1, setImageFile1] = useState("");
     //const [imageFile2, setImageFile2] = useState("")
     const [state, setState] = useState({
         country1: props.post ? splitStr(props.post.pickup_location, 0) : "",

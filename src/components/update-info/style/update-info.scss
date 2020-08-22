@@ -53,12 +53,12 @@ textarea.update__about-me.form-control{
     color: #000000;
   }
 }
-[type="file"]{
+.update__input-file-btn{
   height: 0;
   overflow: hidden;
   width: 0;
 }
-[type="file"] + label{
+.update__input-file-btn + label{
   position: relative;
   cursor: pointer;
   width: 116px;

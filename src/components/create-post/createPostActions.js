@@ -7,8 +7,8 @@ export const GET_POST_IMAGES_FAILURE = "GET_POST_IMAGES_FAILURE";
 
 export const sendPostDelivery = (post, image) => {
     const fd = new FormData();
-    fd.append("pickup_location", (post.country1).concat(" ", post.state1, " ", post.city1))
-    fd.append('drop_off_location', (post.country2).concat(" ", post.state2, " ", post.city2))
+    fd.append("pickup_location", (post.country1).concat(",", post.state1, ",", post.city1))
+    fd.append('drop_off_location', (post.country2).concat(",", post.state2, ",", post.city2))
     fd.append('deadline', (post.year).concat("-", post.month, "-", post.day))
     fd.append('title', post.title)
     fd.append('text', post.text)
@@ -42,9 +42,9 @@ export const sendProviderDelivery = (post) => {
         dispatch(sendPostStarted());
         axios
             .post(`http://167.172.178.135/api/provide-services/`, {
-                    pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
-                    deadline: (post.year1).concat("-", post.month1, "-", post.day1),
-                    drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
+                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
+                    deadline: (post.year).concat("-", post.month, "-", post.day),
+                    drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
                     arrive_date: (post.year2).concat("-", post.month2, "-", post.day2, "T12:07:46Z"),
                     status: "Created, not accepted",
                     service_type: "Delivery",
@@ -76,8 +76,8 @@ export const sendPostAirport = (post) => {
         dispatch(sendPostStarted());
         axios
             .post(`http://167.172.178.135/api/services/`, {
-                    pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
-                    drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
+                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
+                    drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
                     status: "Created, not accepted",
                     service_type: "Pick Up",
@@ -110,7 +110,7 @@ export const sendProviderAirport = (post) => {
         dispatch(sendPostStarted());
         axios
             .post(`http://167.172.178.135/api/provide-services/`, {
-                    pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
+                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
                     status: "Created, not accepted",
                     service_type: "Pick Up",
@@ -141,8 +141,10 @@ export const sendPostHosting = (post) => {
         dispatch(sendPostStarted());
         axios
             .post(`http://167.172.178.135/api/services/`, {
-                    requester_from: (post.country1).concat(" ", post.state1, " ", post.city1),
-                    location: (post.country2).concat(" ", post.state2, " ", post.city2),
+                    requester_from: (post.country1).concat(",", post.state1, ",", post.city1),
+                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
+                    location: (post.country2).concat(",", post.state2, ",", post.city2),
+                    drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
                     status: "Created, not accepted",
                     service_type: "Hosting",
@@ -176,7 +178,8 @@ export const sendProviderHosting = (post) => {
         dispatch(sendPostStarted());
         axios
             .post(`http://167.172.178.135/api/provide-services/`, {
-                    location: (post.country1).concat(" ", post.state1, " ", post.city1),
+                    location: (post.country1).concat(",", post.state1, ",", post.city1),
+                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
                     status: "Created, not accepted",
                     service_type: "Hosting",

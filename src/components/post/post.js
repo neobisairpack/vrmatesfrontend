@@ -26,7 +26,7 @@ const Post = (props) => {
     }
    const splitStr = (str, n) => {
        if(str){
-        let res = str.split(" ")
+        let res = str.split(",")
             return res[n];
         }
    }
@@ -100,7 +100,7 @@ const Post = (props) => {
                                             </div>
                                         </li>
                                         <li className={"post__top-list-item"}><CardText
-                                            className={"post__package-provider"}>{url === 'service' ? "Requester" : "Provider"}</CardText>
+                                            className={"post__package-provider"}>{url === 'services' ? "Requester" : "Provider"}</CardText>
                                         </li>
                                     </ul>
                                 </div>

@@ -8,7 +8,7 @@ import '../../../create-post/style/create-post.css';
 import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {
-    changePostStatus,
+    changePostStatus, changePostStatusProvide,
     chooseYesNo,
     currentCreatedBy,
     editPost,
@@ -36,7 +36,7 @@ const InboxPageSidebar = (props) => {
     const [typeProvide, setTypeProvide] = useState("");
     const {post} = props.location.state;
     useEffect(()=>{
-        if(props.profilePost.choice !== "") {
+        if(choice !== "") {
             setLogoutShow(false)
             sendCancel()
         }
@@ -49,7 +49,7 @@ const InboxPageSidebar = (props) => {
     }
     const splitStr = (str, n) => {
         if (str) {
-            let res = str.split(" ")
+            let res = str.split(",")
             return res[n];
         }
     }
@@ -79,12 +79,13 @@ const InboxPageSidebar = (props) => {
             if(props.post.interested.length){
                 setNotMessage("You have interested users, reject them all and try again!")
                 setNotShow(true)
-                props.chooseYesNo("")
+                setChoice("")
             }
             else{
                 let status = "Canceled"
-                props.changePostStatus(post, status)
-                props.chooseYesNo("")
+                post.createdBy === "Requester" ? props.changePostStatus(post, status) :
+                    props.changePostStatusProvide(post, status)
+                setChoice("")
             }
         }
     }
@@ -166,6 +167,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(editPost(post)),
         changePostStatus: (post, status) =>
             dispatch(changePostStatus(post, status)),
+        changePostStatusProvide: (post, status) =>
+            dispatch(changePostStatusProvide(post, status)),
         chooseYesNo: (data) =>
             dispatch(chooseYesNo(data)),
         setCurrentCreatedBy: (data) =>

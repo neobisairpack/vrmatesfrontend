@@ -44,8 +44,8 @@ export const editPost = (post) => {
         dispatch(getInboxPostStarted());
         axios
             .put(`http://167.172.178.135/api/services/${post.id}/`, {
-                    pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
-                    drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
+                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
+                    drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
                     requester_from: (post.country1).concat(" ", post.state1, " ", post.city1),
                     location: (post.country2).concat(" ", post.state2, " ", post.city2),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
@@ -77,8 +77,8 @@ export const editPostProvide = (post) => {
         dispatch(getInboxPostStarted());
         axios
             .put(`http://167.172.178.135/api/provide-services/${post.id}/`, {
-                    pickup_location: (post.country1).concat(" ", post.state1, " ", post.city1),
-                    location: (post.country1).concat(" ", post.state1, " ", post.city1),
+                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
+                    location: (post.country1).concat(",", post.state1, ",", post.city1),
                     drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
                     arrive_date: (post.year2).concat("-", post.month2, "-", post.day2, "T12:07:46Z"),
@@ -130,6 +130,34 @@ export const changePostStatus = (post, status) => {
             });
     };
 };
+
+export const changePostStatusProvide = (post, status) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    console.log(status)
+    return dispatch => {
+        dispatch(getInboxPostStarted());
+        axios
+            .put(`http://167.172.178.135/api/provide-services/${post.id}/`, {
+                    status: status,
+                    deadline: post.deadline
+                },
+                {
+                    headers: {
+                        "Authorization": "Token " + token
+                    }
+                }
+
+            )
+            .then(res => {
+                console.log(res.data)
+                dispatch(editPostSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(editPostFailure(err));
+            });
+    };
+};
+
 
 const getInboxPostStarted = () => ({
     type: GET_INBOX_POST_STARTED

@@ -10,15 +10,31 @@ import {
 } from 'reactstrap';
 import './style/inprogress-post.css';
 import {DropdownButton, Dropdown} from "react-bootstrap";
-import {getPosts} from "../../profile/profileActions";
+import {changePostStatus, getPosts} from "../../profile/profileActions";
 import {connect} from "react-redux";
 import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import RateUser from "../../reviews/rate-user/rate-user";
+import LogOut from "../../pop-up/popup-logout";
+import Support from "../../popup-support";
 
 const InProgressPost = (props) => {
     const urlImg = 'http://167.172.178.135';
+    const [activeModal, setActiveModal] = useState(null);
+    const [logoutShow, setLogoutShow] = useState(false);
+    const [logoutMessage, setLogoutMessage] = useState("")
+    const [supportModal, setSupportModal] = useState(false)
+    const [curPost, setCurPost] = useState({})
+    const [choice, setChoice] = useState("");
+
+    useEffect(()=>{
+        console.log(props.profilePost.choice)
+        if(choice !== "") {
+            setLogoutShow(false)
+            sendCancel()
+        }
+    }, )
     useEffect(() => {
         props.getPosts();
     }, [])
@@ -40,6 +56,24 @@ const InProgressPost = (props) => {
             let res = str.split(" ")
             return res[n];
         }
+    }
+
+    const modalHandler = (index) => {
+        setActiveModal(index);
+    }
+    const cancelHandler = (item) =>{
+        setCurPost(item)
+        setLogoutMessage("Are sure you want to cancel the post? Points will be splitted according to date.");
+        setLogoutShow(true)
+    }
+
+    const sendCancel = () =>{
+        console.log(choice, new Date().toLocaleString())
+        if(choice === "yes"){
+                let status = "Canceled"
+                props.changePostStatus(curPost, status)
+        }
+        setChoice("")
     }
     const [modalShow, setModalShow] = useState(false)
     const {inprog_posts} = props.profilePost;
@@ -81,9 +115,9 @@ const InProgressPost = (props) => {
                                                                         src={"https://img.icons8.com/ios-glyphs/30/000000/more.png"}/>}
                                                             className={"inprogress__more-btn"}>
                                                 <Dropdown.Item eventKey="1"
-                                                               onClick={() => setModalShow(true)}>Confirm</Dropdown.Item>
-                                                <Dropdown.Item eventKey="2">Cancel</Dropdown.Item>
-                                                <Dropdown.Item eventKey="3">Report</Dropdown.Item>
+                                                               onClick={() => modalHandler(item.id)}>Confirm</Dropdown.Item>
+                                                <Dropdown.Item onClick={() => cancelHandler(item)} eventKey="2">Cancel</Dropdown.Item>
+                                                <Dropdown.Item onClick={() => setSupportModal(true)} eventKey="3">Report</Dropdown.Item>
                                             </DropdownButton>
                                         </li>
                                     </ul>
@@ -109,13 +143,17 @@ const InProgressPost = (props) => {
                             <CardText className={"post__text"}>{item.title} {item.text}</CardText>
                             <CardText className={"post__email"}>{item.createdBy === "Requester" ? item.requester.email : item.provider.email}</CardText>
                         </Card>
+                        <RateUser show={activeModal === item.id}
+                                  onHide={() => setActiveModal(null)}/>
                     </div>
                 )}
                 <div>
                 </div>
             </div>
-            <RateUser show={modalShow}
-                      onHide={() => setModalShow(false)}/>
+            <LogOut setChoice={(c) => setChoice(c)} show={logoutShow} message={logoutMessage}
+                    onHide={() => setLogoutShow(false)}/>
+            <Support show={supportModal}
+                     onHide={() => setSupportModal(false)}/>
         </div>
     );
 };
@@ -129,6 +167,8 @@ const mapDispatchToProps = dispatch => {
     return {
         getPosts: () =>
             dispatch(getPosts()),
+        changePostStatus: (post, status) =>
+            dispatch(changePostStatus(post, status)),
     }
 }
 

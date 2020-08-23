@@ -134,7 +134,7 @@ const InboxPageSidebar = (props) => {
             <div>
                 <Notification show={notShow} message={notMessage}
                               onHide={() => setNotShow(false)}/>
-                <LogOut hiddenModal={() => console.log('closed')} setChoice={(c) => setChoice(c)} show={logoutShow} message={logoutMessage}
+                <LogOut setChoice={(c) => setChoice(c)} show={logoutShow} message={logoutMessage}
                                       onHide={() => setLogoutShow(false)}/>
             </div>
             {type === "Delivery" ? <CreatePostDelivery post={post} show={modalShow}
@@ -169,7 +169,7 @@ const mapDispatchToProps = dispatch => {
         chooseYesNo: (data) =>
             dispatch(chooseYesNo(data)),
         setCurrentCreatedBy: (data) =>
-            dispatch(setCurrentCreatedBy(data))
+            dispatch(setCurrentCreatedBy(data)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(InboxPageSidebar));

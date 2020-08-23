@@ -13,7 +13,6 @@ import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import {connect} from "react-redux";
-import {getPostImages} from "../create-post/createPostActions";
 import {sendInterestedRequest} from "./postActions";
 
 const Post = (props) => {
@@ -49,9 +48,14 @@ const Post = (props) => {
             }
         })
             .then(res => {
-                setData(res.data)
+                let posts = []
+                res.data.map((item) => {
+                    if(item.status === "Created, not accepted"){
+                        posts.push(item)
+                    }
+                })
+                setData(posts)
                 setLoading(true)
-                console.log(res)
             })
             .catch((err) => console.log(err))
     }, [])

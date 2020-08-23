@@ -35,7 +35,7 @@ const CreateProviderDelivery = (props) => {
         day2: props.post ? splitDate(props.post.deadline, 2) : "1",
         title: props.post ? props.post.title : "",
         text: props.post ? props.post.text : "",
-        id: props.post.id || ""
+        id: props.post ? props.post.id : 0
     })
     const sendPost = () => {
         props.post ? props.editPostProvide(state) : props.sendProviderDelivery(state)
@@ -142,14 +142,14 @@ const CreateProviderDelivery = (props) => {
                 <Row form>
                     <Col md={3}>
                         <FormGroup>
-                            <select name={"day1"} value={state.day} onChange={e => handleChange(e)} className={"form-control"}>
+                            <select name={"day"} value={state.day} onChange={e => handleChange(e)} className={"form-control"}>
                                 {getDropListDay()}
                             </select>
                         </FormGroup>
                     </Col>
                     <Col md={3}>
                         <FormGroup>
-                            <select name={"month1"} value={state.month} onChange={e => handleChange(e)} className={"form-control"}>
+                            <select name={"month"} value={state.month} onChange={e => handleChange(e)} className={"form-control"}>
                                 <option value={"01"}>January</option>
                                 <option value={"02"}>February</option>
                                 <option value={"03"}>March</option>
@@ -167,7 +167,7 @@ const CreateProviderDelivery = (props) => {
                     </Col>
                     <Col md={3}>
                         <FormGroup>
-                            <select name={"year1"} value={state.year} onChange={e => handleChange(e)} className={"form-control"}>
+                            <select name={"year"} value={state.year} onChange={e => handleChange(e)} className={"form-control"}>
                                 {getDropList()}
                             </select>
                         </FormGroup>

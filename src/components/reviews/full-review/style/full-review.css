@@ -1,7 +1,7 @@
 .full-review .modal-content {
   position: absolute;
   left: 20%;
-  width: 80%;
+  width: 85%;
   background: #FFFFFF;
   border-radius: 20px;
   z-index: 99;
@@ -33,6 +33,12 @@
 
 .full-review__exit {
   float: right;
+  cursor: pointer;
+}
+.full-review__exit:hover {
+  background-color: #f5f4f2;
+  box-shadow: 0 0 0 10px #f5f4f2;
+  border-radius: 50%;
 }
 
 .full-review__image {
@@ -68,25 +74,48 @@
   justify-content: center;
   align-items: center;
   height: 150px;
-  background: #F8F8F8;
+  background: #F0F0F0;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border-radius: 6px;
 }
-.rate__input-file-btn + label.update__input-file-fake {
+.rate__input-file-btn + label.rate__input-file-fake {
   overflow: hidden;
 }
-.rate__input-file-btn + label.update__input-file-fake img {
+.rate__input-file-btn + label.rate__input-file-fake img {
+  background-color: #E6E6E6;
+  box-shadow: 0 0 0 10px #E6E6E6;
+  border-radius: 50%;
   display: inline-block;
-  transition: all 0.3s;
 }
-.rate__input-file-btn + label.update__input-file-fake:hover img {
-  transform: translateY(300%);
+.rate__input-file-btn + label.rate__input-file-fake:hover img {
   background-color: #f5f4f2;
   box-shadow: 0 0 0 10px #f5f4f2;
   border-radius: 50%;
 }
 
 textarea.rate__text.form-control {
+  background: #F0F0F0 !important;
   height: 160px;
+}
+
+.rate__attach-photo-lbl {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.4px;
+  color: #B8B8B8;
+  margin-top: 20px;
+}
+
+.rate__title {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 24px;
+  color: #000000;
 }

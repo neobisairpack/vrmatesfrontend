@@ -21,10 +21,11 @@ const Header = (props) => {
     const [activeLink, setActiveLink] = useState(null)
     const [modalShow, setModalShow] = useState(false)
     const [logoutMessage, setLogoutMessage] = useState("")
+    const [choice, setChoice] = useState("");
 
     const toggle = () => setIsOpen(!isOpen);
     useEffect(()=>{
-        if(props.profilePost.choice !== "") {
+        if(choice !== "") {
             localStorage.removeItem("token");
             window.location.href = "/";
         }
@@ -87,7 +88,7 @@ const Header = (props) => {
                     </NavbarText>
                 </Collapse>
             </Navbar>
-            <LogOut message={logoutMessage} show={modalShow}
+            <LogOut setChoice={(c) => setChoice(c)} message={logoutMessage} show={modalShow}
                     onHide={() => setModalShow(false)}/>
         </div>
     );

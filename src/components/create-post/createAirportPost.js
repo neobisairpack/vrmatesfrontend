@@ -33,7 +33,7 @@ const CreatePostAirport = (props) => {
         day: props.post ? splitDate(props.post.deadline, 2) : "1",
         title: props.post ? props.post.title : "",
         text: props.post ? props.post.text : "",
-        id: props.post.id || ""
+        id: props.post ? props.post.id : 0
     })
     const sendPost = () => {
         props.post ? props.editPost(state) : props.sendPostAirport(state)

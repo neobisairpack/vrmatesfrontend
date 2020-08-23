@@ -31,7 +31,7 @@ const CreateProviderHosting = (props) => {
         title: props.post ? props.post.title : "",
         text: props.post ? props.post.text : "",
         preferences: props.post ? props.preferences : "",
-        id: props.post.id || ""
+        id: props.post ? props.post.id : 0
     })
     const sendPost = () => {
         props.post ? props.editPostProvide(state) : props.sendProviderHosting(state)

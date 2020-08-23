@@ -6,6 +6,8 @@ import {chooseYesNo} from "../../profile/profileActions";
 
 const LogOut = (props) => {
     const choiceHandler = ()=>{
+        props.setChoice("yes")
+        //window.location.reload()
         props.chooseYesNo("yes")
         console.log(new Date().toLocaleString())
         // localStorage.removeItem("token");

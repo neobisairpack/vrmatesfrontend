@@ -33,7 +33,7 @@ const CreatePostHosting = (props) => {
         title: props.post.title ? props.post.title : "",
         text: props.post.text ? props.post.text : "",
         preferences: props.post ? props.post.preferences : "",
-        id: props.post.id || ""
+        id: props.post ? props.post.id : 0
     })
 
     const sendPost = () => {

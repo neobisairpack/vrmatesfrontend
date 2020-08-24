@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import './style/inprogress-post.css';
 import {DropdownButton, Dropdown} from "react-bootstrap";
-import {changePostStatus, getPosts} from "../../profile/profileActions";
+import {changePostStatus, changePostStatusProvide, getPosts} from "../../profile/profileActions";
 import {connect} from "react-redux";
 import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
@@ -28,13 +28,13 @@ const InProgressPost = (props) => {
     const [curPost, setCurPost] = useState({})
     const [choice, setChoice] = useState("");
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(props.profilePost.choice)
-        if(choice !== "") {
+        if (choice !== "") {
             setLogoutShow(false)
-            sendCancel()
+            curPost.createdBy === "Requester" ? sendCancel() : sendCancelProvider()
         }
-    }, )
+    },)
     useEffect(() => {
         props.getPosts();
     }, [])
@@ -52,7 +52,7 @@ const InProgressPost = (props) => {
         }
     })(Rating);
     const splitStr = (str, n) => {
-        if(str){
+        if (str) {
             let res = str.split(" ")
             return res[n];
         }
@@ -61,17 +61,29 @@ const InProgressPost = (props) => {
     const modalHandler = (index) => {
         setActiveModal(index);
     }
-    const cancelHandler = (item) =>{
+    const cancelHandler = (item) => {
         setCurPost(item)
-        setLogoutMessage("Are sure you want to cancel the post? Points will be splitted according to date.");
+        setLogoutMessage("Are sure you want to cancel the post? Points will be divided according to date.");
         setLogoutShow(true)
     }
-
-    const sendCancel = () =>{
+    const cancelProvider = (item) => {
+        setCurPost(item)
+        setLogoutMessage("Are sure you want to cancel the post?");
+        setLogoutShow(true)
+    }
+    const sendCancel = () => {
         console.log(choice, new Date().toLocaleString())
-        if(choice === "yes"){
-                let status = "Canceled"
-                props.changePostStatus(curPost, status)
+        if (choice === "yes") {
+            let status = "Canceled"
+            props.changePostStatus(curPost, status)
+        }
+        setChoice("")
+    }
+    const sendCancelProvider = () => {
+        console.log(choice, new Date().toLocaleString())
+        if (choice === "yes") {
+            let status = "Canceled"
+            props.changePostStatusProvide(curPost, status)
         }
         setChoice("")
     }
@@ -101,25 +113,35 @@ const InProgressPost = (props) => {
                                                                                alt="Card image cap"/>}
                                         </li>
                                         <li className={"post__top-list-item"}>
-                                            <div className={"post__user-name"}>{item.createdBy === "Requester" ? item.requester.first_name : item.provider.first_name}</div>
+                                            <div
+                                                className={"post__user-name"}>{item.createdBy === "Requester" ? item.requester.first_name : item.provider.first_name}</div>
                                             <div className={"post__item-rating"}>
                                                 <Box>
-                                                    <StyledRating name="read-only" value={ item.createdBy === "Requester" ? item.requester.avg_rating_last_ten : item.provider.avg_rating_last_ten} size="small" readOnly
+                                                    <StyledRating name="read-only"
+                                                                  value={item.createdBy === "Requester" ? item.requester.avg_rating_last_ten : item.provider.avg_rating_last_ten}
+                                                                  size="small" readOnly
                                                                   precision={0.5}/>
                                                 </Box>
                                             </div>
                                         </li>
-                                        <li className={"post__top-list-item inbox-post__item"}>
-                                            <DropdownButton alignRight
-                                                            title={<img className={"inprogress__icon-more"}
-                                                                        src={"https://img.icons8.com/ios-glyphs/30/000000/more.png"}/>}
-                                                            className={"inprogress__more-btn"}>
-                                                <Dropdown.Item eventKey="1"
-                                                               onClick={() => modalHandler(item.id)}>Confirm</Dropdown.Item>
-                                                <Dropdown.Item onClick={() => cancelHandler(item)} eventKey="2">Cancel</Dropdown.Item>
-                                                <Dropdown.Item onClick={() => setSupportModal(true)} eventKey="3">Report</Dropdown.Item>
-                                            </DropdownButton>
-                                        </li>
+                                        {item.createdBy === "Requester" ?
+                                            <li className={"post__top-list-item inbox-post__item"}>
+                                                <DropdownButton alignRight
+                                                                title={<img className={"inprogress__icon-more"}
+                                                                            src={"https://img.icons8.com/ios-glyphs/30/000000/more.png"}/>}
+                                                                className={"inprogress__more-btn"}>
+                                                    <Dropdown.Item eventKey="1"
+                                                                   onClick={() => modalHandler(item.id)}>Confirm</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => cancelHandler(item)}
+                                                                   eventKey="2">Cancel</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => setSupportModal(true)}
+                                                                   eventKey="3">Report</Dropdown.Item>
+                                                </DropdownButton>
+                                            </li> :
+                                            <li className={"post__top-list-item inbox-post__item"}>
+                                                <button onClick={() => cancelProvider(item)} className={"inprogress__cancel-btn"}>Cancel</button>
+                                            </li>}
+
                                     </ul>
                                 </div>
                                 <div className={"inprogress__post-type"}>
@@ -129,19 +151,24 @@ const InProgressPost = (props) => {
                                 </div>
                                 <div>
                                     <div className={"post__address"}>
-                                        <CardText className={"post__city"}>{splitStr(item.pickup_location, 0)}</CardText>
-                                        <CardSubtitle className={"post__country"}>{splitStr(item.pickup_location, 1)}</CardSubtitle>
+                                        <CardText
+                                            className={"post__city"}>{splitStr(item.pickup_location, 0)}</CardText>
+                                        <CardSubtitle
+                                            className={"post__country"}>{splitStr(item.pickup_location, 1)}</CardSubtitle>
                                     </div>
                                     <img className={"post__arrow"} src={arrow}/>
                                     <div className={"post__address"}>
-                                        <CardText className={"post__city"}>{splitStr(item.drop_off_location, 0)}</CardText>
-                                        <CardSubtitle className={"post__country"}>{splitStr(item.drop_off_location, 0)}</CardSubtitle>
+                                        <CardText
+                                            className={"post__city"}>{splitStr(item.drop_off_location, 0)}</CardText>
+                                        <CardSubtitle
+                                            className={"post__country"}>{splitStr(item.drop_off_location, 0)}</CardSubtitle>
                                         <CardSubtitle className={"post__deadline"}>{item.deadline}</CardSubtitle>
                                     </div>
                                 </div>
                             </div>
                             <CardText className={"post__text"}>{item.title} {item.text}</CardText>
-                            <CardText className={"post__email"}>{item.createdBy === "Requester" ? item.requester.email : item.provider.email}</CardText>
+                            <CardText
+                                className={"post__email"}>{item.createdBy === "Requester" ? item.requester.email : item.provider.email}</CardText>
                         </Card>
                         <RateUser show={activeModal === item.id}
                                   onHide={() => setActiveModal(null)}/>
@@ -169,6 +196,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(getPosts()),
         changePostStatus: (post, status) =>
             dispatch(changePostStatus(post, status)),
+        changePostStatusProvide: (post, status) =>
+            dispatch(changePostStatusProvide(post, status)),
     }
 }
 

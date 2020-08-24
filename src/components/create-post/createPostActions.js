@@ -5,14 +5,15 @@ export const SEND_POST_FAILURE = "SEND_POST_FAILURE";
 export const GET_POST_IMAGES_SUCCESS = "GET_POST_IMAGES_SUCCESS";
 export const GET_POST_IMAGES_FAILURE = "GET_POST_IMAGES_FAILURE";
 
-export const sendPostDelivery = (post, image) => {
+export const sendPostDelivery = (post, images) => {
     const fd = new FormData();
     fd.append("pickup_location", (post.country1).concat(",", post.state1, ",", post.city1))
     fd.append('drop_off_location', (post.country2).concat(",", post.state2, ",", post.city2))
     fd.append('deadline', (post.year).concat("-", post.month, "-", post.day))
     fd.append('title', post.title)
     fd.append('text', post.text)
-    fd.append('image', image)
+    fd.append('image1', images.img1)
+    fd.append('image2', images.img2)
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(sendPostStarted());
@@ -20,7 +21,8 @@ export const sendPostDelivery = (post, image) => {
             .post(`http://167.172.178.135/api/services/`, fd,
                 {
                     headers: {
-                        "Authorization": "Token " + token
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
                     }
                 }
 

@@ -20,7 +20,7 @@ const CreateProviderHosting = (props) => {
             return res[n];
         }
     }
-    console.log(props.post.preferences)
+    const [imageFile1, setImageFile1] = useState("");
     const [state, setState] = useState({
         country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
         state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
@@ -34,7 +34,7 @@ const CreateProviderHosting = (props) => {
         id: props.post ? props.post.id : 0
     })
     const sendPost = () => {
-        props.post ? props.editPostProvide(state) : props.sendProviderHosting(state)
+        props.post ? props.editPostProvide(state) : props.sendProviderHosting(state, imageFile1)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -57,6 +57,11 @@ const CreateProviderHosting = (props) => {
             ...state,
             [e.target.name]: value
         })
+    }
+    const imageInputChange = (e) =>{
+        console.log(e.target.files[0])
+        setImageFile1(e.target.files[0]);
+        // setImageFile2(e.target.files[0]);
     }
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post"}>
@@ -177,16 +182,20 @@ const CreateProviderHosting = (props) => {
                 <Row>
                     <Col md={3}>
                         <div className={"create-post__photo"}>
-                            <img src={imgIcon} className={"create-post__icon"}/>
-                            <button className={"create-post__add-photo"}/>
+                            <Input className={"update__input-file-btn"} type="file" id={"file"} name={"image"}
+                                   onChange={e => imageInputChange(e)}
+                            />
+                            <label htmlFor={"file"} className={"update__input-file-fake"}>
+                                <img src={imgIcon} className={"update-photo"}/>
+                            </label>
                         </div>
                     </Col>
-                    <Col md={3}>
-                        <div className={"create-post__photo"}>
-                            <img src={imgIcon} className={"create-post__icon"}/>
-                            <button className={"create-post__add-photo"}/>
-                        </div>
-                    </Col>
+                    {/*<Col md={3}>*/}
+                    {/*    <div className={"create-post__photo"}>*/}
+                    {/*        <img src={imgIcon} className={"create-post__icon"}/>*/}
+                    {/*        <button className={"create-post__add-photo"}/>*/}
+                    {/*    </div>*/}
+                    {/*</Col>*/}
                 </Row>
             </div>
             <div className={"create-post__buttons"}>

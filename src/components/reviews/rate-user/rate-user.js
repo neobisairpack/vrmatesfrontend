@@ -9,6 +9,7 @@ import {Form, FormGroup, Input} from "reactstrap";
 import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
+import axios from "axios";
 
 const RateUser = (props) => {
     const [rate, setRate] = useState(3);
@@ -23,10 +24,32 @@ const RateUser = (props) => {
         const value = e.target.value
         setText(value)
     }
+    // const rateUser = () =>{
+    //     axios
+    //         .put(`http://167.172.178.135/api/rating/`, {
+    //                 requester: status,
+    //                 provider: post.deadline,
+    //                 rating: 3,
+    //                 image: null
+    //             },
+    //             {
+    //                 headers: {
+    //                     "Authorization": "Token " + token
+    //                 }
+    //             }
+    //
+    //         )
+    //         .then(res => {
+    //             console.log(res.data)
+    //             dispatch(editPostSuccess(res.data));
+    //         })
+    //         .catch(err => {
+    //             dispatch(editPostFailure(err));
+    //         });
+    // }
     const imageInputChange = (e) =>{
         console.log(e.target.files[0])
         setImageFile1(e.target.files[0]);
-        // setImageFile2(e.target.files[0]);
     }
     return (
         <Modal aria-labelledby="contained-modal-title-vcenter"

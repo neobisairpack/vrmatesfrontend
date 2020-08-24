@@ -10,6 +10,7 @@ import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import {editPost} from "../profile/profileActions";
 
 const CreatePostDelivery = (props) => {
+    const urlImg = 'http://167.172.178.135'
     const splitStr = (str, n) => {
         if(str){
             let res = str.split(" ")
@@ -22,8 +23,10 @@ const CreatePostDelivery = (props) => {
             return res[n];
         }
     }
-    const [imageFile1, setImageFile1] = useState("");
-    //const [imageFile2, setImageFile2] = useState("")
+    const [images, setImages] = useState({
+        img1: "",
+        img2: ""
+    });
     const [state, setState] = useState({
         country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
         state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
@@ -40,7 +43,8 @@ const CreatePostDelivery = (props) => {
     })
     console.log(state)
     const sendPost = () => {
-        props.post ? props.editPost(state, imageFile1) : props.sendPostDelivery(state, imageFile1)
+        console.log(images)
+        props.post ? props.editPost(state, images) : props.sendPostDelivery(state, images)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -64,10 +68,21 @@ const CreatePostDelivery = (props) => {
             [e.target.name]: value
         })
     }
-    const imageInputChange = (e) =>{
-        console.log(e.target.files[0])
-        setImageFile1(e.target.files[0]);
-            // setImageFile2(e.target.files[0]);
+    const imageInputChange1 = (e) =>{
+        console.log(e.target.name, e.target.value)
+            setImages({
+                ...images,
+                img1: e.target.files[0]
+            })
+
+    }
+    const imageInputChange2 = (e) =>{
+        console.log(e.target.name, e.target.value)
+            setImages({
+                ...images,
+                img2: e.target.files[0]
+            })
+
     }
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post"}>
@@ -202,26 +217,27 @@ const CreatePostDelivery = (props) => {
                 <Row>
                     <Col md={3}>
                         <div>
-                            <Input className={"update__input-file-btn"} type="file" id={"file"} name={"image"}
-                                   onChange={e => imageInputChange(e)}
+                            <Input className={"update__input-file-btn"} type="file" id={"file1"} name={"img1"}
+                                   onChange={e => imageInputChange1(e)}
                             />
-                            <label htmlFor={"file"} className={"update__input-file-fake"}>
+                            <label htmlFor={"file1"} className={"update__input-file-fake"}>
                                 <img src={imgIcon} className={"update-photo"}/>
                             </label>
 
                         </div>
                     </Col>
                     <Col md={3}>
-                        {/*<div>*/}
-                        {/*    <Input className={"update__input-file-btn"} type="file" id={"file"} name={"image"}*/}
-                        {/*           value={imageFile2}*/}
-                        {/*           onChange={e => imageInputChange(e, 2)}*/}
-                        {/*    />*/}
-                        {/*    <label htmlFor={"file"} className={"update__input-file-fake"}>*/}
-                        {/*        <img src={imgIcon} className={"update-photo"}/>*/}
-                        {/*    </label>*/}
+                        <div>
+                            <Input className={"update__input-file-btn"} type="file" id={"file2"} name={"img2"}
+                                   onChange={e => imageInputChange2(e)}
+                            />
+                            <label htmlFor={"file2"} className={"update__input-file-fake"}>
+                                {images.img2 ? <img src={urlImg + images.img2} className={"update-photo"}/>:
+                                    <img src={imgIcon} className={"update-photo"}/>
+                                }
+                            </label>
 
-                        {/*</div>*/}
+                        </div>
                     </Col>
                 </Row>
             </div>

@@ -40,3 +40,13 @@ button.dropdown-toggle.btn.btn-primary{
     border: none;
   }
 }
+.inprogress__cancel-btn{
+  float: right;
+  background-color: #FFFFFF;
+  border: none;
+  outline: none;
+  color: red;
+  &:focus{
+    outline: none
+  }
+}

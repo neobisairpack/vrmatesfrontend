@@ -1,14 +1,28 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/interested.css';
 import {withRouter} from "react-router-dom";
-import {changeStatusRequest, getInterestedRequest, setCurrentUser} from "../../../post/postActions";
+import {
+    changeStatusRequest,
+    getInterestedRequest,
+    getInterestedRequestProvide,
+    setCurrentUser
+} from "../../../post/postActions";
 import {connect} from "react-redux";
 
 
 const InterestedUser = (props) => {
+    const [interested, setInterested] = useState([])
+
     useEffect(() => {
-        props.getInterestedRequest()
+        if(props.location.state.post.createdBy === "Requester"){
+            props.getInterestedRequest()
+            setInterested(props.post.interestedReq)
+        }
+        else{
+            props.getInterestedRequestProvide()
+            setInterested(props.post.interestedProv)
+        }
 
     }, [])
     const setUserFunc = (user) => {
@@ -27,14 +41,13 @@ const InterestedUser = (props) => {
     const canceltHandler = (req) =>{
         props.changeStatusRequest(req, "Canceled")
     }
-    console.log(props, new Date().toLocaleString())
-    const {interested} = props.location.state;
-
+    console.log(interested)
     const urlImg = 'https://vrmates.co'
     return (
         <div className={"interested-user container"}>
             <div className={"row"}>
                 {interested.map((item) =>
+                item.service.id === props.location.state.post.id ?
                     <div key={item.id} className={"col-4"}>
                         <div className={"interested-user-card "}>
                             <ul className={"interested-user__info"} onClick={() => setUserFunc(item.requester)}>
@@ -55,7 +68,7 @@ const InterestedUser = (props) => {
                                 <button onClick={() => canceltHandler(item)} className={"interested__button interested__button_cancel"}>Cancel</button>
                             </div>
                         </div>
-                    </div>
+                    </div> : null
                 )}
             </div>
 
@@ -72,6 +85,8 @@ const mapDispatchToProps = dispatch => {
     return {
         getInterestedRequest: (id) =>
             dispatch(getInterestedRequest(id)),
+        getInterestedRequestProvide: (id) =>
+            dispatch(getInterestedRequestProvide(id)),
         setUser: (user) =>
             dispatch(setCurrentUser(user)),
         changeStatusRequest: (req, status) =>

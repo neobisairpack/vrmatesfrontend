@@ -9,15 +9,14 @@ export const sendPostDelivery = (post, img1, img2) => {
     const fd = new FormData();
     fd.append('image1', img1)
     fd.append('image2', img2)
+    fd.append('status', "Created, not accepted")
+    fd.append('service_type', "Delivery")
     fd.append("pickup_location", (post.country1).concat(",", post.state1, ",", post.city1))
     fd.append('drop_off_location', (post.country2).concat(",", post.state2, ",", post.city2))
     fd.append('deadline', (post.year).concat("-", post.month, "-", post.day))
     fd.append('title', post.title)
     fd.append('text', post.text)
     let token = JSON.parse(localStorage.getItem("token"));
-    for(let obj of fd){
-        console.log(obj)
-    }
     return dispatch => {
         dispatch(sendPostStarted());
         axios

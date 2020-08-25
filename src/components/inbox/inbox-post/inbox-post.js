@@ -12,20 +12,21 @@ import {
 } from 'reactstrap';
 import {getPosts} from "../../profile/profileActions";
 import {connect} from "react-redux";
-import {getInterestedRequest} from "../../post/postActions";
+import {getInterestedRequest, getInterestedRequestProvide} from "../../post/postActions";
 
 const InboxPost = (props) => {
-    const [interested, setInterested] = useState([])
+   // const [interested, setInterested] = useState([])
+    const [count, setCount] = useState(0)
     useEffect(() => {
-       // setInterested(props.post.interestedAll)
         props.getPosts();
         props.getInterestedRequest()
+        console.log(props.post)
     }, [])
 
     const redirect = (item) => {
         props.history.push({
             pathname: '/profile/inbox-page',
-            state: {post: item, interested: interested}
+            state: {post: item}
         })
     }
     let types = {
@@ -40,16 +41,25 @@ const InboxPost = (props) => {
         }
     }
     const {inbox_posts} = props.profilePost;
+    const {interestedReq} = props.post
     //const {interestedAll} = props.post; {item.createdBy === "Requester" ? mapRequests(item.id) : null}
-    const mapRequests = (id) =>{
+    const mapRequests = (id, create) =>{
+        let interested = []
+        if(create === "req"){
+            props.getInterestedRequest()
+            interested = props.post.interestedReq
+        }
+        else{
+            props.getInterestedRequestProvide()
+            interested = props.post.interestedProv
+        }
         let arr = []
-        interested.map((item) => {
+        interested.forEach((item) => {
             if(item.service.id === id){
                 arr.push(item)
             }
         })
-        setInterested(arr)
-        return arr.length;
+        return arr.length
     }
     return (
         <div className={"post container"}>
@@ -66,7 +76,7 @@ const InboxPost = (props) => {
                                                 className={"post__person"}>{item.requester ? "Requester" : "Provider"}</div>
                                         </li>
                                         <li className={"post__top-list-item inbox-post__item"}><img
-                                            className={"icon-people"} src={people}/> +
+                                            className={"icon-people"} src={people}/> + {item.createdBy === "Requester" ? mapRequests(item.id, "req") : mapRequests(item.id, "prov")}
                                         </li>
                                     </ul>
                                 </div>
@@ -112,6 +122,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(getPosts()),
         getInterestedRequest: (id) =>
             dispatch(getInterestedRequest(id)),
+        getInterestedRequestProvide: (id) =>
+            dispatch(getInterestedRequestProvide(id)),
     }
 }
 

@@ -57,7 +57,35 @@ export const getInterestedRequest = (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         axios
-            .get(`https://vrmates.co/api/request-provide-services/`,
+            .get(`https://vrmates.co/api/request-services/`,
+                {
+                    headers: {
+                        "Authorization": "Token " + token
+                    }
+                }
+            )
+            .then(res => {
+                // if(id){
+                //     const myRes = []
+                //     res.data.map((item) => {
+                //         if(item.service.id === id)
+                //             myRes.push(item)
+                //     })
+                //     dispatch(getRequestSuccess(myRes));
+                // }
+                dispatch(getRequestReqSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(getRequestFailure(err));
+            });
+    };
+};
+
+export const getInterestedRequestById = (id) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    return dispatch => {
+        axios
+            .get(`https://vrmates.co/api/request-services/`,
                 {
                     headers: {
                         "Authorization": "Token " + token

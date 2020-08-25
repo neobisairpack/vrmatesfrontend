@@ -13,7 +13,7 @@ import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import {connect} from "react-redux";
-import {sendInterestedRequest} from "./postActions";
+import {sendInterestedRequest, sendInterestedRequestProvide} from "./postActions";
 
 const Post = (props) => {
     const [dataAll, setData] = useState([]);
@@ -63,8 +63,13 @@ const Post = (props) => {
             setActiveModal(index);
         }
 
-        const sendRequest = (id) => {
-            props.sendInterestedRequest(id);
+        const sendRequest = (item) => {
+            if(item.requester){
+                props.sendInterestedRequest(item.id);
+            }
+            else{
+                props.sendInterestedRequestProvide(item.id);
+            }
         }
     return (
         <div className={"post container"}>
@@ -126,7 +131,7 @@ const Post = (props) => {
                                 <CardText
                                     className={"post__email"}>{item.requester ? item.requester.email : item.provider.email}</CardText>
                                 {props.btn ?
-                                    <button onClick={() => {sendRequest(item.id)}} className={"post__interested-btn"}>Interested</button> :
+                                    <button onClick={() => {sendRequest(item)}} className={"post__interested-btn"}>Interested</button> :
                                     null
                                 }
                             </div>
@@ -152,6 +157,8 @@ const mapDispatchToProps = dispatch => {
     return {
         sendInterestedRequest: (id) =>
             dispatch(sendInterestedRequest(id)),
+        sendInterestedRequestProvide: (id) =>
+            dispatch(sendInterestedRequestProvide(id)),
     }
 }
 

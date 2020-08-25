@@ -10,9 +10,11 @@ import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
+import {connect} from "react-redux";
+import {getUserData} from "../../sidebar/sidebarActions";
 
 const RateUser = (props) => {
-    const [rate, setRate] = useState(3);
+    const [rate, setRate] = useState("");
     const [text, setText] = useState("");
     const [imageFile1, setImageFile1] = useState("")
     const StyledRating = withStyles({
@@ -24,29 +26,31 @@ const RateUser = (props) => {
         const value = e.target.value
         setText(value)
     }
-    // const rateUser = () =>{
-    //     axios
-    //         .put(`http://167.172.178.135/api/rating/`, {
-    //                 requester: status,
-    //                 provider: post.deadline,
-    //                 rating: 3,
-    //                 image: null
-    //             },
-    //             {
-    //                 headers: {
-    //                     "Authorization": "Token " + token
-    //                 }
-    //             }
-    //
-    //         )
-    //         .then(res => {
-    //             console.log(res.data)
-    //             dispatch(editPostSuccess(res.data));
-    //         })
-    //         .catch(err => {
-    //             dispatch(editPostFailure(err));
-    //         });
-    // }
+    console.log(props.reciever)
+    const rateUser = (e) =>{
+        e.preventDefault()
+        const fd = new FormData();
+        fd.append('image', imageFile1)
+        fd.append('provider', props.reciever.id)
+        fd.append('rating', rate)
+        fd.append('text', text)
+        let token = JSON.parse(localStorage.getItem("token"));
+        axios
+            .post(`https://vrmates.co/api/rating/`, fd,
+                {
+                    headers: {
+                        "Authorization": "Token " + token
+                    }
+                }
+
+            )
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    }
     const imageInputChange = (e) =>{
         console.log(e.target.files[0])
         setImageFile1(e.target.files[0]);
@@ -54,16 +58,17 @@ const RateUser = (props) => {
     return (
         <Modal aria-labelledby="contained-modal-title-vcenter"
                centered
-               {...props}
+               show = {props.show}
+               onHide = {props.onHide}
                dialogClassName="full-review">
             <Form>
                 <img onClick={props.onHide} className={"full-review__exit"} src={exit}/>
-                <div className={"rate__title"}>Please, rate experience with David!</div>
+                <div className={"rate__title"}>Please, rate experience with {props.reciever.first_name}!</div>
                 <div className={"full-review__rating"}>
                     <Box>
                         <StyledRating
                             name="simple-controlled"
-                            value={rate}
+                            value={Number(rate)}
                             size="large"
                             onChange={(event, newValue) => {
                                 setRate(newValue);
@@ -79,8 +84,6 @@ const RateUser = (props) => {
                             <Input className={"rate__text"} type="textarea" name="text" value={text} onChange={(e) => handleChange(e)}/>
                         </FormGroup>
                 </div>
-                <div>
-                    {/*<div className={"full-review__image"}><img src={imgIcon} className={"full-post__icon"}/></div>*/}
                     <div>
                         <Input className={"rate__input-file-btn"} type="file" id={"file"} name={"image"}
                                onChange={e => imageInputChange(e)}
@@ -90,12 +93,25 @@ const RateUser = (props) => {
                             <p className={"rate__attach-photo-lbl"}>Attach photo</p>
                         </label>
                     </div>
+                <div>
+                    <button onClick={(e) => rateUser(e)} className={"rate__button"}>Submit</button>
                 </div>
             </Form>
         </Modal>
 
     );
 }
+const mapStateToProps = state => {
+    return {
+        userData: state.userData,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getUserData: () =>
+            dispatch(getUserData()),
+    }
+}
 
-export default RateUser;
+export default connect(mapStateToProps, mapDispatchToProps)(RateUser);
 

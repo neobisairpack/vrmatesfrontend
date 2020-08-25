@@ -9,7 +9,6 @@
 }
 
 .full-review__text {
-  width: 95%;
   height: 60%;
   overflow: auto;
   font-family: Muller;
@@ -55,6 +54,8 @@
 }
 
 .full-review__image-item {
+  width: 100%;
+  height: 100%;
   position: absolute;
 }
 
@@ -67,7 +68,6 @@
 .rate__input-file-btn + label {
   position: relative;
   cursor: pointer;
-  width: 95%;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -118,4 +118,20 @@ textarea.rate__text.form-control {
   font-size: 24px;
   line-height: 24px;
   color: #000000;
+}
+
+.rate__button {
+  margin-top: 10px;
+  float: right;
+  background: #FD5A01;
+  width: 200px;
+  height: 46px;
+  color: #FFFFFF;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+}
+.rate__button:focus {
+  border: none;
+  outline: none;
 }

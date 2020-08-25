@@ -53,7 +53,7 @@ const InProgressPost = (props) => {
     })(Rating);
     const splitStr = (str, n) => {
         if (str) {
-            let res = str.split(" ")
+            let res = str.split(",")
             return res[n];
         }
     }
@@ -170,7 +170,7 @@ const InProgressPost = (props) => {
                             <CardText
                                 className={"post__email"}>{item.createdBy === "Requester" ? item.requester.email : item.provider.email}</CardText>
                         </Card>
-                        <RateUser show={activeModal === item.id}
+                        <RateUser reciever={item.provider} show={activeModal === item.id}
                                   onHide={() => setActiveModal(null)}/>
                     </div>
                 )}

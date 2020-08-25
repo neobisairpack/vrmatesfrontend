@@ -27,10 +27,10 @@ const FullReview = (props) => {
                dialogClassName="full-review" >
 
             <div className={"full-review__rating"}>
+                <img className={"full-review__exit"} src={exit}/>
                     <Box>
                         <StyledRating name="read-only" value={props.rating} size="large" readOnly precision={0.5}/>
                     </Box>
-                <img className={"full-review__exit"} src={exit}/>
             </div>
 
             <div className={"full-review__text"}>

@@ -1,8 +1,25 @@
 .reviews {
   margin-top: 3%;
   display: flex;
+  height: 110px;
+  overflow: auto;
   flex-flow: row wrap;
   padding-left: 7%;
+}
+.reviews::-webkit-scrollbar {
+  width: 5px;
+  box-sizing: content-box;
+}
+.reviews::-webkit-scrollbar-track {
+  background: #F4F3F3;
+  border-radius: 10px;
+}
+.reviews::-webkit-scrollbar-thumb {
+  background: #D8D8D8;
+  border-radius: 10px;
+}
+.reviews::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }
 
 .review {

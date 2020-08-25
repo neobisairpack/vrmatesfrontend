@@ -32,6 +32,7 @@ const reducer = (state = initialState, action) => {
             let arr1 = []
             let arr2 = []
             let arr3 = []
+            let myPosts = []
             action.payload.map((item) => {
                 if(item.status === "Created, not accepted"){
                     arr1.push(item)

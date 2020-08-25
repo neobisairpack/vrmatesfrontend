@@ -16,6 +16,7 @@ export const sendPostDelivery = (post, img1, img2) => {
     fd.append('deadline', (post.year).concat("-", post.month, "-", post.day))
     fd.append('title', post.title)
     fd.append('text', post.text)
+
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(sendPostStarted());

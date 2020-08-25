@@ -16,11 +16,12 @@ import {getInterestedRequest, getInterestedRequestProvide} from "../../post/post
 
 const InboxPost = (props) => {
    // const [interested, setInterested] = useState([])
-    const [count, setCount] = useState(0)
+    const [relatedInbox, setRelatedInbox] = useState([])
     useEffect(() => {
         props.getPosts();
-        props.getInterestedRequest()
+        props.getInterestedRequest();
         console.log(props.post)
+        console.log(props.userData)
     }, [])
 
     const redirect = (item) => {
@@ -61,10 +62,12 @@ const InboxPost = (props) => {
         })
         return arr.length
     }
+    //console.log(props.userData)
     return (
         <div className={"post container"}>
             <div className={"row"}>
                 {inbox_posts.map((item, id) =>
+                    //item.requester.email !== props.userData.user.email || item.provider.email !== props.userData.user.email ? null :
                     <div key={id} className={"col-4"}>
                         <Card onClick={() => redirect(item)}>
                             <div className={"post__content"}>
@@ -113,7 +116,8 @@ const InboxPost = (props) => {
 const mapStateToProps = state => {
     return {
         profilePost: state.profilePost,
-        post: state.post
+        post: state.post,
+        userData: state.userData
     }
 }
 const mapDispatchToProps = dispatch => {

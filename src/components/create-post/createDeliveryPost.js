@@ -84,7 +84,7 @@ const CreatePostDelivery = (props) => {
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post"}>
             <div className={"create-post__type"}>Package Delivery</div>
             <div className={"create-post__location-from"}>
-                <Form>
+                <Form onSubmit={() => console.log("Form")}>
                     <label className={"create-post__form-title"}>Indicate package pick up location:</label>
                     <FormGroup>
                         <CountryDropdown
@@ -92,6 +92,7 @@ const CreatePostDelivery = (props) => {
                             className={"form-control"}
                             defaultOptionLabel={"  Country"}
                             value={state.country1}
+                            required
                             onChange={e => setState({
                                 ...state,
                                 country1: e
@@ -104,6 +105,7 @@ const CreatePostDelivery = (props) => {
                             defaultOptionLabel={"State"}
                             country={state.country1}
                             value={state.state1}
+                            required
                             onChange={e => setState({
                                 ...state,
                                 state1: e
@@ -114,6 +116,7 @@ const CreatePostDelivery = (props) => {
                                className={"form-control"}
                                placeholder={"City"}
                                value={state.city1}
+                               required
                                onChange={e => handleChange(e)}
                         />
                     </FormGroup>
@@ -128,6 +131,7 @@ const CreatePostDelivery = (props) => {
                             className={"form-control"}
                             defaultOptionLabel={"  Country"}
                             value={state.country2}
+                            required
                             onChange={e => setState({
                                 ...state,
                                 country2: e
@@ -138,6 +142,7 @@ const CreatePostDelivery = (props) => {
                             className={"form-control"}
                             blankOptionLabel={"State"}
                             defaultOptionLabel={"State"}
+                            required
                             country={state.country2}
                             value={state.state2}
                             onChange={e => setState({
@@ -148,6 +153,7 @@ const CreatePostDelivery = (props) => {
                     <FormGroup>
                         <Input type="text" name={"city2"}
                                className={"form-control"}
+                               required
                                placeholder={"City"}
                                value={state.city2}
                                onChange={e => handleChange(e)}
@@ -160,14 +166,14 @@ const CreatePostDelivery = (props) => {
                 <Row form>
                     <Col md={3}>
                         <FormGroup>
-                            <select name={"day"} value={state.day} onChange={e => handleChange(e)} className={"form-control"}>
+                            <select required name={"day"} value={state.day} onChange={e => handleChange(e)} className={"form-control"}>
                                 {getDropListDay()}
                             </select>
                         </FormGroup>
                     </Col>
                     <Col md={3}>
                         <FormGroup>
-                            <select name={"month"} value={state.month} onChange={e => handleChange(e)} className={"form-control"}>
+                            <select required name={"month"} value={state.month} onChange={e => handleChange(e)} className={"form-control"}>
                                 <option value={"01"}>January</option>
                                 <option value={"02"}>February</option>
                                 <option value={"03"}>March</option>
@@ -185,7 +191,7 @@ const CreatePostDelivery = (props) => {
                     </Col>
                     <Col md={3}>
                         <FormGroup>
-                            <select name={"year"} value={state.year} onChange={e => handleChange(e)} className={"form-control"}>
+                            <select required name={"year"} value={state.year} onChange={e => handleChange(e)} className={"form-control"}>
                                 {getDropList()}
                             </select>
                         </FormGroup>
@@ -196,7 +202,7 @@ const CreatePostDelivery = (props) => {
                 <Form>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>Please, add post title:</Label>
-                        <Input type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
+                        <Input required type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
                     </FormGroup>
                 </Form>
             </div>
@@ -204,7 +210,7 @@ const CreatePostDelivery = (props) => {
                 <Form>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>Please, add post body:</Label>
-                        <Input type="textarea" name="text" value={state.text} onChange={e => handleChange(e)}/>
+                        <Input required type="textarea" name="text" value={state.text} onChange={e => handleChange(e)}/>
                     </FormGroup>
                 </Form>
             </div>
@@ -213,7 +219,7 @@ const CreatePostDelivery = (props) => {
                 <Row>
                     <Col md={3}>
                         <div>
-                            <Input className={"update__input-file-btn"} type="file" id={"file1"} name={"img1"}
+                            <Input required className={"update__input-file-btn"} type="file" id={"file1"} name={"img1"}
                                    onChange={e => imageInputChange1(e)}
                             />
                             <label htmlFor={"file1"} className={"update__input-file-fake"}>
@@ -224,7 +230,7 @@ const CreatePostDelivery = (props) => {
                     </Col>
                     <Col md={3}>
                         <div>
-                            <Input className={"update__input-file-btn"} type="file" id={"file2"} name={"img2"}
+                            <Input required className={"update__input-file-btn"} type="file" id={"file2"} name={"img2"}
                                    onChange={e => imageInputChange2(e)}
                             />
                             <label htmlFor={"file2"} className={"update__input-file-fake"}>
@@ -239,7 +245,7 @@ const CreatePostDelivery = (props) => {
             </div>
             <div className={"create-post__buttons"}>
                 <button onClick={props.onHide} className={"create-post__cancel-button"}>Cancel</button>
-                <button onClick={sendPost} className={"create-post__save-button"}>Save</button>
+                <button className={"create-post__save-button"}>Save</button>
             </div>
         </Modal>
     );

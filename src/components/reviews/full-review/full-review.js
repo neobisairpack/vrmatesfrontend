@@ -10,7 +10,7 @@ import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 
 const FullReview = (props) => {
-    console.log(props)
+
     const StyledRating = withStyles({
         iconFilled: {
             color: '#FD5A01',

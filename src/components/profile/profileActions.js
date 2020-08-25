@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {batch} from "react-redux";
 export const REMOVE_INBOX_POST = "REMOVE_INBOX_POST";
 export const GET_INBOX_POST_STARTED = "GET_INBOX_POST_STARTED";
 export const GET_INBOX_POST_SUCCESS = "GET_INBOX_POST_SUCCESS";
@@ -13,10 +14,10 @@ export const getPosts = () => {
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios.all([
-            axios.get('http://167.172.178.135/api/services/', {headers: {
+            axios.get('https://vrmates.co/api/services/', {headers: {
                     "Authorization": "Token " + token
                 }}),
-            axios.get('http://167.172.178.135/api/provide-services/', {headers: {
+            axios.get('https://vrmates.co/api/provide-services/', {headers: {
                     "Authorization": "Token " + token
                 }})
         ])
@@ -30,7 +31,7 @@ export const getPosts = () => {
                     it["createdBy"] = "Provider"
                 })
                 let res = reqData.concat(provData)
-                dispatch(getInboxPostSuccess(res))
+                    dispatch(getInboxPostSuccess(res))
             }) )
             .catch(err => {
                 dispatch(getInboxPostFailure(err));
@@ -43,7 +44,7 @@ export const editPost = (post) => {
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios
-            .put(`http://167.172.178.135/api/services/${post.id}/`, {
+            .put(`https://vrmates.co/api/services/${post.id}/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
                     requester_from: (post.country1).concat(" ", post.state1, " ", post.city1),
@@ -76,7 +77,7 @@ export const editPostProvide = (post) => {
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios
-            .put(`http://167.172.178.135/api/provide-services/${post.id}/`, {
+            .put(`https://vrmates.co/api/provide-services/${post.id}/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     location: (post.country1).concat(",", post.state1, ",", post.city1),
                     drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
@@ -110,7 +111,7 @@ export const changePostStatus = (post, status) => {
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios
-            .put(`http://167.172.178.135/api/services/${post.id}/`, {
+            .put(`https://vrmates.co/api/services/${post.id}/`, {
                     status: status,
                     deadline: post.deadline
                 },
@@ -137,7 +138,7 @@ export const changePostStatusProvide = (post, status) => {
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios
-            .put(`http://167.172.178.135/api/provide-services/${post.id}/`, {
+            .put(`https://vrmates.co/api/provide-services/${post.id}/`, {
                     status: status,
                     deadline: post.deadline
                 },

@@ -15,7 +15,7 @@ const ProfileSidebar = (props) => {
 
     let {loading} = props.userData;
     let {user} = props.userData;
-    const url = 'http://167.172.178.135';
+    const url = 'https://vrmates.co';
     return (
         <div className="profile-sidebar">
             {loading ? "Loading" :

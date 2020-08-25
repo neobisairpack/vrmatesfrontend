@@ -3,13 +3,14 @@ import {
     SEND_REQUEST_FAILURE,
     GET_REQUEST_SUCCESS,
     GET_REQUEST_FAILURE,
-    SET_CURRENT_USER
+    SET_CURRENT_USER, GET_REQUEST_REQ_SUCCESS, GET_REQUEST_PROV_SUCCESS
 } from './postActions';
 import {CHOOSE_YES_NO} from "../profile/profileActions";
 
 const initialState = {
     posts: [],
-    interested: [],
+    interestedProv: [],
+    interestedReq: [],
     curUser: {},
     image: {},
     loading: false,
@@ -31,18 +32,31 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
-        case GET_REQUEST_SUCCESS:
-            let arr = []
+        case GET_REQUEST_REQ_SUCCESS:
+            let all = []
             action.payload.map((item) => {
                 if(item.status === "Pending"){
-                    arr.push(item)
+                    all.push(item)
                 }
             })
             return {
                 ...state,
                 loading: false,
                 error: null,
-                interested: arr
+                interestedReq: all
+            };
+        case GET_REQUEST_PROV_SUCCESS:
+            let prov = []
+            action.payload.map((item) => {
+                if(item.status === "Pending"){
+                    prov.push(item)
+                }
+            })
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                interestedProv: prov
             };
         case GET_REQUEST_FAILURE:
             return {

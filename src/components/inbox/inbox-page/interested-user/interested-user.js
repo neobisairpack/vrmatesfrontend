@@ -8,7 +8,8 @@ import {connect} from "react-redux";
 
 const InterestedUser = (props) => {
     useEffect(() => {
-        props.getInterestedRequest(props.location.state.post.id)
+        props.getInterestedRequest()
+
     }, [])
     const setUserFunc = (user) => {
         props.setUser(user)
@@ -27,8 +28,9 @@ const InterestedUser = (props) => {
         props.changeStatusRequest(req, "Canceled")
     }
     console.log(props, new Date().toLocaleString())
-    const {interested} = props.post;
-    const urlImg = 'http://167.172.178.135'
+    const {interested} = props.location.state;
+
+    const urlImg = 'https://vrmates.co'
     return (
         <div className={"interested-user container"}>
             <div className={"row"}>

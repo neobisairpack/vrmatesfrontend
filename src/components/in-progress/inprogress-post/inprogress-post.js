@@ -20,7 +20,7 @@ import LogOut from "../../pop-up/popup-logout";
 import Support from "../../popup-support";
 
 const InProgressPost = (props) => {
-    const urlImg = 'http://167.172.178.135';
+    const urlImg = 'https://vrmates.co';
     const [activeModal, setActiveModal] = useState(null);
     const [logoutShow, setLogoutShow] = useState(false);
     const [logoutMessage, setLogoutMessage] = useState("")

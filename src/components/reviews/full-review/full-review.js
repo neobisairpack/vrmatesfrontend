@@ -42,7 +42,7 @@ const FullReview = (props) => {
             <div>
                 <div className={"full-review__image"}>
                     {props.image  ?
-                <img className={"full-review__image-item"} src={ 'http://167.172.178.135' + props.image}/>
+                <img className={"full-review__image-item"} src={ 'https://vrmates.co' + props.image}/>
                 : <img src={imgIcon} className={"full-post__icon"}/>
                     }
 

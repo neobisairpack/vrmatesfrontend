@@ -23,7 +23,7 @@ const Reviews = () => {
     }, [])
     const getReviews = () =>{
         let token = JSON.parse(localStorage.getItem("token"));
-        axios.get('http://167.172.178.135/api/rating/', {
+        axios.get('https://vrmates.co/api/rating/', {
             headers: {
                 "Authorization": "Token " + token
             }

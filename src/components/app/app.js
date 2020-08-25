@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Profile from "../profile";
 import 'bootstrap/dist/css/bootstrap.css';
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom';
 import './style/app.css';
 import InProgress from "../in-progress";
 import Completed from "../completed";
@@ -14,17 +14,9 @@ import ContactUs from "../landing-page/contact-us/contact-us";
 import ResetPassword from "../landing-page/landing-login/reset-password";
 import MainRequesters from "../dashboard/main-requesters";
 import MainProviders from "../dashboard/main-providers";
+import PrivateRoute from "./private-router";
 
 const App = () => {
-    const [token, setToken] = useState("");
-    useEffect(() => {
-        let data = JSON.parse(localStorage.getItem("token"));
-        if (data) {
-            setToken(data);
-        } else {
-            setToken('');
-        }
-    }, []);
     return (
         <React.Fragment>
             <div className={"app-wrapper"}>

@@ -38,11 +38,11 @@ const Post = (props) => {
             color: '#8c8c8c',
         }
     })(Rating);
-    const urlImg = 'http://167.172.178.135';
+    const urlImg = 'https://vrmates.co';
     const {url} = props;
     useEffect(() => {
         let token = JSON.parse(localStorage.getItem("token"));
-        axios.get(`http://167.172.178.135/api/${url}/`, {
+        axios.get(`https://vrmates.co/api/${url}/`, {
             headers: {
                 "Authorization": "Token " + token
             }

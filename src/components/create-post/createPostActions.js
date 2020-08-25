@@ -5,27 +5,29 @@ export const SEND_POST_FAILURE = "SEND_POST_FAILURE";
 export const GET_POST_IMAGES_SUCCESS = "GET_POST_IMAGES_SUCCESS";
 export const GET_POST_IMAGES_FAILURE = "GET_POST_IMAGES_FAILURE";
 
-export const sendPostDelivery = (post, images) => {
+export const sendPostDelivery = (post, img1, img2) => {
     const fd = new FormData();
+    fd.append('image1', img1)
+    fd.append('image2', img2)
     fd.append("pickup_location", (post.country1).concat(",", post.state1, ",", post.city1))
     fd.append('drop_off_location', (post.country2).concat(",", post.state2, ",", post.city2))
     fd.append('deadline', (post.year).concat("-", post.month, "-", post.day))
     fd.append('title', post.title)
     fd.append('text', post.text)
-    fd.append('image1', images.img1)
-    fd.append('image2', images.img2)
     let token = JSON.parse(localStorage.getItem("token"));
+    for(let obj of fd){
+        console.log(obj)
+    }
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/services/`, fd,
+            .post(`https://vrmates.co/api/services/`, fd,
                 {
                     headers: {
                         "Authorization": "Token " + token,
                         'Content-Type': 'multipart/form-data'
                     }
                 }
-
             )
             .then(res => {
                 console.log(res.data)
@@ -43,7 +45,7 @@ export const sendProviderDelivery = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/provide-services/`, {
+            .post(`https://vrmates.co/api/provide-services/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
                     drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
@@ -77,7 +79,7 @@ export const sendPostAirport = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/services/`, {
+            .post(`https://vrmates.co/api/services/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
@@ -111,7 +113,7 @@ export const sendProviderAirport = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/provide-services/`, {
+            .post(`https://vrmates.co/api/provide-services/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
                     status: "Created, not accepted",
@@ -142,7 +144,7 @@ export const sendPostHosting = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/services/`, {
+            .post(`https://vrmates.co/api/services/`, {
                     requester_from: (post.country1).concat(",", post.state1, ",", post.city1),
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     location: (post.country2).concat(",", post.state2, ",", post.city2),
@@ -179,7 +181,7 @@ export const sendProviderHosting = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`http://167.172.178.135/api/provide-services/`, {
+            .post(`https://vrmates.co/api/provide-services/`, {
                     location: (post.country1).concat(",", post.state1, ",", post.city1),
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
@@ -211,7 +213,7 @@ export const getPostImages = (id) => {
     return dispatch => {
         dispatch(sendPostStarted())
         axios
-            .get(`http://167.172.178.135/api/services-images/`,
+            .get(`https://vrmates.co/api/services-images/`,
                 {
                     headers: {
                         "Authorization": "Token " + token

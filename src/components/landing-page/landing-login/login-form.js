@@ -14,7 +14,7 @@ const LoginForm = (props) => {
 
     const handleSubmit = () => {
         console.log(email, password)
-        axios.post('http://vrmates.co/users/login/', {
+        axios.post('https://vrmates.co/users/login/', {
             email: email,
             password: password
         })

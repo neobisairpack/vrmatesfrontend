@@ -9,7 +9,7 @@ export const getUserData = () => {
 
         dispatch(getUserDataStarted());
         axios
-            .get(`http://167.172.178.135/users/me/`,
+            .get(`https://vrmates.co/users/me/`,
                 {
                     headers: {
                         "Authorization": "Token " + token

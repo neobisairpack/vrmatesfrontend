@@ -10,7 +10,7 @@ import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import {editPost} from "../profile/profileActions";
 
 const CreatePostDelivery = (props) => {
-    const urlImg = 'http://167.172.178.135'
+    const urlImg = 'https://vrmates.co'
     const splitStr = (str, n) => {
         if(str){
             let res = str.split(" ")
@@ -23,10 +23,12 @@ const CreatePostDelivery = (props) => {
             return res[n];
         }
     }
-    const [images, setImages] = useState({
-        img1: "",
-        img2: ""
-    });
+    // const [images, setImages] = useState({
+    //     img1: "",
+    //     img2: ""
+    // });
+    const [img1, setImg1] = useState("")
+    const [img2, setImg2] = useState("")
     const [state, setState] = useState({
         country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
         state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
@@ -43,8 +45,8 @@ const CreatePostDelivery = (props) => {
     })
     console.log(state)
     const sendPost = () => {
-        console.log(images)
-        props.post ? props.editPost(state, images) : props.sendPostDelivery(state, images)
+        console.log(img1, img2)
+        props.post ? props.editPost(state, img1, img2) : props.sendPostDelivery(state, img1, img2)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -70,18 +72,12 @@ const CreatePostDelivery = (props) => {
     }
     const imageInputChange1 = (e) =>{
         console.log(e.target.name, e.target.value)
-            setImages({
-                ...images,
-                img1: e.target.files[0]
-            })
+            setImg1(e.target.files[0])
 
     }
     const imageInputChange2 = (e) =>{
         console.log(e.target.name, e.target.value)
-            setImages({
-                ...images,
-                img2: e.target.files[0]
-            })
+        setImg2(e.target.files[0])
 
     }
     return (
@@ -232,9 +228,9 @@ const CreatePostDelivery = (props) => {
                                    onChange={e => imageInputChange2(e)}
                             />
                             <label htmlFor={"file2"} className={"update__input-file-fake"}>
-                                {images.img2 ? <img src={urlImg + images.img2} className={"update-photo"}/>:
+                                {/*{images.img2 ? <img src={urlImg + images.img2} className={"update-photo"}/>:*/}
                                     <img src={imgIcon} className={"update-photo"}/>
-                                }
+                                {/*}*/}
                             </label>
 
                         </div>
@@ -255,8 +251,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        sendPostDelivery: (post, img) =>
-            dispatch(sendPostDelivery(post, img)),
+        sendPostDelivery: (post, img1, img2) =>
+            dispatch(sendPostDelivery(post, img1, img2)),
         editPost: (post) =>
             dispatch(editPost(post)),
     }

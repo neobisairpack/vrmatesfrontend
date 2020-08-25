@@ -20,7 +20,7 @@ const Support = (props) => {
     }
     const handleSubmit = (e) => {
         let token = JSON.parse(localStorage.getItem("token"));
-        axios.post('http://167.172.178.135/api/support/', {
+        axios.post('https://vrmates.co/api/support/', {
             email: state.email,
             title: state.title,
             text: state.text

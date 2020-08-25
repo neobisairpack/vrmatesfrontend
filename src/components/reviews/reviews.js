@@ -6,8 +6,10 @@ import axios from "axios";
 import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
+import {getUserData} from "../sidebar/sidebarActions";
+import {connect} from "react-redux";
 
-const Reviews = () => {
+const Reviews = (props) => {
     const StyledRating = withStyles({
         iconFilled: {
             color: '#FFF',
@@ -20,6 +22,7 @@ const Reviews = () => {
     const [activeModal, setActiveModal] = useState(null);
     useEffect(() => {
         getReviews();
+        props.getUserData()
     }, [])
     const getReviews = () =>{
         let token = JSON.parse(localStorage.getItem("token"));
@@ -37,9 +40,11 @@ const Reviews = () => {
     const showFullReview = (index) => {
         setActiveModal(index);
     }
+    const {user} = props.userData
     return (
         <div className={"reviews"}>
             {rate.map((item) =>
+                user.id === item.provider.id ?
             <div key={item.id} className={"review"}>
                <div onClick={() => showFullReview(item.id)} className={"review " + ((item.id) % 2 !== 0 ? "review-orange" : "review-blue") }>
                    <div className={"review__rating"}>
@@ -57,7 +62,7 @@ const Reviews = () => {
                 <FullReview {...item} show={activeModal === item.id}
 
                             onHide={() => setActiveModal(null)}/>
-             </div>
+             </div> : null
 
             )}
 
@@ -65,4 +70,16 @@ const Reviews = () => {
     );
 };
 
-export default Reviews;
+const mapStateToProps = state => {
+    return {
+        userData: state.userData,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getUserData: () =>
+            dispatch(getUserData()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reviews);

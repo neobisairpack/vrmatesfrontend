@@ -58,8 +58,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        getUserData: post =>
-            dispatch(getUserData(post)),
+        getUserData: () =>
+            dispatch(getUserData()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

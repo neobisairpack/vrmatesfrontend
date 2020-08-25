@@ -60,9 +60,12 @@ const RegistrationForm = () => {
             })
                 .then((res) => {
                     console.log(res)
-                    alert(res.data.response)
+                    setNotMessage("Thanks for the registration! Please, check your email to complete the process!")
+                    setNotShow(true)
                 })
                 .catch((err) => {
+                    setNotMessage("Ooops! Something went wrong, check and try again")
+                    setNotShow(true)
                     console.log("Registration error " + err)
                 })
         }

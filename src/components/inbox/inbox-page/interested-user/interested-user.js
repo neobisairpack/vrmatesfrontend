@@ -19,7 +19,7 @@ const InterestedUser = (props) => {
             props.getInterestedRequest()
             setInterested(props.post.interestedReq)
         }
-        else{
+        else if(props.location.state.post.createdBy === "Provider"){
             props.getInterestedRequestProvide()
             setInterested(props.post.interestedProv)
         }

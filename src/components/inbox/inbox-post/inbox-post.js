@@ -21,8 +21,8 @@ const InboxPost = (props) => {
     useEffect(() => {
         props.getPosts();
         props.getInterestedRequest();
-
-        console.log(props.userData)
+        props.getInterestedRequestProvide();
+       console.log(props.userData)
 
     }, [])
 
@@ -43,19 +43,16 @@ const InboxPost = (props) => {
             return res[n];
         }
     }
-    const id = localStorage.getItem("num");
+   // const id = localStorage.getItem("num");
     const {inbox_posts} = props.profilePost;
-    const {interestedReq} = props.post;
-
-    //const {interestedAll} = props.post; {item.createdBy === "Requester" ? mapRequests(item.id) : null}
     const mapRequests = (id, create) =>{
         let interested = []
         if(create === "req"){
-            props.getInterestedRequest()
+
             interested = props.post.interestedReq
         }
-        else{
-            props.getInterestedRequestProvide()
+        else if(create === "prov"){
+
             interested = props.post.interestedProv
         }
         let arr = []
@@ -66,13 +63,14 @@ const InboxPost = (props) => {
         })
         return arr.length
     }
+    //const {user} = props.userData
     //console.log(props.userData)
     return (
         <div className={"post container"}>
             <div className={"row"}>
-                {inbox_posts.map((item, id) =>
-                    //item.requester.id !== id || item.provider.id !== id ? null :
-                    <div key={id} className={"col-4"}>
+                {inbox_posts.map((item, indx) =>
+                    //item.requester.id !== user.id || item.provider.id !== user.id ? null :
+                    <div key={indx} className={"col-4"}>
                         <Card onClick={() => redirect(item)}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>

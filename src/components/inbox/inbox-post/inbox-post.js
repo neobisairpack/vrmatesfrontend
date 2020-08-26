@@ -13,6 +13,7 @@ import {
 import {getPosts} from "../../profile/profileActions";
 import {connect} from "react-redux";
 import {getInterestedRequest, getInterestedRequestProvide} from "../../post/postActions";
+import {getUserData} from "../../sidebar/sidebarActions";
 
 const InboxPost = (props) => {
    // const [interested, setInterested] = useState([])
@@ -20,8 +21,9 @@ const InboxPost = (props) => {
     useEffect(() => {
         props.getPosts();
         props.getInterestedRequest();
-        console.log(props.post)
+
         console.log(props.userData)
+
     }, [])
 
     const redirect = (item) => {
@@ -41,8 +43,10 @@ const InboxPost = (props) => {
             return res[n];
         }
     }
+    const id = localStorage.getItem("num");
     const {inbox_posts} = props.profilePost;
-    const {interestedReq} = props.post
+    const {interestedReq} = props.post;
+
     //const {interestedAll} = props.post; {item.createdBy === "Requester" ? mapRequests(item.id) : null}
     const mapRequests = (id, create) =>{
         let interested = []
@@ -67,7 +71,7 @@ const InboxPost = (props) => {
         <div className={"post container"}>
             <div className={"row"}>
                 {inbox_posts.map((item, id) =>
-                    //item.requester.email !== props.userData.user.email || item.provider.email !== props.userData.user.email ? null :
+                    //item.requester.id !== id || item.provider.id !== id ? null :
                     <div key={id} className={"col-4"}>
                         <Card onClick={() => redirect(item)}>
                             <div className={"post__content"}>
@@ -117,7 +121,6 @@ const mapStateToProps = state => {
     return {
         profilePost: state.profilePost,
         post: state.post,
-        userData: state.userData
     }
 }
 const mapDispatchToProps = dispatch => {

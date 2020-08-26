@@ -1,32 +1,29 @@
 import React, {useState} from 'react';
 import './style/create-post.css';
-import { connect } from "react-redux";
-import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
+import {connect} from "react-redux";
+import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
 import {Modal} from "react-bootstrap";
 import '../update-info/style/update-info.css';
 import {sendPostDelivery} from "./createPostActions";
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import {editPost} from "../profile/profileActions";
 
 const CreatePostDelivery = (props) => {
     const urlImg = 'https://vrmates.co'
     const splitStr = (str, n) => {
-        if(str){
+        if (str) {
             let res = str.split(" ")
             return res[n];
         }
     }
     const splitDate = (str, n) => {
-        if(str){
+        if (str) {
             let res = str.split("-")
             return res[n];
         }
     }
-    // const [images, setImages] = useState({
-    //     img1: "",
-    //     img2: ""
-    // });
+
     const [img1, setImg1] = useState("")
     const [img2, setImg2] = useState("")
     const [state, setState] = useState({
@@ -43,23 +40,23 @@ const CreatePostDelivery = (props) => {
         text: props.post ? props.post.text : "",
         id: props.post ? props.post.id : 0
     })
-    console.log(state)
-    const sendPost = () => {
-        console.log(img1, img2)
+    const sendPost = (e) => {
+        e.preventDefault()
+        console.log(img1, img2, state)
         props.post ? props.editPost(state, img1, img2) : props.sendPostDelivery(state, img1, img2)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
         return (
-            Array.from( new Array(50), (v,i) =>
-                <option name={"year"} key={i} value={year+i}>{year+i}</option>
+            Array.from(new Array(50), (v, i) =>
+                <option name={"year"} key={i} value={year + i}>{year + i}</option>
             )
         );
     };
     const getDropListDay = () => {
         return (
-            Array.from( new Array(31), (v,i) =>
-                <option key={i} value={i+1}>{i+1}</option>
+            Array.from(new Array(31), (v, i) =>
+                <option key={i} value={i + 1}>{i + 1}</option>
             )
         );
     };
@@ -70,21 +67,19 @@ const CreatePostDelivery = (props) => {
             [e.target.name]: value
         })
     }
-    const imageInputChange1 = (e) =>{
-        console.log(e.target.name, e.target.value)
-            setImg1(e.target.files[0])
+    const imageInputChange1 = (e) => {
+        setImg1(e.target.files[0])
 
     }
-    const imageInputChange2 = (e) =>{
-        console.log(e.target.name, e.target.value)
+    const imageInputChange2 = (e) => {
         setImg2(e.target.files[0])
 
     }
     return (
-        <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post"}>
+        <Modal show={props.show} onHide={props.onHide} >
             <div className={"create-post__type"}>Package Delivery</div>
-            <div className={"create-post__location-from"}>
-                <Form onSubmit={() => console.log("Form")}>
+            <Form onSubmit={(e) => sendPost(e)} className={"create-post"}>
+                <div className={"create-post__location-from"}>
                     <label className={"create-post__form-title"}>Indicate package pick up location:</label>
                     <FormGroup>
                         <CountryDropdown
@@ -96,7 +91,7 @@ const CreatePostDelivery = (props) => {
                             onChange={e => setState({
                                 ...state,
                                 country1: e
-                            })} />
+                            })}/>
                     </FormGroup>
                     <FormGroup>
                         <RegionDropdown
@@ -109,7 +104,7 @@ const CreatePostDelivery = (props) => {
                             onChange={e => setState({
                                 ...state,
                                 state1: e
-                            })} />
+                            })}/>
                     </FormGroup>
                     <FormGroup>
                         <Input type="text" name={"city1"}
@@ -120,10 +115,9 @@ const CreatePostDelivery = (props) => {
                                onChange={e => handleChange(e)}
                         />
                     </FormGroup>
-                </Form>
-            </div>
-            <div className={"create-post__location-to"}>
-                <Form>
+                </div>
+                <div className={"create-post__location-to"}>
+
                     <Label className={"create-post__form-title"}>Indicate package drop off location:</Label>
                     <FormGroup>
                         <CountryDropdown
@@ -135,7 +129,7 @@ const CreatePostDelivery = (props) => {
                             onChange={e => setState({
                                 ...state,
                                 country2: e
-                            })} />
+                            })}/>
                     </FormGroup>
                     <FormGroup>
                         <RegionDropdown
@@ -148,7 +142,7 @@ const CreatePostDelivery = (props) => {
                             onChange={e => setState({
                                 ...state,
                                 state2: e
-                            })} />
+                            })}/>
                     </FormGroup>
                     <FormGroup>
                         <Input type="text" name={"city2"}
@@ -159,94 +153,98 @@ const CreatePostDelivery = (props) => {
                                onChange={e => handleChange(e)}
                         />
                     </FormGroup>
-                </Form>
-            </div>
-            <div className={"create-post__date"}>
-                <Label className={"create-post__form-title"}>Select the date of the delivery</Label>
-                <Row form>
-                    <Col md={3}>
-                        <FormGroup>
-                            <select required name={"day"} value={state.day} onChange={e => handleChange(e)} className={"form-control"}>
-                                {getDropListDay()}
-                            </select>
-                        </FormGroup>
-                    </Col>
-                    <Col md={3}>
-                        <FormGroup>
-                            <select required name={"month"} value={state.month} onChange={e => handleChange(e)} className={"form-control"}>
-                                <option value={"01"}>January</option>
-                                <option value={"02"}>February</option>
-                                <option value={"03"}>March</option>
-                                <option value={"04"}>April</option>
-                                <option value={"05"}>May</option>
-                                <option value={"06"}>June</option>
-                                <option value={"07"}>July</option>
-                                <option value={"08"}>August</option>
-                                <option value={"09"}>September</option>
-                                <option value={"10"}>October</option>
-                                <option value={"11"}>November</option>
-                                <option value={"12"}>December</option>
-                            </select>
-                        </FormGroup>
-                    </Col>
-                    <Col md={3}>
-                        <FormGroup>
-                            <select required name={"year"} value={state.year} onChange={e => handleChange(e)} className={"form-control"}>
-                                {getDropList()}
-                            </select>
-                        </FormGroup>
-                    </Col>
-                </Row>
-            </div>
-            <div className={"create-post__title"}>
-                <Form>
+                </div>
+
+
+                <div className={"create-post__date"}>
+                    <Label className={"create-post__form-title"}>Select the date of the delivery</Label>
+                    <Row form>
+                        <Col md={3}>
+                            <FormGroup>
+                                <select required name={"day"} value={state.day} onChange={e => handleChange(e)}
+                                        className={"form-control"}>
+                                    {getDropListDay()}
+                                </select>
+                            </FormGroup>
+                        </Col>
+                        <Col md={3}>
+                            <FormGroup>
+                                <select required name={"month"} value={state.month} onChange={e => handleChange(e)}
+                                        className={"form-control"}>
+                                    <option value={"01"}>January</option>
+                                    <option value={"02"}>February</option>
+                                    <option value={"03"}>March</option>
+                                    <option value={"04"}>April</option>
+                                    <option value={"05"}>May</option>
+                                    <option value={"06"}>June</option>
+                                    <option value={"07"}>July</option>
+                                    <option value={"08"}>August</option>
+                                    <option value={"09"}>September</option>
+                                    <option value={"10"}>October</option>
+                                    <option value={"11"}>November</option>
+                                    <option value={"12"}>December</option>
+                                </select>
+                            </FormGroup>
+                        </Col>
+                        <Col md={3}>
+                            <FormGroup>
+                                <select required name={"year"} value={state.year} onChange={e => handleChange(e)}
+                                        className={"form-control"}>
+                                    {getDropList()}
+                                </select>
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                </div>
+                <div className={"create-post__title"}>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>Please, add post title:</Label>
-                        <Input required type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
+                        <Input required type="textarea" name="title" value={state.title}
+                               onChange={e => handleChange(e)}/>
                     </FormGroup>
-                </Form>
-            </div>
-            <div className={"create-post__description"}>
-                <Form>
+                </div>
+                <div className={"create-post__description"}>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>Please, add post body:</Label>
                         <Input required type="textarea" name="text" value={state.text} onChange={e => handleChange(e)}/>
                     </FormGroup>
-                </Form>
-            </div>
-            <div className={"create-post__photos"}>
-                <label className={"create-post__form-title"}>Attach photos of the package(max 2 photos) </label>
-                <Row>
-                    <Col md={3}>
-                        <div>
-                            <Input required className={"update__input-file-btn"} type="file" id={"file1"} name={"img1"}
-                                   onChange={e => imageInputChange1(e)}
-                            />
-                            <label htmlFor={"file1"} className={"update__input-file-fake"}>
-                                <img src={imgIcon} className={"update-photo"}/>
-                            </label>
-
-                        </div>
-                    </Col>
-                    <Col md={3}>
-                        <div>
-                            <Input required className={"update__input-file-btn"} type="file" id={"file2"} name={"img2"}
-                                   onChange={e => imageInputChange2(e)}
-                            />
-                            <label htmlFor={"file2"} className={"update__input-file-fake"}>
-                                {/*{images.img2 ? <img src={urlImg + images.img2} className={"update-photo"}/>:*/}
+                </div>
+                <div className={"create-post__photos"}>
+                    <label className={"create-post__form-title"}>Attach photos of the package(max 2 photos) </label>
+                    <Row>
+                        <Col md={3}>
+                            <div>
+                                <Input className={"update__input-file-btn"} type="file" id={"file1"}
+                                       name={"img1"}
+                                       onChange={e => imageInputChange1(e)}
+                                />
+                                <label htmlFor={"file1"} className={"update__input-file-fake"}>
                                     <img src={imgIcon} className={"update-photo"}/>
-                                {/*}*/}
-                            </label>
+                                </label>
 
-                        </div>
-                    </Col>
-                </Row>
-            </div>
-            <div className={"create-post__buttons"}>
-                <button onClick={props.onHide} className={"create-post__cancel-button"}>Cancel</button>
-                <button className={"create-post__save-button"}>Save</button>
-            </div>
+                            </div>
+                        </Col>
+                        <Col md={3}>
+                            <div>
+                                <Input className={"update__input-file-btn"} type="file" id={"file2"}
+                                       name={"img2"}
+                                       onChange={e => imageInputChange2(e)}
+                                />
+                                <label htmlFor={"file2"} className={"update__input-file-fake"}>
+                                    {/*{images.img2 ? <img src={urlImg + images.img2} className={"update-photo"}/>:*/}
+                                    <img src={imgIcon} className={"update-photo"}/>
+                                    {/*}*/}
+                                </label>
+
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+                <div className={"create-post__buttons"}>
+                    <button onClick={props.onHide} className={"create-post__cancel-button"}>Cancel</button>
+                    <button className={"create-post__save-button"}>Save</button>
+                </div>
+            </Form>
         </Modal>
     );
 };

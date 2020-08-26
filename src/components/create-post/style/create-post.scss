@@ -1,4 +1,4 @@
-.create-post .modal-content{
+.modal-content {
   position: absolute;
   left: -12%;
   top: 7%;
@@ -9,6 +9,8 @@
   border-radius: 20px;
   z-index: 1;
   padding: 32px;
+}
+.create-post{
   display: grid;
   align-content: space-between;
   justify-content: space-between;
@@ -24,7 +26,7 @@
     "p p"
     "b b";
 }
-.create-provide-delivery .modal-content{
+.modal-content {
   position: absolute;
   left: -12%;
   top: 7%;
@@ -35,6 +37,8 @@
   border-radius: 20px;
   z-index: 1;
   padding: 32px;
+}
+  .create-provide-delivery{
   display: grid;
   align-content: space-between;
   justify-content: space-between;
@@ -53,7 +57,7 @@ ul{
   list-style: none;
   padding: 0;
 }
-.create-post-airport .modal-content{
+.modal-content {
   position: absolute;
   left: -12%;
   top: 7%;
@@ -64,12 +68,14 @@ ul{
   border-radius: 20px;
   z-index: 1;
   padding: 32px;
+}
+.create-post-airport{
   display: grid;
   align-content: space-between;
   justify-content: space-between;
   //grid-row-end: 20px;
   grid-column-gap: 50px;
-  grid-template-rows: 8% 40% 20% 16% 19% 12%;
+  grid-template-rows: 2% 45% 20% 16% 19% 12%;
   grid-template-columns: repeat(2, 45%);
   grid-template-areas:
     "t t"

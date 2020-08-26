@@ -41,7 +41,6 @@ const InterestedUser = (props) => {
     const canceltHandler = (req) =>{
         props.changeStatusRequest(req, "Canceled")
     }
-    console.log(interested)
     const urlImg = 'https://vrmates.co'
     return (
         <div className={"interested-user container"}>

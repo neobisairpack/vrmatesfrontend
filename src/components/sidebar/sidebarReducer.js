@@ -16,6 +16,7 @@ const reducer = (state = initialState, action) => {
             };
         case GET_USER_DATA_SUCCESS:
             console.log(action)
+            localStorage.setItem("num", JSON.stringify(action.payload.id));
             return {
                 ...state,
                 loading: false,

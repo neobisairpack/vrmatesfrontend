@@ -58,7 +58,8 @@ export const sendProviderDelivery = (post) => {
                 },
                 {
                     headers: {
-                        "Authorization": "Token " + token
+                        "Authorization": "Token " + token,
+                        "Content-Type": "application/json"
                     }
                 }
 
@@ -91,7 +92,8 @@ export const sendPostAirport = (post) => {
                 },
                 {
                     headers: {
-                        "Authorization": "Token " + token
+                        "Authorization": "Token " + token,
+                        "Content-Type": "application/json"
                     }
                 }
 
@@ -108,14 +110,14 @@ export const sendPostAirport = (post) => {
 };
 
 export const sendProviderAirport = (post) => {
-    console.log(post)
+    console.log((post.year).concat("-", post.month, "-", post.day))
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(sendPostStarted());
         axios
             .post(`https://vrmates.co/api/provide-services/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
-                    deadline: (post.year).concat("-", post.month, "-", post.day),
+                    deadline: "2020-01-05",
                     status: "Created, not accepted",
                     service_type: "Pick Up",
                     title: post.title,
@@ -123,7 +125,8 @@ export const sendProviderAirport = (post) => {
                 },
                 {
                     headers: {
-                        "Authorization": "Token " + token
+                        "Authorization": "Token " + token,
+                        "Content-Type": "application/json"
                     }
                 }
 
@@ -159,7 +162,8 @@ export const sendPostHosting = (post) => {
                 },
                 {
                     headers: {
-                        "Authorization": "Token " + token
+                        "Authorization": "Token " + token,
+                        "Content-Type": "application/json"
                     }
                 }
 
@@ -175,29 +179,29 @@ export const sendPostHosting = (post) => {
     };
 };
 
-export const sendProviderHosting = (post) => {
-    console.log(post.year, post.month, post.day, typeof post.year)
+export const sendProviderHosting = (post, img1, img2) => {
+    const fd = new FormData();
+    fd.append('image1', img1)
+    fd.append('image2', img2)
+    fd.append('status', "Created, not accepted")
+    fd.append('service_type', "Hosting")
+    fd.append("pickup_location", (post.country1).concat(",", post.state1, ",", post.city1))
+    fd.append("location", (post.country1).concat(",", post.state1, ",", post.city1))
+    fd.append('deadline', (post.year).concat("-", post.month, "-", post.day))
+    fd.append('title', post.title)
+    fd.append('text', post.text)
+    fd.append('preferences', post.preferences)
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`https://vrmates.co/api/provide-services/`, {
-                    location: (post.country1).concat(",", post.state1, ",", post.city1),
-                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
-                    deadline: (post.year).concat("-", post.month, "-", post.day),
-                    status: "Created, not accepted",
-                    service_type: "Hosting",
-                    title: post.title,
-                    text: post.text,
-                    preferences: post.preferences,
-                    is_checked: false
-                },
+            .post(`https://vrmates.co/api/provide-services/`, fd,
                 {
                     headers: {
-                        "Authorization": "Token " + token
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
                     }
                 }
-
             )
             .then(res => {
                 dispatch(sendPostSuccess(res.data));
@@ -216,7 +220,8 @@ export const getPostImages = (id) => {
             .get(`https://vrmates.co/api/services-images/`,
                 {
                     headers: {
-                        "Authorization": "Token " + token
+                        "Authorization": "Token " + token,
+                        "Content-Type": "application/json"
                     }
                 }
 

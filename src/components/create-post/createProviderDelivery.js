@@ -37,7 +37,8 @@ const CreateProviderDelivery = (props) => {
         text: props.post ? props.post.text : "",
         id: props.post ? props.post.id : 0
     })
-    const sendPost = () => {
+    const sendPost = (e) => {
+        e.preventDefault()
         props.post ? props.editPostProvide(state) : props.sendProviderDelivery(state)
     }
     const getDropList = () => {
@@ -63,10 +64,10 @@ const CreateProviderDelivery = (props) => {
         })
     }
     return (
-        <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-provide-delivery"}>
+        <Modal show={props.show} onHide={props.onHide}>
             <div className={"create-post__type"}>Package Delivery</div>
-            <div className={"create-post__location-from"}>
-                <Form>
+                <Form onSubmit={(e) => sendPost(e)} className={"create-provide-delivery"}>
+                    <div className={"create-post__location-from"}>
                     <label className={"create-post__form-title"}>Indicate departure location:</label>
                     <FormGroup>
                         <CountryDropdown
@@ -99,10 +100,8 @@ const CreateProviderDelivery = (props) => {
                                onChange={e => handleChange(e)}
                         />
                     </FormGroup>
-                </Form>
             </div>
             <div className={"create-post__location-to"}>
-                <Form>
                     <Label className={"create-post__form-title"}>Indicate arrival location:</Label>
                     <FormGroup>
                         <CountryDropdown
@@ -135,7 +134,6 @@ const CreateProviderDelivery = (props) => {
                                onChange={e => handleChange(e)}
                         />
                     </FormGroup>
-                </Form>
             </div>
             <div className={"create-post__date"}>
                 <Label className={"create-post__form-title"}>Select the date of the departure:</Label>
@@ -208,36 +206,26 @@ const CreateProviderDelivery = (props) => {
                             </select>
                         </FormGroup>
                     </Col>
-                    {/*<TimePicker*/}
-                    {/*    onChange={time => setState({*/}
-                    {/*        ...state,*/}
-                    {/*        time: time*/}
-                    {/*    })}*/}
-                    {/*    value={state.time}*/}
-                    {/*/>*/}
                 </Row>
 
             </div>
             <div className={"create-post__title"}>
-                <Form>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>Please, add post title:</Label>
                         <Input type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
                     </FormGroup>
-                </Form>
             </div>
             <div className={"create-post__description"}>
-                <Form>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>Please, add post body:</Label>
                         <Input type="textarea" name="text" value={state.text} onChange={e => handleChange(e)}/>
                     </FormGroup>
-                </Form>
             </div>
             <div className={"create-post__buttons"}>
                 <button onClick={props.onHide} className={"create-post__cancel-button"}>Cancel</button>
-                <button onClick={sendPost} className={"create-post__save-button"}>Save</button>
+                <button className={"create-post__save-button"}>Save</button>
             </div>
+                </Form>
         </Modal>
     );
 };

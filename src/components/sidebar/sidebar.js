@@ -19,7 +19,6 @@ const Sidebar = (props) => {
     })(Rating);
     useEffect(() => {
         props.getUserData();
-
     }, [])
 
     let {loading} = props.userData;
@@ -59,7 +58,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getUserData: () =>
-            dispatch(getUserData()),
+            dispatch(getUserData())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

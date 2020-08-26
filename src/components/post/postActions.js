@@ -168,7 +168,7 @@ export const changeStatusRequestProvide = (req, status) => {
     console.log(req, status)
     return dispatch => {
         axios
-            .put(`https://vrmates.co/api/request-services/${req.id}/`, {
+            .put(`https://vrmates.co/api/request-provide-services/${req.id}/`, {
                     status: status,
                     service: req.service.id,
                     accept: status === "Accepted"

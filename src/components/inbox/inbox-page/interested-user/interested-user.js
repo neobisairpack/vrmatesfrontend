@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './style/interested.css';
 import {withRouter} from "react-router-dom";
 import {
-    changeStatusRequest,
+    changeStatusRequest, changeStatusRequestProvide,
     getInterestedRequest,
     getInterestedRequestProvide,
     setCurrentUser
@@ -36,10 +36,20 @@ const InterestedUser = (props) => {
         })
     }
     const acceptHandler = (req) =>{
-        props.changeStatusRequest(req, "Accepted")
+        if(props.location.state.post.createdBy === "Requester"){
+            props.changeStatusRequest(req, "Accepted")
+        }
+        else if(props.location.state.post.createdBy === "Provider"){
+            props.changeStatusRequestProvide(req, "Accepted")
+        }
     }
     const canceltHandler = (req) =>{
-        props.changeStatusRequest(req, "Canceled")
+        if(props.location.state.post.createdBy === "Requester"){
+            props.changeStatusRequest(req, "Canceled")
+        }
+        else if(props.location.state.post.createdBy === "Provider"){
+            props.changeStatusRequestProvide(req, "Canceled")
+        }
     }
     const urlImg = 'https://vrmates.co'
     return (
@@ -90,6 +100,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(setCurrentUser(user)),
         changeStatusRequest: (req, status) =>
             dispatch(changeStatusRequest(req, status)),
+        changeStatusRequestProvide: (req, status) =>
+            dispatch(changeStatusRequestProvide(req, status)),
     }
 }
 

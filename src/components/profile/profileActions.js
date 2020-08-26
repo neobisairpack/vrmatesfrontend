@@ -11,6 +11,7 @@ export const SET_CURRENT_CREATED_BY = "CURRENT_CREATED_BY";
 
 export const getPosts = () => {
     let token = JSON.parse(localStorage.getItem("token"));
+    let id = JSON.parse(localStorage.getItem("num"));
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios.all([
@@ -22,8 +23,9 @@ export const getPosts = () => {
                 }})
         ])
             .then(axios.spread(function(req, prov){
-                let reqData = req.data || [];
-                let provData = prov.data || [];
+                let reqData = req.data.filter((item) => item.requester.id === id) || [];
+                let provData = prov.data.filter((item) => item.provider.id === id) || [];
+                console.log(reqData, provData)
                 reqData.forEach((it) =>{
                     it["createdBy"] = "Requester"
                 })

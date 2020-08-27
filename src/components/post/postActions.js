@@ -53,7 +53,7 @@ export const sendInterestedRequestProvide = (id) => {
     };
 };
 
-export const getInterestedRequest = (id) => {
+export const getInterestedRequest = () => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         axios
@@ -81,11 +81,14 @@ export const getInterestedRequest = (id) => {
     };
 };
 
-export const getInterestedRequestById = (id) => {
+export const getInterestedRequestById = (createdBy, id) => {
     let token = JSON.parse(localStorage.getItem("token"));
+    let url = "";
+    if(createdBy === "Requester") url = 'request-services'
+    else if (createdBy === "Provider") url = 'request-provide-services'
     return dispatch => {
         axios
-            .get(`https://vrmates.co/api/request-services/`,
+            .get(`https://vrmates.co/api/${url}/`,
                 {
                     headers: {
                         "Authorization": "Token " + token
@@ -93,15 +96,12 @@ export const getInterestedRequestById = (id) => {
                 }
             )
             .then(res => {
-                // if(id){
-                //     const myRes = []
-                //     res.data.map((item) => {
-                //         if(item.service.id === id)
-                //             myRes.push(item)
-                //     })
-                //     dispatch(getRequestSuccess(myRes));
-                // }
-                dispatch(getRequestReqSuccess(res.data));
+                    const myRes = []
+                    res.data.map((item) => {
+                        if(item.service.id === id)
+                            myRes.push(item)
+                    })
+                    dispatch(getRequestSuccess(myRes));
             })
             .catch(err => {
                 dispatch(getRequestFailure(err));
@@ -204,6 +204,10 @@ const getRequestProvSuccess = (data) => ({
 
 const getRequestReqSuccess = (data) => ({
     type: GET_REQUEST_REQ_SUCCESS,
+    payload: data
+});
+const getRequestSuccess = (data) => ({
+    type: GET_REQUEST_SUCCESS,
     payload: data
 });
 

@@ -11,6 +11,7 @@ const initialState = {
     posts: [],
     interestedProv: [],
     interestedReq: [],
+    interested: [],
     curUser: {},
     image: {},
     loading: false,
@@ -44,6 +45,13 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: null,
                 interestedReq: all
+            };
+        case GET_REQUEST_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                interested: action.payload
             };
         case GET_REQUEST_PROV_SUCCESS:
             let prov = []

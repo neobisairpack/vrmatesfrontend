@@ -51,7 +51,7 @@ const UpdateInfo = (props) => {
         fd.append('city', state.city)
         fd.append('states', state.states)
         let token = JSON.parse(localStorage.getItem("token"));
-             axios.post('http://167.172.178.135/users/update/', fd,
+             axios.post('https://vrmates.co/users/update/', fd,
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data',

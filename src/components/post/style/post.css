@@ -64,6 +64,7 @@
 }
 
 .post_avatar-empty {
+  margin-right: 11px;
   align-self: center;
   width: 35px;
   height: 35px;
@@ -157,7 +158,6 @@
   font-weight: 500;
   line-height: 16px;
   color: #424141;
-  text-transform: capitalize;
 }
 
 .post__email {

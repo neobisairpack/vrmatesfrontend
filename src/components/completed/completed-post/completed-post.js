@@ -24,7 +24,7 @@ const CompletedPost = (props) => {
     }
     const splitStr = (str, n) => {
         if(str){
-            let res = str.split(" ")
+            let res = str.split(",")
             return res[n];
         }
     }

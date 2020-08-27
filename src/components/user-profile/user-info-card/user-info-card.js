@@ -54,12 +54,6 @@ const UserInfoCard = (props) => {
             <div className={"user-info__contacts"}>
                 <div className={"user-info__detail"}><img className={"user-info__contact-img"} src={phone}/><label className={"user-info__detail-l"}>{user.phone}</label></div>
                 <div className={"user-info__detail"}><img className={"user-info__contact-img"} src="https://img.icons8.com/ios-filled/24/000000/filled-message.png"/><label className={"user-info__detail-l"}>{user.email}</label></div>
-                <div>
-                    <img className={"user-info__social"} src={fb}/>
-                    <img className={"user-info__social"} src={insta}/>
-                    <img className={"user-info__social"} src={whats}/>
-                    <img className={"user-info__social"} src={telegram}/>
-                </div>
             </div>
         </div>
     );

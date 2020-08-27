@@ -61,6 +61,7 @@ $font-color-orange: #FD5A01;
   margin-right: 11px;
 }
 .post_avatar-empty{
+  margin-right: 11px;
   align-self: center;
   width: 35px;
   height: 35px;
@@ -126,7 +127,6 @@ $font-color-orange: #FD5A01;
   height: 16px;
   overflow: hidden;
   @include font(16px, normal, 500, 16px, #424141);
-  text-transform: capitalize;
 }
 .post__email{
   margin-bottom: 0;

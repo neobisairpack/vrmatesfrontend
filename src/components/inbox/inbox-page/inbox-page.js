@@ -6,7 +6,8 @@ import Footer from "../../footer";
 import './style/inbox-page.css';
 import InboxPageSidebar from "./inbox-sidebar/inbox-sidebar";
 import InterestedUser from "./interested-user";
-const InboxPage = () => {
+import {withRouter} from "react-router-dom";
+const InboxPage = (props) => {
     return (
         <div className={"inbox-page"}>
             <ScrollToTopControlller/>
@@ -21,4 +22,4 @@ const InboxPage = () => {
     );
 };
 
-export default InboxPage;
+export default withRouter(InboxPage);

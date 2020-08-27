@@ -13,7 +13,7 @@ import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 
 const FullPost = (props) => {
-    const urlImg = 'http://167.172.178.135';
+    const urlImg = 'https://vrmates.co';
     const {data} = props;
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const FullPost = (props) => {
 
     const splitStr = (str, n) => {
         if(str){
-            let res = str.split(" ")
+            let res = str.split(",")
             return res[n];
         }
     }
@@ -56,15 +56,15 @@ const FullPost = (props) => {
                                         {data.requester ?
                                             data.requester.image ?
                                             <img src={urlImg + data.requester.image} className={"full-post__avatar"}
-                                                 alt={"User"}/> : <img className={"post_avatar-empty"}
+                                                 alt={"User"}/> : <img className={"full-post_avatar-empty"}
                                                                        src={"https://img.icons8.com/material-sharp/96/000000/user.png"}
-                                                                       alt="Card image cap"/> :
+                                                                       alt="User's photo"/> :
 
                                             data.provider.image ?
                                             <img src={urlImg + data.provider.image} className={"full-post__avatar"}
-                                                 alt={"User"}/> : <img className={"post_avatar-empty"}
+                                                 alt={"User"}/> : <img className={"full-post_avatar-empty"}
                                                                        src={"https://img.icons8.com/material-sharp/96/000000/user.png"}
-                                                                       alt="Card image cap"/>}</li>
+                                                                       alt="User's photo"/>}</li>
                                     <li className={"post__top-list-item"}>
                                         <div className={"full-post__user-name"}>{data.requester ? data.requester.first_name : data.provider.first_name}</div>
                                         <div className={"post__item-rating"}>
@@ -89,7 +89,7 @@ const FullPost = (props) => {
                                 <img className={"post__arrow"} src={arrow}/>
                                 <div className={"full-post__address"}>
                                     <CardText className={"post__city"}>{splitStr(data.drop_off_location, 0)}</CardText>
-                                    <CardSubtitle className={"post__country"}>{splitStr(data.drop_off_location, 0)}</CardSubtitle>
+                                    <CardSubtitle className={"post__country"}>{splitStr(data.drop_off_location, 1)}</CardSubtitle>
                                 </div>
                                 <CardSubtitle className={"post__deadline"}>{data.deadline}</CardSubtitle>
                             </div>

@@ -20,9 +20,17 @@ const Reviews = (props) => {
     })(Rating);
     const [rate, setRate] = useState([]);
     const [activeModal, setActiveModal] = useState(null);
+    const [userId, setUserId] = useState(0)
     useEffect(() => {
         getReviews();
         props.getUserData()
+        if(props.id){
+            setUserId(props.id)
+        }
+        else{
+            setUserId(props.userData.user.id)
+        }
+
     }, [])
     const getReviews = () =>{
         let token = JSON.parse(localStorage.getItem("token"));
@@ -44,7 +52,7 @@ const Reviews = (props) => {
     return (
         <div className={"reviews"}>
             {rate.map((item) =>
-                user.id === item.provider.id ?
+                userId === item.provider.id ?
             <div key={item.id} className={"review"}>
                <div onClick={() => showFullReview(item.id)} className={"review " + ((item.id) % 2 !== 0 ? "review-orange" : "review-blue") }>
                    <div className={"review__rating"}>

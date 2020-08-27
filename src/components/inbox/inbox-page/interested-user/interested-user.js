@@ -43,7 +43,7 @@ const InterestedUser = (props) => {
             props.changeStatusRequestProvide(req, "Accepted")
         }
     }
-    const canceltHandler = (req) =>{
+    const cancelHandler = (req) =>{
         if(props.location.state.post.createdBy === "Requester"){
             props.changeStatusRequest(req, "Canceled")
         }
@@ -74,7 +74,7 @@ const InterestedUser = (props) => {
                             <div className={"interested__service-type"}>{item.service.service_type}</div>
                             <div className={"interested__buttons"}>
                                 <button onClick={() => acceptHandler(item)} className={"interested__button interested__button_accept"}>Accept</button>
-                                <button onClick={() => canceltHandler(item)} className={"interested__button interested__button_cancel"}>Cancel</button>
+                                <button onClick={() => cancelHandler(item)} className={"interested__button interested__button_cancel"}>Cancel</button>
                             </div>
                         </div>
                     </div> : null

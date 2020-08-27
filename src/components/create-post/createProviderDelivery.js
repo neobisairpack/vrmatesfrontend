@@ -35,7 +35,8 @@ const CreateProviderDelivery = (props) => {
         day2: props.post ? splitDate(props.post.deadline, 2) : "1",
         title: props.post ? props.post.title : "",
         text: props.post ? props.post.text : "",
-        id: props.post ? props.post.id : 0
+        id: props.post ? props.post.id : 0,
+        preferences: ""
     })
     const sendPost = (e) => {
         e.preventDefault()

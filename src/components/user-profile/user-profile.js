@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
 import Header from "../header";
 import Footer from "../footer";

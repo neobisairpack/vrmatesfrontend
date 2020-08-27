@@ -6,11 +6,12 @@ import {Modal} from "react-bootstrap";
 import {sendProviderHosting} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import imgIcon from "../post/images/empty-img.svg";
+import {editPostProvide} from "../profile/profileActions";
 
 const CreateProviderHosting = (props) => {
     const splitStr = (str, n) => {
         if (str) {
-            let res = str.split(" ")
+            let res = str.split(",")
             return res[n];
         }
     }
@@ -26,16 +27,23 @@ const CreateProviderHosting = (props) => {
         country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
         state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
         city1: props.post ? splitStr(props.post.pickup_location, 2) : "",
+        country2: "",
+        state2: "",
+        city2: "",
         year: props.post ? splitDate(props.post.deadline, 0) : (new Date().getFullYear()).toString(),
         month: props.post ? splitDate(props.post.deadline, 1) : "01",
         day: props.post ? splitDate(props.post.deadline, 2) : "1",
+        year2: props.post ? splitDate(props.post.deadline, 0) : (new Date().getFullYear()).toString(),
+        month2: props.post ? splitDate(props.post.deadline, 1) : "01",
+        day2: props.post ? splitDate(props.post.deadline, 2) : "1",
         title: props.post ? props.post.title : "",
         text: props.post ? props.post.text : "",
-        preferences: props.post ? props.preferences : "",
+        preferences: props.post ? props.post.preferences : "",
         id: props.post ? props.post.id : 0
     })
     const sendPost = (e) => {
-        e.preventDefault()
+        console.log(state, img1, img2)
+        e.preventDefault();
         props.post ? props.editPostProvide(state, img1, img2) : props.sendProviderHosting(state, img1, img2)
     }
     const getDropList = () => {
@@ -193,6 +201,7 @@ const CreateProviderHosting = (props) => {
                                        onChange={e => imageInputChange1(e)}
                                 />
                                 <label htmlFor={"file1"} className={"update__input-file-fake"}>
+                                    {}
                                     <img src={imgIcon} className={"update-photo"}/>
                                 </label>
                             </div>
@@ -226,6 +235,8 @@ const mapDispatchToProps = dispatch => {
     return {
         sendProviderHosting: post =>
             dispatch(sendProviderHosting(post)),
+        editPostProvide: (post, img1, img2) =>
+            dispatch(editPostProvide(post, img1, img2)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProviderHosting);

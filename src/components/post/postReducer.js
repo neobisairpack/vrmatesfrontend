@@ -47,11 +47,17 @@ const reducer = (state = initialState, action) => {
                 interestedReq: all
             };
         case GET_REQUEST_SUCCESS:
+            let arr = []
+            action.payload.map((item) => {
+                if(item.status === "Pending"){
+                    arr.push(item)
+                }
+            })
             return {
                 ...state,
                 loading: false,
                 error: null,
-                interested: action.payload
+                interested: arr
             };
         case GET_REQUEST_PROV_SUCCESS:
             let prov = []

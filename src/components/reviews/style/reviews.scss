@@ -1,7 +1,6 @@
 .reviews{
   margin-top: 3%;
   display: flex;
-  height: 110px;
   overflow: auto;
   //flex: 1 1 15%;
   flex-flow: row wrap;
@@ -26,6 +25,12 @@
     background: #888;;
   }
   }
+.reviews__user-profile{
+  height: 450px;
+}
+.reviews__profile{
+  height: 110px;
+}
 .review{
   padding: 5px 9px;
   width: 154px;

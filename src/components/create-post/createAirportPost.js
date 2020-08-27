@@ -33,7 +33,8 @@ const CreatePostAirport = (props) => {
         day: props.post ? splitDate(props.post.deadline, 2) : "01",
         title: props.post ? props.post.title : "",
         text: props.post ? props.post.text : "",
-        id: props.post ? props.post.id : 0
+        id: props.post ? props.post.id : 0,
+        preferences: ""
     })
     const sendPost = (e) => {
         e.preventDefault()
@@ -62,7 +63,7 @@ const CreatePostAirport = (props) => {
         })
     }
     return (
-        <Modal show={props.show} onHide={props.onHide}>
+        <Modal show={props.show} onHide={props.onHide} dialogClassname={"create-post"}>
             <div className={"create-post__type"}>Airport pick up/drop off</div>
             <Form onSubmit={(e) => sendPost(e)} className={"create-post-airport"}>
                 <div className={"create-post__location-from"}>

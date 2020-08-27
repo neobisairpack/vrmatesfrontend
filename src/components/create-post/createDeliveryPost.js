@@ -38,7 +38,8 @@ const CreatePostDelivery = (props) => {
         day: props.post ? splitDate(props.post.deadline, 2) : "1",
         title: props.post ? props.post.title : "",
         text: props.post ? props.post.text : "",
-        id: props.post ? props.post.id : 0
+        id: props.post ? props.post.id : 0,
+        preferences: ""
     })
     const sendPost = (e) => {
         e.preventDefault()
@@ -257,8 +258,8 @@ const mapDispatchToProps = dispatch => {
     return {
         sendPostDelivery: (post, img1, img2) =>
             dispatch(sendPostDelivery(post, img1, img2)),
-        editPost: (post) =>
-            dispatch(editPost(post)),
+        editPost: (post, img1, img2) =>
+            dispatch(editPost(post, img1, img2)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostDelivery);

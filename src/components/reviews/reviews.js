@@ -48,9 +48,8 @@ const Reviews = (props) => {
     const showFullReview = (index) => {
         setActiveModal(index);
     }
-    const {user} = props.userData
     return (
-        <div className={"reviews"}>
+        <div className={"reviews " + (props.id ? "reviews__user-profile" : "reviews__profile")}>
             {rate.map((item) =>
                 userId === item.provider.id ?
             <div key={item.id} className={"review"}>

@@ -41,7 +41,18 @@ export const getPosts = () => {
     };
 };
 
-export const editPost = (post) => {
+export const editPost = (post, img1, img2) => {
+    const fd = new FormData();
+    fd.append('image1', img1)
+    fd.append('image2', img2)
+    fd.append('status', "Created, not accepted")
+    fd.append("pickup_location", (post.country1).concat(",", post.state1, ",", post.city1))
+    fd.append("location", (post.country1).concat(",", post.state1, ",", post.city1))
+    fd.append('drop_off_location', (post.country2).concat(",", post.state2, ",", post.city2))
+    fd.append('deadline', (post.year).concat("-", post.month, "-", post.day))
+    fd.append('title', post.title)
+    fd.append('text', post.text)
+    fd.append('preferences', post.preferences)
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(getInboxPostStarted());
@@ -74,26 +85,30 @@ export const editPost = (post) => {
     };
 };
 
-export const editPostProvide = (post) => {
+export const editPostProvide = (post, img1, img2) => {
+    const fd = new FormData();
+    fd.append('image1', img1)
+    fd.append('image2', img2)
+    fd.append('status', "Created, not accepted")
+    fd.append("pickup_location", (post.country1).concat(",", post.state1, ",", post.city1))
+    fd.append("location", (post.country1).concat(",", post.state1, ",", post.city1))
+    fd.append('drop_off_location', (post.country2).concat(",", post.state2, ",", post.city2))
+    fd.append('deadline', (post.year).concat("-", post.month, "-", post.day))
+    fd.append('title', post.title)
+    fd.append('text', post.text)
+    fd.append('preferences', post.preferences)
+    if(post.service_type === "Delivery"){
+        fd.append('arrive_date', (post.year2).concat("-", post.month2, "-", post.day2))
+    }
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios
-            .put(`https://vrmates.co/api/provide-services/${post.id}/`, {
-                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
-                    location: (post.country1).concat(",", post.state1, ",", post.city1),
-                    drop_off_location: (post.country2).concat(" ", post.state2, " ", post.city2),
-                    deadline: (post.year).concat("-", post.month, "-", post.day),
-                    arrive_date: (post.year2).concat("-", post.month2, "-", post.day2, "T12:07:46Z"),
-                    status: "Created, not accepted",
-                    title: post.title,
-                    text: post.text,
-                    preferences: post.preferences || "",
-                    is_checked: false
-                },
+            .put(`https://vrmates.co/api/provide-services/${post.id}/`, fd,
                 {
                     headers: {
-                        "Authorization": "Token " + token
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
                     }
                 }
 

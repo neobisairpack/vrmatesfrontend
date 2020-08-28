@@ -227,11 +227,13 @@ export const getPostImages = (id) => {
 
             )
             .then(res => {
+                let images = []
                 res.data.map((item) => {
                     if(item.post === id){
-                        dispatch(getPostImagesSuccess(item));
+                       images.push(item)
                     }
                 })
+                dispatch(getPostImagesSuccess(images));
             })
             .catch(err => {
                 console.log(token)

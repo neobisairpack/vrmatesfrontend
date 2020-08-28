@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Form, FormGroup, Label, Input} from 'reactstrap';
 import './style/register.css';
-import dateformat from 'dateformat'
+import dateformat from 'dateformat';
 import exit from '../../post/images/exit.svg';
 import DatePicker from "react-datepicker";
 import axios from "axios";

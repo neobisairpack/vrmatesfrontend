@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style/create-post.css';
 import {connect} from "react-redux";
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
@@ -9,6 +9,13 @@ import imgIcon from "../post/images/empty-img.svg";
 import {editPostProvide} from "../profile/profileActions";
 
 const CreateProviderHosting = (props) => {
+    useEffect(() => {
+        const {isCreated} = props.createPost
+        if(isCreated){
+            alert("Thank you! Please, wait untill administrator checks the post!")
+            window.location.reload(false);
+        }
+    })
     const splitStr = (str, n) => {
         if (str) {
             let res = str.split(",")
@@ -79,7 +86,7 @@ const CreateProviderHosting = (props) => {
 
     }
     return (
-        <Modal show={props.show} onHide={props.onHide} dialogClassname={"create-post-modal"}>
+        <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post-modal"}>
             <div className={"create-post__type"}>Hosting</div>
             <Form onSubmit={(e) => sendPost(e)}  className={"create-post"} >
                 <div className={"create-post__location-from"}>

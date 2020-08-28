@@ -6,8 +6,9 @@ import {
 
 const initialState = {
     posts: [],
-    image: {},
-    loading: false,
+    images: [],
+    isCreated: false,
+    loading: true,
     error: null,
     res: null,
 }
@@ -24,7 +25,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: null,
-                res: action.payload
+                res: action.payload,
+                isCreated: true
             };
         case SEND_POST_FAILURE:
             return {
@@ -36,7 +38,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                image: action.payload,
+                images: action.payload,
             };
         case GET_POST_IMAGES_FAILURE:
             return {

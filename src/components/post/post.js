@@ -13,7 +13,7 @@ import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import {connect} from "react-redux";
-import {sendInterestedRequest, sendInterestedRequestProvide} from "./postActions";
+import {getPostsDashboard, sendInterestedRequest, sendInterestedRequestProvide} from "./postActions";
 
 const Post = (props) => {
     const [dataAll, setData] = useState([]);
@@ -41,23 +41,7 @@ const Post = (props) => {
     const urlImg = 'https://vrmates.co';
     const {url} = props;
     useEffect(() => {
-        let token = JSON.parse(localStorage.getItem("token"));
-        axios.get(`https://vrmates.co/api/${url}/`, {
-            headers: {
-                "Authorization": "Token " + token
-            }
-        })
-            .then(res => {
-                let posts = []
-                res.data.map((item) => {
-                    if(item.status === "Created, not accepted"){
-                        posts.push(item)
-                    }
-                })
-                setData(posts)
-                setLoading(true)
-            })
-            .catch((err) => console.log(err))
+       props.getPostsDashboard(url)
     }, [])
         const modalHandler = (index) => {
             setActiveModal(index);
@@ -71,10 +55,12 @@ const Post = (props) => {
                 props.sendInterestedRequestProvide(item.id);
             }
         }
+    const {posts} = props.post;
+    console.log(posts)
     return (
         <div className={"post container"}>
             <div className={"row"}>
-                {dataAll.map((item) =>
+                {posts.map((item) =>
                     <div key={item.id} className={"col-4"}>
                         <Card onClick={() => modalHandler(item.id)} className={props.size}>
                             <div className={"post__content"}>
@@ -159,6 +145,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(sendInterestedRequest(id)),
         sendInterestedRequestProvide: (id) =>
             dispatch(sendInterestedRequestProvide(id)),
+        getPostsDashboard: (url) =>
+            dispatch(getPostsDashboard(url)),
     }
 }
 

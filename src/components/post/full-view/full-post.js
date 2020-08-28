@@ -41,7 +41,7 @@ const FullPost = (props) => {
         "Pick Up": "Airport Pick Up",
         "Hosting": "Hosting"
     }
-    const {image} = props.createPost;
+    const {images} = props.createPost;
     return (
         <div>
             <Modal show={props.show} onHide={props.onHide} dialogClassName={"full-post"}>
@@ -99,9 +99,10 @@ const FullPost = (props) => {
                         <CardText className={"full-post__email"}>{data.requester ? data.requester.email : data.provider.email}</CardText>
                         {data.service_type === 'Delivery' && data.requester || data.service_type === 'Hosting' && data.provider ?
                         <div className={"full-post__images"}>
-                            {image ? <div><img className={"full-post__photo"} src={image.image}/></div> :
+                            {images[0] ? <div><img className={"full-post__photo"} src={images[0].image}/></div> :
                             <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div> }
-                            <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div>
+                            {images[1] ? <div><img className={"full-post__photo"} src={images[0].image}/></div> :
+                            <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div> }
                         </div> : null}
                     </div>
 

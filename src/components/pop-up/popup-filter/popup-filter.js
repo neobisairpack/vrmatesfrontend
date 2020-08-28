@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../popup-switch/style/popup.css';
 import './style/popup-filter.css';
 import DatePicker from 'react-datepicker';
@@ -6,51 +6,60 @@ import 'react-datepicker/dist/react-datepicker.css';
 import filter from '../../dashboard/icons/filter-icon.svg';
 import { FormGroup, Input } from 'reactstrap';
 import axios from 'axios'
+import {connect} from "react-redux";
+import {
+    filterPosts,
+} from "../../post/postActions";
+import dateformat from 'dateformat';
 
-const Filter = () => {
-
-    // const filterFetch = () => {
-    //     axios.
-    //         get()
-    // }
+const Filter = (props) => {
+    const [state, setState] = useState({
+        type: "",
+        deadline: ""
+    })
+    const [date, setDate] = useState("")
+    const handleChange = (e) =>{
+        const value = e.target.value
+        setState({
+            ...state,
+            [e.target.name]: value
+        })
+    }
+    const searchFilter = () =>{
+        props.filterPosts("services", dateformat(date, "yyyy-mm-dd"), state.type)
+    }
     return (
         <div className={"filter"}>
             <label className={"filter__title"}>Choose the type of service</label>
             <ul className={"switch__list"}>
                 <li>
-                    <input type={"radio"} name={"radio"} />
+                    <input value={"Delivery"} type={"radio"} name={"type"}
+                           defaultChecked={state.type === "Delivery"}
+                           onChange={(e) => handleChange(e)}/>
                     <label>Package Delivery</label>
                 </li>
                 <li>
-                    <input type={"radio"} name={"radio"}/>
+                    <input value={"Pick+Up"} type={"radio"} name={"type"}
+                           defaultChecked={state.type === "Delivery"}
+                           onChange={(e) => handleChange(e)}/>
                     <label>Airport pick up/drop off</label>
                 </li>
                 <li>
-                    <input type={"radio"} name={"radio"}/>
+                    <input value={"Hosting"} type={"radio"} name={"type"}
+                           defaultChecked={state.type === "Delivery"}
+                           onChange={(e) => handleChange(e)}/>
                     <label>Hosting</label>
                 </li>
             </ul>
-            <label className={"filter__title"}>Set the date interval</label>
+            <label className={"filter__title"}>Set the date</label>
             <div className={"filter__forms"}>
 
-                <label className={"filter__dates-text"}>From</label>
                 <DatePicker
-                    // selected={this.props.startDate}
-                    // onChange={this.props.handleChange}
-                    // showTimeSelect
-                    //value={this.props.startDate}
+                    selected={date}
+                    onChange={date => setDate(date)}
                     minDate={new Date()}
                     dateFormat="yy-MM-dd"
                     className={"filter__datepicker"}
-                />
-                <label className={"filter__dates-text"}>To</label>
-                <DatePicker
-                    // placeholderText={t("checkin")}
-                    // selected={startDate}
-                    // onChange={date => setStartDate(date)}
-                    selectsStart
-                    className={"filter__datepicker"}
-                    dateFormat="yy-MM-dd"
                 />
             </div>
 
@@ -72,11 +81,18 @@ const Filter = () => {
             <div className={"switch__buttons"}>
                 <ul>
                     <li><button className={"switch__button"}>Cancel</button></li>
-                    <li><button className={"switch__button"}>Search</button></li>
+                    <li><button onClick={() => searchFilter()} className={"switch__button"}>Search</button></li>
                 </ul>
             </div>
         </div>
     );
 };
 
-export default Filter;
+const mapDispatchToProps = dispatch => {
+    return {
+        filterPosts: (url, deadline, type) =>
+            dispatch(filterPosts(url, deadline, type)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Filter);

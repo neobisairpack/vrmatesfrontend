@@ -47,7 +47,7 @@ const Sidebar = (props) => {
                     <div className={"sidebar__weather"}>
                         <a className="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/"
                            data-label_1="NEW YORK" data-label_2="WEATHER" data-font="Roboto" data-icons="Climacons"
-                           data-days="7" data-theme="original" data-basecolor="#202A49">NEW YORK WEATHER</a>
+                           data-days="7" data-theme="original" data-basecolor="#202A49" />
                     </div>
                 </>
             }

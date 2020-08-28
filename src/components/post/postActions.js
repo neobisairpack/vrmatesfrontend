@@ -1,11 +1,55 @@
 import axios from 'axios';
 export const SEND_REQUEST_SUCCESS = "SEND_REQUEST_SUCCESS";
+export const GET_DASHBOARD_POSTS_SUCCESS = "GET_DASHBOARD_POSTS_SUCCESS";
 export const SEND_REQUEST_FAILURE = "SEND_REQUEST_FAILURE";
 export const GET_REQUEST_SUCCESS = "GET_REQUEST_SUCCESS";
 export const GET_REQUEST_PROV_SUCCESS = "GET_REQUEST_PROV_SUCCESS";
 export const GET_REQUEST_REQ_SUCCESS = "GET_REQUEST_REQ_SUCCESS";
 export const GET_REQUEST_FAILURE = "GET_REQUEST_SUCCESS";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+
+export const getPostsDashboard = (url) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    return dispatch => {
+        //dispatch(get)
+        axios.get(`https://vrmates.co/api/${url}/`, {
+            headers: {
+                "Authorization": "Token " + token
+            }
+        })
+            .then(res => {
+                let posts = []
+                res.data.map((item) => {
+                    if(item.status === "Created, not accepted"){
+                        posts.push(item)
+                    }
+                })
+                dispatch(getDashboardPostsSuccess(posts))
+            })
+            .catch((err) => dispatch(getRequestFailure(err)))
+    };
+};
+
+export const filterPosts = (url, deadline, type) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    return dispatch => {
+        //dispatch(get)
+        axios.get(`https://www.vrmates.co/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}`, {
+            headers: {
+                "Authorization": "Token " + token
+            }
+        })
+            .then(res => {
+                console.log(res.data)
+                console.log(`https://www.vrmates.co/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}`)
+                dispatch(getDashboardPostsSuccess(res.data))
+            })
+            .catch((err) => {
+                console.log(err)
+                dispatch(getRequestFailure(err))
+            })
+    };
+};
 
 export const sendInterestedRequest = (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
@@ -65,14 +109,6 @@ export const getInterestedRequest = () => {
                 }
             )
             .then(res => {
-                // if(id){
-                //     const myRes = []
-                //     res.data.map((item) => {
-                //         if(item.service.id === id)
-                //             myRes.push(item)
-                //     })
-                //     dispatch(getRequestSuccess(myRes));
-                // }
                 dispatch(getRequestReqSuccess(res.data));
             })
             .catch(err => {
@@ -109,7 +145,7 @@ export const getInterestedRequestById = (createdBy, id) => {
     };
 };
 
-export const getInterestedRequestProvide = (id) => {
+export const getInterestedRequestProvide = () => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         console.log("request")
@@ -122,14 +158,6 @@ export const getInterestedRequestProvide = (id) => {
                 }
             )
             .then(res => {
-                // if(id){
-                //     const myRes = []
-                //     res.data.map((item) => {
-                //         if(item.service.id === id)
-                //             myRes.push(item)
-                //     })
-                //     dispatch(getRequestSuccess(myRes));
-                // }
                 dispatch(getRequestProvSuccess(res.data));
             })
             .catch(err => {
@@ -204,6 +232,10 @@ const getRequestProvSuccess = (data) => ({
 
 const getRequestReqSuccess = (data) => ({
     type: GET_REQUEST_REQ_SUCCESS,
+    payload: data
+});
+const getDashboardPostsSuccess = (data) => ({
+    type: GET_DASHBOARD_POSTS_SUCCESS,
     payload: data
 });
 const getRequestSuccess = (data) => ({

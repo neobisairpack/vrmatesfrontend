@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style/create-post.css';
 import { connect } from "react-redux";
 import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
@@ -8,6 +8,13 @@ import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import {editPost, editPostProvide} from "../profile/profileActions";
 
 const CreateProviderDelivery = (props) => {
+    useEffect(() => {
+        const {isCreated} = props.createPost
+        if(isCreated){
+            alert("Thank you! Please, wait untill administrator checks the post!")
+            window.location.reload(false);
+        }
+    })
     const splitStr = (str, n) => {
         if(str){
             let res = str.split(" ")
@@ -65,7 +72,7 @@ const CreateProviderDelivery = (props) => {
         })
     }
     return (
-        <Modal show={props.show} onHide={props.onHide} dialogClassname={"create-post-modal"}>
+        <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post-modal"}>
             <div className={"create-post__type"}>Package Delivery</div>
                 <Form onSubmit={(e) => sendPost(e)} className={"create-provide-delivery"}>
                     <div className={"create-post__location-from"}>

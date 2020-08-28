@@ -24,6 +24,7 @@ import CreateProviderAirport from "../../../create-post/createProviderAirport";
 import CreateProviderHosting from "../../../create-post/createProviderHosting";
 import LogOut from "../../../pop-up/popup-logout";
 import {Button, Modal} from "react-bootstrap";
+import {getPostImages} from "../../../create-post/createPostActions";
 
 const InboxPageSidebar = (props) => {
     const [modalShow, setModalShow] = useState(false);
@@ -41,6 +42,10 @@ const InboxPageSidebar = (props) => {
             sendCancel()
         }
     }, )
+
+    useEffect(() =>{
+        props.getPostImages(post.id)
+    }, [])
 
     let types = {
         "Delivery": "Package delivery",
@@ -89,7 +94,7 @@ const InboxPageSidebar = (props) => {
             }
         }
     }
-
+    const {images} = props.createPost
     return (
         <div className={"inbox-page__sidebar"}>
             <img className={"inbox-page__logo"} src={logo} alt={"Vrmates"}/>
@@ -120,11 +125,12 @@ const InboxPageSidebar = (props) => {
                     <>
                         <p className={"inbox-page__category"}>Photo:</p>
                         <div className={"inbox-page__photos"}>
-                            <div className={"inbox-page__photo"}><img src={imgIcon} className={"full-post__icon"}/>
+                            {images[0] ? <div><img className={"full-post__photo"} src={images[0].image}/></div> :
+                                <div className={"inbox-page__photo"}><img src={imgIcon} className={"full-post__icon"}/></div> }
+                            {images[1] ? <div><img className={"full-post__photo"} src={images[1].image}/></div> :
+                                <div className={"inbox-page__photo"}><img src={imgIcon} className={"full-post__icon"}/></div> }
+
                             </div>
-                            <div className={"inbox-page__photo"}><img src={imgIcon} className={"full-post__icon"}/>
-                            </div>
-                        </div>
                     </> : null}
             </div>
 
@@ -158,6 +164,7 @@ const mapStateToProps = state => {
     return {
         profilePost: state.profilePost,
         post: state.post,
+        createPost: state.createPost,
     }
 }
 
@@ -171,8 +178,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(changePostStatusProvide(post, status)),
         chooseYesNo: (data) =>
             dispatch(chooseYesNo(data)),
-        setCurrentCreatedBy: (data) =>
-            dispatch(setCurrentCreatedBy(data)),
+        getPostImages: (id) =>
+            dispatch(getPostImages(id)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(InboxPageSidebar));

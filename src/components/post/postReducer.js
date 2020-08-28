@@ -3,7 +3,7 @@ import {
     SEND_REQUEST_FAILURE,
     GET_REQUEST_SUCCESS,
     GET_REQUEST_FAILURE,
-    SET_CURRENT_USER, GET_REQUEST_REQ_SUCCESS, GET_REQUEST_PROV_SUCCESS
+    SET_CURRENT_USER, GET_REQUEST_REQ_SUCCESS, GET_REQUEST_PROV_SUCCESS, GET_DASHBOARD_POSTS_SUCCESS
 } from './postActions';
 import {CHOOSE_YES_NO} from "../profile/profileActions";
 
@@ -33,6 +33,13 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
+        case GET_DASHBOARD_POSTS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                posts: action.payload
+            };
         case GET_REQUEST_REQ_SUCCESS:
             let all = []
             action.payload.map((item) => {
@@ -48,11 +55,11 @@ const reducer = (state = initialState, action) => {
             };
         case GET_REQUEST_SUCCESS:
             let arr = []
-            action.payload.map((item) => {
-                if(item.status === "Pending"){
-                    arr.push(item)
-                }
-            })
+            // action.payload.map((item) => {
+            //     if(item.status === "Pending"){
+            //         arr.push(item)
+            //     }
+            // })
             return {
                 ...state,
                 loading: false,

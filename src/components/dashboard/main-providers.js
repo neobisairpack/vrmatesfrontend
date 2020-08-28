@@ -120,7 +120,7 @@ const MainProviders = (props) => {
                         </div>
                     </div> : null}
 
-                    {filterState ? <Filter/> : null}
+                    {filterState ? <Filter state={(f) => setFilterState(f)}/> : null}
 
                 </div>
                 <Post url={'provide-services'} {...props} size={"dashboard-post"} btn={"true"}/>

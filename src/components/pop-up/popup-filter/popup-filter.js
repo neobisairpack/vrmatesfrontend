@@ -28,6 +28,9 @@ const Filter = (props) => {
     const searchFilter = () =>{
         props.filterPosts("services", dateformat(date, "yyyy-mm-dd"), state.type)
     }
+    const cancelHandler = () => {
+        props.state(false)
+    }
     return (
         <div className={"filter"}>
             <label className={"filter__title"}>Choose the type of service</label>
@@ -80,7 +83,7 @@ const Filter = (props) => {
             </div>
             <div className={"switch__buttons"}>
                 <ul>
-                    <li><button className={"switch__button"}>Cancel</button></li>
+                    <li><button onClick={() => cancelHandler()} className={"switch__button"}>Cancel</button></li>
                     <li><button onClick={() => searchFilter()} className={"switch__button"}>Search</button></li>
                 </ul>
             </div>

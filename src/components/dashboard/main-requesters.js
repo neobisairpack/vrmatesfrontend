@@ -119,7 +119,7 @@ const MainRequesters = (props) => {
                         </div>
                     </div> : null}
 
-                    {filterState ? <Filter/> : null}
+                    {filterState ? <Filter state={(f) => setFilterState(f)}/> : null}
 
                 </div>
                 <Post url={'services'} {...props} size={"dashboard-post"} btn={"true"}/>

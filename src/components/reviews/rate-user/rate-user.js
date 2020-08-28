@@ -12,8 +12,10 @@ import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
 import {connect} from "react-redux";
 import {getUserData} from "../../sidebar/sidebarActions";
+import {changePostStatus, changePostStatusProvide} from "../../profile/profileActions";
 
 const RateUser = (props) => {
+    console.log(props.post.createdBy)
     const [rate, setRate] = useState("");
     const [text, setText] = useState("");
     const [imageFile1, setImageFile1] = useState("")
@@ -31,7 +33,7 @@ const RateUser = (props) => {
         e.preventDefault()
         const fd = new FormData();
         fd.append('image', imageFile1)
-        fd.append('provider', props.reciever.id)
+        fd.append('provider', props.post.provider.id)
         fd.append('rating', rate)
         fd.append('text', text)
         let token = JSON.parse(localStorage.getItem("token"));
@@ -46,6 +48,13 @@ const RateUser = (props) => {
             )
             .then(res => {
                 console.log(res.data)
+                let status = "Successfully done";
+                if(props.post.createdBy === "Requester"){
+                    props.changePostStatus(props.post, status)
+                }
+                else if(props.post.createdBy === "Provider"){
+                    props.changePostStatusProvide(props.post, status)
+                }
             })
             .catch(err => {
                 console.log(err)
@@ -63,7 +72,7 @@ const RateUser = (props) => {
                dialogClassName="full-review">
             <Form>
                 <img onClick={props.onHide} className={"full-review__exit"} src={exit}/>
-                <div className={"rate__title"}>Please, rate experience with {props.reciever.first_name}!</div>
+                <div className={"rate__title"}>Please, rate experience with {props.post.provider.first_name}!</div>
                 <div className={"full-review__rating"}>
                     <Box>
                         <StyledRating
@@ -108,8 +117,10 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        getUserData: () =>
-            dispatch(getUserData()),
+        changePostStatus: (post, status) =>
+            dispatch(changePostStatus(post, status)),
+        changePostStatusProvide: (post, status) =>
+            dispatch(changePostStatusProvide(post, status)),
     }
 }
 

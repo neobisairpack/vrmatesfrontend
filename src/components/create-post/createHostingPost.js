@@ -63,7 +63,7 @@ const CreatePostHosting = (props) => {
         })
     }
     return (
-        <Modal show={props.show} onHide={props.onHide}>
+        <Modal show={props.show} onHide={props.onHide} dialogClassname={"create-post-modal"}>
             <div className={"create-post__type"}>Hosting</div>
             <Form onSubmit={(e) => sendPost(e)} className={"create-post create-post-hosting"}>
                 <div className={"create-post__location-from"}>

@@ -36,7 +36,7 @@ const CompletedPost = (props) => {
             color: '#8c8c8c',
         }
     })(Rating);
-    const urlImg = 'http://167.172.178.135';
+    const urlImg = 'https://vrmates.co';
     const {url} = props;
     useEffect(() => {
         props.getPosts()

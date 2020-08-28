@@ -10,13 +10,14 @@ $percent: calc(var(--rating) / 5 * 100%);
   grid-row-start: 1;
   grid-row-end: 3;
   grid-gap: 0;
-  grid-template-rows: repeat(4, 58px);
+  grid-template-rows: repeat(4, 58px) 500px;
   grid-template-columns: repeat(2, 50%);
   grid-template-areas:
     "l l"
     "p g"
     "p g"
-    "r r";
+    "r r"
+    "w w";
   &:before{
     content: "";
     position: absolute;
@@ -194,5 +195,8 @@ $percent: calc(var(--rating) / 5 * 100%);
   margin-right: 12px;
 }
 .sidebar__weather{
+  padding-top: 40px;
+  color: white;
   grid-area: w;
+  padding-right: 6%;
 }

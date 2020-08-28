@@ -63,6 +63,7 @@ const InboxPost = (props) => {
         })
         return arr.length
     }
+    let id = JSON.parse(localStorage.getItem("num"));
     //const {user} = props.userData
     //console.log(props.userData)
     return (

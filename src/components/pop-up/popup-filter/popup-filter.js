@@ -5,9 +5,14 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import filter from '../../dashboard/icons/filter-icon.svg';
 import { FormGroup, Input } from 'reactstrap';
-
+import axios from 'axios'
 
 const Filter = () => {
+
+    // const filterFetch = () => {
+    //     axios.
+    //         get()
+    // }
     return (
         <div className={"filter"}>
             <label className={"filter__title"}>Choose the type of service</label>

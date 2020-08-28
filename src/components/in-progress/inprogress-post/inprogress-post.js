@@ -57,7 +57,7 @@ const InProgressPost = (props) => {
             return res[n];
         }
     }
-
+    let userId = localStorage.getItem("num")
     const modalHandler = (index) => {
         setActiveModal(index);
     }
@@ -124,7 +124,7 @@ const InProgressPost = (props) => {
                                                 </Box>
                                             </div>
                                         </li>
-                                        {item.createdBy === "Requester" ?
+                                        {item.requester.id === Number(userId) ?
                                             <li className={"post__top-list-item inbox-post__item"}>
                                                 <DropdownButton alignRight
                                                                 title={<img className={"inprogress__icon-more"}
@@ -170,7 +170,7 @@ const InProgressPost = (props) => {
                             <CardText
                                 className={"post__email"}>{item.createdBy === "Requester" ? item.requester.email : item.provider.email}</CardText>
                         </Card>
-                        <RateUser reciever={item.provider} show={activeModal === item.id}
+                        <RateUser reciever={item.provider} post={item} show={activeModal === item.id}
                                   onHide={() => setActiveModal(null)}/>
                     </div>
                 )}

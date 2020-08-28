@@ -8,9 +8,9 @@
   grid-row-start: 1;
   grid-row-end: 3;
   grid-gap: 0;
-  grid-template-rows: repeat(4, 58px);
+  grid-template-rows: repeat(4, 58px) 500px;
   grid-template-columns: repeat(2, 50%);
-  grid-template-areas: "l l" "p g" "p g" "r r";
+  grid-template-areas: "l l" "p g" "p g" "r r" "w w";
 }
 .sidebar:before {
   content: "";
@@ -219,5 +219,11 @@
 }
 
 .sidebar__weather {
+  -ms-grid-row: 9;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  padding-top: 40px;
+  color: white;
   grid-area: w;
+  padding-right: 6%;
 }

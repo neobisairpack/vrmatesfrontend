@@ -63,7 +63,7 @@ const CreatePostAirport = (props) => {
         })
     }
     return (
-        <Modal show={props.show} onHide={props.onHide} dialogClassname={"create-post"}>
+        <Modal show={props.show} onHide={props.onHide} dialogClassname={"create-post-modal"}>
             <div className={"create-post__type"}>Airport pick up/drop off</div>
             <Form onSubmit={(e) => sendPost(e)} className={"create-post-airport"}>
                 <div className={"create-post__location-from"}>

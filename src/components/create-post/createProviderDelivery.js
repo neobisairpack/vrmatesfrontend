@@ -65,7 +65,7 @@ const CreateProviderDelivery = (props) => {
         })
     }
     return (
-        <Modal show={props.show} onHide={props.onHide}>
+        <Modal show={props.show} onHide={props.onHide} dialogClassname={"create-post-modal"}>
             <div className={"create-post__type"}>Package Delivery</div>
                 <Form onSubmit={(e) => sendPost(e)} className={"create-provide-delivery"}>
                     <div className={"create-post__location-from"}>

@@ -23,16 +23,25 @@ export const getPosts = () => {
                 }})
         ])
             .then(axios.spread(function(req, prov){
+                console.log(req.data, prov.data)
                 let reqData = req.data.filter((item) => item.requester.id === id) || [];
+                let reqData1 = req.data.filter((item) => item.provider ? item.provider.id === id : null) || [];
                 let provData = prov.data.filter((item) => item.provider.id === id) || [];
-                console.log(reqData, provData)
+                let provData1 = prov.data.filter((item) => item.requester ? item.requester.id === id : null) || [];
+                console.log(reqData, reqData1, provData, provData1)
                 reqData.forEach((it) =>{
+                    it["createdBy"] = "Requester"
+                })
+                reqData1.forEach((it) =>{
                     it["createdBy"] = "Requester"
                 })
                 provData.forEach((it) =>{
                     it["createdBy"] = "Provider"
                 })
-                let res = reqData.concat(provData)
+                provData1.forEach((it) =>{
+                    it["createdBy"] = "Provider"
+                })
+                let res = reqData.concat(reqData1).concat(provData).concat(provData1)
                     dispatch(getInboxPostSuccess(res))
             }) )
             .catch(err => {
@@ -124,8 +133,9 @@ export const editPostProvide = (post, img1, img2) => {
 
 export const changePostStatus = (post, status) => {
     let token = JSON.parse(localStorage.getItem("token"));
-    console.log(status)
+    console.log(status, post)
     return dispatch => {
+        console.log("fdgdgdfgdfgdfsgdf")
         dispatch(getInboxPostStarted());
         axios
             .put(`https://vrmates.co/api/services/${post.id}/`, {
@@ -144,6 +154,7 @@ export const changePostStatus = (post, status) => {
                 dispatch(editPostSuccess(res.data));
             })
             .catch(err => {
+                console.log(err)
                 dispatch(editPostFailure(err));
             });
     };

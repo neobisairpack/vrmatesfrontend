@@ -24,6 +24,7 @@ const UpdateInfo = (props) => {
     })
     const [birthDate, setBirthDate] = useState(new Date(props.birthday));
     const [imageFile, setImageFile] = useState(props.image)
+    const [image, setImage] = useState("")
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -34,7 +35,8 @@ const UpdateInfo = (props) => {
     }
 
     const imageInputChange = (e) =>{
-        setImageFile(URL.createObjectURL(e.target.files[0]));
+        setImageFile(e.target.files[0]);
+        setImage(URL.createObjectURL(e.target.files[0]));
     }
     const handleSubmit = (e) => {
         const fd = new FormData();
@@ -193,7 +195,7 @@ const UpdateInfo = (props) => {
                                    onChange={e => imageInputChange(e)}
                             />
                             <label htmlFor={"file"} className={"update__input-file-fake"}>
-                                {imageFile ? <img className={"create-post__selected-photo"} src={imageFile} alt={"photo"}/> :
+                                {image ? <img className={"create-post__selected-photo"} src={image} alt={"photo"}/> :
                                     <img src={imgIcon} className={"update-photo"}/> }
                             </label>
 

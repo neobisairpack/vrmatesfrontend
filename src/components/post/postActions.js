@@ -30,18 +30,18 @@ export const getPostsDashboard = (url) => {
     };
 };
 
-export const filterPosts = (url, deadline, type) => {
+export const filterPosts = (url, deadline, type, country1, country2) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
-        //dispatch(get)
-        axios.get(`https://www.vrmates.co/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}`, {
+        console.log(country1, country2)
+        country1 = country1.split(" ").join("+")
+        country2 = country2.split(" ").join("+")
+        axios.get(`https://vrmates.co/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`, {
             headers: {
                 "Authorization": "Token " + token
             }
         })
             .then(res => {
-                console.log(res.data)
-                console.log(`https://www.vrmates.co/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}`)
                 dispatch(getDashboardPostsSuccess(res.data))
             })
             .catch((err) => {

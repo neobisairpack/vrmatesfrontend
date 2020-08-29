@@ -30,6 +30,8 @@ const CreateProviderHosting = (props) => {
     }
     const [img1, setImg1] = useState("")
     const [img2, setImg2] = useState("")
+    const [img1File, setImg1File] = useState("")
+    const [img2File, setImg2File] = useState("")
     const [state, setState] = useState({
         country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
         state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
@@ -49,9 +51,9 @@ const CreateProviderHosting = (props) => {
         id: props.post ? props.post.id : 0
     })
     const sendPost = (e) => {
-        console.log(state, img1, img2)
         e.preventDefault();
-        props.post ? props.editPostProvide(state, img1, img2) : props.sendProviderHosting(state, img1, img2)
+        console.log(img1File)
+        props.post ? props.editPostProvide(state, img1File, img1File) : props.sendProviderHosting(state, img1File, img2File)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -76,12 +78,13 @@ const CreateProviderHosting = (props) => {
         })
     }
     const imageInputChange1 = (e) => {
-        setImg1(URL.createObjectURL(e.target.files[0]))
+        setImg1File(e.target.files[0])
+        setImg1( URL.createObjectURL(e.target.files[0]))
 
     }
     const imageInputChange2 = (e) => {
+        setImg2File(e.target.files[0])
         setImg2(URL.createObjectURL(e.target.files[0]))
-
     }
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post-modal"}>

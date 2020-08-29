@@ -21,6 +21,7 @@ const RegistrationForm = () => {
         address: "",
         zipcode: "",
         gender: "",
+        country: "",
         city: "",
         states: "",
         password: "",

@@ -33,6 +33,8 @@ const CreatePostDelivery = (props) => {
 
     const [img1, setImg1] = useState("")
     const [img2, setImg2] = useState("")
+    const [img1File, setImg1File] = useState("")
+    const [img2File, setImg2File] = useState("")
     const [state, setState] = useState({
         country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
         state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
@@ -50,8 +52,8 @@ const CreatePostDelivery = (props) => {
     })
     const sendPost = (e) => {
         e.preventDefault()
-        console.log(img1, img2, state)
-        props.post ? props.editPost(state, img1, img2) : props.sendPostDelivery(state, img1, img2)
+        console.log(img1, img1File)
+        props.post ? props.editPost(state, img1File, img2File) : props.sendPostDelivery(state, img1File, img2File)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -76,10 +78,12 @@ const CreatePostDelivery = (props) => {
         })
     }
     const imageInputChange1 = (e) => {
+        setImg1File(e.target.files[0])
         setImg1( URL.createObjectURL(e.target.files[0]))
 
     }
     const imageInputChange2 = (e) => {
+        setImg2File(e.target.files[0])
         setImg2(URL.createObjectURL(e.target.files[0]))
 
     }

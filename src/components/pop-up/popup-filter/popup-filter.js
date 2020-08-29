@@ -5,7 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import filter from '../../dashboard/icons/filter-icon.svg';
 import { FormGroup, Input } from 'reactstrap';
-import axios from 'axios'
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import {connect} from "react-redux";
 import {
     filterPosts,
@@ -15,7 +15,9 @@ import dateformat from 'dateformat';
 const Filter = (props) => {
     const [state, setState] = useState({
         type: "",
-        deadline: ""
+        deadline: "",
+        country1: "",
+        country2: ""
     })
     const [date, setDate] = useState("")
     const handleChange = (e) =>{
@@ -26,7 +28,8 @@ const Filter = (props) => {
         })
     }
     const searchFilter = () =>{
-        props.filterPosts("services", dateformat(date, "yyyy-mm-dd"), state.type)
+        props.filterPosts("services", dateformat(date, "yyyy-mm-dd"), state.type, state.country1, state.country2)
+        props.state(false)
     }
     const cancelHandler = () => {
         props.state(false)
@@ -70,15 +73,27 @@ const Filter = (props) => {
             <div className={"filter__forms"}>
                 <label className={"filter__dates-text"}>Departure</label>
                 <FormGroup>
-                    <Input className={"filter__datepicker"} type="select">
-                        <option></option>
-                    </Input>
+                    <CountryDropdown
+                        name={"country"}
+                        className={"filter__datepicker"}
+                        defaultOptionLabel={"  "}
+                        value={state.country1}
+                        onChange={e => setState({
+                            ...state,
+                            country1: e
+                        })} />
                 </FormGroup>
                 <label className={"filter__dates-text"}>Arrival</label>
                 <FormGroup>
-                    <Input className={"filter__datepicker"} type="select">
-                        <option></option>
-                    </Input>
+                    <CountryDropdown
+                        name={"country"}
+                        className={"filter__datepicker"}
+                        defaultOptionLabel={"  "}
+                        value={state.country2}
+                        onChange={e => setState({
+                            ...state,
+                            country2: e
+                        })} />
                 </FormGroup>
             </div>
             <div className={"switch__buttons"}>
@@ -93,8 +108,8 @@ const Filter = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        filterPosts: (url, deadline, type) =>
-            dispatch(filterPosts(url, deadline, type)),
+        filterPosts: (url, deadline, type, country1, country2) =>
+            dispatch(filterPosts(url, deadline, type, country1, country2)),
     }
 }
 

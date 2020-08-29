@@ -20,6 +20,7 @@ const RateUser = (props) => {
     const [rate, setRate] = useState("");
     const [text, setText] = useState("");
     const [imageFile1, setImageFile1] = useState("")
+    const [image, setImage] = useState("")
     const StyledRating = withStyles({
         iconFilled: {
             color: '#FD5A01',
@@ -60,8 +61,8 @@ const RateUser = (props) => {
             });
     }
     const imageInputChange = (e) => {
-        console.log(e.target.files[0])
         setImageFile1(e.target.files[0]);
+        setImage(URL.createObjectURL(e.target.files[0]));
     }
     return (
         <Modal aria-labelledby="contained-modal-title-vcenter"
@@ -98,7 +99,7 @@ const RateUser = (props) => {
                            onChange={e => imageInputChange(e)}
                     />
                     <label htmlFor={"file"} className={"rate__input-file-fake"}>
-                        {imageFile1 ? <img className={"create-post__selected-photo"} src={imageFile1} alt={"photo"}/> :
+                        {image ? <img className={"create-post__selected-photo"} src={image} alt={"photo"}/> :
                             <>
                                 <img alt="svgImg"
                                      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjQiIGhlaWdodD0iMjQiCnZpZXdCb3g9IjAgMCAyMjUgMjI1IgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0ibm9uZSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0wLDIyNS45OTQzMXYtMjI1Ljk5NDMxaDIyNS45OTQzMXYyMjUuOTk0MzF6IiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iPjwvcGF0aD48ZyBmaWxsPSIjYzFjMWMxIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0xMDMuMTI1LDE4Ljc1djg0LjM3NWgtODQuMzc1djE4Ljc1aDg0LjM3NXY4NC4zNzVoMTguNzV2LTg0LjM3NWg4NC4zNzV2LTE4Ljc1aC04NC4zNzV2LTg0LjM3NXoiPjwvcGF0aD48L2c+PC9nPjwvc3ZnPg=="/>

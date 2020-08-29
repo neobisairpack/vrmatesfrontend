@@ -1,6 +1,7 @@
 $font-family: Muller;
 $percent: calc(var(--rating) / 5 * 100%);
 .sidebar {
+  width: 337px;
   overflow: hidden;
   display: grid;
   position: relative;
@@ -27,8 +28,20 @@ $percent: calc(var(--rating) / 5 * 100%);
     width: 83%;
     border-bottom: 1px solid rgba(196, 196, 196, 0.23);
   }
+  @media screen and (max-width: 1115px){
+    left: -280px;
+    padding-right: 300px;
+    transition: 0.3s;
+    &:hover{
+      z-index: 4546;
+      left: 0;
+      padding-right: 0;
+    }
+  }
 }
 .profile-sidebar{
+  z-index: 54635;
+  width: 337px;
   display: grid;
   overflow: hidden;
   position: relative;
@@ -39,6 +52,16 @@ $percent: calc(var(--rating) / 5 * 100%);
   grid-row-end: 3;
   grid-template-columns: repeat(1, 90%);
   grid-template-rows: 2% 25% 12% 30% 10%;
+  @media screen and (max-width: 1115px){
+    left: -280px;
+    padding-right: 300px;
+    transition: 0.3s;
+    &:hover{
+      z-index: 4546;
+      left: 0;
+      padding-right: 0;
+    }
+  }
 }
 .profile-sidebar__top{
   display: flex;

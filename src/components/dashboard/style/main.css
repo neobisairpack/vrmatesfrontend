@@ -6,6 +6,11 @@
   grid-template-rows: 80px minmax(893px, auto) 51px;
   overflow: hidden;
 }
+@media screen and (max-width: 1115px) {
+  .dashboard {
+    grid-template-columns: 5% 95%;
+  }
+}
 
 .dashboard__submenu {
   padding-top: 3%;
@@ -51,15 +56,12 @@
 .dashboard__label {
   color: black;
 }
-.dashboard__label:hover {
-  color: #FD5A01;
-  text-decoration: none;
-}
 
 .dashboard__filter {
+  overflow: hidden;
   width: 150px;
   height: 46px;
-  font-family: Raleway;
+  font-family: muller;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -75,12 +77,23 @@
 .dashboard__filter:active {
   outline: none;
 }
+@media screen and (max-width: 1269px) {
+  .dashboard__filter {
+    width: 50px;
+    color: #FFFFFF;
+  }
+  .dashboard__filter img {
+    padding-top: 10px;
+    padding-left: 6px;
+  }
+}
 
 .dashboard__list-item img {
   padding-right: 10px;
 }
 
 .dashboard__button {
+  overflow: hidden;
   width: 180px;
   height: 46px;
   color: #FFFFFF;
@@ -94,6 +107,12 @@
 }
 .dashboard__button:focus {
   outline: none;
+}
+@media screen and (max-width: 1269px) {
+  .dashboard__button {
+    width: 50px;
+    color: #FD5A01;
+  }
 }
 
 .dashboard__list-item_active {

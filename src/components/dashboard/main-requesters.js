@@ -76,7 +76,7 @@ const MainRequesters = (props) => {
                         <li className={"dashboard__list-item "}>
                             <button onClick={togglePopUpFilter}
                                     className={"dashboard__filter "}>
-                                <img src={filter}/>Filter
+                                <img src={filter} alt={"filter"}/>Filter
                             </button>
                         </li>
                         <li className={"dashboard__list-item "}>

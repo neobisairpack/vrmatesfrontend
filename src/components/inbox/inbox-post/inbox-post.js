@@ -71,7 +71,7 @@ const InboxPost = (props) => {
             <div className={"row"}>
                 {inbox_posts.map((item, indx) =>
                     //item.requester.id !== user.id || item.provider.id !== user.id ? null :
-                    <div key={indx} className={"col-4"}>
+                    <div key={indx} className={"col-lg-4 col-md-6 col-sm-12 col-xs-12"}>
                         <Card onClick={() => redirect(item)}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>

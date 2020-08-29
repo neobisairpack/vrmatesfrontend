@@ -6,6 +6,11 @@
   grid-template-rows: 80px minmax(893px, auto) 51px;
   overflow: hidden;
 }
+@media screen and (max-width: 1115px) {
+  .profile {
+    grid-template-columns: 5% 95%;
+  }
+}
 
 .profile__title {
   margin-left: 7.8%;

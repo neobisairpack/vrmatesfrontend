@@ -4,6 +4,9 @@
   display: grid;
   grid-template-columns: 25% 75%;
   grid-template-rows: 80px minmax(893px, auto) 51px;
+  @media screen and (max-width: 1115px){
+    grid-template-columns: 5% 95%;
+  }
   overflow: hidden;
 }
 .dashboard__submenu{
@@ -49,9 +52,10 @@
   color: black;
 }
 .dashboard__filter{
+  overflow: hidden;
   width: 150px;
   height: 46px;
-  font-family: Raleway;
+  font-family: muller;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -66,11 +70,21 @@
   &:active{
     outline: none;
   }
+  @media screen and (max-width: 1269px){
+    width: 50px;
+    //font: 0/0 a;
+    color: #FFFFFF;
+    img{
+      padding-top: 10px;
+      padding-left: 6px;
+    }
+  }
 }
 .dashboard__list-item img{
   padding-right: 10px;
 }
 .dashboard__button{
+  overflow: hidden;
   width: 180px;
   height: 46px;
   color: #FFFFFF;
@@ -84,7 +98,12 @@
   &:focus{
     outline: none;
   }
+  @media screen and (max-width: 1269px){
+    width: 50px;
+    color: #FD5A01;
+  }
 }
+
 .dashboard__list-item_active{
   //border-bottom: 1px solid #202A49;;
   position: relative;

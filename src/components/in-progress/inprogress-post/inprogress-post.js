@@ -93,7 +93,7 @@ const InProgressPost = (props) => {
         <div className={"post container"}>
             <div className={"row"}>
                 {inprog_posts.map((item, id) =>
-                    <div key={id} className={"col-4"}>
+                    <div key={id} className={"col-lg-4 col-md-6 col-sm-12 col-xs-12"}>
                         <Card className={props.size}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>

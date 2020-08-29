@@ -46,7 +46,7 @@ const CompletedPost = (props) => {
         <div className={"post container"}>
             <div className={"row"}>
                 {completed_posts.map((item) =>
-                    <div key={item.id} className={"col-4"}>
+                    <div key={item.id} className={"col-lg-4 col-md-6 col-sm-12 col-xs-12"}>
                         <Card className={props.size}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>

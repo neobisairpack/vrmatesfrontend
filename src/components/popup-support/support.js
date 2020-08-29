@@ -19,6 +19,7 @@ const Support = (props) => {
         })
     }
     const handleSubmit = (e) => {
+        e.preventDefault(e)
         let token = JSON.parse(localStorage.getItem("token"));
         axios.post('https://vrmates.co/api/support/', {
             email: state.email,
@@ -33,6 +34,8 @@ const Support = (props) => {
         )
             .then((res) => {
                 console.log("support")
+                props.onHide()
+
             })
             .catch((err) => {
                 console.log(`Token ${token}`)

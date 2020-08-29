@@ -177,6 +177,7 @@ button.landing__join-btn:focus {
 }
 
 .landing__donation-background {
+  width: 100%;
   display: flex;
   align-items: center;
   background: url("../images/donation-back.png") no-repeat;

@@ -34,7 +34,7 @@ const UpdateInfo = (props) => {
     }
 
     const imageInputChange = (e) =>{
-        setImageFile(e.target.files[0]);
+        setImageFile(URL.createObjectURL(e.target.files[0]));
     }
     const handleSubmit = (e) => {
         const fd = new FormData();
@@ -193,7 +193,8 @@ const UpdateInfo = (props) => {
                                    onChange={e => imageInputChange(e)}
                             />
                             <label htmlFor={"file"} className={"update__input-file-fake"}>
-                                <img src={imgIcon} className={"update-photo"}/>
+                                {imageFile ? <img className={"create-post__selected-photo"} src={imageFile} alt={"photo"}/> :
+                                    <img src={imgIcon} className={"update-photo"}/> }
                             </label>
 
                         </div>

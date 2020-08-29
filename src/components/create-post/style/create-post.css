@@ -268,3 +268,8 @@ ul {
   color: #424141;
   margin-left: 5px;
 }
+
+.create-post__selected-photo {
+  height: 100%;
+  width: 100%;
+}

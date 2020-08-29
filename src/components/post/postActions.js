@@ -137,6 +137,7 @@ export const getInterestedRequestById = (createdBy, id) => {
                         if(item.service.id === id)
                             myRes.push(item)
                     })
+                console.log(myRes)
                     dispatch(getRequestSuccess(myRes));
             })
             .catch(err => {

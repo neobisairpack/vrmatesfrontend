@@ -1,6 +1,7 @@
 $font-family: Muller;
 $percent: calc(var(--rating) / 5 * 100%);
 .sidebar {
+  z-index: 314343;
   width: 337px;
   overflow: hidden;
   display: grid;

@@ -76,13 +76,11 @@ const CreateProviderHosting = (props) => {
         })
     }
     const imageInputChange1 = (e) => {
-        console.log(e.target.name, e.target.value)
-        setImg1(e.target.files[0])
+        setImg1(URL.createObjectURL(e.target.files[0]))
 
     }
     const imageInputChange2 = (e) => {
-        console.log(e.target.name, e.target.value)
-        setImg2(e.target.files[0])
+        setImg2(URL.createObjectURL(e.target.files[0]))
 
     }
     return (
@@ -208,8 +206,8 @@ const CreateProviderHosting = (props) => {
                                        onChange={e => imageInputChange1(e)}
                                 />
                                 <label htmlFor={"file1"} className={"update__input-file-fake"}>
-                                    {}
-                                    <img src={imgIcon} className={"update-photo"}/>
+                                    {img1 ? <img className={"create-post__selected-photo"} src={img1} alt={"photo"}/> :
+                                        <img src={imgIcon} className={"update-photo"}/> }
                                 </label>
                             </div>
                         </Col>
@@ -219,7 +217,8 @@ const CreateProviderHosting = (props) => {
                                        onChange={e => imageInputChange2(e)}
                                 />
                                 <label htmlFor={"file2"} className={"update__input-file-fake"}>
-                                    <img src={imgIcon} className={"update-photo"}/>
+                                    {img2 ? <img className={"create-post__selected-photo"} src={img1} alt={"photo"}/> :
+                                        <img src={imgIcon} className={"update-photo"}/> }
                                 </label>
                             </div>
                         </Col>

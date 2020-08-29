@@ -15,11 +15,9 @@ const InterestedUser = (props) => {
     useEffect(() => {
         if(props.location.state.post.createdBy === "Requester"){
             props.getInterestedRequestById("Requester", props.location.state.post.id)
-            console.log(interested)
         }
         else if(props.location.state.post.createdBy === "Provider"){
             props.getInterestedRequestById("Provider", props.location.state.post.id)
-            console.log("prov")
         }
 
     }, [])
@@ -29,7 +27,6 @@ const InterestedUser = (props) => {
         redirect(user.first_name)
     }
     const redirect = (name) =>{
-        console.log(props, new Date().toLocaleString())
         props.history.push({
             pathname: `/profile/inbox-page/${name}`,
         })
@@ -50,6 +47,7 @@ const InterestedUser = (props) => {
             props.changeStatusRequestProvide(req, "Canceled")
         }
     }
+    console.log(interested)
     const urlImg = 'https://vrmates.co'
     return (
         <div className={"interested-user container"}>

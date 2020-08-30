@@ -33,6 +33,7 @@ const InterestedUser = (props) => {
     }
     const acceptHandler = (req) =>{
         if(props.location.state.post.createdBy === "Requester"){
+            console.log(req)
             props.changeStatusRequest(req, "Accepted")
         }
         else if(props.location.state.post.createdBy === "Provider"){

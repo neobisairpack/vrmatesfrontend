@@ -7,6 +7,7 @@ import {sendProviderHosting} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import imgIcon from "../post/images/empty-img.svg";
 import {editPostProvide} from "../profile/profileActions";
+import Notification from "../notification/notification";
 
 const CreateProviderHosting = (props) => {
     useEffect(() => {

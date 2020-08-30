@@ -3,7 +3,7 @@ import {
     SEND_REQUEST_FAILURE,
     GET_REQUEST_SUCCESS,
     GET_REQUEST_FAILURE,
-    SET_CURRENT_USER, GET_REQUEST_REQ_SUCCESS, GET_REQUEST_PROV_SUCCESS, GET_DASHBOARD_POSTS_SUCCESS
+    SET_CURRENT_USER, GET_REQUEST_REQ_SUCCESS, GET_REQUEST_PROV_SUCCESS, GET_DASHBOARD_POSTS_SUCCESS, SET_IS_SEND_FALSE
 } from './postActions';
 import {CHOOSE_YES_NO} from "../profile/profileActions";
 
@@ -17,6 +17,7 @@ const initialState = {
     loading: false,
     error: null,
     res: null,
+    isSend: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -25,7 +26,8 @@ const reducer = (state = initialState, action) => {
         case SEND_REQUEST_SUCCESS:
             return {
                 ...state,
-                loading: true
+                loading: false,
+                isSend: true
             };
         case SEND_REQUEST_FAILURE:
             return {
@@ -85,6 +87,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 curUser: action.payload
+            };
+        case SET_IS_SEND_FALSE:
+            return {
+                ...state,
+                isSend: false,
             };
     }
     return state

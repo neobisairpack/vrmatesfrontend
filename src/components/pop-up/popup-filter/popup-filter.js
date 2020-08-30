@@ -28,8 +28,9 @@ const Filter = (props) => {
         })
     }
     const searchFilter = () =>{
-        props.filterPosts("services", dateformat(date, "yyyy-mm-dd"), state.type, state.country1, state.country2)
-        props.state(false)
+        console.log(dateformat(date, "yyyy-mm-dd"))
+        props.filterPosts("services", date, state.type, state.country1, state.country2)
+        //props.state(false)
     }
     const cancelHandler = () => {
         props.state(false)
@@ -46,13 +47,13 @@ const Filter = (props) => {
                 </li>
                 <li>
                     <input value={"Pick+Up"} type={"radio"} name={"type"}
-                           defaultChecked={state.type === "Delivery"}
+                           defaultChecked={state.type === "Pick+Up"}
                            onChange={(e) => handleChange(e)}/>
                     <label>Airport pick up/drop off</label>
                 </li>
                 <li>
                     <input value={"Hosting"} type={"radio"} name={"type"}
-                           defaultChecked={state.type === "Delivery"}
+                           defaultChecked={state.type === "Hosting"}
                            onChange={(e) => handleChange(e)}/>
                     <label>Hosting</label>
                 </li>
@@ -63,7 +64,7 @@ const Filter = (props) => {
                 <DatePicker
                     selected={date}
                     onChange={date => setDate(date)}
-                    minDate={new Date()}
+                    //minDate={new Date()}
                     dateFormat="yy-MM-dd"
                     className={"filter__datepicker"}
                 />

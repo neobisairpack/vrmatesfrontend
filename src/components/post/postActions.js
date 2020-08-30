@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dateformat from "dateformat";
 export const SEND_REQUEST_SUCCESS = "SEND_REQUEST_SUCCESS";
 export const GET_DASHBOARD_POSTS_SUCCESS = "GET_DASHBOARD_POSTS_SUCCESS";
 export const SEND_REQUEST_FAILURE = "SEND_REQUEST_FAILURE";
@@ -7,6 +8,7 @@ export const GET_REQUEST_PROV_SUCCESS = "GET_REQUEST_PROV_SUCCESS";
 export const GET_REQUEST_REQ_SUCCESS = "GET_REQUEST_REQ_SUCCESS";
 export const GET_REQUEST_FAILURE = "GET_REQUEST_SUCCESS";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const SET_IS_SEND_FALSE = "SET_IS_SEND_FALSE";
 
 export const getPostsDashboard = (url) => {
     let token = JSON.parse(localStorage.getItem("token"));
@@ -33,7 +35,8 @@ export const getPostsDashboard = (url) => {
 export const filterPosts = (url, deadline, type, country1, country2) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
-        console.log(country1, country2)
+        console.log(deadline, country1, country2, type)
+        deadline = deadline ? dateformat(deadline, "yyyy-mm-dd") : ""
         country1 = country1.split(" ").join("+")
         country2 = country2.split(" ").join("+")
         axios.get(`https://vrmates.co/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`, {
@@ -42,6 +45,7 @@ export const filterPosts = (url, deadline, type, country1, country2) => {
             }
         })
             .then(res => {
+                console.log(`https://vrmates.co/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`)
                 dispatch(getDashboardPostsSuccess(res.data))
             })
             .catch((err) => {
@@ -220,6 +224,10 @@ export const changeStatusRequestProvide = (req, status) => {
 const sendRequestSuccess = (data) => ({
     type: SEND_REQUEST_SUCCESS,
     payload: data
+});
+
+export const setIsSendFalse = () => ({
+    type: SET_IS_SEND_FALSE,
 });
 
 const sendRequestFailure = (error) => ({

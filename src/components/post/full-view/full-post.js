@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style/full-post.css';
 import {CardSubtitle, CardText} from "reactstrap";
 import arrow from "../images/arrow.svg";
@@ -11,15 +11,28 @@ import {getPostImages} from "../../create-post/createPostActions";
 import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
+import {sendInterestedRequest, sendInterestedRequestProvide, setIsSendFalse} from "../postActions";
+import Notification from "../../notification/notification";
 
 const FullPost = (props) => {
     const urlImg = 'https://vrmates.co';
     const {data} = props;
-
+    const [notShow, setNotShow] = useState(false)
+    const [notMessage, setNotMessage] = useState("")
+    const {isSend} = props.post
     useEffect(() => {
         props.getPostImages(data.id);
     }, [])
 
+    // useEffect(() => {
+    //     let name = data.requester ? data.requester.first_name : data.provider.first_name
+    //     if(isSend){
+    //         setNotMessage(`Now you are one of the interested people of ${name}'s post!`)
+    //         props.onHide()
+    //         setNotShow(true)
+    //         props.setIsSendFalse()
+    //     }
+    // })
     const StyledRating = withStyles({
         iconFilled: {
             color: '#FD5A01',
@@ -40,6 +53,13 @@ const FullPost = (props) => {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
         "Hosting": "Hosting"
+    }
+    const sendRequest = (item) => {
+        if (item.requester) {
+            props.sendInterestedRequest(item.id);
+        } else {
+            props.sendInterestedRequestProvide(item.id);
+        }
     }
     const {images} = props.createPost;
     return (
@@ -106,20 +126,33 @@ const FullPost = (props) => {
                         </div> : null}
                     </div>
 
-                <button className={"full-post__interested-btn post__interested-btn"}>Interested</button>
+                 <button onClick={() => {
+                    sendRequest(data)
+                }} className={"full-post__interested-btn post__interested-btn"}>Interested</button>
             </Modal>
+            <div>
+                <Notification show={notShow} message={notMessage}
+                              onHide={() => setNotShow(false)}/>
+            </div>
         </div>
     );
 }
 const mapStateToProps = state => {
     return {
         createPost: state.createPost,
+        post: state.post
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         getPostImages: (id) =>
             dispatch(getPostImages(id)),
+        setIsSendFalse: () =>
+            dispatch(setIsSendFalse()),
+        sendInterestedRequest: (id) =>
+            dispatch(sendInterestedRequest(id)),
+        sendInterestedRequestProvide: (id) =>
+            dispatch(sendInterestedRequestProvide(id)),
     }
 }
 

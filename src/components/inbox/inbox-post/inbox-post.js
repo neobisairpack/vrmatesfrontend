@@ -56,6 +56,7 @@ const InboxPost = (props) => {
             interested = props.post.interestedProv
         }
         let arr = []
+        console.log(interested, id)
         interested.forEach((item) => {
             if(item.service.id === id){
                 arr.push(item)

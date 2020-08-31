@@ -29,7 +29,6 @@ const RegistrationForm = () => {
     })
     const [birthDate, setBirthDate] = useState(null)
     const [isChecked, setIsChecked] = useState(false)
-
     const handleChange = (e) => {
         const value = e.target.value
         setState({
@@ -38,6 +37,7 @@ const RegistrationForm = () => {
         })
     }
     const handleSubmit = (e) => {
+        e.preventDefault()
         if(isChecked && state.name && state.lastName && state.gender && birthDate && state.password && state.password2 && state.email && state.phone) {
             e.preventDefault()
             axios.post('https://vrmates.co/users/registration/', {
@@ -95,17 +95,18 @@ const RegistrationForm = () => {
                     <label className={"register__title"}>Registration</label>
                     <Link to={"/"}><img className={"register__exit"} src={exit} alt={"exit"}/></Link>
                 </div>
-                <Form className={"register__inputs"}>
+                <Form onSubmit={(e) => handleSubmit(e)} className={"register__inputs"}>
 
                     <FormGroup>
                         <Input
                             className={"register__input required"}
                             placeholder={"*First Name"}
+                            required
                             type={"text"}
                             name={"name"}
                             value={state.name}
                             onChange={e => handleChange(e)}
-                            reqiured="true"/>
+                            />
                     </FormGroup>
 
                     <FormGroup>
@@ -113,6 +114,7 @@ const RegistrationForm = () => {
                             className={"register__input"}
                             placeholder={"*Phone Number"}
                             type={"tel"}
+                            required
                             name={"phone"}
                             value={state.phone}
                             onChange={e => handleChange(e)}
@@ -123,6 +125,7 @@ const RegistrationForm = () => {
                             className={"register__input"}
                             placeholder={"*Last Name"}
                             type={"text"}
+                            required
                             name={"lastName"}
                             value={state.lastName}
                             onChange={e => handleChange(e)}
@@ -145,6 +148,7 @@ const RegistrationForm = () => {
                             className={"register__input"}
                             placeholder={"*E-mail"}
                             type={"email"}
+                            required
                             name={"email"}
                             value={state.email}
                             onChange={e => handleChange(e)}
@@ -165,6 +169,7 @@ const RegistrationForm = () => {
                     <DatePicker
                         className={"register__input"}
                         placeholderText={"   *Date Of Birth"}
+                        required
                         selected={birthDate}
                         onChange={date => setBirthDate(date)}
                         reqiured="true"
@@ -187,7 +192,7 @@ const RegistrationForm = () => {
                             <option>*Gender</option>
                             <option>Male</option>
                             <option>Female</option>
-                            <option>Other</option>
+                            <option>Others</option>
                         </Input>
                     </FormGroup>
 
@@ -243,11 +248,11 @@ const RegistrationForm = () => {
                             <label onClick={() => setTermsModalShow(true)}>I agree to terms conditions</label>
                         </Label>
                     </FormGroup>
-                </Form>
-                <div className={"register__sign-up"}>
-                    <button type={"submit"} disabled={!isChecked} onClick={handleSubmit} className={"register__sign-up-btn"}>Sign Up</button>
-                </div>
 
+                <div className={"register__sign-up"}>
+                    <button type={"submit"} disabled={!isChecked} className={"register__sign-up-btn"}>Sign Up</button>
+                </div>
+                </Form>
             </div>
             <div>
                 <TermsConditions show={termsModalShow}

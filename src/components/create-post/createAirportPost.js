@@ -77,9 +77,10 @@ const CreatePostAirport = (props) => {
                     <label className={"create-post__form-title"}>Indicate departure location:</label>
                     <FormGroup>
                         <CountryDropdown
+                            required
                             name={"country"}
                             className={"form-control"}
-                            defaultOptionLabel={"  Country"}
+                            defaultOptionLabel={"  *Country"}
                             value={state.country1}
                             onChange={e => setState({
                                 ...state,
@@ -88,8 +89,9 @@ const CreatePostAirport = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <RegionDropdown
+                            required
                             className={"form-control"}
-                            blankOptionLabel={"State"}
+                            blankOptionLabel={"*State"}
                             defaultOptionLabel={"State"}
                             country={state.country1}
                             value={state.state1}
@@ -101,7 +103,8 @@ const CreatePostAirport = (props) => {
                     <FormGroup>
                         <Input type="text" name={"city1"}
                                className={"form-control"}
-                               placeholder={"City"}
+                               placeholder={"*City"}
+                               required
                                value={state.city1}
                                onChange={e => handleChange(e)}
                         />
@@ -111,9 +114,10 @@ const CreatePostAirport = (props) => {
                     <Label className={"create-post__form-title"}>Indicate arriving location:</Label>
                     <FormGroup>
                         <CountryDropdown
+                            required
                             name={"country"}
                             className={"form-control"}
-                            defaultOptionLabel={"  Country"}
+                            defaultOptionLabel={"  *Country"}
                             value={state.country2}
                             onChange={e => setState({
                                 ...state,
@@ -122,8 +126,9 @@ const CreatePostAirport = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <RegionDropdown
+                            required
                             className={"form-control"}
-                            blankOptionLabel={"State"}
+                            blankOptionLabel={"*State"}
                             defaultOptionLabel={"State"}
                             country={state.country2}
                             value={state.state2}
@@ -135,19 +140,20 @@ const CreatePostAirport = (props) => {
                     <FormGroup>
                         <Input type="text" name={"city2"}
                                className={"form-control"}
-                               placeholder={"City"}
+                               placeholder={"*City"}
+                               required
                                value={state.city2}
                                onChange={e => handleChange(e)}
                         />
                     </FormGroup>
                 </div>
                 <div className={"create-post__date"}>
-                    <Label className={"create-post__form-title"}>Select the date of the pick up in the arriving
+                    <Label className={"create-post__form-title"}>*Select the date of the pick up in the arriving
                         location</Label>
                     <Row form>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"day"} value={state.day} onChange={e => handleChange(e)}
+                                <select required name={"day"} value={state.day} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     {getDropListDay()}
                                 </select>
@@ -155,7 +161,7 @@ const CreatePostAirport = (props) => {
                         </Col>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"month"} value={state.month} onChange={e => handleChange(e)}
+                                <select required name={"month"} value={state.month} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     <option value={"01"}>January</option>
                                     <option value={"02"}>February</option>
@@ -174,7 +180,7 @@ const CreatePostAirport = (props) => {
                         </Col>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"year"} value={state.year} onChange={e => handleChange(e)}
+                                <select required name={"year"} value={state.year} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     {getDropList()}
                                 </select>
@@ -184,8 +190,8 @@ const CreatePostAirport = (props) => {
                 </div>
                 <div className={"create-post__title"}>
                     <FormGroup>
-                        <Label className={"create-post__form-title"}>Please, add post title:</Label>
-                        <Input type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
+                        <Label className={"create-post__form-title"}>*Please, add post title:</Label>
+                        <Input required type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
                     </FormGroup>
                 </div>
                 <div className={"create-post__description"}>

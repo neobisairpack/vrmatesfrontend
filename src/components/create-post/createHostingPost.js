@@ -77,9 +77,10 @@ const CreatePostHosting = (props) => {
                     <label className={"create-post__form-title"}>Where are you from:</label>
                     <FormGroup>
                         <CountryDropdown
+                            required
                             name={"country"}
                             className={"form-control"}
-                            defaultOptionLabel={"  Country"}
+                            defaultOptionLabel={"  *Country"}
                             value={state.country1}
                             onChange={e => setState({
                                 ...state,
@@ -88,9 +89,10 @@ const CreatePostHosting = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <RegionDropdown
+                            required
                             className={"form-control"}
-                            blankOptionLabel={"State"}
-                            defaultOptionLabel={"State"}
+                            blankOptionLabel={"*State"}
+                            defaultOptionLabel={"*State"}
                             country={state.country1}
                             value={state.state1}
                             onChange={e => setState({
@@ -101,8 +103,9 @@ const CreatePostHosting = (props) => {
                     <FormGroup>
                         <Input type="text" name={"city1"}
                                className={"form-control"}
-                               placeholder={"City"}
+                               placeholder={"*City"}
                                value={state.city1}
+                               required
                                onChange={e => handleChange(e)}
                         />
                     </FormGroup>
@@ -111,9 +114,10 @@ const CreatePostHosting = (props) => {
                         <Label className={"create-post__form-title"}>Where do you need hosting:</Label>
                         <FormGroup>
                             <CountryDropdown
+                                required
                                 name={"country"}
                                 className={"form-control"}
-                                defaultOptionLabel={"  Country"}
+                                defaultOptionLabel={"  *Country"}
                                 value={state.country2}
                                 onChange={e => setState({
                                     ...state,
@@ -122,9 +126,10 @@ const CreatePostHosting = (props) => {
                         </FormGroup>
                         <FormGroup>
                             <RegionDropdown
+                                required
                                 className={"form-control"}
-                                blankOptionLabel={"State"}
-                                defaultOptionLabel={"State"}
+                                blankOptionLabel={"*State"}
+                                defaultOptionLabel={"*State"}
                                 country={state.country2}
                                 value={state.state2}
                                 onChange={e => setState({
@@ -136,17 +141,18 @@ const CreatePostHosting = (props) => {
                             <Input type="text" name={"city2"}
                                    className={"form-control"}
                                    placeholder={"City"}
+                                   required
                                    value={state.city2}
                                    onChange={e => handleChange(e)}
                             />
                         </FormGroup>
                 </div>
                 <div className={"create-post__date"}>
-                    <Label className={"create-post__form-title"}>Select the date of the hosting</Label>
+                    <Label className={"create-post__form-title"}>*Select the date of the hosting</Label>
                     <Row form>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"day"} value={state.day} onChange={e => handleChange(e)}
+                                <select required name={"day"} value={state.day} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     {getDropListDay()}
                                 </select>
@@ -154,7 +160,7 @@ const CreatePostHosting = (props) => {
                         </Col>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"month"} value={state.month} onChange={e => handleChange(e)}
+                                <select required name={"month"} value={state.month} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     <option value={"01"}>January</option>
                                     <option value={"02"}>February</option>
@@ -173,7 +179,7 @@ const CreatePostHosting = (props) => {
                         </Col>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"year"} value={state.year} onChange={e => handleChange(e)}
+                                <select required name={"year"} value={state.year} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     {getDropList()}
                                 </select>
@@ -183,8 +189,8 @@ const CreatePostHosting = (props) => {
                 </div>
                 <div className={"create-post__title"}>
                         <FormGroup>
-                            <Label className={"create-post__form-title"}>Please, add post title:</Label>
-                            <Input type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
+                            <Label className={"create-post__form-title"}>*Please, add post title:</Label>
+                            <Input required type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
                         </FormGroup>
                 </div>
                 <div className={"create-post__description"}>
@@ -197,13 +203,13 @@ const CreatePostHosting = (props) => {
                     <Label className={"create-post__form-title"}>Please, choose if you have any preferences:</Label>
                     <ul>
                         <li>
-                            <input type={"radio"} name={"preferences"} value={"Private bedroom"}
+                            <input required type={"radio"} name={"preferences"} value={"Private bedroom"}
                                    defaultChecked={state.preferences === "Private bedroom"}
                                    onChange={(e) => handleChange(e)}/>
                             <label className={"create-post__host-preference-type"}>Private bedroom</label>
                         </li>
                         <li>
-                            <input type={"radio"} name={"preferences"} value={"Living room"}
+                            <input required type={"radio"} name={"preferences"} value={"Living room"}
                                    defaultChecked={state.preferences === "Living room"}
                                    onChange={(e) => handleChange(e)}/>
                             <label className={"create-post__host-preference-type"}>Living room</label>

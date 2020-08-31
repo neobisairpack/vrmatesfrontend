@@ -15,7 +15,7 @@
   align-content: space-between;
   justify-content: space-between;
   grid-column-gap: 50px;
-  grid-template-rows: 8% 30% 13% 16% 19% 12%;
+  grid-template-rows: 4% 30% 13% 16% 19% 12%;
   grid-template-columns: repeat(2, 45%);
   grid-template-areas: "t t" "lf lt" "dt dt" "ttl ds" "p p" "b b";
 }

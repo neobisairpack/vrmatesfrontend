@@ -95,9 +95,10 @@ const CreateProviderHosting = (props) => {
                     <label className={"create-post__form-title"}>Where are you located:</label>
                     <FormGroup>
                         <CountryDropdown
+                            required
                             name={"country"}
                             className={"form-control"}
-                            defaultOptionLabel={"  Country"}
+                            defaultOptionLabel={"  *Country"}
                             value={state.country1}
                             onChange={e => setState({
                                 ...state,
@@ -106,9 +107,10 @@ const CreateProviderHosting = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <RegionDropdown
+                            required
                             className={"form-control"}
-                            blankOptionLabel={"State"}
-                            defaultOptionLabel={"State"}
+                            blankOptionLabel={"*State"}
+                            defaultOptionLabel={"*State"}
                             country={state.country1}
                             value={state.state1}
                             onChange={e => setState({
@@ -119,14 +121,14 @@ const CreateProviderHosting = (props) => {
                     <FormGroup>
                         <Input type="text" name={"city1"}
                                className={"form-control"}
-                               placeholder={"City"}
+                               placeholder={"*City"}
                                value={state.city1}
                                onChange={e => handleChange(e)}
                         />
                     </FormGroup>
                 </div>
                 <div className={"create-post__location-to"}>
-                    <Label className={"create-post__form-title"}>Please, choose what type of hosting you offer:</Label>
+                    <Label className={"create-post__form-title"}>*Please, choose what type of hosting you offer:</Label>
                     <ul>
                         <li>
                             <input type={"radio"} name={"preferences"} value={"Private bedroom"}
@@ -149,11 +151,11 @@ const CreateProviderHosting = (props) => {
                     </ul>
                 </div>
                 <div className={"create-post__date"}>
-                    <Label className={"create-post__form-title"}>When can you do hosting:</Label>
+                    <Label className={"create-post__form-title"}>*When can you do hosting:</Label>
                     <Row form>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"day"} value={state.day} onChange={e => handleChange(e)}
+                                <select required name={"day"} value={state.day} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     {getDropListDay()}
                                 </select>
@@ -161,7 +163,7 @@ const CreateProviderHosting = (props) => {
                         </Col>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"month"} value={state.month} onChange={e => handleChange(e)}
+                                <select required name={"month"} value={state.month} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     <option value={"01"}>January</option>
                                     <option value={"02"}>February</option>
@@ -180,7 +182,7 @@ const CreateProviderHosting = (props) => {
                         </Col>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"year"} value={state.year} onChange={e => handleChange(e)}
+                                <select required name={"year"} value={state.year} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     {getDropList()}
                                 </select>
@@ -190,14 +192,14 @@ const CreateProviderHosting = (props) => {
                 </div>
                 <div className={"create-post__title"}>
                     <FormGroup>
-                        <Label className={"create-post__form-title"}>Please, add post title:</Label>
-                        <Input type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
+                        <Label className={"create-post__form-title"}>*Please, add post title:</Label>
+                        <Input required type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
                     </FormGroup>
                 </div>
                 <div className={"create-post__description"}>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>Please, add post body:</Label>
-                        <Input type="textarea" name="text" value={state.text} onChange={e => handleChange(e)}/>
+                        <Input required type="textarea" name="text" value={state.text} onChange={e => handleChange(e)}/>
                     </FormGroup>
                 </div>
 

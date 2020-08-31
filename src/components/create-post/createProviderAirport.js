@@ -73,9 +73,10 @@ const CreateProviderAirport = (props) => {
                     <label className={"create-post__form-title"}>In which City/State/Country can you pick up:</label>
                     <FormGroup>
                         <CountryDropdown
+                            required
                             name={"country"}
                             className={"form-control"}
-                            defaultOptionLabel={"  Country"}
+                            defaultOptionLabel={"  *Country"}
                             value={state.country1}
                             onChange={e => setState({
                                 ...state,
@@ -84,9 +85,10 @@ const CreateProviderAirport = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <RegionDropdown
+                            required
                             className={"form-control"}
-                            blankOptionLabel={"State"}
-                            defaultOptionLabel={"State"}
+                            blankOptionLabel={"*State"}
+                            defaultOptionLabel={"*State"}
                             country={state.country1}
                             value={state.state1}
                             onChange={e => setState({
@@ -97,7 +99,7 @@ const CreateProviderAirport = (props) => {
                     <FormGroup>
                         <Input type="text" name={"city1"}
                                className={"form-control"}
-                               placeholder={"City"}
+                               placeholder={"*City"}
                                value={state.city1}
                                onChange={e => handleChange(e)}
                         />
@@ -105,11 +107,11 @@ const CreateProviderAirport = (props) => {
                 </div>
 
                 <div className={"create-post__date"}>
-                    <Label className={"create-post__form-title"}>Select the date of the pick up:</Label>
+                    <Label className={"create-post__form-title"}>*Select the date of the pick up:</Label>
                     <Row form>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"day"} value={state.day} onChange={e => handleChange(e)}
+                                <select required name={"day"} value={state.day} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     {getDropListDay()}
                                 </select>
@@ -117,7 +119,7 @@ const CreateProviderAirport = (props) => {
                         </Col>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"month"} value={state.month} onChange={e => handleChange(e)}
+                                <select required name={"month"} value={state.month} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     <option value={"01"}>January</option>
                                     <option value={"02"}>February</option>
@@ -136,7 +138,7 @@ const CreateProviderAirport = (props) => {
                         </Col>
                         <Col md={3}>
                             <FormGroup>
-                                <select name={"year"} value={state.year} onChange={e => handleChange(e)}
+                                <select required name={"year"} value={state.year} onChange={e => handleChange(e)}
                                         className={"form-control"}>
                                     {getDropList()}
                                 </select>
@@ -146,8 +148,8 @@ const CreateProviderAirport = (props) => {
                 </div>
                 <div className={"create-post__title"}>
                     <FormGroup>
-                        <Label className={"create-post__form-title"}>Please, add post title:</Label>
-                        <Input type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
+                        <Label className={"create-post__form-title"}>*Please, add post title:</Label>
+                        <Input required type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
                     </FormGroup>
                 </div>
                 <div className={"create-post__description"}>

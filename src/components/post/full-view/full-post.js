@@ -11,8 +11,9 @@ import {getPostImages} from "../../create-post/createPostActions";
 import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
-import {sendInterestedRequest, sendInterestedRequestProvide, setIsSendFalse} from "../postActions";
+import {sendInterestedRequest, sendInterestedRequestProvide, setCurrentUser, setIsSendFalse} from "../postActions";
 import Notification from "../../notification/notification";
+import {withRouter} from "react-router-dom";
 
 const FullPost = (props) => {
     const urlImg = 'https://vrmates.co';
@@ -48,7 +49,15 @@ const FullPost = (props) => {
             return res[n];
         }
     }
-
+    const setUserFunc = (user) => {
+        props.setUser(user)
+        redirect(user.first_name)
+    }
+    const redirect = (name) =>{
+        props.history.push({
+            pathname: `/profile/inbox-page/${name}`,
+        })
+    }
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -72,7 +81,7 @@ const FullPost = (props) => {
                         <div className={"post__content"}>
                             <div className={"post__top"}>
                                 <ul className={"full-post__top-list"}>
-                                    <li className={"post__top-list-item"}>
+                                    <li onClick={() => setUserFunc(data.requester ? data.requester : data.provider )} className={"post__top-list-item post__user-click"}>
                                         {data.requester ?
                                             data.requester.image ?
                                             <img src={urlImg + data.requester.image} className={"full-post__avatar"}
@@ -149,6 +158,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(getPostImages(id)),
         setIsSendFalse: () =>
             dispatch(setIsSendFalse()),
+        setUser: (user) =>
+            dispatch(setCurrentUser(user)),
         sendInterestedRequest: (id) =>
             dispatch(sendInterestedRequest(id)),
         sendInterestedRequestProvide: (id) =>
@@ -156,4 +167,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FullPost);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FullPost));

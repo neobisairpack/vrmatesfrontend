@@ -61,7 +61,7 @@ const Post = (props) => {
                 <div className={"row"}>
                     {posts.map((item) =>
                         <div key={item.id} className={"col-lg-4 col-md-6 col-sm-12 col-xs-12"}>
-                            <Card onClick={() => modalHandler(item.id)} className={props.size}>
+                            <Card onClick={() => modalHandler(item.id)} className={"post__card"}>
                                 <div className={"post__content"}>
                                     <div className={"post__top"}>
                                         <ul className={"post__top-list"}>

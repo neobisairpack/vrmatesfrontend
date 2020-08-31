@@ -18,6 +18,8 @@ import Rating from "@material-ui/lab/Rating";
 import RateUser from "../../reviews/rate-user/rate-user";
 import LogOut from "../../pop-up/popup-logout";
 import Support from "../../popup-support";
+import {withRouter} from "react-router-dom";
+import {setCurrentUser} from "../../post/postActions";
 
 const InProgressPost = (props) => {
     const urlImg = 'https://vrmates.co';
@@ -71,6 +73,15 @@ const InProgressPost = (props) => {
         setLogoutMessage("Are sure you want to cancel the post?");
         setLogoutShow(true)
     }
+    const setUserFunc = (user) => {
+        props.setUser(user)
+        redirect(user.first_name)
+    }
+    const redirect = (name) =>{
+        props.history.push({
+            pathname: `/profile/inbox-page/${name}`,
+        })
+    }
     const sendCancel = () => {
         console.log(choice, new Date().toLocaleString())
         if (choice === "yes") {
@@ -87,7 +98,6 @@ const InProgressPost = (props) => {
         }
         setChoice("")
     }
-    const [modalShow, setModalShow] = useState(false)
     const {inprog_posts} = props.profilePost;
     return (
         <div className={"post container"}>
@@ -98,7 +108,7 @@ const InProgressPost = (props) => {
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
-                                        <li className={"post__top-list-item"}>
+                                        <li onClick={() => setUserFunc(item.createdBy === "Requester" ? item.requester : item.provider )} className={"post__top-list-item post__user-click"}>
                                             {item.createdBy === "Requester" ?
                                                 item.requester.image ?
                                                     <img src={urlImg + item.requester.image} className={"post__avatar"}
@@ -198,7 +208,9 @@ const mapDispatchToProps = dispatch => {
             dispatch(changePostStatus(post, status)),
         changePostStatusProvide: (post, status) =>
             dispatch(changePostStatusProvide(post, status)),
+        setUser: (user) =>
+            dispatch(setCurrentUser(user)),
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InProgressPost);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(InProgressPost));

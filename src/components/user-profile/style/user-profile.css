@@ -53,3 +53,7 @@
   margin-right: 10px;
   border-radius: 50%;
 }
+
+.post__user-click {
+  cursor: pointer;
+}

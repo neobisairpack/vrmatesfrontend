@@ -25,11 +25,10 @@ const RegistrationForm = () => {
         city: "",
         states: "",
         password: "",
-        password2: "",
-        isChecked: false
-
+        password2: ""
     })
     const [birthDate, setBirthDate] = useState(null)
+    const [isChecked, setIsChecked] = useState(false)
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -39,7 +38,7 @@ const RegistrationForm = () => {
         })
     }
     const handleSubmit = (e) => {
-        if(state.isChecked && state.name && state.lastName && state.gender && birthDate && state.password && state.password2 && state.email && state.phone) {
+        if(isChecked && state.name && state.lastName && state.gender && birthDate && state.password && state.password2 && state.email && state.phone) {
             e.preventDefault()
             axios.post('https://vrmates.co/users/registration/', {
                 first_name: state.name,
@@ -61,13 +60,27 @@ const RegistrationForm = () => {
             })
                 .then((res) => {
                     console.log(res)
-                    setNotMessage("Thanks for the registration! Please, check your email to complete the process!")
-                    setNotShow(true)
+                    console.log(!!res.data.email)
+                    if(res.data.email && res.data.response && res.data.token){
+                        setNotMessage("Thanks for the registration! Please, check your email to complete the process!")
+                        setNotShow(true)
+                    }
+                    else if(res.data.password){
+                        setNotMessage("Ensure that the password has at least 8 characters")
+                        setNotShow(true)
+                    }
+                    else if(res.data.email || res.data.phone){
+                        setNotMessage("User with this email or phone already exists")
+                        setNotShow(true)
+                    }
+
                 })
                 .catch((err) => {
-                    setNotMessage("Ooops! Something went wrong, check and try again")
-                    setNotShow(true)
-                    console.log("Registration error " + err)
+                        setNotMessage("Ooops! Something went wrong, check and try again")
+                        setNotShow(true)
+                        console.log("Registration error " + err.message)
+
+
                 })
         }
         else{
@@ -226,13 +239,13 @@ const RegistrationForm = () => {
 
                     <FormGroup className={"register__checkbox"} check>
                         <Label check className={"register__checkbox-lbl"}>
-                            <Input type={"checkbox"} name={"isChecked"} value={state.isChecked} onChange={e => handleChange(e)}/>
+                            <Input type={"checkbox"} name={"isChecked"} value={isChecked} onChange={() => setIsChecked(!isChecked)}/>
                             <label onClick={() => setTermsModalShow(true)}>I agree to terms conditions</label>
                         </Label>
                     </FormGroup>
                 </Form>
                 <div className={"register__sign-up"}>
-                    <button type={"submit"} disabled={!state.isChecked} onClick={handleSubmit} className={"register__sign-up-btn"}>Sign Up</button>
+                    <button type={"submit"} disabled={!isChecked} onClick={handleSubmit} className={"register__sign-up-btn"}>Sign Up</button>
                 </div>
 
             </div>

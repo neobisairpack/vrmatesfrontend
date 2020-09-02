@@ -54,19 +54,24 @@
 .login-form__item {
   display: grid;
   justify-content: center;
-  grid-template-rows: 30% 35% 16%;
-  align-items: flex-end;
+  grid-template-rows: 30% 50%;
+}
+
+.login__form {
+  display: grid;
+  justify-content: center;
+  grid-template-rows: 70% 30%;
+  align-items: center;
 }
 
 .reset-form__item {
   height: 300px;
   display: grid;
-  justify-content: center;
-  align-content: space-between;
 }
 
 .login__title {
   display: flex;
+  align-self: flex-end;
   justify-self: center;
   font-style: normal;
   font-weight: 900;

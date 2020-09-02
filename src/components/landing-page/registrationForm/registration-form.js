@@ -10,9 +10,9 @@ import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import TermsConditions from "../../popup-terms";
 import Notification from "../../notification/notification";
 const RegistrationForm = () => {
-    const [termsModalShow, setTermsModalShow] = useState(false)
-    const [notShow, setNotShow] = useState(false)
-    const [notMessage, setNotMessage] = useState("")
+    const [termsModalShow, setTermsModalShow] = useState(false);
+    const [notShow, setNotShow] = useState(false);
+    const [notMessage, setNotMessage] = useState("");
     const [state, setState] = useState({
         name: "",
         lastName: "",
@@ -26,7 +26,7 @@ const RegistrationForm = () => {
         states: "",
         password: "",
         password2: ""
-    })
+    });
     const [birthDate, setBirthDate] = useState(null)
     const [isChecked, setIsChecked] = useState(false)
     const handleChange = (e) => {

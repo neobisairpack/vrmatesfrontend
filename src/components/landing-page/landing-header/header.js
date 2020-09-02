@@ -27,7 +27,7 @@ const Header = () => {
                     </Link>
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
-                <Collapse className={"nav "} isOpen={isOpen} navbar>
+                <Collapse className={"nav landing-nav"} isOpen={isOpen} navbar>
                     <Nav className={"mr-auto landing__navbar"} >
                         <NavItem>
                             <ScrollLink to="about-project"

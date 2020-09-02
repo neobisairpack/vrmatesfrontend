@@ -1,8 +1,11 @@
 .header-landing{
-  background: url("../../images/image-for-landing.png")  no-repeat;
+  background: url("../../images/image-for-landing.png")  no-repeat top center;
+  //background-size: cover;
   padding-left: 5%;
   padding-right: 5%;
-
+  @media screen and (min-width: 1500px){
+    background-size: cover;
+  }
 }
 .landing__nav-item{
   position: relative;

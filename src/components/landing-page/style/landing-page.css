@@ -1,6 +1,11 @@
+.landing {
+  width: 100%;
+}
+
 .landing__main {
   width: 100%;
-  background: url("../images/image-for-landing.png") no-repeat;
+  background: url("../images/image-for-landing.png") no-repeat center;
+  background-size: cover;
   min-height: 900px;
   position: relative;
 }
@@ -29,6 +34,12 @@
   padding-right: 5%;
   padding-left: 5%;
 }
+@media screen and (max-width: 650px) {
+  .landing__slogan {
+    font-size: 42px;
+    width: 95%;
+  }
+}
 
 button.landing__join-btn {
   position: relative;
@@ -49,25 +60,6 @@ button.landing__join-btn {
   text-align: center;
   color: #000000;
 }
-button.landing__join-btn:after {
-  content: "";
-  background: #D8D8D8;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: 0 !important;
-  margin-top: 120%;
-  opacity: 0;
-  transition: 0s;
-}
-button.landing__join-btn:hover:after {
-  padding: 100% 0;
-  margin-top: -120%;
-  margin-left: 300%;
-  opacity: 0;
-  transition: all 0.8s;
-}
 button.landing__join-btn:focus {
   outline: none;
 }
@@ -78,11 +70,21 @@ button.landing__join-btn:focus {
   display: grid;
   grid-template-rows: 25% 43.75% 31.25%;
 }
+@media screen and (max-width: 900px) {
+  .landing__about-project {
+    display: block;
+  }
+}
 
 .landing__about {
   padding-left: 5%;
   display: flex;
   list-style: none;
+}
+@media screen and (max-width: 900px) {
+  .landing__about {
+    display: block;
+  }
 }
 
 .landing__about-title {
@@ -109,18 +111,42 @@ button.landing__join-btn:focus {
   align-items: center;
   color: #000000;
 }
+@media screen and (max-width: 900px) {
+  .landing__about-text {
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+}
 
 .landing__about-img {
   grid-area: aimg;
+}
+@media screen and (max-width: 650px) {
+  .landing__about-img {
+    display: none;
+  }
 }
 
 .landing__how-works {
   padding-left: 5%;
 }
+@media screen and (max-width: 900px) {
+  .landing__how-works {
+    padding-top: 6%;
+    padding-bottom: 6%;
+  }
+}
 
 .landing__how-works-list {
   display: flex;
   flex-flow: row wrap;
+}
+@media screen and (max-width: 900px) {
+  .landing__how-works-list {
+    flex-flow: column;
+    justify-content: center;
+  }
 }
 
 .landing__hw-item {
@@ -128,6 +154,16 @@ button.landing__join-btn:focus {
   display: flex;
   padding: 5% 0 5% 0;
   margin-right: 5%;
+}
+@media screen and (max-width: 900px) {
+  .landing__hw-item {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .landing__hw-item {
+    display: block;
+  }
 }
 
 .landing__img-border {
@@ -143,6 +179,11 @@ button.landing__join-btn:focus {
 
 .landing__hw-description {
   margin-left: 8%;
+}
+@media screen and (max-width: 550px) {
+  .landing__hw-description {
+    margin-top: 7%;
+  }
 }
 
 .landing__hw-title {
@@ -181,6 +222,7 @@ button.landing__join-btn:focus {
   display: flex;
   align-items: center;
   background: url("../images/donation-back.png") no-repeat;
+  background-size: cover;
   min-height: 390px;
   position: relative;
 }
@@ -205,6 +247,11 @@ button.landing__join-btn:focus {
   color: #FFFFFF;
   width: 36%;
   padding-left: 5%;
+}
+@media screen and (max-width: 900px) {
+  .landing__donation-text {
+    width: 80%;
+  }
 }
 
 .landing__footer {

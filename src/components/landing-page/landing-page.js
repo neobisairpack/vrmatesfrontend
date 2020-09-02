@@ -38,7 +38,7 @@ const LandingPage = () => {
                     </li>
                     <li>
                         <div className={"landing__about-img"}>
-                            <img src={about}/>
+                            <img src={about} alt={"about-project"}/>
                         </div>
                     </li>
                 </ul>

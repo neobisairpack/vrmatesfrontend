@@ -6,9 +6,10 @@ import dateformat from 'dateformat';
 import exit from '../../post/images/exit.svg';
 import DatePicker from "react-datepicker";
 import axios from "axios";
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import TermsConditions from "../../popup-terms";
 import Notification from "../../notification/notification";
+
 const RegistrationForm = () => {
     const [termsModalShow, setTermsModalShow] = useState(false);
     const [notShow, setNotShow] = useState(false);
@@ -38,7 +39,7 @@ const RegistrationForm = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(isChecked && state.name && state.lastName && state.gender && birthDate && state.password && state.password2 && state.email && state.phone) {
+        if (isChecked && state.name && state.lastName && state.gender && birthDate && state.password && state.password2 && state.email && state.phone) {
             e.preventDefault()
             axios.post('https://vrmates.co/users/registration/', {
                 first_name: state.name,
@@ -59,31 +60,26 @@ const RegistrationForm = () => {
                 password2: state.password2
             })
                 .then((res) => {
-                    console.log(res)
-                    console.log(!!res.data.email)
-                    if(res.data.email && res.data.response && res.data.token){
+                    if (res.data.email && res.data.response && res.data.token) {
                         setNotMessage("Thanks for the registration! Please, check your email to complete the process!")
                         setNotShow(true)
-                    }
-                    else if(res.data.password){
+                    } else if (res.data.password) {
                         setNotMessage("Ensure that the password has at least 8 characters")
                         setNotShow(true)
-                    }
-                    else if(res.data.email || res.data.phone){
+                    } else if (res.data.email || res.data.phone) {
                         setNotMessage("User with this email or phone already exists")
                         setNotShow(true)
                     }
 
                 })
                 .catch((err) => {
-                        setNotMessage("Ooops! Something went wrong, check and try again")
-                        setNotShow(true)
-                        console.log("Registration error " + err.message)
+                    setNotMessage("Ooops! Something went wrong, check and try again")
+                    setNotShow(true)
+                    console.log("Registration error " + err.message)
 
 
                 })
-        }
-        else{
+        } else {
             setNotMessage("Please, fill in the required fields")
             setNotShow(true);
         }
@@ -106,7 +102,7 @@ const RegistrationForm = () => {
                             name={"name"}
                             value={state.name}
                             onChange={e => handleChange(e)}
-                            />
+                        />
                     </FormGroup>
 
                     <FormGroup>
@@ -118,7 +114,7 @@ const RegistrationForm = () => {
                             name={"phone"}
                             value={state.phone}
                             onChange={e => handleChange(e)}
-                            />
+                        />
                     </FormGroup>
                     <FormGroup>
                         <Input
@@ -140,7 +136,7 @@ const RegistrationForm = () => {
                             name={"address"}
                             value={state.address}
                             onChange={e => handleChange(e)}
-                            />
+                        />
                     </FormGroup>
 
                     <FormGroup>
@@ -163,18 +159,19 @@ const RegistrationForm = () => {
                             name={"zipcode"}
                             value={state.zipcode}
                             onChange={e => handleChange(e)}
-                            />
+                        />
                     </FormGroup>
 
-                    <DatePicker
-                        className={"register__input"}
-                        placeholderText={"   *Date Of Birth"}
-                        required
-                        selected={birthDate}
-                        onChange={date => setBirthDate(date)}
-                        reqiured="true"
-                    />
-
+                    <FormGroup>
+                        <DatePicker
+                            className={"register__input"}
+                            placeholderText={"   *Date Of Birth"}
+                            required
+                            selected={birthDate}
+                            onChange={date => setBirthDate(date)}
+                            reqiured="true"
+                        />
+                    </FormGroup>
                     <FormGroup>
                         <CountryDropdown
                             name={"country"}
@@ -184,11 +181,12 @@ const RegistrationForm = () => {
                             onChange={e => setState({
                                 ...state,
                                 country: e
-                            })} />
+                            })}/>
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="select" name={"gender"} reqiured="true" className={"register__input "} value={state.gender} onChange={e => handleChange(e)}>
+                        <Input type="select" name={"gender"} reqiured="true" className={"register__input "}
+                               value={state.gender} onChange={e => handleChange(e)}>
                             <option>*Gender</option>
                             <option>Male</option>
                             <option>Female</option>
@@ -206,7 +204,7 @@ const RegistrationForm = () => {
                             onChange={e => setState({
                                 ...state,
                                 states: e
-                            })} />
+                            })}/>
                     </FormGroup>
 
                     <FormGroup>
@@ -242,16 +240,18 @@ const RegistrationForm = () => {
                         />
                     </FormGroup>
 
-                    <FormGroup className={"register__checkbox"} check>
+                    <FormGroup check>
                         <Label check className={"register__checkbox-lbl"}>
-                            <Input type={"checkbox"} name={"isChecked"} value={isChecked} onChange={() => setIsChecked(!isChecked)}/>
+                            <Input type={"checkbox"} name={"isChecked"} value={isChecked}
+                                   onChange={() => setIsChecked(!isChecked)}/>
                             <label onClick={() => setTermsModalShow(true)}>I agree to terms conditions</label>
                         </Label>
                     </FormGroup>
 
-                <div className={"register__sign-up"}>
-                    <button type={"submit"} disabled={!isChecked} className={"register__sign-up-btn"}>Sign Up</button>
-                </div>
+                    <div className={"register__sign-up"}>
+                        <button type={"submit"} disabled={!isChecked} className={"register__sign-up-btn"}>Sign Up
+                        </button>
+                    </div>
                 </Form>
             </div>
             <div>

@@ -11,10 +11,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from "react-router-dom";
 import logo from "../../sidebar/images/logo.svg";
 import './style/header-landing.css';
-import * as Scroll from 'react-scroll'
-import {Link as ScrollLink} from 'react-scroll'
+import {Link as ScrollLink} from 'react-scroll';
 
-const Header = () => {
+const HeaderLanding = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -27,11 +26,11 @@ const Header = () => {
                     </Link>
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle} />
-                <Collapse className={"nav landing-nav"} isOpen={isOpen} navbar>
+                <Collapse className={"nav"} isOpen={isOpen} navbar>
                     <Nav className={"mr-auto landing__navbar"} >
                         <NavItem>
                             <ScrollLink to="about-project"
-                                        //spy={true}
+                                //spy={true}
                                         smooth={true}
                                         duration={1000}
                                         className={"landing__nav-item nav__item"}>
@@ -58,5 +57,5 @@ const Header = () => {
     );
 }
 
-export default Header;
+export default HeaderLanding;
 

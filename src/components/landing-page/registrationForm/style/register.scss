@@ -1,7 +1,8 @@
 .register-container{
   width: 100%;
-  background: url("../../images/image-for-landing.png") no-repeat;
-  min-height: 900px;
+  background: url("../../images/image-for-landing.png") no-repeat center;
+  background-size: cover;
+  min-height: 1100px;
   position: relative;
   &:after{
     content: '';
@@ -24,6 +25,11 @@
   width: 67.43%;
   //height: 550px;
   background-color: #FFFFFF;
+  @media screen and (max-width: 720px){
+    width: 90%;
+    left: 6%;
+    top: 5%;
+  }
 }
 .register__title{
   font-style: normal;
@@ -67,6 +73,9 @@
     line-height: 14px;
     color: #000000;
   }
+  @media screen and (max-width: 1260px){
+    width: 200px;
+  }
 }
 .register__input.form-control{
   width: 350px;
@@ -86,6 +95,9 @@
     font-size: 14px;
     line-height: 14px;
     color: #000000;
+  }
+  @media screen and (max-width: 1260px){
+    width: 200px;
   }
 }
 .required{
@@ -121,6 +133,10 @@
   display: flex;
   justify-content: flex-end;
   margin-left: auto;
+  @media screen and (max-width: 1260px) and (min-width: 720px){
+    margin-left: 0;
+  }
+
 }
 .register__sign-up-btn{
   &:disabled{
@@ -140,5 +156,9 @@
   &:focus{
     outline: none;
     border: none;
+  }
+  @media screen and (max-width: 1260px){
+    width: 200px;
+    margin-top: 2%;
   }
 }

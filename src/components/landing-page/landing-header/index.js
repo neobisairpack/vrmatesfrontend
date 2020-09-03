@@ -1,2 +1,2 @@
-import Header from "./header";
-export default Header;
+import HeaderLanding from "./landing-header";
+export default HeaderLanding;

@@ -1,7 +1,8 @@
 .register-container {
   width: 100%;
-  background: url("../../images/image-for-landing.png") no-repeat;
-  min-height: 900px;
+  background: url("../../images/image-for-landing.png") no-repeat center;
+  background-size: cover;
+  min-height: 1100px;
   position: relative;
 }
 .register-container:after {
@@ -23,6 +24,13 @@
   padding: 4% 6%;
   width: 67.43%;
   background-color: #FFFFFF;
+}
+@media screen and (max-width: 720px) {
+  .register-form {
+    width: 90%;
+    left: 6%;
+    top: 5%;
+  }
 }
 
 .register__title {
@@ -71,6 +79,11 @@
   line-height: 14px;
   color: #000000;
 }
+@media screen and (max-width: 1260px) {
+  .register__input {
+    width: 200px;
+  }
+}
 
 .register__input.form-control {
   width: 350px;
@@ -91,6 +104,11 @@
   font-size: 14px;
   line-height: 14px;
   color: #000000;
+}
+@media screen and (max-width: 1260px) {
+  .register__input.form-control {
+    width: 200px;
+  }
 }
 
 .required::before {
@@ -128,6 +146,11 @@
   justify-content: flex-end;
   margin-left: auto;
 }
+@media screen and (max-width: 1260px) and (min-width: 720px) {
+  .register__sign-up {
+    margin-left: 0;
+  }
+}
 
 .register__sign-up-btn {
   font-style: normal;
@@ -148,4 +171,10 @@
 .register__sign-up-btn:focus {
   outline: none;
   border: none;
+}
+@media screen and (max-width: 1260px) {
+  .register__sign-up-btn {
+    width: 200px;
+    margin-top: 2%;
+  }
 }

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ScrollToTopControlller from '../scroll-to-top/scroll-to-top';
-import Header from "./landing-header/header";
+// import HeaderLanding from "./landing-header/header";
+import HeaderLanding from "./landing-header";
 import './style/landing-page.css';
 import about from './images/about-img.png';
 import hw1 from './images/how-works1.png';
@@ -17,7 +18,7 @@ const LandingPage = () => {
         <div className={"landing"}>
             <ScrollToTopControlller/>
             <div className={"landing__main"}>
-                <Header/>
+                <HeaderLanding/>
                 <div className={"landing__slogan"}>Vrmates is the global platform where travelers and locals connect to
                     help each other!
                 </div>

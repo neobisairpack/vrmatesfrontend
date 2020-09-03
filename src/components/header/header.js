@@ -67,7 +67,7 @@ const Header = (props) => {
         <div className={(props.style ? "inbox-header" : "header")}>
             <Navbar light expand="md">
                 <NavbarToggler onClick={toggle}/>
-                <Collapse className={"nav landing-nav"} isOpen={isOpen} navbar>
+                <Collapse className={"nav"} isOpen={isOpen} navbar>
                     <Nav className={"mr-auto"}>
                         <NavItem>
                             <Link to="/dashboard"

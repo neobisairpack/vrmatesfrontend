@@ -1,7 +1,8 @@
 .contact-container{
   width: 100%;
-  background: url("../../images/image-for-landing.png") no-repeat;
-  min-height: 700px;
+  background: url("../../images/image-for-landing.png") no-repeat center;
+  min-height: 900px;
+  background-size: cover;
   position: relative;
   &:after{
     content: '';
@@ -23,6 +24,11 @@
   width: 47%;
   //height: 380px;
   background-color: #FFFFFF;
+  @media screen and (max-width: 700px){
+    width: 80%;
+    top: 10%;
+    left: 12%;
+  }
 }
 .contact__content{
   padding-top: 2%;
@@ -30,17 +36,20 @@
 .contact__text{
   font-style: normal;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 34px;
   line-height: 42px;
   display: flex;
   align-items: center;
   color: #202A49;
   margin-bottom:4%;
+  @media screen and (max-width: 700px){
+    font-size: 25px;
+  }
 }
 .contact__email-us{
   font-style: normal;
   font-weight: 500;
-  font-size: 26px;
+  font-size: 22px;
   line-height: 42px;
   display: flex;
   align-items: center;

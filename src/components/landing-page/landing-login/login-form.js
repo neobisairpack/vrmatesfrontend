@@ -37,14 +37,14 @@ const LoginForm = (props) => {
     return (
         <div className="login-container">
             <div className={"login-form"}>
-
                 <div className={"login-form__item"}>
+
                     <label className={"login__title"}>Welcome to Vrmates</label>
                     <Form onSubmit={(e) => handleSubmit(e)} className={"login__form"}>
                         <div>
                             <FormGroup>
                                 <Input
-                                    className={"register__input"}
+                                    className={"login__input"}
                                     placeholder={"E-mail"}
                                     type={"email"}
                                     name={"email"}
@@ -55,7 +55,7 @@ const LoginForm = (props) => {
                                 <Input
                                     type={"password"}
                                     name={"password"}
-                                    className={"register__input"}
+                                    className={"login__input"}
                                     placeholder={"Password"}
                                     required
                                     onChange={(e) => setPassword(e.target.value)}

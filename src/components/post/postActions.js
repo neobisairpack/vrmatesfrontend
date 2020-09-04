@@ -46,7 +46,6 @@ export const filterPosts = (url, deadline, type, country1, country2) => {
             }
         })
             .then(res => {
-                console.log(`${mainURL}/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`)
                 dispatch(getDashboardPostsSuccess(res.data))
             })
             .catch((err) => {
@@ -93,7 +92,6 @@ export const sendInterestedRequestProvide = (id) => {
                 }
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(sendRequestSuccess(res.data));
             })
             .catch(err => {
@@ -129,7 +127,7 @@ export const getInterestedRequestById = (createdBy, id) => {
     else if (createdBy === "Provider") url = 'request-provide-services'
     return dispatch => {
         axios
-            .get(`https://vrmates.co/api/${url}/`,
+            .get(`${mainURL}/api/${url}/`,
                 {
                     headers: {
                         "Authorization": "Token " + token

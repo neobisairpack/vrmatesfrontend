@@ -9,10 +9,16 @@ import Header from "../header";
 import Footer from "../footer";
 import ProfileSidebar from "../sidebar/profile-sidebar";
 import CompletedPost from "./completed-post/completed-post";
+import {getPosts} from "../profile/profileActions";
+import {connect} from "react-redux";
+import Pagination from "../pagination/pagination";
 
 const Completed = (props) => {
-    const [activeLink, setActiveLink] = useState(null)
+    const [activeLink, setActiveLink] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(9);
     useEffect(() => {
+        props.getPosts();
         const path = props.location.pathname;
         switch (path) {
             case '/profile/inbox':
@@ -28,6 +34,12 @@ const Completed = (props) => {
                 setActiveLink(null);
         }
     }, [])
+
+    const paginate = (pagenumber) => setCurrentPage(pagenumber)
+    const {completed_posts} = props.profilePost;
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = completed_posts.slice(indexOfFirstPost, indexOfLastPost);
     return (
         <div className={"profile"}>
             <ScrollToTopControlller/>
@@ -49,10 +61,27 @@ const Completed = (props) => {
                         </li>
                     </ul>
                 </div>
-                <CompletedPost/>
+                <CompletedPost posts={currentPosts}/>
+                <div className={"dashboard__pagination"}>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={completed_posts.length} paginate={paginate}
+                                currentPage={currentPage}/>
+                </div>
             </div>
             <Footer/>
         </div>
     );
 };
-export default withRouter(Completed);
+
+const mapStateToProps = state => {
+    return {
+        profilePost: state.profilePost,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getPosts: () =>
+            dispatch(getPosts()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Completed));

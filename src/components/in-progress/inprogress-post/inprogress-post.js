@@ -22,7 +22,7 @@ import {withRouter} from "react-router-dom";
 import {setCurrentUser} from "../../post/postActions";
 
 const InProgressPost = (props) => {
-    const urlImg = 'https://vrmates.co';
+    const urlImg = 'http://167.172.178.135:8000';
     const [activeModal, setActiveModal] = useState(null);
     const [logoutShow, setLogoutShow] = useState(false);
     const [logoutMessage, setLogoutMessage] = useState("")
@@ -31,15 +31,11 @@ const InProgressPost = (props) => {
     const [choice, setChoice] = useState("");
 
     useEffect(() => {
-        console.log(props.profilePost.choice)
         if (choice !== "") {
             setLogoutShow(false)
             curPost.createdBy === "Requester" ? sendCancel() : sendCancelProvider()
         }
     },)
-    useEffect(() => {
-        props.getPosts();
-    }, [])
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -98,11 +94,11 @@ const InProgressPost = (props) => {
         }
         setChoice("")
     }
-    const {inprog_posts} = props.profilePost;
+    const {posts} = props;
     return (
         <div className={"post container"}>
             <div className={"row"}>
-                {inprog_posts.map((item, id) =>
+                {posts.map((item, id) =>
                     <div key={id} className={"col-lg-4 col-md-6 col-sm-12 col-xs-12"}>
                         <Card className={props.size}>
                             <div className={"post__content"}>
@@ -202,8 +198,6 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        getPosts: () =>
-            dispatch(getPosts()),
         changePostStatus: (post, status) =>
             dispatch(changePostStatus(post, status)),
         changePostStatusProvide: (post, status) =>

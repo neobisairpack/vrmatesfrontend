@@ -8,10 +8,17 @@ import InProgressPost from "./inprogress-post/inprogress-post";
 import Header from "../header";
 import Footer from "../footer";
 import ProfileSidebar from "../sidebar/profile-sidebar";
+import {getPostsDashboard} from "../post/postActions";
+import {connect} from "react-redux";
+import {getPosts} from "../profile/profileActions";
+import Pagination from "../pagination/pagination";
 
 const InProgress = (props) => {
     const [activeLink, setActiveLink] = useState(null)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(9);
     useEffect(() => {
+        props.getPosts();
         const path = props.location.pathname;
         switch (path) {
             case '/profile/inbox':
@@ -27,6 +34,12 @@ const InProgress = (props) => {
                 setActiveLink(null);
         }
     }, [])
+    const paginate = (pagenumber) => setCurrentPage(pagenumber)
+    const {inprog_posts} = props.profilePost;
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = inprog_posts.slice(indexOfFirstPost, indexOfLastPost);
+
     return (
         <div className={"profile"}>
             <ScrollToTopControlller/>
@@ -48,10 +61,26 @@ const InProgress = (props) => {
                         </li>
                     </ul>
                 </div>
-                <InProgressPost/>
+                <InProgressPost posts={currentPosts}/>
+                <div className={"dashboard__pagination"}>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={inprog_posts.length} paginate={paginate}
+                                currentPage={currentPage}/>
+                </div>
             </div>
             <Footer/>
         </div>
     );
 };
-export default withRouter(InProgress);
+
+const mapStateToProps = state => {
+    return {
+        profilePost: state.profilePost,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getPosts: () =>
+            dispatch(getPosts()),
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(InProgress));

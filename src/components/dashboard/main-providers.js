@@ -12,6 +12,9 @@ import {Link, withRouter} from 'react-router-dom';
 import CreateProviderDelivery from "../create-post/createProviderDelivery";
 import CreateProviderAirport from "../create-post/createProviderAirport";
 import CreateProviderHosting from "../create-post/createProviderHosting";
+import {getPostsDashboard} from "../post/postActions";
+import {connect} from "react-redux";
+import Pagination from "../pagination/pagination";
 
 const MainProviders = (props) => {
     const [popUpState, setPopUpState] = useState(false);
@@ -20,7 +23,10 @@ const MainProviders = (props) => {
     const [activeLink, setActiveLink] = useState(null);
     const [radio, setRadio] = useState("");
     const [type, setType] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(9);
     useEffect(() => {
+        props.getPostsDashboard('provide-services')
         const path = props.location.pathname;
         switch (path) {
             case '/dashboard':
@@ -59,6 +65,11 @@ const MainProviders = (props) => {
         const value = e.target.value
         setRadio(value)
     }
+    const paginate = (pagenumber) => setCurrentPage(pagenumber)
+    const {posts} = props.post;
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
     return (
         <div className={"dashboard"}>
             <ScrollToTopControlller/>
@@ -123,7 +134,11 @@ const MainProviders = (props) => {
                     {filterState ? <Filter state={(f) => setFilterState(f)}/> : null}
 
                 </div>
-                <Post url={'provide-services'} {...props} size={"dashboard-post"} btn={"true"}/>
+                <Post {...props} url={"provide-services"} posts={currentPosts} size={"dashboard-post"} btn={"true"}/>
+                <div className={"dashboard__pagination"}>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}
+                                currentPage={currentPage}/>
+                </div>
             </div>
             {type === "delivery" ? <CreateProviderDelivery show={modalShow}
                                                            onHide={() => setModalShow(false)}/> : type === "pickup" ?
@@ -136,4 +151,16 @@ const MainProviders = (props) => {
     );
 };
 
-export default withRouter(MainProviders);
+const mapStateToProps = state => {
+    return {
+        post: state.post,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getPostsDashboard: (url) =>
+            dispatch(getPostsDashboard(url)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MainProviders));

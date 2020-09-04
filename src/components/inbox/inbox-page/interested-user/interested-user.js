@@ -12,6 +12,7 @@ import {connect} from "react-redux";
 
 
 const InterestedUser = (props) => {
+    const urlImg = 'http://167.172.178.135:8000'
     useEffect(() => {
         if(props.location.state.post.createdBy === "Requester"){
             props.getInterestedRequestById("Requester", props.location.state.post.id)
@@ -49,7 +50,7 @@ const InterestedUser = (props) => {
         }
     }
     console.log(interested)
-    const urlImg = 'https://vrmates.co'
+
     return (
         <div className={"interested-user container"}>
             <div className={"row"}>

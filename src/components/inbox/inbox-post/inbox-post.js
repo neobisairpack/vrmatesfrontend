@@ -19,11 +19,8 @@ const InboxPost = (props) => {
    // const [interested, setInterested] = useState([])
     const [relatedInbox, setRelatedInbox] = useState([])
     useEffect(() => {
-        props.getPosts();
         props.getInterestedRequest();
         props.getInterestedRequestProvide();
-       console.log(props.userData)
-
     }, [])
 
     const redirect = (item) => {
@@ -43,8 +40,6 @@ const InboxPost = (props) => {
             return res[n];
         }
     }
-   // const id = localStorage.getItem("num");
-    const {inbox_posts} = props.profilePost;
     const mapRequests = (id, create) =>{
         let interested = []
         if(create === "req"){
@@ -56,22 +51,19 @@ const InboxPost = (props) => {
             interested = props.post.interestedProv
         }
         let arr = []
-        console.log(interested, id)
         interested.forEach((item) => {
             if(item.service.id === id){
                 arr.push(item)
             }
         })
-        console.log(arr)
         return arr.length
     }
     let id = JSON.parse(localStorage.getItem("num"));
-    //const {user} = props.userData
-    //console.log(props.userData)
+    const {posts} = props
     return (
         <div className={"post container"}>
             <div className={"row"}>
-                {inbox_posts.map((item, indx) =>
+                {posts.map((item, indx) =>
                     //item.requester.id !== user.id || item.provider.id !== user.id ? null :
                     <div key={indx} className={"col-lg-4 col-md-6 col-sm-12 col-xs-12"}>
                         <Card onClick={() => redirect(item)}>
@@ -126,8 +118,6 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        getPosts: () =>
-            dispatch(getPosts()),
         getInterestedRequest: (id) =>
             dispatch(getInterestedRequest(id)),
         getInterestedRequestProvide: (id) =>

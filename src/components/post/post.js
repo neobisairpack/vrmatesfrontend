@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/post.css';
 import arrow from './images/arrow.svg';
-import axios from 'axios';
 import FullPost from './full-view';
 import {
     Card,
@@ -38,9 +37,6 @@ const Post = (props) => {
     })(Rating);
     const urlImg = 'http://167.172.178.135:8000';
     const {url} = props;
-    // useEffect(() => {
-    //     props.getPostsDashboard(url)
-    // }, [])
     const modalHandler = (index) => {
         setActiveModal(index);
     }

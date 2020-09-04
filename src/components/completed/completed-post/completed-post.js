@@ -35,16 +35,13 @@ const CompletedPost = (props) => {
             color: '#8c8c8c',
         }
     })(Rating);
-    const urlImg = 'http://167.172.178.135:8000/';
+    const urlImg = 'http://167.172.178.135:8000';
     const {url} = props;
-    useEffect(() => {
-        props.getPosts()
-    }, [])
-    const {completed_posts} = props.profilePost;
+    const {posts} = props;
     return (
         <div className={"post container"}>
             <div className={"row"}>
-                {completed_posts.map((item) =>
+                {posts.map((item) =>
                     <div key={item.id} className={"col-lg-4 col-md-6 col-sm-12 col-xs-12"}>
                         <Card className={props.size}>
                             <div className={"post__content"}>
@@ -75,7 +72,7 @@ const CompletedPost = (props) => {
                                             </div>
                                         </li>
                                         <li className={"post__top-list-item"}><CardText
-                                            className={"post__package-provider"}>{url === 'service' ? "Requester" : "Provider"}</CardText>
+                                            className={"post__package-provider"}>{item.createdBy === 'Requester' ? "Requester" : "Provider"}</CardText>
                                         </li>
                                     </ul>
                                 </div>

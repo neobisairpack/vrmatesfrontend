@@ -134,7 +134,7 @@ const MainRequesters = (props) => {
                     {filterState ? <Filter state={(f) => setFilterState(f)}/> : null}
 
                 </div>
-                <Post posts={currentPosts} {...props} size={"dashboard-post"} btn={"true"}/>
+                <Post url={"services"} posts={currentPosts} {...props} size={"dashboard-post"} btn={"true"}/>
                 <div className={"dashboard__pagination"}>
                     <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}
                                 currentPage={currentPage}/>

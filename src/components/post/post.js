@@ -16,8 +16,6 @@ import {connect} from "react-redux";
 import {getPostsDashboard, sendInterestedRequest, sendInterestedRequestProvide} from "./postActions";
 
 const Post = (props) => {
-    const [dataAll, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [activeModal, setActiveModal] = useState(null);
     let types = {
         "Delivery": "Package delivery",
@@ -40,9 +38,9 @@ const Post = (props) => {
     })(Rating);
     const urlImg = 'http://167.172.178.135:8000';
     const {url} = props;
-    useEffect(() => {
-        props.getPostsDashboard(url)
-    }, [])
+    // useEffect(() => {
+    //     props.getPostsDashboard(url)
+    // }, [])
     const modalHandler = (index) => {
         setActiveModal(index);
     }
@@ -54,7 +52,7 @@ const Post = (props) => {
             props.sendInterestedRequestProvide(item.id);
         }
     }
-    const {posts} = props.post;
+    const {posts} = props;
     return (
         <div className={"post container"}>
             <>

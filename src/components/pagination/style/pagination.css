@@ -1,0 +1,26 @@
+.pagination {
+  display: flex;
+}
+
+.pagination__link {
+  background-color: #FFFFFF;
+  padding: 9px 10px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  margin: 3px;
+}
+.pagination__link:hover {
+  background-color: #f5f4f2;
+  color: black !important;
+}
+.pagination__link:active {
+  background-color: #202A49;
+  color: #FFFFFF !important;
+}
+
+.pagination__active {
+  background-color: #202A49;
+  color: #FFFFFF !important;
+}

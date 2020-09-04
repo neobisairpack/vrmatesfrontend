@@ -12,6 +12,9 @@ import {Link, withRouter} from 'react-router-dom';
 import CreatePostDelivery from "../create-post/createDeliveryPost";
 import CreatePostAirport from "../create-post/createAirportPost";
 import CreatePostHosting from "../create-post/createHostingPost";
+import {getPostsDashboard, sendInterestedRequest, sendInterestedRequestProvide} from "../post/postActions";
+import {connect} from "react-redux";
+import Pagination from "../pagination/pagination";
 
 const MainRequesters = (props) => {
     const [popUpState, setPopUpState] = useState(false);
@@ -20,7 +23,10 @@ const MainRequesters = (props) => {
     const [activeLink, setActiveLink] = useState(null)
     const [radio, setRadio] = useState("");
     const [type, setType] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(9);
     useEffect(() => {
+        props.getPostsDashboard('services')
         const path = props.location.pathname;
         switch (path) {
             case '/dashboard':
@@ -36,6 +42,7 @@ const MainRequesters = (props) => {
                 setActiveLink(null);
         }
     }, [])
+
     function togglePopUpSwitch() {
         setPopUpState(!popUpState);
     }
@@ -58,6 +65,11 @@ const MainRequesters = (props) => {
         const value = e.target.value
         setRadio(value)
     }
+    const paginate = (pagenumber) => setCurrentPage(pagenumber)
+    const {posts} = props.post;
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
     return (
         <div className={"dashboard"}>
             <ScrollToTopControlller/>
@@ -68,7 +80,7 @@ const MainRequesters = (props) => {
                     <p className={"dashboard__title"}>NEWS FEED</p>
                     <ul className={"dashboard__list"}>
                         <Link to={"/dashboard/providers"}>
-                            <li className={"dashboard__list-item "  + (activeLink === 2 ? "dashboard__list-item_active" : "")}>Providers</li>
+                            <li className={"dashboard__list-item " + (activeLink === 2 ? "dashboard__list-item_active" : "")}>Providers</li>
                         </Link>
                         <Link to={"/dashboard/requesters"}>
                             <li className={"dashboard__list-item " + (activeLink === 1 ? "dashboard__list-item_active" : "")}>Requesters</li>
@@ -122,7 +134,11 @@ const MainRequesters = (props) => {
                     {filterState ? <Filter state={(f) => setFilterState(f)}/> : null}
 
                 </div>
-                <Post url={'services'} {...props} size={"dashboard-post"} btn={"true"}/>
+                <Post posts={currentPosts} {...props} size={"dashboard-post"} btn={"true"}/>
+                <div className={"dashboard__pagination"}>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}
+                                currentPage={currentPage}/>
+                </div>
             </div>
             {type === "delivery" ? <CreatePostDelivery show={modalShow}
                                                        onHide={() => setModalShow(false)}/> : type === "pickup" ?
@@ -135,4 +151,16 @@ const MainRequesters = (props) => {
     );
 };
 
-export default withRouter(MainRequesters);
+const mapStateToProps = state => {
+    return {
+        post: state.post,
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        getPostsDashboard: (url) =>
+            dispatch(getPostsDashboard(url)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MainRequesters));

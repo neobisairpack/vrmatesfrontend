@@ -10,10 +10,12 @@ import hw3 from './images/how-works3.png';
 import hw4 from './images/how-works4.png';
 import {Link} from "react-router-dom";
 import TermsConditions from "../popup-terms";
+import FAQ from "../faq-page/faq";
 
 
 const LandingPage = () => {
-    const [termsModalShow, setTermsModalShow] = useState(false)
+    const [termsModalShow, setTermsModalShow] = useState(false);
+    const [faqModalShow, setFaqModalShow] = useState(false);
     return (
         <div className={"landing"}>
             <ScrollToTopControlller/>
@@ -109,11 +111,13 @@ const LandingPage = () => {
             </div>
             <div className={"landing__footer"}>
                 <button onClick={() => setTermsModalShow(true)} className={"landing__footer-link"}>Terms&Conditions</button>
-                <button  className={"landing__footer-link"}>faq</button>
+                <button onClick={() => setFaqModalShow(true)} className={"landing__footer-link"}>faq</button>
             </div>
             <div>
                 <TermsConditions show={termsModalShow}
                                  onHide={() => setTermsModalShow(false)}/>
+                <FAQ show={faqModalShow}
+                                 onHide={() => setFaqModalShow(false)}/>
             </div>
         </div>
     );

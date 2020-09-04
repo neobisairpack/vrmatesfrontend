@@ -117,3 +117,11 @@
     border-bottom: 1px solid #202A49;
   }
 }
+.dashboard__pagination{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.dashboard__content{
+  //display: grid;
+}

@@ -1,12 +1,16 @@
 .terms-conditions .modal-content{
   //position: absolute;
-  left: -15%;
+  left: 0;
   top: 13%;
-  width: 150%;
+  width: 100%;
   height: 600px;
   background: #FFFFFF;
   border-radius: 20px;
   padding: 32px;
+  @media screen and (min-width: 1000px) {
+    left: -15%;
+    width: 150%;
+  }
 }
 .terms__title{
   font-style: normal;

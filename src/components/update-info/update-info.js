@@ -9,6 +9,7 @@ import {Modal} from 'react-bootstrap';
 import './style/update-info.css';
 import imgIcon from "../post/images/empty-img.svg";
 
+const mainURL = "http://167.172.178.135:8000";
 const UpdateInfo = (props) => {
     const [state, setState] = useState({
         name: props.first_name,
@@ -53,7 +54,7 @@ const UpdateInfo = (props) => {
         fd.append('city', state.city)
         fd.append('states', state.states)
         let token = JSON.parse(localStorage.getItem("token"));
-             axios.post('https://vrmates.co/users/update/', fd,
+             axios.post(`${mainURL}/users/update/`, fd,
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data',

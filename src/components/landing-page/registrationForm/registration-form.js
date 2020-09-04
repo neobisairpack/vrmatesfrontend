@@ -41,7 +41,7 @@ const RegistrationForm = () => {
         e.preventDefault()
         if (isChecked && state.name && state.lastName && state.gender && birthDate && state.password && state.password2 && state.email && state.phone) {
             e.preventDefault()
-            axios.post('https://vrmates.co/users/registration/', {
+            axios.post('http://167.172.178.135:8000/users/registration/', {
                 first_name: state.name,
                 last_name: state.lastName,
                 username: null,

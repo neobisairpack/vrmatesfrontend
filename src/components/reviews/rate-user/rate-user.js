@@ -16,7 +16,6 @@ import {changePostStatus, changePostStatusProvide} from "../../profile/profileAc
 import imgIcon from "../../post/images/empty-img.svg";
 
 const RateUser = (props) => {
-    console.log(props.post.createdBy)
     const [rate, setRate] = useState("");
     const [text, setText] = useState("");
     const [imageFile1, setImageFile1] = useState("")
@@ -30,7 +29,6 @@ const RateUser = (props) => {
         const value = e.target.value
         setText(value)
     }
-    console.log(props.reciever)
     const rateUser = (e) => {
         e.preventDefault()
         const fd = new FormData();
@@ -40,7 +38,7 @@ const RateUser = (props) => {
         fd.append('text', text)
         let token = JSON.parse(localStorage.getItem("token"));
         axios
-            .post(`https://vrmates.co/api/rating/`, fd,
+            .post(`http://167.172.178.135:8000/api/rating/`, fd,
                 {
                     headers: {
                         "Authorization": "Token " + token

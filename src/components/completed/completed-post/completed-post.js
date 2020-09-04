@@ -13,10 +13,9 @@ import Rating from "@material-ui/lab/Rating";
 import {connect} from "react-redux";
 import {getPosts} from "../../profile/profileActions";
 
+
 const CompletedPost = (props) => {
-    const [dataAll, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [activeModal, setActiveModal] = useState(null);
+
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -36,7 +35,7 @@ const CompletedPost = (props) => {
             color: '#8c8c8c',
         }
     })(Rating);
-    const urlImg = 'https://vrmates.co';
+    const urlImg = 'http://167.172.178.135:8000/';
     const {url} = props;
     useEffect(() => {
         props.getPosts()

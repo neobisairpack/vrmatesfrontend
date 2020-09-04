@@ -9,16 +9,17 @@ export const EDIT_POST_FAILURE = "EDIT_POST_FAILURE";
 export const CHOOSE_YES_NO = "CHOOSE_YES_NO";
 export const SET_CURRENT_CREATED_BY = "CURRENT_CREATED_BY";
 
+const mainURL = "http://167.172.178.135:8000"
 export const getPosts = () => {
     let token = JSON.parse(localStorage.getItem("token"));
     let id = JSON.parse(localStorage.getItem("num"));
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios.all([
-            axios.get('https://vrmates.co/api/services/', {headers: {
+            axios.get(`${mainURL}/api/services/`, {headers: {
                     "Authorization": "Token " + token
                 }}),
-            axios.get('https://vrmates.co/api/provide-services/', {headers: {
+            axios.get(`${mainURL}/api/provide-services/`, {headers: {
                     "Authorization": "Token " + token
                 }})
         ])
@@ -66,7 +67,7 @@ export const editPost = (post, img1, img2) => {
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios
-            .put(`https://vrmates.co/api/services/${post.id}/`, {
+            .put(`${mainURL}/api/services/${post.id}/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
                     requester_from: (post.country1).concat(" ", post.state1, " ", post.city1),
@@ -113,7 +114,7 @@ export const editPostProvide = (post, img1, img2) => {
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios
-            .put(`https://vrmates.co/api/provide-services/${post.id}/`, fd,
+            .put(`${mainURL}/api/provide-services/${post.id}/`, fd,
                 {
                     headers: {
                         "Authorization": "Token " + token,
@@ -135,10 +136,9 @@ export const changePostStatus = (post, status) => {
     let token = JSON.parse(localStorage.getItem("token"));
     console.log(status, post)
     return dispatch => {
-        console.log("fdgdgdfgdfgdfsgdf")
         dispatch(getInboxPostStarted());
         axios
-            .put(`https://vrmates.co/api/services/${post.id}/`, {
+            .put(`${mainURL}/api/services/${post.id}/`, {
                     status: status,
                     deadline: post.deadline
                 },
@@ -166,7 +166,7 @@ export const changePostStatusProvide = (post, status) => {
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios
-            .put(`https://vrmates.co/api/provide-services/${post.id}/`, {
+            .put(`${mainURL}/api/provide-services/${post.id}/`, {
                     status: status,
                     deadline: post.deadline
                 },

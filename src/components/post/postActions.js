@@ -10,11 +10,12 @@ export const GET_REQUEST_FAILURE = "GET_REQUEST_SUCCESS";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const SET_IS_SEND_FALSE = "SET_IS_SEND_FALSE";
 
+const mainURL = "http://167.172.178.135:8000"
 export const getPostsDashboard = (url) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         //dispatch(get)
-        axios.get(`https://vrmates.co/api/${url}/`, {
+        axios.get(`${mainURL}/api/${url}/`, {
             headers: {
                 "Authorization": "Token " + token
             }
@@ -39,13 +40,13 @@ export const filterPosts = (url, deadline, type, country1, country2) => {
         deadline = deadline ? dateformat(deadline, "yyyy-mm-dd") : ""
         country1 = country1.split(" ").join("+")
         country2 = country2.split(" ").join("+")
-        axios.get(`https://vrmates.co/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`, {
+        axios.get(`${mainURL}/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`, {
             headers: {
                 "Authorization": "Token " + token
             }
         })
             .then(res => {
-                console.log(`https://vrmates.co/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`)
+                console.log(`${mainURL}/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`)
                 dispatch(getDashboardPostsSuccess(res.data))
             })
             .catch((err) => {
@@ -59,7 +60,7 @@ export const sendInterestedRequest = (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         axios
-            .post(`https://vrmates.co/api/request-services/`, {
+            .post(`${mainURL}/api/request-services/`, {
                     service: id,
                 },
                 {
@@ -82,7 +83,7 @@ export const sendInterestedRequestProvide = (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         axios
-            .post(`https://vrmates.co/api/request-provide-services/`, {
+            .post(`${mainURL}/api/request-provide-services/`, {
                     service: id,
                 },
                 {
@@ -105,7 +106,7 @@ export const getInterestedRequest = () => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         axios
-            .get(`https://vrmates.co/api/request-services/`,
+            .get(`${mainURL}/api/request-services/`,
                 {
                     headers: {
                         "Authorization": "Token " + token
@@ -155,7 +156,7 @@ export const getInterestedRequestProvide = () => {
     return dispatch => {
         console.log("request")
         axios
-            .get(`https://vrmates.co/api/request-provide-services/`,
+            .get(`${mainURL}/api/request-provide-services/`,
                 {
                     headers: {
                         "Authorization": "Token " + token
@@ -176,7 +177,7 @@ export const changeStatusRequest = (req, status) => {
     console.log(req, status)
     return dispatch => {
         axios
-            .put(`https://vrmates.co/api/request-services/${req.id}/`, {
+            .put(`${mainURL}/api/request-services/${req.id}/`, {
                     status: status,
                     service: req.service.id,
                     accept: status === "Accepted"
@@ -202,7 +203,7 @@ export const changeStatusRequestProvide = (req, status) => {
     console.log(req, status)
     return dispatch => {
         axios
-            .put(`https://vrmates.co/api/request-provide-services/${req.id}/`, {
+            .put(`${mainURL}/api/request-provide-services/${req.id}/`, {
                     status: status,
                     service: req.service.id,
                     accept: status === "Accepted"

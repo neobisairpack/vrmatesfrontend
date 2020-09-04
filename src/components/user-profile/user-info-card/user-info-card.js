@@ -14,7 +14,7 @@ import Rating from "@material-ui/lab/Rating";
 const UserInfoCard = (props) => {
     console.log(props)
     const user = props.user;
-    const urlImg = 'https://vrmates.co';
+    const urlImg = "http://167.172.178.135:8000";
     const StyledRating = withStyles({
         iconFilled: {
             color: '#FD5A01',

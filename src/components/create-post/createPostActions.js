@@ -5,6 +5,7 @@ export const SEND_POST_FAILURE = "SEND_POST_FAILURE";
 export const GET_POST_IMAGES_SUCCESS = "GET_POST_IMAGES_SUCCESS";
 export const GET_POST_IMAGES_FAILURE = "GET_POST_IMAGES_FAILURE";
 
+const mainURL = "http://167.172.178.135:8000"
 export const sendPostDelivery = (post, img1, img2) => {
     const fd = new FormData();
     fd.append('image1', img1)
@@ -21,7 +22,7 @@ export const sendPostDelivery = (post, img1, img2) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`https://vrmates.co/api/services/`, fd,
+            .post(`${mainURL}/api/services/`, fd,
                 {
                     headers: {
                         "Authorization": "Token " + token,
@@ -45,7 +46,7 @@ export const sendProviderDelivery = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`https://vrmates.co/api/provide-services/`, {
+            .post(`${mainURL}/provide-services/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
                     drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
@@ -80,7 +81,7 @@ export const sendPostAirport = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`https://vrmates.co/api/services/`, {
+            .post(`${mainURL}/api/services/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
@@ -115,7 +116,7 @@ export const sendProviderAirport = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`https://vrmates.co/api/provide-services/`, {
+            .post(`${mainURL}/api/provide-services/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     deadline: "2020-01-05",
                     status: "Created, not accepted",
@@ -147,7 +148,7 @@ export const sendPostHosting = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`https://vrmates.co/api/services/`, {
+            .post(`${mainURL}/api/services/`, {
                     requester_from: (post.country1).concat(",", post.state1, ",", post.city1),
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     location: (post.country2).concat(",", post.state2, ",", post.city2),
@@ -195,7 +196,7 @@ export const sendProviderHosting = (post, img1, img2) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`https://vrmates.co/api/provide-services/`, fd,
+            .post(`${mainURL}/api/provide-services/`, fd,
                 {
                     headers: {
                         "Authorization": "Token " + token,
@@ -217,7 +218,7 @@ export const getPostImages = (id) => {
     return dispatch => {
         dispatch(sendPostStarted())
         axios
-            .get(`https://vrmates.co/api/services-images/`,
+            .get(`${mainURL}/api/services-images/`,
                 {
                     headers: {
                         "Authorization": "Token " + token,

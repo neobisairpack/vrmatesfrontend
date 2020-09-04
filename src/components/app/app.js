@@ -16,6 +16,7 @@ import MainRequesters from "../dashboard/main-requesters";
 import MainProviders from "../dashboard/main-providers";
 import PrivateRoute from "./private-router";
 
+export const mainUrl = "http://167.172.178.135:8000/";
 const App = () => {
     return (
         <React.Fragment>

@@ -128,9 +128,9 @@ const FullPost = (props) => {
                         <CardText className={"full-post__email"}>{data.requester ? data.requester.email : data.provider.email}</CardText>
                         {data.service_type === 'Delivery' && data.requester || data.service_type === 'Hosting' && data.provider ?
                         <div className={"full-post__images"}>
-                            {images[0] ? <div><img className={"full-post__photo"} src={images[0].image}/></div> :
+                            {images[images.length - 1] ? <div><img className={"full-post__photo"} src={images[images.length - 1].image}/></div> :
                             <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div> }
-                            {images[1] ? <div><img className={"full-post__photo"} src={images[0].image}/></div> :
+                            {images[images.length - 2] ? <div><img className={"full-post__photo"} src={images[images.length - 2].image}/></div> :
                             <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div> }
                         </div> : null}
                     </div>

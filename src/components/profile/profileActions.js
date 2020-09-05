@@ -111,7 +111,7 @@ export const editPostProvide = (post, img1, img2) => {
     const fd2 = new FormData();
     fd2.append('image', img2)
     fd2.append('post', post.id)
-
+    console.log(img1, img2)
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(getInboxPostStarted());

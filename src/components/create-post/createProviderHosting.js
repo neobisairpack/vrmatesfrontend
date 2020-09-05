@@ -54,7 +54,7 @@ const CreateProviderHosting = (props) => {
     const sendPost = (e) => {
         e.preventDefault();
         console.log(img1File)
-        props.post ? props.editPostProvide(state, img1File, img1File) : props.sendProviderHosting(state, img1File, img2File)
+        props.post ? props.editPostProvide(state, img1File, img2File) : props.sendProviderHosting(state, img1File, img2File)
     }
     const getDropList = () => {
         const year = new Date().getFullYear();

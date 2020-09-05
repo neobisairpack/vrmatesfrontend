@@ -10,11 +10,8 @@ import {connect} from "react-redux";
 import {
     changePostStatus, changePostStatusProvide,
     chooseYesNo,
-    currentCreatedBy,
-    editPost,
-    setCurrentCreatedBy
+    editPost
 } from "../../../profile/profileActions";
-import {setCurrentUser} from "../../../post/postActions";
 import Notification from "../../../notification/notification";
 import CreatePostDelivery from "../../../create-post/createDeliveryPost";
 import CreatePostAirport from "../../../create-post/createAirportPost";
@@ -23,7 +20,6 @@ import CreateProviderDelivery from "../../../create-post/createProviderDelivery"
 import CreateProviderAirport from "../../../create-post/createProviderAirport";
 import CreateProviderHosting from "../../../create-post/createProviderHosting";
 import LogOut from "../../../pop-up/popup-logout";
-import {Button, Modal} from "react-bootstrap";
 import {getPostImages} from "../../../create-post/createPostActions";
 
 const InboxPageSidebar = (props) => {
@@ -95,6 +91,7 @@ const InboxPageSidebar = (props) => {
         }
     }
     const {images} = props.createPost
+    console.log(images)
     return (
         <div className={"inbox-page__sidebar"}>
             <img className={"inbox-page__logo"} src={logo} alt={"Vrmates"}/>
@@ -125,9 +122,9 @@ const InboxPageSidebar = (props) => {
                     <>
                         <p className={"inbox-page__category"}>Photo:</p>
                         <div className={"inbox-page__photos"}>
-                            {images[0] ? <div><img className={"full-post__photo"} src={images[0].image}/></div> :
+                            {images[images.length - 1] ? <div><img className={"full-post__photo"} src={images[images.length - 1].image}/></div> :
                                 <div className={"inbox-page__photo"}><img src={imgIcon} className={"full-post__icon"}/></div> }
-                            {images[1] ? <div><img className={"full-post__photo"} src={images[1].image}/></div> :
+                            {images[images.length - 2] ? <div><img className={"full-post__photo"} src={images[images.length - 2].image}/></div> :
                                 <div className={"inbox-page__photo"}><img src={imgIcon} className={"full-post__icon"}/></div> }
 
                             </div>

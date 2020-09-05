@@ -3,7 +3,7 @@ import {
     REMOVE_INBOX_POST,
     GET_INBOX_POST_SUCCESS,
     GET_INBOX_POST_FAILURE,
-    CHOOSE_YES_NO, CURRENT_CREATED_BY, SET_CURRENT_CREATED_BY
+    CHOOSE_YES_NO, CURRENT_CREATED_BY, SET_CURRENT_CREATED_BY, GET_ALL_POST_SUCCESS
 } from "./profileActions";
 
 const initialState = {
@@ -30,27 +30,34 @@ const reducer = (state = initialState, action) => {
             };
         case GET_INBOX_POST_SUCCESS:
             let arr1 = []
-            let arr2 = []
-            let arr3 = []
             action.payload.map((item) => {
                 if(item.status === "Created, not accepted"){
                     arr1.push(item)
-                }
-                else if(item.status === "Accepted/in process"){
-                    arr2.push(item)
-                }
-                else if(item.status === "Successfully done"){
-                    arr3.push(item)
                 }
             })
             console.log(arr1)
             return {
                 ...state,
                 loading: false,
-                inbox_posts: arr1,
+                inbox_posts: arr1
+            };
+        case GET_ALL_POST_SUCCESS:
+            let arr2 = []
+            let arr3 = []
+            action.payload.map((item) => {
+                if(item.status === "Accepted/in process"){
+                    arr2.push(item)
+                }
+                else if(item.status === "Successfully done"){
+                    arr3.push(item)
+                }
+            })
+            return{
+                ...state,
+                loading: false,
                 inprog_posts: arr2,
                 completed_posts: arr3
-            };
+            }
         case GET_INBOX_POST_FAILURE:
             return {
                 ...state,

@@ -46,6 +46,8 @@ export const filterPosts = (url, deadline, type, country1, country2) => {
             }
         })
             .then(res => {
+                console.log(res.data)
+                console.log(`${mainURL}/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`)
                 dispatch(getDashboardPostsSuccess(res.data))
             })
             .catch((err) => {
@@ -137,7 +139,7 @@ export const getInterestedRequestById = (createdBy, id) => {
             .then(res => {
                     const myRes = []
                     res.data.map((item) => {
-                        if(item.service.id === id)
+                        if(item.service.id === id && item.status === "Pending")
                             myRes.push(item)
                     })
                 console.log(myRes)

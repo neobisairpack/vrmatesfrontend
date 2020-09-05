@@ -30,7 +30,7 @@ const CreatePostAirport = (props) => {
     const [state, setState] = useState({
         country1: props.post ? splitStr(props.post.pickup_location, 0) : "",
         state1: props.post ? splitStr(props.post.pickup_location, 1) : "",
-        city1: props.post ? splitStr(props.post.pickup_location, 2) : "",
+        city1: props.post ? splitStr(props.post.pickup_location, 2) : " ",
         country2: props.post ? splitStr(props.post.drop_off_location, 0) : "",
         state2: props.post ? splitStr(props.post.drop_off_location, 1) : "",
         city2: props.post ? splitStr(props.post.drop_off_location, 2) : "",
@@ -42,6 +42,7 @@ const CreatePostAirport = (props) => {
         id: props.post ? props.post.id : 0,
         preferences: ""
     })
+    console.log(state.city1)
     const sendPost = (e) => {
         e.preventDefault()
         props.post ? props.editPost(state) : props.sendPostAirport(state)

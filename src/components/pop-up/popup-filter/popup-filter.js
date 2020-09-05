@@ -11,6 +11,7 @@ import {
     filterPosts,
 } from "../../post/postActions";
 import dateformat from 'dateformat';
+import {withRouter} from "react-router-dom";
 
 const Filter = (props) => {
     const [state, setState] = useState({
@@ -27,9 +28,17 @@ const Filter = (props) => {
             [e.target.name]: value
         })
     }
+    console.log(props.location.pathname)
     const searchFilter = () =>{
+        let url = "";
+        if(props.location.pathname === "/dashboard/providers"){
+            url = "provide"
+        }
+        else{
+            url = "service"
+        }
         console.log(dateformat(date, "yyyy-mm-dd"))
-        props.filterPosts("services", date, state.type, state.country1, state.country2)
+        props.filterPosts(url, date, state.type, state.country1, state.country2)
         //props.state(false)
     }
     const cancelHandler = () => {
@@ -114,4 +123,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Filter);
+export default connect(null, mapDispatchToProps)(withRouter(Filter));

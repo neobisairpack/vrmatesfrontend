@@ -225,7 +225,6 @@ export const getPostImages = (id) => {
                         "Content-Type": "application/json"
                     }
                 }
-
             )
             .then(res => {
                 let images = []
@@ -234,6 +233,7 @@ export const getPostImages = (id) => {
                        images.push(item)
                     }
                 })
+                console.log(id, res.data)
                 dispatch(getPostImagesSuccess(images));
             })
             .catch(err => {

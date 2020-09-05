@@ -17,10 +17,10 @@ const CreatePostDelivery = (props) => {
             window.location.reload(false);
         }
     })
-    const urlImg = 'https://vrmates.co'
+
     const splitStr = (str, n) => {
         if (str) {
-            let res = str.split(" ")
+            let res = str.split(",")
             return res[n];
         }
     }
@@ -48,8 +48,11 @@ const CreatePostDelivery = (props) => {
         title: props.post ? props.post.title : "",
         text: props.post ? props.post.text : "",
         id: props.post ? props.post.id : 0,
-        preferences: ""
+        preferences: "",
+        img1: props.post ? props.post.images ?  props.post.images[0] : "" : "",
+        img2: props.post ? props.post.images ?  props.post.images[1] : ""  : ""
     })
+    console.log(props.post)
     const sendPost = (e) => {
         e.preventDefault()
         console.log(img1, img1File)

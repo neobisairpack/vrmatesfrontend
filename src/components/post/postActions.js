@@ -40,7 +40,7 @@ export const filterPosts = (url, deadline, type, country1, country2) => {
         deadline = deadline ? dateformat(deadline, "yyyy-mm-dd") : ""
         country1 = country1.split(" ").join("+")
         country2 = country2.split(" ").join("+")
-        axios.get(`${mainURL}/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`, {
+        axios.get(`${mainURL}/api/${url}-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`, {
             headers: {
                 "Authorization": "Token " + token
             }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../popup-switch/style/popup.css';
 import './style/popup-filter.css';
 import DatePicker from 'react-datepicker';
@@ -8,12 +8,23 @@ import { FormGroup, Input } from 'reactstrap';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import {connect} from "react-redux";
 import {
-    filterPosts,
+    filterPosts, getPostsDashboard,
 } from "../../post/postActions";
 import dateformat from 'dateformat';
 import {withRouter} from "react-router-dom";
 
 const Filter = (props) => {
+    useEffect(() => {
+        console.log(props.location.pathname)
+        if(props.location.pathname === "/dashboard/providers"){
+
+            props.getPostsDashboard("provide-services")
+        }
+        else{
+            console.log("req")
+            props.getPostsDashboard("services")
+        }
+    }, [])
     const [state, setState] = useState({
         type: "",
         deadline: "",
@@ -34,7 +45,7 @@ const Filter = (props) => {
             url = "provide"
         }
         else{
-            url = "service"
+            url="service"
         }
         console.log(dateformat(date, "yyyy-mm-dd"))
         props.filterPosts(url, date, state.type, state.country1, state.country2)
@@ -43,6 +54,24 @@ const Filter = (props) => {
     const cancelHandler = () => {
         props.state(false)
     }
+    const {posts} = props.post;
+
+    const getListPickUp = () => {
+        console.log(posts)
+        return (
+            posts.map((item) =>
+                <option name={"country1"} key={item.id} value={item.pickup_location}>{item.pickup_location}</option>
+            )
+        );
+    };
+    const getListDropOff = () => {
+        console.log(posts)
+        return (
+            posts.map((item) =>
+                <option name={"country1"} key={item.id} value={item.drop_off_location}>{item.drop_off_location}</option>
+            )
+        );
+    };
     return (
         <div className={"filter"}>
             <label className={"filter__title"}>Choose the type of service</label>
@@ -81,27 +110,17 @@ const Filter = (props) => {
             <div className={"filter__forms"}>
                 <label className={"filter__dates-text"}>Departure</label>
                 <FormGroup>
-                    <CountryDropdown
-                        name={"country"}
-                        className={"filter__datepicker"}
-                        defaultOptionLabel={"  "}
-                        value={state.country1}
-                        onChange={e => setState({
-                            ...state,
-                            country1: e
-                        })} />
+                    <select required name={"country1"} value={state.country1} onChange={e => handleChange(e)}
+                            className={"filter__datepicker"}>
+                        {getListPickUp()}
+                    </select>
                 </FormGroup>
                 <label className={"filter__dates-text"}>Arrival</label>
                 <FormGroup>
-                    <CountryDropdown
-                        name={"country"}
-                        className={"filter__datepicker"}
-                        defaultOptionLabel={"  "}
-                        value={state.country2}
-                        onChange={e => setState({
-                            ...state,
-                            country2: e
-                        })} />
+                    <select required name={"country2"} value={state.country2} onChange={e => handleChange(e)}
+                            className={"filter__datepicker"}>
+                        {getListDropOff()}
+                    </select>
                 </FormGroup>
             </div>
             <div className={"switch__buttons"}>
@@ -114,11 +133,18 @@ const Filter = (props) => {
     );
 };
 
+const mapStateToProps = state => {
+    return {
+        post: state.post,
+    }
+}
 const mapDispatchToProps = dispatch => {
     return {
         filterPosts: (url, deadline, type, country1, country2) =>
             dispatch(filterPosts(url, deadline, type, country1, country2)),
+        getPostsDashboard: (url) =>
+            dispatch(getPostsDashboard(url)),
     }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(Filter));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Filter));

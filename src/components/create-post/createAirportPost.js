@@ -3,21 +3,25 @@ import './style/create-post.css';
 import {connect} from "react-redux";
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {sendPostAirport} from "./createPostActions";
+import {resetIsCreated, sendPostAirport} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import {editPost} from "../profile/profileActions";
+import Notification from "../notification/notification";
 
 const CreatePostAirport = (props) => {
+    const [notShow, setNotShow] = useState(false);
+    const [notMessage, setNotMessage] = useState("");
     useEffect(() => {
         const {isCreated} = props.createPost
         if(isCreated){
-            alert("Thank you! Please, wait untill administrator checks the post!")
-            window.location.reload(false);
+            setNotMessage("Thank you! Please, wait until administrator checks the post!")
+            setNotShow(true)
+            props.resetIsCreated();
         }
     })
     const splitStr = (str, n) => {
         if (str) {
-            let res = str.split(" ")
+            let res = str.split(",")
             return res[n];
         }
     }
@@ -42,7 +46,6 @@ const CreatePostAirport = (props) => {
         id: props.post ? props.post.id : 0,
         preferences: ""
     })
-    console.log(state.city1)
     const sendPost = (e) => {
         e.preventDefault()
         props.post ? props.editPost(state) : props.sendPostAirport(state)
@@ -207,6 +210,10 @@ const CreatePostAirport = (props) => {
                     <button className={"create-post__save-button"}>Save</button>
                 </div>
             </Form>
+            <div>
+                <Notification show={notShow} message={notMessage}
+                              onHide={() => setNotShow(false)}/>
+            </div>
         </Modal>
     );
 };
@@ -221,6 +228,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(sendPostAirport(post)),
         editPost: (post) =>
             dispatch(editPost(post)),
+        resetIsCreated: () =>
+            dispatch(resetIsCreated()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostAirport);

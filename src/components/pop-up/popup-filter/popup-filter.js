@@ -72,13 +72,12 @@ const Filter = (props) => {
                 <DatePicker
                     selected={date}
                     onChange={date => setDate(date)}
-                    //minDate={new Date()}
                     dateFormat="yy-MM-dd"
                     className={"filter__datepicker"}
                 />
             </div>
 
-            <p className={"filter__title"}>Departure/Arrival country</p>
+            <p className={"filter__title"}>Departure/Arrival location</p>
             <div className={"filter__forms"}>
                 <label className={"filter__dates-text"}>Departure</label>
                 <FormGroup>

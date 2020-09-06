@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './style/post.css';
 import arrow from './images/arrow.svg';
@@ -12,10 +12,21 @@ import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import {connect} from "react-redux";
-import {getPostsDashboard, sendInterestedRequest, sendInterestedRequestProvide} from "./postActions";
+import {getPostsDashboard, sendInterestedRequest, sendInterestedRequestProvide, setIsSendFalse} from "./postActions";
+import Notification from "../notification/notification";
 
 const Post = (props) => {
     const [activeModal, setActiveModal] = useState(null);
+    const [notShow, setNotShow] = useState(false)
+    const [notMessage, setNotMessage] = useState("")
+    useEffect(() => {
+        const {isSend} = props.post;
+        if(isSend){
+            setNotMessage("You are interested in this user's post");
+            setNotShow(true)
+            props.setIsSendFalse();
+        }
+    })
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -138,6 +149,10 @@ const Post = (props) => {
 
                 </div>
             </>
+            <div>
+                <Notification show={notShow} message={notMessage}
+                              onHide={() => setNotShow(false)}/>
+            </div>
         </div>
     );
 };
@@ -154,6 +169,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(sendInterestedRequestProvide(id)),
         getPostsDashboard: (url) =>
             dispatch(getPostsDashboard(url)),
+        setIsSendFalse: () =>
+            dispatch(setIsSendFalse()),
     }
 }
 

@@ -1,28 +1,32 @@
 import React, {useEffect, useState} from 'react';
 import './style/create-post.css';
-import { connect } from "react-redux";
-import { Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
+import {connect} from "react-redux";
+import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {sendProviderDelivery} from "./createPostActions";
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import {resetIsCreated, sendProviderDelivery} from "./createPostActions";
+import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import {editPost, editPostProvide} from "../profile/profileActions";
+import Notification from "../notification/notification";
 
 const CreateProviderDelivery = (props) => {
+    const [notShow, setNotShow] = useState(false);
+    const [notMessage, setNotMessage] = useState("");
     useEffect(() => {
         const {isCreated} = props.createPost
         if(isCreated){
-            alert("Thank you! Please, wait untill administrator checks the post!")
-            window.location.reload(false);
+            setNotMessage("Thank you! Please, wait until administrator checks the post!")
+            setNotShow(true)
+            props.resetIsCreated();
         }
     })
     const splitStr = (str, n) => {
-        if(str){
-            let res = str.split(" ")
+        if (str) {
+            let res = str.split(",")
             return res[n];
         }
     }
     const splitDate = (str, n) => {
-        if(str){
+        if (str) {
             let res = str.split("-")
             return res[n];
         }
@@ -52,15 +56,15 @@ const CreateProviderDelivery = (props) => {
     const getDropList = () => {
         const year = new Date().getFullYear();
         return (
-            Array.from( new Array(50), (v,i) =>
-                <option name={"year"} key={i} value={year+i}>{year+i}</option>
+            Array.from(new Array(50), (v, i) =>
+                <option name={"year"} key={i} value={year + i}>{year + i}</option>
             )
         );
     };
     const getDropListDay = () => {
         return (
-            Array.from( new Array(31), (v,i) =>
-                <option key={i} value={i+1}>{i+1}</option>
+            Array.from(new Array(31), (v, i) =>
+                <option key={i} value={i + 1}>{i + 1}</option>
             )
         );
     };
@@ -74,8 +78,8 @@ const CreateProviderDelivery = (props) => {
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post-modal"}>
             <div className={"create-post__type"}>Package Delivery</div>
-                <Form onSubmit={(e) => sendPost(e)} className={"create-provide-delivery"}>
-                    <div className={"create-post__location-from"}>
+            <Form onSubmit={(e) => sendPost(e)} className={"create-provide-delivery"}>
+                <div className={"create-post__location-from"}>
                     <label className={"create-post__form-title"}>Indicate departure location:</label>
                     <FormGroup>
                         <CountryDropdown
@@ -87,7 +91,7 @@ const CreateProviderDelivery = (props) => {
                             onChange={e => setState({
                                 ...state,
                                 country1: e
-                            })} />
+                            })}/>
                     </FormGroup>
                     <FormGroup>
                         <RegionDropdown
@@ -100,7 +104,7 @@ const CreateProviderDelivery = (props) => {
                             onChange={e => setState({
                                 ...state,
                                 state1: e
-                            })} />
+                            })}/>
                     </FormGroup>
                     <FormGroup>
                         <Input required type="text" name={"city1"}
@@ -110,8 +114,8 @@ const CreateProviderDelivery = (props) => {
                                onChange={e => handleChange(e)}
                         />
                     </FormGroup>
-            </div>
-            <div className={"create-post__location-to"}>
+                </div>
+                <div className={"create-post__location-to"}>
                     <Label className={"create-post__form-title"}>Indicate arrival location:</Label>
                     <FormGroup>
                         <CountryDropdown
@@ -123,7 +127,7 @@ const CreateProviderDelivery = (props) => {
                             onChange={e => setState({
                                 ...state,
                                 country2: e
-                            })} />
+                            })}/>
                     </FormGroup>
                     <FormGroup>
                         <RegionDropdown
@@ -136,7 +140,7 @@ const CreateProviderDelivery = (props) => {
                             onChange={e => setState({
                                 ...state,
                                 state2: e
-                            })} />
+                            })}/>
                     </FormGroup>
                     <FormGroup>
                         <Input required type="text" name={"city2"}
@@ -146,98 +150,109 @@ const CreateProviderDelivery = (props) => {
                                onChange={e => handleChange(e)}
                         />
                     </FormGroup>
-            </div>
-            <div className={"create-post__date"}>
-                <Label className={"create-post__form-title"}>*Select the date of the departure:</Label>
-                <Row form>
-                    <Col md={3}>
-                        <FormGroup>
-                            <select required name={"day"} value={state.day} onChange={e => handleChange(e)} className={"form-control"}>
-                                {getDropListDay()}
-                            </select>
-                        </FormGroup>
-                    </Col>
-                    <Col md={3}>
-                        <FormGroup>
-                            <select required name={"month"} value={state.month} onChange={e => handleChange(e)} className={"form-control"}>
-                                <option value={"01"}>January</option>
-                                <option value={"02"}>February</option>
-                                <option value={"03"}>March</option>
-                                <option value={"04"}>April</option>
-                                <option value={"05"}>May</option>
-                                <option value={"06"}>June</option>
-                                <option value={"07"}>July</option>
-                                <option value={"08"}>August</option>
-                                <option value={"09"}>September</option>
-                                <option value={"10"}>October</option>
-                                <option value={"11"}>November</option>
-                                <option value={"12"}>December</option>
-                            </select>
-                        </FormGroup>
-                    </Col>
-                    <Col md={3}>
-                        <FormGroup>
-                            <select required name={"year"} value={state.year} onChange={e => handleChange(e)} className={"form-control"}>
-                                {getDropList()}
-                            </select>
-                        </FormGroup>
-                    </Col>
-                </Row>
+                </div>
+                <div className={"create-post__date"}>
+                    <Label className={"create-post__form-title"}>*Select the date of the departure:</Label>
+                    <Row form>
+                        <Col md={3}>
+                            <FormGroup>
+                                <select required name={"day"} value={state.day} onChange={e => handleChange(e)}
+                                        className={"form-control"}>
+                                    {getDropListDay()}
+                                </select>
+                            </FormGroup>
+                        </Col>
+                        <Col md={3}>
+                            <FormGroup>
+                                <select required name={"month"} value={state.month} onChange={e => handleChange(e)}
+                                        className={"form-control"}>
+                                    <option value={"01"}>January</option>
+                                    <option value={"02"}>February</option>
+                                    <option value={"03"}>March</option>
+                                    <option value={"04"}>April</option>
+                                    <option value={"05"}>May</option>
+                                    <option value={"06"}>June</option>
+                                    <option value={"07"}>July</option>
+                                    <option value={"08"}>August</option>
+                                    <option value={"09"}>September</option>
+                                    <option value={"10"}>October</option>
+                                    <option value={"11"}>November</option>
+                                    <option value={"12"}>December</option>
+                                </select>
+                            </FormGroup>
+                        </Col>
+                        <Col md={3}>
+                            <FormGroup>
+                                <select required name={"year"} value={state.year} onChange={e => handleChange(e)}
+                                        className={"form-control"}>
+                                    {getDropList()}
+                                </select>
+                            </FormGroup>
+                        </Col>
+                    </Row>
 
-                <Label className={"create-post__form-title"}>*Select the date of the arrival:</Label>
-                <Row form>
-                    <Col md={3}>
-                        <FormGroup>
-                            <select required name={"day2"} value={state.day2} onChange={e => handleChange(e)} className={"form-control"}>
-                                {getDropListDay()}
-                            </select>
-                        </FormGroup>
-                    </Col>
-                    <Col md={3}>
-                        <FormGroup>
-                            <select required name={"month2"} value={state.month2} onChange={e => handleChange(e)} className={"form-control"}>
-                                <option value={"01"}>January</option>
-                                <option value={"02"}>February</option>
-                                <option value={"03"}>March</option>
-                                <option value={"04"}>April</option>
-                                <option value={"05"}>May</option>
-                                <option value={"06"}>June</option>
-                                <option value={"07"}>July</option>
-                                <option value={"08"}>August</option>
-                                <option value={"09"}>September</option>
-                                <option value={"10"}>October</option>
-                                <option value={"11"}>November</option>
-                                <option value={"12"}>December</option>
-                            </select>
-                        </FormGroup>
-                    </Col>
-                    <Col md={3}>
-                        <FormGroup>
-                            <select required name={"year2"} value={state.year2} onChange={e => handleChange(e)} className={"form-control"}>
-                                {getDropList()}
-                            </select>
-                        </FormGroup>
-                    </Col>
-                </Row>
+                    <Label className={"create-post__form-title"}>*Select the date of the arrival:</Label>
+                    <Row form>
+                        <Col md={3}>
+                            <FormGroup>
+                                <select required name={"day2"} value={state.day2} onChange={e => handleChange(e)}
+                                        className={"form-control"}>
+                                    {getDropListDay()}
+                                </select>
+                            </FormGroup>
+                        </Col>
+                        <Col md={3}>
+                            <FormGroup>
+                                <select required name={"month2"} value={state.month2} onChange={e => handleChange(e)}
+                                        className={"form-control"}>
+                                    <option value={"01"}>January</option>
+                                    <option value={"02"}>February</option>
+                                    <option value={"03"}>March</option>
+                                    <option value={"04"}>April</option>
+                                    <option value={"05"}>May</option>
+                                    <option value={"06"}>June</option>
+                                    <option value={"07"}>July</option>
+                                    <option value={"08"}>August</option>
+                                    <option value={"09"}>September</option>
+                                    <option value={"10"}>October</option>
+                                    <option value={"11"}>November</option>
+                                    <option value={"12"}>December</option>
+                                </select>
+                            </FormGroup>
+                        </Col>
+                        <Col md={3}>
+                            <FormGroup>
+                                <select required name={"year2"} value={state.year2} onChange={e => handleChange(e)}
+                                        className={"form-control"}>
+                                    {getDropList()}
+                                </select>
+                            </FormGroup>
+                        </Col>
+                    </Row>
 
-            </div>
-            <div className={"create-post__title"}>
+                </div>
+                <div className={"create-post__title"}>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>*Please, add post title:</Label>
-                        <Input required type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
+                        <Input required type="textarea" name="title" value={state.title}
+                               onChange={e => handleChange(e)}/>
                     </FormGroup>
-            </div>
-            <div className={"create-post__description"}>
+                </div>
+                <div className={"create-post__description"}>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>Please, add post body:</Label>
                         <Input type="textarea" name="text" value={state.text} onChange={e => handleChange(e)}/>
                     </FormGroup>
+                </div>
+                <div className={"create-post__buttons"}>
+                    <button onClick={props.onHide} className={"create-post__cancel-button"}>Cancel</button>
+                    <button className={"create-post__save-button"}>Save</button>
+                </div>
+            </Form>
+            <div>
+                <Notification show={notShow} message={notMessage}
+                              onHide={() => setNotShow(false)}/>
             </div>
-            <div className={"create-post__buttons"}>
-                <button onClick={props.onHide} className={"create-post__cancel-button"}>Cancel</button>
-                <button className={"create-post__save-button"}>Save</button>
-            </div>
-                </Form>
         </Modal>
     );
 };
@@ -252,6 +267,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(sendProviderDelivery(post)),
         editPostProvide: (post) =>
             dispatch(editPostProvide(post)),
+        resetIsCreated: () =>
+            dispatch(resetIsCreated()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProviderDelivery);

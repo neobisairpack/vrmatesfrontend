@@ -3,18 +3,21 @@ import './style/create-post.css';
 import {connect} from "react-redux";
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {sendProviderHosting} from "./createPostActions";
+import {resetIsCreated, sendProviderHosting} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import imgIcon from "../post/images/empty-img.svg";
 import {editPostProvide} from "../profile/profileActions";
 import Notification from "../notification/notification";
 
 const CreateProviderHosting = (props) => {
+    const [notShow, setNotShow] = useState(false);
+    const [notMessage, setNotMessage] = useState("");
     useEffect(() => {
         const {isCreated} = props.createPost
         if(isCreated){
-            alert("Thank you! Please, wait untill administrator checks the post!")
-            window.location.reload(false);
+            setNotMessage("Thank you! Please, wait until administrator checks the post!")
+            setNotShow(true)
+            props.resetIsCreated();
         }
     })
     const splitStr = (str, n) => {
@@ -237,6 +240,10 @@ const CreateProviderHosting = (props) => {
                     <button className={"create-post__save-button"}>Save</button>
                 </div>
             </Form>
+            <div>
+                <Notification show={notShow} message={notMessage}
+                              onHide={() => setNotShow(false)}/>
+            </div>
         </Modal>
     );
 };
@@ -251,6 +258,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(sendProviderHosting(post, img1, img2)),
         editPostProvide: (post, img1, img2) =>
             dispatch(editPostProvide(post, img1, img2)),
+        resetIsCreated: () =>
+            dispatch(resetIsCreated()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProviderHosting);

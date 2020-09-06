@@ -193,7 +193,7 @@ export const changePostStatus = (post, status) => {
             )
             .then(res => {
                 console.log(res.data)
-                dispatch(editPostSuccess(res.data));
+                dispatch(addCanceledPosts());
             })
             .catch(err => {
                 console.log(err)
@@ -202,9 +202,39 @@ export const changePostStatus = (post, status) => {
     };
 };
 
+const addCanceledPosts = () => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    axios
+        .get(`${mainURL}/users/me/`, {
+            headers: {
+                "Authorization": "Token " + token
+            }
+        })
+        .then(res => {
+            axios
+                .post(`${mainURL}/users/update/`, {
+                    canceled_posts: res.data.canceled_posts + 1
+                }, {
+                    headers: {
+                        "Authorization": "Token " + token
+                    }
+                })
+                .then(res => {
+                    console.log(res)
+                    console.log(res.data.canceled_posts + 1)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+}
+
 export const changePostStatusProvide = (post, status) => {
     let token = JSON.parse(localStorage.getItem("token"));
-    console.log(status)
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios
@@ -221,7 +251,7 @@ export const changePostStatusProvide = (post, status) => {
             )
             .then(res => {
                 console.log(res.data)
-                dispatch(editPostSuccess(res.data));
+                dispatch(addCanceledPosts());
             })
             .catch(err => {
                 dispatch(editPostFailure(err));

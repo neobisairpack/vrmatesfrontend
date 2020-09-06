@@ -1,7 +1,7 @@
 import {
     SEND_POST_STARTED,
     SEND_POST_SUCCESS,
-    SEND_POST_FAILURE, GET_POST_IMAGES_SUCCESS, GET_POST_IMAGES_FAILURE
+    SEND_POST_FAILURE, GET_POST_IMAGES_SUCCESS, GET_POST_IMAGES_FAILURE, RESET_IS_CREATED
 } from './createPostActions';
 
 const initialState = {
@@ -27,6 +27,11 @@ const reducer = (state = initialState, action) => {
                 error: null,
                 res: action.payload,
                 isCreated: true
+            };
+        case RESET_IS_CREATED:
+            return {
+                ...state,
+                isCreated: false
             };
         case SEND_POST_FAILURE:
             return {

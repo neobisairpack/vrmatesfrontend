@@ -20,7 +20,14 @@ const FullPost = (props) => {
     const {data} = props;
     const [notShow, setNotShow] = useState(false)
     const [notMessage, setNotMessage] = useState("")
-
+    useEffect(() => {
+        const {isSend} = props.post;
+        if(isSend){
+            setNotMessage("You are interested in this user's post");
+            setNotShow(true)
+            props.setIsSendFalse();
+        }
+    })
     const StyledRating = withStyles({
         iconFilled: {
             color: '#FD5A01',

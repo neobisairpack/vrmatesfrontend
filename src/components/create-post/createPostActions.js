@@ -4,6 +4,7 @@ export const SEND_POST_SUCCESS = "SEND_POST_SUCCESS";
 export const SEND_POST_FAILURE = "SEND_POST_FAILURE";
 export const GET_POST_IMAGES_SUCCESS = "GET_POST_IMAGES_SUCCESS";
 export const GET_POST_IMAGES_FAILURE = "GET_POST_IMAGES_FAILURE";
+export const RESET_IS_CREATED = "RESET_IS_CREATED";
 
 const mainURL = "http://167.172.178.135:8000"
 export const sendPostDelivery = (post, img1, img2) => {
@@ -241,6 +242,10 @@ const sendPostStarted = () => ({
 const sendPostSuccess = (data) => ({
     type: SEND_POST_SUCCESS,
     payload: data
+});
+
+export const resetIsCreated = () => ({
+    type: RESET_IS_CREATED,
 });
 
 const sendPostFailure = (error) => ({

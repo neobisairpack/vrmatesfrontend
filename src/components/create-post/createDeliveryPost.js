@@ -5,16 +5,20 @@ import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
 import {Modal} from "react-bootstrap";
 import '../update-info/style/update-info.css';
-import {sendPostDelivery} from "./createPostActions";
+import {resetIsCreated, sendPostDelivery} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import {editPost} from "../profile/profileActions";
+import Notification from "../notification/notification";
 
 const CreatePostDelivery = (props) => {
+    const [notShow, setNotShow] = useState(false);
+    const [notMessage, setNotMessage] = useState("");
     useEffect(() => {
         const {isCreated} = props.createPost
         if(isCreated){
-            alert("Thank you! Please, wait untill administrator checks the post!")
-            window.location.reload(false);
+            setNotMessage("Thank you! Please, wait until administrator checks the post!")
+            setNotShow(true)
+            props.resetIsCreated();
         }
     })
 
@@ -260,6 +264,10 @@ const CreatePostDelivery = (props) => {
                     <button className={"create-post__save-button"}>Save</button>
                 </div>
             </Form>
+            <div>
+                <Notification show={notShow} message={notMessage}
+                              onHide={() => setNotShow(false)}/>
+            </div>
         </Modal>
     );
 };
@@ -274,6 +282,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(sendPostDelivery(post, img1, img2)),
         editPost: (post, img1, img2) =>
             dispatch(editPost(post, img1, img2)),
+        resetIsCreated: () =>
+            dispatch(resetIsCreated()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePostDelivery);

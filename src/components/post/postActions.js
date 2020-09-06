@@ -71,7 +71,6 @@ export const sendInterestedRequest = (id) => {
                 }
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(sendRequestSuccess(res.data));
             })
             .catch(err => {

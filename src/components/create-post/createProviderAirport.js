@@ -3,21 +3,25 @@ import './style/create-post.css';
 import {connect} from "react-redux";
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {sendProviderAirport} from "./createPostActions";
+import {resetIsCreated, sendProviderAirport} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import {editPostProvide} from "../profile/profileActions";
+import Notification from "../notification/notification";
 
 const CreateProviderAirport = (props) => {
+    const [notShow, setNotShow] = useState(false);
+    const [notMessage, setNotMessage] = useState("");
     useEffect(() => {
         const {isCreated} = props.createPost
         if(isCreated){
-            alert("Thank you! Please, wait untill administrator checks the post!")
-            window.location.reload(false);
+            setNotMessage("Thank you! Please, wait until administrator checks the post!")
+            setNotShow(true)
+            props.resetIsCreated();
         }
     })
     const splitStr = (str, n) => {
         if (str) {
-            let res = str.split(" ")
+            let res = str.split(",")
             return res[n];
         }
     }
@@ -164,6 +168,10 @@ const CreateProviderAirport = (props) => {
                     <button className={"create-post__save-button"}>Save</button>
                 </div>
             </Form>
+            <div>
+                <Notification show={notShow} message={notMessage}
+                              onHide={() => setNotShow(false)}/>
+            </div>
         </Modal>
     );
 };
@@ -178,6 +186,8 @@ const mapDispatchToProps = dispatch => {
             dispatch(sendProviderAirport(post)),
         editPostProvide: (post) =>
             dispatch(editPostProvide(post)),
+        resetIsCreated: () =>
+            dispatch(resetIsCreated()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreateProviderAirport);

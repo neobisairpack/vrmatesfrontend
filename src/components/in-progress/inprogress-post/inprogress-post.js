@@ -104,52 +104,52 @@ const InProgressPost = (props) => {
                         <Card className={props.size}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
-                                    {/*<ul className={"post__top-list"}>*/}
-                                        {/*<li onClick={() => setUserFunc(item.createdBy === "Requester" ? item.requester : item.provider )} className={"post__top-list-item post__user-click"}>*/}
-                                        {/*    {item.createdBy === "Requester" ?*/}
-                                        {/*        item.requester.image ?*/}
-                                        {/*            <img src={urlImg + item.requester.image} className={"post__avatar"}*/}
-                                        {/*                 alt={"User"}/> : <img className={"post_avatar-empty"}*/}
-                                        {/*                                       src={"https://img.icons8.com/material-sharp/96/000000/user.png"}*/}
-                                        {/*                                       alt="Card image cap"/> :*/}
+                                    <ul className={"post__top-list"}>
+                                        <li onClick={() => setUserFunc(item.createdBy === "Requester" ? item.requester : item.provider )} className={"post__top-list-item post__user-click"}>
+                                            {item.createdBy === "Requester" ?
+                                                item.requester.image ?
+                                                    <img src={urlImg + item.requester.image} className={"post__avatar"}
+                                                         alt={"User"}/> : <img className={"post_avatar-empty"}
+                                                                               src={"https://img.icons8.com/material-sharp/96/000000/user.png"}
+                                                                               alt="Card image cap"/> :
 
-                                        {/*        item.provider.image ?*/}
-                                        {/*            <img src={urlImg + item.provider.image} className={"post__avatar"}*/}
-                                        {/*                 alt={"User"}/> : <img className={"post_avatar-empty"}*/}
-                                        {/*                                       src={"https://img.icons8.com/material-sharp/96/000000/user.png"}*/}
-                                        {/*                                       alt="Card image cap"/>}*/}
-                                        {/*</li>*/}
-                                        {/*<li className={"post__top-list-item"}>*/}
-                                        {/*    <div*/}
-                                        {/*        className={"post__user-name"}>{item.createdBy === "Requester" ? item.requester.first_name : item.provider.first_name}</div>*/}
-                                        {/*    <div className={"post__item-rating"}>*/}
-                                        {/*        <Box>*/}
-                                        {/*            <StyledRating name="read-only"*/}
-                                        {/*                          value={item.createdBy === "Requester" ? item.requester.avg_rating_last_ten : item.provider.avg_rating_last_ten}*/}
-                                        {/*                          size="small" readOnly*/}
-                                        {/*                          precision={0.5}/>*/}
-                                        {/*        </Box>*/}
-                                        {/*    </div>*/}
-                                        {/*</li>*/}
-                                    {/*    {item.requester.id === Number(userId) ?*/}
-                                    {/*        <li className={"post__top-list-item inbox-post__item"}>*/}
-                                    {/*            <DropdownButton alignRight*/}
-                                    {/*                            title={<img className={"inprogress__icon-more"}*/}
-                                    {/*                                        src={"https://img.icons8.com/ios-glyphs/30/000000/more.png"}/>}*/}
-                                    {/*                            className={"inprogress__more-btn"}>*/}
-                                    {/*                <Dropdown.Item eventKey="1"*/}
-                                    {/*                               onClick={() => modalHandler(item.id)}>Confirm</Dropdown.Item>*/}
-                                    {/*                <Dropdown.Item onClick={() => cancelHandler(item)}*/}
-                                    {/*                               eventKey="2">Cancel</Dropdown.Item>*/}
-                                    {/*                <Dropdown.Item onClick={() => setSupportModal(true)}*/}
-                                    {/*                               eventKey="3">Report</Dropdown.Item>*/}
-                                    {/*            </DropdownButton>*/}
-                                    {/*        </li> :*/}
-                                    {/*        <li className={"post__top-list-item inbox-post__item"}>*/}
-                                    {/*            <button onClick={() => cancelProvider(item)} className={"inprogress__cancel-btn"}>Cancel</button>*/}
-                                    {/*        </li>}*/}
+                                                item.provider.image ?
+                                                    <img src={urlImg + item.provider.image} className={"post__avatar"}
+                                                         alt={"User"}/> : <img className={"post_avatar-empty"}
+                                                                               src={"https://img.icons8.com/material-sharp/96/000000/user.png"}
+                                                                               alt="Card image cap"/>}
+                                        </li>
+                                        <li className={"post__top-list-item"}>
+                                            <div
+                                                className={"post__user-name"}>{item.createdBy === "Requester" ? item.requester.first_name : item.provider.first_name}</div>
+                                            <div className={"post__item-rating"}>
+                                                <Box>
+                                                    <StyledRating name="read-only"
+                                                                  value={item.createdBy === "Requester" ? item.requester.avg_rating_last_ten : item.provider.avg_rating_last_ten}
+                                                                  size="small" readOnly
+                                                                  precision={0.5}/>
+                                                </Box>
+                                            </div>
+                                        </li>
+                                        {item.requester.id === Number(userId) ?
+                                            <li className={"post__top-list-item inbox-post__item"}>
+                                                <DropdownButton alignRight
+                                                                title={<img className={"inprogress__icon-more"}
+                                                                            src={"https://img.icons8.com/ios-glyphs/30/000000/more.png"}/>}
+                                                                className={"inprogress__more-btn"}>
+                                                    <Dropdown.Item eventKey="1"
+                                                                   onClick={() => modalHandler(item.id)}>Confirm</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => cancelHandler(item)}
+                                                                   eventKey="2">Cancel</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => setSupportModal(true)}
+                                                                   eventKey="3">Report</Dropdown.Item>
+                                                </DropdownButton>
+                                            </li> :
+                                            <li className={"post__top-list-item inbox-post__item"}>
+                                                <button onClick={() => cancelProvider(item)} className={"inprogress__cancel-btn"}>Cancel</button>
+                                            </li>}
 
-                                    {/*</ul>*/}
+                                    </ul>
                                 </div>
                                 <div className={"inprogress__post-type"}>
                                     <label className={"post__type"}>{types[item.service_type]}</label>

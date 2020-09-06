@@ -25,12 +25,10 @@ export const getPosts = () => {
                 }})
         ])
             .then(axios.spread(function(req, prov){
-                console.log(req.data, prov.data)
                 let reqData = req.data.filter((item) => item.requester.id === id) || [];
                 let reqData1 = req.data.filter((item) => item.provider ? item.provider.id === id : null) || [];
                 let provData = prov.data.filter((item) => item.provider.id === id) || [];
                 let provData1 = prov.data.filter((item) => item.requester ? item.requester.id === id : null) || [];
-                console.log(reqData, reqData1, provData, provData1)
                 reqData.forEach((it) =>{
                     it["createdBy"] = "Requester"
                 })
@@ -54,14 +52,10 @@ export const getPosts = () => {
 };
 
 export const editPost = (post, img1, img2) => {
-    console.log(post)
-    let id = Number(post.id)
     const fd1 = new FormData();
     fd1.append('image', img1)
-    fd1.append('post', post.id)
     const fd2 = new FormData();
     fd2.append('image', img2)
-    fd2.append('post', post.id)
 
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
@@ -81,12 +75,26 @@ export const editPost = (post, img1, img2) => {
                 {headers: {
                         "Authorization": "Token " + token
                     }}),
+                post.img1 ?
+                    axios.put(`${mainURL}/api/services-images/${post.img1.id}/`, fd1, {
+                        headers: {
+                            "Authorization": "Token " + token,
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }) : fd1.append('post', post.id),
                 axios.post(`${mainURL}/api/services-images/`, fd1, {
                     headers: {
                         "Authorization": "Token " + token,
                         'Content-Type': 'multipart/form-data'
                     }
                 }),
+            post.img2 ?
+                axios.put(`${mainURL}/api/services-images/${post.img2.id}/`, fd2, {
+                    headers: {
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }) : fd2.append('post', post.id),
             axios.post(`${mainURL}/api/services-images/`, fd2, {
                     headers: {
                         "Authorization": "Token " + token,
@@ -107,11 +115,10 @@ export const editPost = (post, img1, img2) => {
 export const editPostProvide = (post, img1, img2) => {
     const fd1 = new FormData();
     fd1.append('image', img1)
-    fd1.append('post', post.id)
+    //fd1.append('post', post.id)
     const fd2 = new FormData();
     fd2.append('image', img2)
-    fd2.append('post', post.id)
-    console.log(img1, img2)
+    //fd2.append('post', post.id)
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(getInboxPostStarted());
@@ -130,18 +137,32 @@ export const editPostProvide = (post, img1, img2) => {
                 {headers: {
                         "Authorization": "Token " + token
                     }}),
-            axios.post(`${mainURL}/api/provide-services-images/`, fd1, {
-                headers: {
-                    "Authorization": "Token " + token,
-                    'Content-Type': 'multipart/form-data'
-                }
-            }),
-            axios.post(`${mainURL}/api/provide-services-images/`, fd2, {
-                headers: {
-                    "Authorization": "Token " + token,
-                    'Content-Type': 'multipart/form-data'
-                }
-            }),
+            post.img1 ?
+                axios.put(`${mainURL}/api/provide-services-images/${post.img1.id}/`, fd1, {
+                    headers: {
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }) :  fd1.append('post', post.id),
+                axios.post(`${mainURL}/api/provide-services-images/`, fd1, {
+                    headers: {
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }),
+            post.img2 ?
+                axios.put(`${mainURL}/api/provide-services-images/${post.img2.id}/`, fd2, {
+                    headers: {
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }) : fd2.append('post', post.id),
+                axios.post(`${mainURL}/api/provide-services-images/`, fd2, {
+                    headers: {
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }),
         ])
             .then(axios.spread(function(req, prov) {
                 console.log(req, prov)

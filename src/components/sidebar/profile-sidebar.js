@@ -36,7 +36,7 @@ const ProfileSidebar = (props) => {
                     </div>
                     <div className={"profile-sidebar__status"}>
                         <div className={"profile-sidebar__cancellation"}>Cancellation
-                            Rate: <label>{user.canceled_posts_count}/100</label></div>
+                            Rate: <label>{user.canceled_posts}/{user.created_posts}</label></div>
                         <div className={"profile-sidebar__points"}>{user.points} points</div>
                     </div>
                     <div className={"profile-sidebar__about"}>

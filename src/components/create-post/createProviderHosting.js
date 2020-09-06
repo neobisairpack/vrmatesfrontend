@@ -49,11 +49,13 @@ const CreateProviderHosting = (props) => {
         title: props.post ? props.post.title : "",
         text: props.post ? props.post.text : "",
         preferences: props.post ? props.post.preferences : "",
-        id: props.post ? props.post.id : 0
+        id: props.post ? props.post.id : 0,
+        img1: props.post ? props.post.images.length > 0 ?  props.post.images[0] : "" : "",
+        img2: props.post ? props.post.images.length > 1 ?  props.post.images[1] : ""  : ""
     })
     const sendPost = (e) => {
         e.preventDefault();
-        console.log(img1File)
+        console.log(img1File, img2File)
         props.post ? props.editPostProvide(state, img1File, img2File) : props.sendProviderHosting(state, img1File, img2File)
     }
     const getDropList = () => {
@@ -223,7 +225,7 @@ const CreateProviderHosting = (props) => {
                                        onChange={e => imageInputChange2(e)}
                                 />
                                 <label htmlFor={"file2"} className={"update__input-file-fake"}>
-                                    {img2 ? <img className={"create-post__selected-photo"} src={img1} alt={"photo"}/> :
+                                    {img2 ? <img className={"create-post__selected-photo"} src={img2} alt={"photo"}/> :
                                         <img src={imgIcon} className={"update-photo"}/> }
                                 </label>
                             </div>
@@ -245,8 +247,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        sendProviderHosting: post =>
-            dispatch(sendProviderHosting(post)),
+        sendProviderHosting: (post, img1, img2) =>
+            dispatch(sendProviderHosting(post, img1, img2)),
         editPostProvide: (post, img1, img2) =>
             dispatch(editPostProvide(post, img1, img2)),
     }

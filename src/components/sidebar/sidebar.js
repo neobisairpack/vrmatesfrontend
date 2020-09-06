@@ -25,7 +25,7 @@ const Sidebar = (props) => {
     let {loading} = props.userData;
     let {user} = props.userData;
     const url = "http://167.172.178.135:8000";
-    console.log(user.image)
+    
     return (
         <div className="sidebar">
             {loading ? "Loading" :

@@ -28,7 +28,6 @@ const Filter = (props) => {
             [e.target.name]: value
         })
     }
-    console.log(props.location.pathname)
     const searchFilter = () =>{
         let url = "";
         if(props.location.pathname === "/dashboard/providers"){

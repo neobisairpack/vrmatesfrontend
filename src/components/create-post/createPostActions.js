@@ -31,11 +31,9 @@ export const sendPostDelivery = (post, img1, img2) => {
                 }
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(sendPostSuccess(res.data));
             })
             .catch(err => {
-                console.log(token)
                 dispatch(sendPostFailure(err));
             });
     };
@@ -66,11 +64,9 @@ export const sendProviderDelivery = (post) => {
 
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(sendPostSuccess(res.data));
             })
             .catch(err => {
-                console.log(token)
                 dispatch(sendPostFailure(err));
             });
     };
@@ -100,11 +96,9 @@ export const sendPostAirport = (post) => {
 
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(sendPostSuccess(res.data));
             })
             .catch(err => {
-                console.log(post)
                 dispatch(sendPostFailure(err));
             });
     };
@@ -133,11 +127,9 @@ export const sendProviderAirport = (post) => {
 
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(sendPostSuccess(res.data));
             })
             .catch(err => {
-                console.log(token)
                 dispatch(sendPostFailure(err));
             });
     };
@@ -170,11 +162,9 @@ export const sendPostHosting = (post) => {
 
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(sendPostSuccess(res.data));
             })
             .catch(err => {
-                console.log(token)
                 dispatch(sendPostFailure(err));
             });
     };
@@ -182,6 +172,7 @@ export const sendPostHosting = (post) => {
 
 export const sendProviderHosting = (post, img1, img2) => {
     const fd = new FormData();
+    console.log(img1, img2)
     fd.append('image1', img1)
     fd.append('image2', img2)
     fd.append('status', "Created, not accepted")
@@ -192,6 +183,9 @@ export const sendProviderHosting = (post, img1, img2) => {
     fd.append('title', post.title)
     fd.append('text', post.text)
     fd.append('preferences', post.preferences)
+    for (let obj in fd){
+        console.log(obj)
+    }
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(sendPostStarted());
@@ -233,11 +227,9 @@ export const getPostImages = (id) => {
                        images.push(item)
                     }
                 })
-                console.log(id, res.data)
                 dispatch(getPostImagesSuccess(images));
             })
             .catch(err => {
-                console.log(token)
                 dispatch(getPostImagesFailure(err));
             });
     };

@@ -49,10 +49,10 @@ const CreatePostDelivery = (props) => {
         text: props.post ? props.post.text : "",
         id: props.post ? props.post.id : 0,
         preferences: "",
-        img1: props.post ? props.post.images ?  props.post.images[0] : "" : "",
-        img2: props.post ? props.post.images ?  props.post.images[1] : ""  : ""
+        img1: props.post ? props.post.images.length > 0 ?  props.post.images[0] : "" : "",
+        img2: props.post ? props.post.images.length > 1 ?  props.post.images[1] : ""  : ""
     })
-    console.log(props.post)
+
     const sendPost = (e) => {
         e.preventDefault()
         console.log(img1, img1File)

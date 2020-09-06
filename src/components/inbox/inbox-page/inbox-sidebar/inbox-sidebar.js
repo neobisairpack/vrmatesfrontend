@@ -32,16 +32,13 @@ const InboxPageSidebar = (props) => {
     const [type, setType] = useState("");
     const [typeProvide, setTypeProvide] = useState("");
     const {post} = props.location.state;
+    const urlImg = 'http://167.172.178.135:8000';
     useEffect(()=>{
         if(choice !== "") {
             setLogoutShow(false)
             sendCancel()
         }
     }, )
-
-    useEffect(() =>{
-        props.getPostImages(post.id)
-    }, [])
 
     let types = {
         "Delivery": "Package delivery",
@@ -90,8 +87,6 @@ const InboxPageSidebar = (props) => {
             }
         }
     }
-    const {images} = props.createPost
-    console.log(images)
     return (
         <div className={"inbox-page__sidebar"}>
             <img className={"inbox-page__logo"} src={logo} alt={"Vrmates"}/>
@@ -122,9 +117,9 @@ const InboxPageSidebar = (props) => {
                     <>
                         <p className={"inbox-page__category"}>Photo:</p>
                         <div className={"inbox-page__photos"}>
-                            {images[images.length - 1] ? <div><img className={"full-post__photo"} src={images[images.length - 1].image}/></div> :
+                            {post.images[0] ? <div><img className={"full-post__photo"} src={urlImg + post.images[0].image}/></div> :
                                 <div className={"inbox-page__photo"}><img src={imgIcon} className={"full-post__icon"}/></div> }
-                            {images[images.length - 2] ? <div><img className={"full-post__photo"} src={images[images.length - 2].image}/></div> :
+                            {post.images[1] ? <div><img className={"full-post__photo"} src={urlImg + post.images[1].image}/></div> :
                                 <div className={"inbox-page__photo"}><img src={imgIcon} className={"full-post__icon"}/></div> }
 
                             </div>

@@ -20,20 +20,7 @@ const FullPost = (props) => {
     const {data} = props;
     const [notShow, setNotShow] = useState(false)
     const [notMessage, setNotMessage] = useState("")
-    const {isSend} = props.post
-    useEffect(() => {
-        props.getPostImages(data.id);
-    }, [])
 
-    // useEffect(() => {
-    //     let name = data.requester ? data.requester.first_name : data.provider.first_name
-    //     if(isSend){
-    //         setNotMessage(`Now you are one of the interested people of ${name}'s post!`)
-    //         props.onHide()
-    //         setNotShow(true)
-    //         props.setIsSendFalse()
-    //     }
-    // })
     const StyledRating = withStyles({
         iconFilled: {
             color: '#FD5A01',
@@ -70,7 +57,6 @@ const FullPost = (props) => {
             props.sendInterestedRequestProvide(item.id);
         }
     }
-    const {images} = props.createPost;
     return (
         <div>
             <Modal show={props.show} onHide={props.onHide} dialogClassName={"full-post"}>
@@ -128,9 +114,9 @@ const FullPost = (props) => {
                         <CardText className={"full-post__email"}>{data.requester ? data.requester.email : data.provider.email}</CardText>
                         {data.service_type === 'Delivery' && data.requester || data.service_type === 'Hosting' && data.provider ?
                         <div className={"full-post__images"}>
-                            {images[images.length - 1] ? <div><img className={"full-post__photo"} src={images[images.length - 1].image}/></div> :
+                            {data.images[0] ? <div><img className={"full-post__photo"} src={urlImg + data.images[0].image}/></div> :
                             <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div> }
-                            {images[images.length - 2] ? <div><img className={"full-post__photo"} src={images[images.length - 2].image}/></div> :
+                            {data.images[1] ? <div><img className={"full-post__photo"} src={urlImg + data.images[1].image}/></div> :
                             <div className={"full-post__image"}><img src={imgIcon} className={"full-post__icon"}/></div> }
                         </div> : null}
                     </div>

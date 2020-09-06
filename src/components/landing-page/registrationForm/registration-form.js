@@ -57,7 +57,9 @@ const RegistrationForm = () => {
                 about_me: "",
                 image: null,
                 password: state.password,
-                password2: state.password2
+                password2: state.password2,
+                canceled_posts: 0,
+                created_posts: 0
             })
                 .then((res) => {
                     if (res.data.email && res.data.response && res.data.token) {

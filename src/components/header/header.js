@@ -14,6 +14,7 @@ import {Link} from "react-router-dom";
 import {withRouter} from 'react-router-dom';
 import LogOut from "../pop-up/popup-logout";
 import {connect} from "react-redux";
+import {setIsAuthed} from "../sidebar/sidebarActions";
 
 
 const Header = (props) => {
@@ -27,6 +28,7 @@ const Header = (props) => {
     useEffect(()=>{
         if(choice !== "") {
             localStorage.removeItem("token");
+            props.setIsAuthed(false)
             window.location.href = "/";
         }
     }, )
@@ -97,8 +99,15 @@ const Header = (props) => {
 const mapStateToProps = state => {
     return {
         profilePost: state.profilePost,
+        userData: state.userData
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setIsAuthed: (data) =>
+            dispatch(setIsAuthed(data))
     }
 }
 
-export default connect(mapStateToProps)(withRouter(Header));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
 

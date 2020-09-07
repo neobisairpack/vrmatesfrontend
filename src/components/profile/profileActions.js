@@ -25,10 +25,10 @@ export const getPosts = () => {
                 }})
         ])
             .then(axios.spread(function(req, prov){
-                let reqData = req.data.filter((item) => item.requester.id === id) || [];
-                let reqData1 = req.data.filter((item) => item.provider ? item.provider.id === id : null) || [];
-                let provData = prov.data.filter((item) => item.provider.id === id) || [];
-                let provData1 = prov.data.filter((item) => item.requester ? item.requester.id === id : null) || [];
+                let reqData = req.data.filter((item) => item.requester.id === id).reverse() || [];
+                let reqData1 = req.data.filter((item) => item.provider ? item.provider.id === id : null).reverse() || [];
+                let provData = prov.data.filter((item) => item.provider.id === id).reverse() || [];
+                let provData1 = prov.data.filter((item) => item.requester ? item.requester.id === id : null).reverse() || [];
                 reqData.forEach((it) =>{
                     it["createdBy"] = "Requester"
                 })

@@ -7,6 +7,10 @@ import exit from '../../post/images/exit.svg';
 import loginImg from '../images/login-img.png';
 import axios from 'axios';
 import Notification from "../../notification/notification";
+import {connect} from "react-redux";
+import {changePostStatus, changePostStatusProvide, chooseYesNo, editPost} from "../../profile/profileActions";
+import {getPostImages} from "../../create-post/createPostActions";
+import {setIsAuthed} from "../../sidebar/sidebarActions";
 
 
 const LoginForm = (props) => {
@@ -21,6 +25,7 @@ const LoginForm = (props) => {
             password: password
         })
             .then((res) => {
+                props.setIsAuthed(true)
                 localStorage.setItem("token", JSON.stringify(res.data.token));
                 props.history.push({
                     pathname: '/dashboard',
@@ -84,5 +89,18 @@ const LoginForm = (props) => {
     );
 }
 
-export default withRouter(LoginForm);
+const mapStateToProps = state => {
+    return {
+        userData: state.userData
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setIsAuthed: (data) =>
+            dispatch(setIsAuthed(data))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LoginForm));
 

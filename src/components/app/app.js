@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Profile from "../profile";
 import 'bootstrap/dist/css/bootstrap.css';
 import {Route, Switch} from 'react-router-dom';
@@ -15,42 +15,62 @@ import ResetPassword from "../landing-page/landing-login/reset-password";
 import MainRequesters from "../dashboard/main-requesters";
 import MainProviders from "../dashboard/main-providers";
 import PrivateRoute from "./private-router";
+import {connect} from "react-redux";
+import PublicRoute from "./public-route";
 
-export const mainUrl = "http://167.172.178.135:8000/";
-const App = () => {
+const App = (props) => {
+    let token = localStorage.getItem("token");
+    let isAuthed = props.userData.isAuthed;
+    if(token){
+        isAuthed = true;
+    }
     return (
         <React.Fragment>
             <div className={"app-wrapper"}>
                 <div className={"app-wrapper__content"}>
                     <Switch>
-                        <Route exact path={"/"}
-                               render={() => <LandingPage/>}/>
-                        <Route exact path={"/dashboard"}
-                               render={() => <MainRequesters/>}/>
-                        <Route exact path={"/dashboard/requesters"}
-                               render={() => <MainRequesters/>}/>
-                        <Route exact path={"/dashboard/providers"}
-                               render={() => <MainProviders/>}/>
-                        <Route exact path={"/profile"}
-                               render={() => <Profile/>}/>
-                        <Route exact path={"/profile/inbox"}
-                               render={() => <Profile/>}/>
-                        <Route exact path={"/profile/in-progress"}
-                               render={() => <InProgress/>}/>
-                        <Route exact path={"/profile/completed"}
-                               render={() => <Completed/>}/>
-                        <Route exact path={"/profile/inbox-page"}
-                               render={() => <InboxPage/>}/>
-                        <Route exact path={'/profile/inbox-page/:userName'}
-                               render={() => <UserProfile/>}/>
-                        <Route exact path={'/contact-us'}
-                               render={() => <ContactUs/>}/>
-                        <Route exact path={'/registration'}
-                               render={() => <RegistrationForm/>}/>
-                        <Route exact path={'/login'}
-                               render={() => <LoginForm/>}/>
-                        <Route exact path={'/reset-password'}
-                               render={() => <ResetPassword/>}/>
+                        <PublicRoute exact path={"/"}
+                                     isAuthed={isAuthed}
+                                     component={LandingPage}/>
+                        <PrivateRoute exact path={"/dashboard"}
+                                      isAuthed={isAuthed}
+                                      component={MainRequesters}/>
+                        <PrivateRoute exact path={"/dashboard/requesters"}
+                                      isAuthed={isAuthed}
+                                      component={MainRequesters}/>
+                        <PrivateRoute exact path={"/dashboard/providers"}
+                                      isAuthed={isAuthed}
+                                      component={MainProviders}/>
+                        <PrivateRoute exact path={"/profile"}
+                                      isAuthed={isAuthed}
+                                      component={Profile}/>
+                        <PrivateRoute exact path={"/profile/inbox"}
+                                      isAuthed={isAuthed}
+                                      component={Profile}/>
+                        <PrivateRoute exact path={"/profile/in-progress"}
+                                      isAuthed={isAuthed}
+                                      component={InProgress}/>
+                        <PrivateRoute exact path={"/profile/completed"}
+                                      isAuthed={isAuthed}
+                                      component={Completed}/>
+                        <PrivateRoute exact path={"/profile/inbox-page"}
+                                      isAuthed={isAuthed}
+                                      component={InboxPage}/>
+                        <PrivateRoute exact path={"/profile/inbox-page/:userName"}
+                                      isAuthed={isAuthed}
+                                      component={UserProfile}/>
+                        <PublicRoute exact path={'/contact-us'}
+                                     isAuthed={isAuthed}
+                                     component={ContactUs}/>
+                        <PublicRoute exact path={'/registration'}
+                                     isAuthed={isAuthed}
+                                     component={RegistrationForm}/>
+                        <PublicRoute exact path={'/login'}
+                                     isAuthed={isAuthed}
+                                     component={LoginForm}/>
+                        <PublicRoute exact path={'/reset-password'}
+                                     isAuthed={isAuthed}
+                                     component={ResetPassword}/>
                     </Switch>
                 </div>
             </div>
@@ -58,4 +78,10 @@ const App = () => {
     );
 };
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        userData: state.userData
+    }
+}
+
+export default connect(mapStateToProps)(App);

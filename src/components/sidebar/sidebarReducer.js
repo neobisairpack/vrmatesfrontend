@@ -1,9 +1,10 @@
-import {GET_USER_DATA_STARTED, GET_USER_DATA_SUCCESS, GET_USER_DATA_FAILURE} from "./sidebarActions";
+import {GET_USER_DATA_STARTED, GET_USER_DATA_SUCCESS, GET_USER_DATA_FAILURE, SET_IS_AUTHED} from "./sidebarActions";
 
 const initialState = {
     user: {},
     loading: true,
     error: null,
+    isAuthed: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -28,6 +29,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.payload.error
+            };
+        case SET_IS_AUTHED:
+            return {
+                ...state,
+                loading: false,
+                isAuthed: action.payload
             };
     }
     return state

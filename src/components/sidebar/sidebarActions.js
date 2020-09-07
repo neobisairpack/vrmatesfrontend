@@ -2,6 +2,7 @@ import axios from 'axios';
 export const GET_USER_DATA_STARTED = "GET_USER_DATA_STARTED";
 export const GET_USER_DATA_SUCCESS = "GET_USER_DATA_SUCCESS";
 export const GET_USER_DATA_FAILURE = "GET_USER_DATA_FAILURE";
+export const SET_IS_AUTHED = "SET_IS_AUTHED";
 
 const mainURL = "http://167.172.178.135:8000";
 export const getUserData = () => {
@@ -26,6 +27,11 @@ export const getUserData = () => {
             });
     };
 };
+
+export const setIsAuthed = (data) =>({
+    type: SET_IS_AUTHED,
+    payload: data
+})
 
 const getUserDataStarted = () => ({
     type: GET_USER_DATA_STARTED

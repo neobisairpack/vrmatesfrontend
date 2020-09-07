@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Redirect, Route, withRouter} from 'react-router-dom';
 
-const PrivateRoute = ({component: Component, isAuthed, ...rest}, props) => {
+const PublicRoute = ({component: Component, isAuthed, ...rest}, props) => {
     const [token, setToken] = useState("");
 
     useEffect(()=>{
@@ -16,8 +16,8 @@ const PrivateRoute = ({component: Component, isAuthed, ...rest}, props) => {
     return (
         <Route
             {...rest} render={(props) => (
-            isAuthed ? <Component {...props}/> : <Redirect to={{
-                pathname: '/'
+            !isAuthed ? <Component {...props}/> : <Redirect to={{
+                pathname: '/dashboard'
             }}/>
         )}
         />
@@ -25,4 +25,4 @@ const PrivateRoute = ({component: Component, isAuthed, ...rest}, props) => {
 }
 
 
-export default withRouter(PrivateRoute);
+export default withRouter(PublicRoute);

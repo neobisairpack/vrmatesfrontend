@@ -22,7 +22,8 @@ export const getPostsDashboard = (url) => {
         })
             .then(res => {
                 let posts = []
-                res.data.map((item) => {
+                let result = res.data.map(item => item).reverse()
+                result.map((item) => {
                     if(item.status === "Created, not accepted"){
                         posts.push(item)
                     }
@@ -46,9 +47,8 @@ export const filterPosts = (url, deadline, type, country1, country2) => {
             }
         })
             .then(res => {
-                console.log(res.data)
-                console.log(`${mainURL}/api/service-filters/?status=Created%2C+not+accepted&deadline=${deadline}&service_type=${type}&country=&pickup_location=${country1}&drop_off_location=${country2}`)
-                dispatch(getDashboardPostsSuccess(res.data))
+                let result = res.data.map(item => item).reverse()
+                dispatch(getDashboardPostsSuccess(result))
             })
             .catch((err) => {
                 console.log(err)

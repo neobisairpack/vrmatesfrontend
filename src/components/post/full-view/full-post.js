@@ -59,10 +59,21 @@ const FullPost = (props) => {
     }
     const sendRequest = (item) => {
         if (item.requester) {
-            props.sendInterestedRequest(item.id);
+            if(item.requester.id !== props.userData.user.id){
+                props.sendInterestedRequest(item.id)
+            }
+            else{
+                setNotMessage("You cannot be interested in your post")
+                setNotShow(true)
+            }
         } else {
-            props.sendInterestedRequestProvide(item.id);
-        }
+            if(item.provider.id !== props.userData.user.id){
+                props.sendInterestedRequestProvide(item.id)
+            }
+            else{
+                setNotMessage("You cannot be interested in your post")
+                setNotShow(true)
+            }}
     }
     return (
         <div>
@@ -142,7 +153,8 @@ const FullPost = (props) => {
 const mapStateToProps = state => {
     return {
         createPost: state.createPost,
-        post: state.post
+        post: state.post,
+        userData: state.userData
     }
 }
 const mapDispatchToProps = dispatch => {

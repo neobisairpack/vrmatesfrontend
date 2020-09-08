@@ -21,10 +21,14 @@ const reducer = (state = initialState, action) => {
                 loading: true
             };
         case SEND_POST_SUCCESS:
+            let err = ""
+            if(action.payload.id === null){
+                err = "error"
+            }
             return {
                 ...state,
                 loading: false,
-                error: null,
+                error: err,
                 res: action.payload,
                 isCreated: true
             };

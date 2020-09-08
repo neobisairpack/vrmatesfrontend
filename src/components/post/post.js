@@ -54,10 +54,21 @@ const Post = (props) => {
 
     const sendRequest = (item) => {
         if (item.requester) {
-            props.sendInterestedRequest(item.id);
+            if(item.requester.id !== props.userData.user.id){
+                props.sendInterestedRequest(item.id)
+            }
+            else{
+                setNotMessage("You cannot be interested in your post")
+                setNotShow(true)
+            }
         } else {
-            props.sendInterestedRequestProvide(item.id);
-        }
+            if(item.provider.id !== props.userData.user.id){
+                props.sendInterestedRequestProvide(item.id)
+            }
+            else{
+                setNotMessage("You cannot be interested in your post")
+                setNotShow(true)
+            }}
     }
     const {posts} = props;
     return (
@@ -66,8 +77,8 @@ const Post = (props) => {
                 <div className={"row"}>
                     {posts.map((item) =>
                         <div key={item.id} className={"col-lg-4 col-md-6 col-sm-12 col-xs-12"}>
-                            <Card onClick={() => modalHandler(item.id)} className={"post__card"}>
-                                <div className={"post__content"}>
+                            <Card  className={"post__card"}>
+                                <div onClick={() => modalHandler(item.id)} className={"post__content"}>
                                     <div className={"post__top"}>
                                         <ul className={"post__top-list"}>
                                             <li className={"post__top-list-item"}>
@@ -159,6 +170,7 @@ const Post = (props) => {
 const mapStateToProps = state => {
     return {
         post: state.post,
+        userData: state.userData
     }
 }
 const mapDispatchToProps = dispatch => {

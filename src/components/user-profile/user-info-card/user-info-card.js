@@ -42,7 +42,7 @@ const UserInfoCard = (props) => {
                             </Box>
                         </div>
                         <div className={"user-info__cancellation"}>Cancellation Rate:
-                            <label className={"user-info__cancel-num"}>{user.canceled_posts_count}/100</label></div>
+                            <label className={"user-info__cancel-num"}>{user.canceled_posts}/{user.created_posts}</label></div>
                     </li>
                 </ul>
             </div>

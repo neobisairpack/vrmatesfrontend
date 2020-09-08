@@ -12,7 +12,6 @@ const PublicRoute = ({component: Component, isAuthed, ...rest}, props) => {
             setToken('');
         }
     }, []);
-    console.log(isAuthed)
     return (
         <Route
             {...rest} render={(props) => (

@@ -13,6 +13,7 @@ const CreatePostAirport = (props) => {
     const [notMessage, setNotMessage] = useState("");
     useEffect(() => {
         const {isCreated} = props.createPost
+        console.log(isCreated)
         if(isCreated){
             setNotMessage("Thank you! Please, wait until administrator checks the post!")
             setNotShow(true)

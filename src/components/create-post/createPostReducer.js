@@ -21,27 +21,31 @@ const reducer = (state = initialState, action) => {
                 loading: true
             };
         case SEND_POST_SUCCESS:
-            let err = ""
+            let ans = true
+            let err = false
             if(action.payload.id === null){
-                err = "error"
+                ans = false
+                err = true
             }
             return {
                 ...state,
                 loading: false,
                 error: err,
                 res: action.payload,
-                isCreated: true
+                isCreated: ans
             };
         case RESET_IS_CREATED:
             return {
                 ...state,
-                isCreated: false
+                isCreated: false,
+                error: false
             };
         case SEND_POST_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
+                isCreated: false,
+                error: true,
             };
         case GET_POST_IMAGES_SUCCESS:
             return {

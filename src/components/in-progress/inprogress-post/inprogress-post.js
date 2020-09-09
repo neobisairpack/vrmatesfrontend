@@ -29,6 +29,7 @@ const InProgressPost = (props) => {
     const [supportModal, setSupportModal] = useState(false)
     const [curPost, setCurPost] = useState({})
     const [choice, setChoice] = useState("");
+    const [disabled, setDisabled] = useState(false)
 
     useEffect(() => {
         if (choice !== "") {
@@ -95,7 +96,7 @@ const InProgressPost = (props) => {
         setChoice("")
     }
     const {posts} = props;
-    console.log(posts)
+    console.log(disabled)
     return (
         <div className={"post container"}>
             <div className={"row"}>
@@ -202,7 +203,7 @@ const InProgressPost = (props) => {
             </div>
             <LogOut setChoice={(c) => setChoice(c)} show={logoutShow} message={logoutMessage}
                     onHide={() => setLogoutShow(false)}/>
-            <Support show={supportModal}
+            <Support show={supportModal} setDisabled={(e) => setDisabled(e)}
                      onHide={() => setSupportModal(false)}/>
         </div>
     );

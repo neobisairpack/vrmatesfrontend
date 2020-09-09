@@ -73,7 +73,7 @@ const InProgressPost = (props) => {
         props.setUser(user)
         redirect(user.first_name)
     }
-    const redirect = (name) =>{
+    const redirect = (name) => {
         props.history.push({
             pathname: `/profile/inbox-page/${name}`,
         })
@@ -105,7 +105,8 @@ const InProgressPost = (props) => {
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>
-                                        <li onClick={() => setUserFunc(item.createdBy === "Requester" ? item.requester : item.provider )} className={"post__top-list-item post__user-click"}>
+                                        <li onClick={() => setUserFunc(item.createdBy === "Requester" ? item.requester : item.provider)}
+                                            className={"post__top-list-item post__user-click"}>
                                             {item.createdBy === "Requester" ?
                                                 item.requester.image ?
                                                     <img src={urlImg + item.requester.image} className={"post__avatar"}
@@ -140,13 +141,28 @@ const InProgressPost = (props) => {
                                                     <Dropdown.Item eventKey="1"
                                                                    onClick={() => modalHandler(item.id)}>Confirm</Dropdown.Item>
                                                     <Dropdown.Item onClick={() => cancelHandler(item)}
-                                                                   eventKey="2">Cancel</Dropdown.Item>
+                                                                   eventKey="2"
+                                                                   className={"inprogress__cancel-btn"}>Cancel</Dropdown.Item>
                                                     <Dropdown.Item onClick={() => setSupportModal(true)}
                                                                    eventKey="3">Report</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => setUserFunc(item.provider)}
+                                                                   eventKey="3">{item.provider.first_name}'s
+                                                        profile</Dropdown.Item>
                                                 </DropdownButton>
                                             </li> :
                                             <li className={"post__top-list-item inbox-post__item"}>
-                                                <button onClick={() => cancelProvider(item)} className={"inprogress__cancel-btn"}>Cancel</button>
+                                                <DropdownButton alignRight
+                                                                title={<img className={"inprogress__icon-more"}
+                                                                            src={"https://img.icons8.com/ios-glyphs/30/000000/more.png"}/>}
+                                                                className={"inprogress__more-btn"}>
+                                                    <Dropdown.Item onClick={() => cancelHandler(item)}
+                                                                   eventKey="2"
+                                                                   className={"inprogress__cancel-btn"}>Cancel</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => setUserFunc(item.provider)}
+                                                                   eventKey="3">{item.provider.first_name}'s
+                                                        profile</Dropdown.Item>
+                                                </DropdownButton>
+                                                {/*<button onClick={() => cancelProvider(item)} className={"inprogress__cancel-btn"}>Cancel</button>*/}
                                             </li>}
 
                                     </ul>

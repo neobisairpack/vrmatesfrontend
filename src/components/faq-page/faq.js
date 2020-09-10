@@ -6,6 +6,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {Modal} from "react-bootstrap";
+import './style/faq.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,9 +23,9 @@ export default function FAQ(props) {
 
     return (
         <Modal aria-labelledby="contained-modal-title-vcenter"
-               dialogClassName={"terms-conditions"}
+               dialogClassName={"terms-conditions faq-page"}
                {...props}>
-        <div className={classes.root}>
+        <div className={classes.root} >
             <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}

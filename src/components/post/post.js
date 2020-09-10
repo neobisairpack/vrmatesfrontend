@@ -17,14 +17,16 @@ import Notification from "../notification/notification";
 
 const Post = (props) => {
     const [activeModal, setActiveModal] = useState(null);
+    const [activeModal1, setActiveModal1] = useState(null);
     const [notShow, setNotShow] = useState(false)
     const [notMessage, setNotMessage] = useState("")
     useEffect(() => {
         const {isSend} = props.post;
+        console.log(isSend)
         if(isSend){
+            props.setIsSendFalse();
             setNotMessage("You are interested in this user's post");
             setNotShow(true)
-            props.setIsSendFalse();
         }
     })
     let types = {
@@ -155,15 +157,16 @@ const Post = (props) => {
                                           onHide={() => setActiveModal(null)}
                                 />
                             </div>
+                            <div>
+                                <Notification show={notShow} message={notMessage}
+                                              onHide={() => setNotShow(false)}/>
+                            </div>
                         </div>
                     )}
 
                 </div>
             </>
-            <div>
-                <Notification show={notShow} message={notMessage}
-                              onHide={() => setNotShow(false)}/>
-            </div>
+
         </div>
     );
 };

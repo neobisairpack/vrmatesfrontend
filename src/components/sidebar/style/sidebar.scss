@@ -30,14 +30,32 @@ $percent: calc(var(--rating) / 5 * 100%);
     border-bottom: 1px solid rgba(196, 196, 196, 0.23);
   }
   @media screen and (max-width: 1115px){
-    left: -280px;
+    overflow: visible;
+    left: -335px;
     padding-right: 300px;
     transition: 0.3s;
     &:hover{
       z-index: 4546;
-      left: 0;
+      left: -20px;
       padding-right: 0;
     }
+  }
+}
+.sidebar__button{
+  background-color: #202A49;
+  width: 150px;
+  color: #FFFFFF;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: absolute;
+  right: -90px;
+  //top: 50vh;
+  z-index: 3432;
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  transform: rotate(-90deg);
+  outline: none;
+  &:focus{
+    outline: none;
   }
 }
 .profile-sidebar{
@@ -54,12 +72,13 @@ $percent: calc(var(--rating) / 5 * 100%);
   grid-template-columns: repeat(1, 90%);
   grid-template-rows: 2% 25% 12% 30% 10%;
   @media screen and (max-width: 1115px){
-    left: -280px;
+    overflow: visible;
+    left: -335px;
     padding-right: 300px;
     transition: 0.3s;
     &:hover{
       z-index: 4546;
-      left: 0;
+      left: -20px;
       padding-right: 0;
     }
   }

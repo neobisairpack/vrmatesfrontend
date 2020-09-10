@@ -25,15 +25,33 @@
 }
 @media screen and (max-width: 1115px) {
   .sidebar {
-    left: -280px;
+    overflow: visible;
+    left: -335px;
     padding-right: 300px;
     transition: 0.3s;
   }
   .sidebar:hover {
     z-index: 4546;
-    left: 0;
+    left: -20px;
     padding-right: 0;
   }
+}
+
+.sidebar__button {
+  background-color: #202A49;
+  width: 150px;
+  color: #FFFFFF;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: absolute;
+  right: -90px;
+  z-index: 3432;
+  /* IE 9 */
+  transform: rotate(-90deg);
+  outline: none;
+}
+.sidebar__button:focus {
+  outline: none;
 }
 
 .profile-sidebar {
@@ -52,13 +70,14 @@
 }
 @media screen and (max-width: 1115px) {
   .profile-sidebar {
-    left: -280px;
+    overflow: visible;
+    left: -335px;
     padding-right: 300px;
     transition: 0.3s;
   }
   .profile-sidebar:hover {
     z-index: 4546;
-    left: 0;
+    left: -20px;
     padding-right: 0;
   }
 }

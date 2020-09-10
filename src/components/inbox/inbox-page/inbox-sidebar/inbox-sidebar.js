@@ -72,7 +72,6 @@ const InboxPageSidebar = (props) => {
         setLogoutShow(true)
     }
     const sendCancel = () =>{
-        console.log(props.profilePost.choice, new Date().toLocaleString())
         if(props.profilePost.choice === "yes"){
             if(props.post.interested.length){
                 setNotMessage("You have interested users, reject them all and try again!")
@@ -84,6 +83,7 @@ const InboxPageSidebar = (props) => {
                 post.createdBy === "Requester" ? props.changePostStatus(post, status) :
                     props.changePostStatusProvide(post, status)
                 setChoice("")
+                props.history.push("/profile/inbox")
             }
         }
     }

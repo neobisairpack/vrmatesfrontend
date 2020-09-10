@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 46.8% 53.2%;
   min-height: 1024px;
-  grid-template-rows: 80px minmax(974px, auto) 50px;
+  grid-template-rows: 80px minmax(90vh, auto) 50px;
   background: #E5E5E5;
   position: relative;
   &:before{
@@ -35,7 +35,7 @@
 }
 .inbox-page__title{
   grid-area: t;
-  font-family: Muller;
+  font-family: muller;
   font-style: normal;
   font-weight: bold;
   font-size: 28px;

@@ -17,7 +17,7 @@ const initialState = {
     loading: false,
     error: null,
     res: null,
-    isSend: false
+    isSend: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                isSend: true
+                isSend: action.payload.service
             };
         case SEND_REQUEST_FAILURE:
             return {
@@ -91,7 +91,7 @@ const reducer = (state = initialState, action) => {
         case SET_IS_SEND_FALSE:
             return {
                 ...state,
-                isSend: false,
+                isSend: null,
             };
     }
     return state

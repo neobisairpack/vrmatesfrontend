@@ -1,0 +1,18 @@
+.makeStyles-root-1 {
+  overflow-y: scroll;
+}
+.makeStyles-root-1::-webkit-scrollbar {
+  width: 5px;
+  box-sizing: content-box;
+}
+.makeStyles-root-1::-webkit-scrollbar-track {
+  background: #F4F3F3;
+  border-radius: 10px;
+}
+.makeStyles-root-1::-webkit-scrollbar-thumb {
+  background: #D8D8D8;
+  border-radius: 10px;
+}
+.makeStyles-root-1::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}

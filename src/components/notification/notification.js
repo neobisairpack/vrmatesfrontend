@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Modal, Button} from "react-bootstrap";
 import './style/notification.css';
 import {withRouter} from "react-router-dom";

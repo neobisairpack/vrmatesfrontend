@@ -184,9 +184,7 @@ export const sendProviderHosting = (post, img1, img2) => {
     fd.append('title', post.title)
     fd.append('text', post.text)
     fd.append('preferences', post.preferences)
-    for (let obj in fd){
-        console.log(obj)
-    }
+
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
         dispatch(sendPostStarted());

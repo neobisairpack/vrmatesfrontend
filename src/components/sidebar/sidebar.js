@@ -39,6 +39,7 @@ const Sidebar = (props) => {
                     </div>
                     <p className={"sidebar__item-greeting"}>Hello, <br/> {user.first_name}! </p>
                     <div className={"sidebar__item-rating"}>
+                        <button className={"sidebar__button"}>Sidebar</button>
                         <Box>
                             <StyledRating name="read-only" value={user.avg_rating_last_ten} size="large" readOnly
                                           precision={0.5}/>

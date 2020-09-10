@@ -30,7 +30,6 @@ const HeaderLanding = () => {
                     <Nav className={"mr-auto landing__navbar"} >
                         <NavItem>
                             <ScrollLink to="about-project"
-                                //spy={true}
                                         smooth={true}
                                         duration={1000}
                                         className={"landing__nav-item nav__item"}>

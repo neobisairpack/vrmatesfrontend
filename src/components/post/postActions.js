@@ -28,6 +28,7 @@ export const getPostsDashboard = (url) => {
                         posts.push(item)
                     }
                 })
+                console.log(res.data)
                 dispatch(getDashboardPostsSuccess(posts))
             })
             .catch((err) => dispatch(getRequestFailure(err)))
@@ -71,6 +72,7 @@ export const sendInterestedRequest = (id) => {
                 }
             )
             .then(res => {
+                console.log(res.data)
                 dispatch(sendRequestSuccess(res.data));
             })
             .catch(err => {

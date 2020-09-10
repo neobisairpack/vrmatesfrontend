@@ -3,7 +3,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 25% 75%;
-  grid-template-rows: 80px minmax(974px, auto) 51px;
+  grid-template-rows: 80px minmax(90vh, auto) 51px;
   @media screen and (max-width: 1115px){
     grid-template-columns: 5% 95%;
   }
@@ -26,12 +26,16 @@
   text-transform: uppercase;
 }
 .dashboard__list{
+  height: 50px;
   list-style: none;
   margin-right: 7%;
   a{
     &:hover{
       text-decoration: none;
     }
+  }
+  @media screen and (max-width: 1269px){
+
   }
 }
 .dashboard__list-item{
@@ -72,6 +76,7 @@
   }
   @media screen and (max-width: 1269px){
     width: 50px;
+    padding-top: 0;
     //font: 0/0 a;
     color: #FFFFFF;
     img{
@@ -99,7 +104,9 @@
     outline: none;
   }
   @media screen and (max-width: 1269px){
-    width: 50px;
+    padding-top: 0;
+    width: 40px;
+    height: 40px;
     color: #FD5A01;
   }
 }

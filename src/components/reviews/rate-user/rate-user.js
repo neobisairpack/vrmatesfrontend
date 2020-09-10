@@ -14,12 +14,16 @@ import {connect} from "react-redux";
 import {getUserData} from "../../sidebar/sidebarActions";
 import {changePostStatus, changePostStatusProvide} from "../../profile/profileActions";
 import imgIcon from "../../post/images/empty-img.svg";
+import Notification from "../../notification/notification";
+import {withRouter} from "react-router-dom";
 
 const RateUser = (props) => {
     const [rate, setRate] = useState("");
     const [text, setText] = useState("");
     const [imageFile1, setImageFile1] = useState("")
     const [image, setImage] = useState("")
+    const [notShow, setNotShow] = useState(false);
+    const [notMessage, setNotMessage] = useState("");
     const StyledRating = withStyles({
         iconFilled: {
             color: '#FD5A01',
@@ -46,13 +50,15 @@ const RateUser = (props) => {
                 }
             )
             .then(res => {
-                console.log(res.data)
+                setNotMessage("Thank you for your review!")
+                setNotShow(true)
                 let status = "Successfully done";
                 if (props.post.createdBy === "Requester") {
                     props.changePostStatus(props.post, status)
                 } else if (props.post.createdBy === "Provider") {
                     props.changePostStatusProvide(props.post, status)
                 }
+
             })
             .catch(err => {
                 console.log(err)
@@ -109,6 +115,10 @@ const RateUser = (props) => {
                 <div>
                     <button onClick={(e) => rateUser(e)} className={"rate__button"}>Submit</button>
                 </div>
+                <div>
+                    <Notification show={notShow} message={notMessage}
+                                  onHide={() => setNotShow(false)}/>
+                </div>
             </Form>
         </Modal>
 
@@ -128,5 +138,5 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RateUser);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RateUser));
 

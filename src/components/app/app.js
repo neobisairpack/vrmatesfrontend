@@ -24,6 +24,9 @@ const App = (props) => {
     if(token){
         isAuthed = true;
     }
+    else{
+        isAuthed = false
+    }
     return (
         <React.Fragment>
             <div className={"app-wrapper"}>

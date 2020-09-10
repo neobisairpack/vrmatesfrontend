@@ -3,7 +3,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 25% 75%;
-  grid-template-rows: 80px minmax(974px, auto) 51px;
+  grid-template-rows: 80px minmax(90vh, auto) 51px;
   overflow: hidden;
 }
 @media screen and (max-width: 1115px) {
@@ -31,13 +31,13 @@
 }
 
 .dashboard__list {
+  height: 50px;
   list-style: none;
   margin-right: 7%;
 }
 .dashboard__list a:hover {
   text-decoration: none;
 }
-
 .dashboard__list-item {
   font-style: normal;
   font-weight: bold;
@@ -80,6 +80,7 @@
 @media screen and (max-width: 1269px) {
   .dashboard__filter {
     width: 50px;
+    padding-top: 0;
     color: #FFFFFF;
   }
   .dashboard__filter img {
@@ -110,7 +111,9 @@
 }
 @media screen and (max-width: 1269px) {
   .dashboard__button {
-    width: 50px;
+    padding-top: 0;
+    width: 40px;
+    height: 40px;
     color: #FD5A01;
   }
 }

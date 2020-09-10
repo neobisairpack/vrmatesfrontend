@@ -15,6 +15,7 @@ import CreateProviderHosting from "../create-post/createProviderHosting";
 import {getPostsDashboard} from "../post/postActions";
 import {connect} from "react-redux";
 import Pagination from "../pagination/pagination";
+import {Dropdown, DropdownButton} from "react-bootstrap";
 
 const MainProviders = (props) => {
     const [popUpState, setPopUpState] = useState(false);
@@ -78,6 +79,15 @@ const MainProviders = (props) => {
             <div>
                 <div className={"dashboard__submenu"}>
                     <p className={"dashboard__title"}>NEWS FEED</p>
+                    {/*<DropdownButton alignRight*/}
+                    {/*                title={"hgjh"}*/}
+                    {/*                className={"inprogress__more-btn"}>*/}
+                    {/*    <Dropdown.Item*/}
+                    {/*        eventKey="2"*/}
+                    {/*        className={"inprogress__cancel-btn"}>Cancel</Dropdown.Item>*/}
+                    {/*    <Dropdown.Item*/}
+                    {/*        eventKey="3">njknjknk</Dropdown.Item>*/}
+                    {/*</DropdownButton>*/}
                     <ul className={"dashboard__list"}>
                         <Link to={"/dashboard/providers"}>
                             <li className={"dashboard__list-item " + (activeLink === 2 ? "dashboard__list-item_active" : "")}>Providers</li>

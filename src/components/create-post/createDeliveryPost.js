@@ -15,8 +15,14 @@ const CreatePostDelivery = (props) => {
     const [notMessage, setNotMessage] = useState("");
     useEffect(() => {
         const {isCreated} = props.createPost
-        if(isCreated){
+        const {error} = props.createPost
+        if(isCreated && error === false){
             setNotMessage("Thank you! Please, wait until administrator checks the post!")
+            setNotShow(true)
+            props.resetIsCreated();
+        }
+        else if(isCreated === false && error === true){
+            setNotMessage("Oops, post was not created, please check your points")
             setNotShow(true)
             props.resetIsCreated();
         }

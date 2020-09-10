@@ -147,7 +147,7 @@ const InProgressPost = (props) => {
                                                     <Dropdown.Item onClick={() => setSupportModal(true)}
                                                                    eventKey="3">Report</Dropdown.Item>
                                                     <Dropdown.Item onClick={() => setUserFunc(item.provider)}
-                                                                   eventKey="3">{item.provider.first_name}'s
+                                                                   eventKey="3">{item.createdBy === "Requester" ? item.provider.first_name : item.provider.first_name}'s
                                                         profile</Dropdown.Item>
                                                 </DropdownButton>
                                             </li> :
@@ -160,7 +160,7 @@ const InProgressPost = (props) => {
                                                                    eventKey="2"
                                                                    className={"inprogress__cancel-btn"}>Cancel</Dropdown.Item>
                                                     <Dropdown.Item onClick={() => setUserFunc(item.provider)}
-                                                                   eventKey="3">{item.provider.first_name}'s
+                                                                   eventKey="3">{item.createdBy === "Provider" ? item.requester.first_name : item.provider.first_name}'s
                                                         profile</Dropdown.Item>
                                                 </DropdownButton>
                                                 {/*<button onClick={() => cancelProvider(item)} className={"inprogress__cancel-btn"}>Cancel</button>*/}

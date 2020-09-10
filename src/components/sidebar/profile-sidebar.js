@@ -42,7 +42,7 @@ const ProfileSidebar = (props) => {
                     <div className={"profile-sidebar__about"}>
                         <button className={"sidebar__button"}>Sidebar</button>
                         <div className={"profile-sidebar__about-me"}>About me</div>
-                        <div className={"profile-sidebar__detail-text"}>{user.about_me}
+                        <div className={"profile-sidebar__text-about-me"}>{user.about_me}
                         </div>
                         <div className={"profile-sidebar__detail-text"}>{user.phone}</div>
                         <div className={"profile-sidebar__detail-text"}>{user.email}</div>

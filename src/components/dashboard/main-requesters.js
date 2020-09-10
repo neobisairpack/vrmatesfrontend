@@ -24,7 +24,7 @@ const MainRequesters = (props) => {
     const [radio, setRadio] = useState("");
     const [type, setType] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(9);
+    const [postsPerPage] = useState(2);
     useEffect(() => {
         props.getPostsDashboard('services')
         const path = props.location.pathname;

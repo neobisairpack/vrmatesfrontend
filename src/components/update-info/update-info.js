@@ -8,6 +8,7 @@ import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import {Modal} from 'react-bootstrap';
 import './style/update-info.css';
 import imgIcon from "../post/images/empty-img.svg";
+import Notification from "../notification/notification";
 
 const mainURL = "http://167.172.178.135:8000";
 const UpdateInfo = (props) => {
@@ -24,8 +25,10 @@ const UpdateInfo = (props) => {
         about_me: props.about_me ? props.about_me : "",
     })
     const [birthDate, setBirthDate] = useState(new Date(props.birthday));
-    const [imageFile, setImageFile] = useState(props.image)
+    const [imageFile, setImageFile] = useState("")
     const [image, setImage] = useState("")
+    const [notShow, setNotShow] = useState(false)
+    const [notMessage, setNotMessage] = useState("")
 
     const handleChange = (e) => {
         const value = e.target.value
@@ -41,8 +44,11 @@ const UpdateInfo = (props) => {
     }
     const handleSubmit = (e) => {
         const fd = new FormData();
+        if(imageFile){
+            fd.append('image', imageFile)
+        }
+
         fd.append("about_me", state.about_me)
-        fd.append('image', imageFile)
         fd.append('first_name', state.name)
         fd.append('last_name', state.lastName)
         fd.append('birthday', dateformat(birthDate, 'yyyy-mm-dd'))
@@ -63,11 +69,11 @@ const UpdateInfo = (props) => {
                 }
             )
                 .then((res) => {
-                    console.log(res)
-                    alert(res.data.response)
+                    setNotMessage("Your profile is updated!")
+                    setNotShow(true)
                 })
                 .catch((err) => {
-                    console.log(state, dateformat(birthDate, 'yyyy-mm-dd'))
+                    console.log(state, imageFile)
                     console.log("Update " + err)
                 })
     }
@@ -205,6 +211,10 @@ const UpdateInfo = (props) => {
                 </Form>
                 <div className={"register__sign-up"}>
                     <button type={"submit"} onClick={handleSubmit} className={"register__sign-up-btn"}>Update</button>
+                </div>
+                <div>
+                    <Notification show={notShow} message={notMessage}
+                                  onHide={() => setNotShow(false)}/>
                 </div>
         </Modal>
     );

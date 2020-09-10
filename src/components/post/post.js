@@ -23,7 +23,7 @@ const Post = (props) => {
     useEffect(() => {
         const {isSend} = props.post;
         console.log(isSend)
-        if(isSend){
+        if(isSend !== null){
             props.setIsSendFalse();
             setNotMessage("You are interested in this user's post");
             setNotShow(true)

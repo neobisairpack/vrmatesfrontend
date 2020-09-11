@@ -50,6 +50,7 @@ const CreateProviderAirport = (props) => {
         preferences: ""
     })
     const sendPost = (e) => {
+        console.log(state)
         e.preventDefault(e)
         props.post ? props.editPostProvide(state) : props.sendProviderAirport(state)
     }

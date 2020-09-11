@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import {getPostsDashboard, sendInterestedRequest, sendInterestedRequestProvide, setIsSendFalse} from "./postActions";
 import Notification from "../notification/notification";
 
-const Post = (props) => {
+const Post = React.memo((props) => {
     const [activeModal, setActiveModal] = useState(null);
     const [activeModal1, setActiveModal1] = useState(null);
     const [notShow, setNotShow] = useState(false)
@@ -28,7 +28,7 @@ const Post = (props) => {
             setNotMessage("You are interested in this user's post");
             setNotShow(true)
         }
-    })
+    }, [props.post.isSend])
     let types = {
         "Delivery": "Package delivery",
         "Pick Up": "Airport Pick Up",
@@ -133,10 +133,10 @@ const Post = (props) => {
                                                         className={"post__city"}>{splitStr(item.drop_off_location, 0)}</CardText>
                                                     <CardSubtitle
                                                         className={"post__country"}>{splitStr(item.drop_off_location, 1)}</CardSubtitle>
-                                                    <div className={"post__deadline"}>{item.deadline}</div>
                                                 </div>
                                             </>
                                         }
+                                        <div className={"post__deadline"}>{item.deadline}</div>
                                     </div>
 
                                 </div>
@@ -157,19 +157,18 @@ const Post = (props) => {
                                           onHide={() => setActiveModal(null)}
                                 />
                             </div>
-                            <div>
-                                <Notification show={notShow} message={notMessage}
-                                              onHide={() => setNotShow(false)}/>
-                            </div>
                         </div>
                     )}
-
+                    <div>
+                        <Notification show={notShow} message={notMessage}
+                                      onHide={() => setNotShow(false)}/>
+                    </div>
                 </div>
             </>
 
         </div>
     );
-};
+});
 const mapStateToProps = state => {
     return {
         post: state.post,

@@ -73,7 +73,8 @@ const UpdateInfo = (props) => {
                     setNotShow(true)
                 })
                 .catch((err) => {
-                    console.log(state, imageFile)
+                    setNotMessage("Oops, something is wrong, check and try again!")
+                    setNotShow(true)
                     console.log("Update " + err)
                 })
     }

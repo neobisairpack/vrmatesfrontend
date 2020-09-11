@@ -45,7 +45,7 @@ export const sendProviderDelivery = (post) => {
     return dispatch => {
         dispatch(sendPostStarted());
         axios
-            .post(`${mainURL}/provide-services/`, {
+            .post(`${mainURL}/api/provide-services/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
                     deadline: (post.year).concat("-", post.month, "-", post.day),
                     drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
@@ -74,8 +74,7 @@ export const sendProviderDelivery = (post) => {
 };
 
 export const sendPostAirport = (post) => {
-    let token = JSON.parse(localStorage.getItem("token"));
-    return dispatch => {
+    let token = JSON.parse(localStorage.getItem("token"));return dispatch => {
         dispatch(sendPostStarted());
         axios
             .post(`${mainURL}/api/services/`, {
@@ -113,7 +112,7 @@ export const sendProviderAirport = (post) => {
         axios
             .post(`${mainURL}/api/provide-services/`, {
                     pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
-                    deadline: "2020-01-05",
+                    deadline: (post.year).concat("-", post.month, "-", post.day),
                     status: "Created, not accepted",
                     service_type: "Pick Up",
                     title: post.title,

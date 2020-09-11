@@ -13,7 +13,8 @@ const initialState = {
     currentCreatedBy: "",
     loading: true,
     error: null,
-    choice: ""
+    choice: "",
+    statusChanged: false
 }
 
 const reducer = (state = initialState, action) => {

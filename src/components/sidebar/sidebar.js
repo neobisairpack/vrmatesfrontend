@@ -52,7 +52,6 @@ const Sidebar = (props) => {
                             <div className={"profile-sidebar__points"}>{user.points} points</div>
                         </div>
                         <div className={"profile-sidebar__about"}>
-                            <button className={"sidebar__button"}>Sidebar</button>
                             <div className={"profile-sidebar__about-me"}>About me</div>
                             <div className={"profile-sidebar__text-about-me"}>{user.about_me}
                             </div>

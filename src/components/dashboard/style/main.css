@@ -29,6 +29,12 @@
   line-height: 20px;
   text-transform: uppercase;
 }
+@media screen and (max-width: 900px) {
+  .dashboard__title {
+    position: absolute;
+    left: -500px;
+  }
+}
 
 .dashboard__list {
   height: 50px;

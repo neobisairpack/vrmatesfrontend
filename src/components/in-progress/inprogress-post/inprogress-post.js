@@ -133,9 +133,9 @@ const InProgressPost = (props) => {
                                                 </Box>
                                             </div>
                                         </li>
-                                        {forReport === item.id ? null :
-                                        item.requester.id === Number(userId) ?
-                                            <li className={"post__top-list-item inbox-post__item"}>
+                                        { item.requester.id === Number(userId) ?
+                                            forReport === item.id ? null :
+                                                (<li className={"post__top-list-item inbox-post__item"}>
                                                 <DropdownButton alignRight
                                                                 title={<img className={"inprogress__icon-more"}
                                                                             src={"https://img.icons8.com/ios-glyphs/30/000000/more.png"}/>}
@@ -151,7 +151,7 @@ const InProgressPost = (props) => {
                                                                    eventKey="3">{item.createdBy === "Requester" ? item.provider.first_name : item.provider.first_name}'s
                                                         profile</Dropdown.Item>
                                                 </DropdownButton>
-                                            </li> :
+                                            </li>) :
                                             <li className={"post__top-list-item inbox-post__item"}>
                                                 <DropdownButton alignRight
                                                                 title={<img className={"inprogress__icon-more"}

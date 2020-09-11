@@ -9,8 +9,7 @@ import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {
     changePostStatus, changePostStatusProvide,
-    chooseYesNo,
-    editPost
+    chooseYesNo
 } from "../../../profile/profileActions";
 import Notification from "../../../notification/notification";
 import CreatePostDelivery from "../../../create-post/createDeliveryPost";
@@ -162,8 +161,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        editPost: (post) =>
-            dispatch(editPost(post)),
         changePostStatus: (post, status) =>
             dispatch(changePostStatus(post, status)),
         changePostStatusProvide: (post, status) =>

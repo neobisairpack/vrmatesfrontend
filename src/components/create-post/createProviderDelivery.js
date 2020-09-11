@@ -3,9 +3,8 @@ import './style/create-post.css';
 import {connect} from "react-redux";
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {resetIsCreated, sendProviderDelivery} from "./createPostActions";
+import {editPostProvide, resetIsCreated, sendProviderDelivery} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
-import {editPost, editPostProvide} from "../profile/profileActions";
 import Notification from "../notification/notification";
 
 const CreateProviderDelivery = (props) => {
@@ -20,7 +19,7 @@ const CreateProviderDelivery = (props) => {
             props.resetIsCreated();
         }
         else if(isCreated === false && error === true){
-            setNotMessage("Oops, post was not created, please check your points")
+            setNotMessage("Oops, post was not created, check and try again")
             setNotShow(true)
             props.resetIsCreated();
         }

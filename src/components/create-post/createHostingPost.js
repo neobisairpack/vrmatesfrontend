@@ -3,9 +3,8 @@ import './style/create-post.css';
 import {connect} from "react-redux";
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {resetIsCreated, sendPostHosting} from "./createPostActions";
+import {editPostProvide, resetIsCreated, sendPostHosting} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
-import {editPost, editPostProvide} from "../profile/profileActions";
 import Notification from "../notification/notification";
 
 const CreatePostHosting = (props) => {
@@ -255,8 +254,6 @@ const mapDispatchToProps = dispatch => {
     return {
         sendPostHosting: post =>
             dispatch(sendPostHosting(post)),
-        editPost: (post) =>
-            dispatch(editPost(post)),
         editPostProvide: (post) =>
             dispatch(editPostProvide(post)),
         resetIsCreated: () =>

@@ -16,20 +16,26 @@ const InterestedUser = (props) => {
     const urlImg = 'http://167.172.178.135:8000';
     const [activeModal, setActiveModal] = useState(false);
     const [notShow, setNotShow] = useState(false);
-    // useEffect(() => {
-    //     const {isSend} = props.post
-    //     if (isSend) {
-    //         console.log(isSend)
-    //         setNotShow(true)
-    //     }
-    // }, [props.post.isSend])
+    const [notMessage, setNotMessage] = useState("");
+    useEffect(() => {
+        const {isSend} = props.post
+        const {error} = props.post
+        if (isSend) {
+            console.log(isSend)
+            setNotMessage("Thank you! User is accepted")
+            setNotShow(true)
+        }
+        else if(isSend === false && error){
+            setNotMessage("User was not accepted")
+            setNotShow(true)
+        }
+    }, [props.post.isSend])
     useEffect(() => {
         if (props.location.state.post.createdBy === "Requester") {
             props.getInterestedRequestById("Requester", props.location.state.post.id)
         } else if (props.location.state.post.createdBy === "Provider") {
             props.getInterestedRequestById("Provider", props.location.state.post.id)
         }
-
     }, [])
     const {interested} = props.post
     const setUserFunc = (user) => {
@@ -89,10 +95,10 @@ const InterestedUser = (props) => {
                         </div>
                     </div>
                     )}
-                {/*<div>*/}
-                {/*    <Notification show={notShow} message={"notMessage"}*/}
-                {/*                  onHide={() => setNotShow(false)}/>*/}
-                {/*</div>*/}
+                <div>
+                    <Notification show={notShow} message={"notMessage"}
+                                  onHide={() => setNotShow(false)}/>
+                </div>
             </div>
 
         </div>

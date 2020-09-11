@@ -46,8 +46,20 @@ const Sidebar = (props) => {
                         </Box>
                     </div>
                     <div className={"sidebar__weather"}>
-                        <a className="weatherwidget-io" href="https://forecast7.com/en/42d8774d57/bishkek/"
-                           data-label_1="BISHKEK" data-label_2="WEATHER" data-theme="original" data-basecolor="#202A49"/>
+                        <div className={"profile-sidebar__status"}>
+                            <div className={"profile-sidebar__cancellation"}>Cancellation
+                                Rate: <label>{user.canceled_posts}/{user.created_posts}</label></div>
+                            <div className={"profile-sidebar__points"}>{user.points} points</div>
+                        </div>
+                        <div className={"profile-sidebar__about"}>
+                            <button className={"sidebar__button"}>Sidebar</button>
+                            <div className={"profile-sidebar__about-me"}>About me</div>
+                            <div className={"profile-sidebar__text-about-me"}>{user.about_me}
+                            </div>
+
+                        </div>
+                        {/*<a className="weatherwidget-io" href="https://forecast7.com/en/42d8774d57/bishkek/"*/}
+                        {/*   data-label_1="BISHKEK" data-label_2="WEATHER" data-theme="original" data-basecolor="#202A49"/>*/}
                     </div>
                 </>
             }

@@ -3,9 +3,8 @@ import './style/create-post.css';
 import {connect} from "react-redux";
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {resetIsCreated, sendPostAirport} from "./createPostActions";
+import {editPost, resetIsCreated, sendPostAirport} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
-import {editPost} from "../profile/profileActions";
 import Notification from "../notification/notification";
 import {withRouter} from "react-router-dom";
 

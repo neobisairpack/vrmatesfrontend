@@ -3,9 +3,8 @@ import './style/create-post.css';
 import {connect} from "react-redux";
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {resetIsCreated, sendProviderAirport} from "./createPostActions";
+import {editPostProvide, resetIsCreated, sendProviderAirport} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
-import {editPostProvide} from "../profile/profileActions";
 import Notification from "../notification/notification";
 
 const CreateProviderAirport = (props) => {
@@ -20,7 +19,7 @@ const CreateProviderAirport = (props) => {
             props.resetIsCreated();
         }
         else if(isCreated === false && error === true){
-            setNotMessage("Oops, post was not created, please check your points")
+            setNotMessage("Oops, post was not created, check and try again")
             setNotShow(true)
             props.resetIsCreated();
         }
@@ -50,7 +49,6 @@ const CreateProviderAirport = (props) => {
         preferences: ""
     })
     const sendPost = (e) => {
-        console.log(state)
         e.preventDefault(e)
         props.post ? props.editPostProvide(state) : props.sendProviderAirport(state)
     }

@@ -27,13 +27,14 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                isSend: action.payload.service
+                isSend: true
             };
         case SEND_REQUEST_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload
+                error: action.payload,
+                isSend: false
             };
         case GET_DASHBOARD_POSTS_SUCCESS:
             return {

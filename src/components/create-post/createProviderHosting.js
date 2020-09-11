@@ -3,10 +3,9 @@ import './style/create-post.css';
 import {connect} from "react-redux";
 import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
-import {resetIsCreated, sendProviderHosting} from "./createPostActions";
+import {editPostProvide, resetIsCreated, sendProviderHosting} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import imgIcon from "../post/images/empty-img.svg";
-import {editPostProvide} from "../profile/profileActions";
 import Notification from "../notification/notification";
 
 const CreateProviderHosting = (props) => {
@@ -21,7 +20,7 @@ const CreateProviderHosting = (props) => {
             props.resetIsCreated();
         }
         else if(isCreated === false && error === true){
-            setNotMessage("Oops, post was not created, please check your points")
+            setNotMessage("Oops, post was not created, check and try again")
             setNotShow(true)
             props.resetIsCreated();
         }

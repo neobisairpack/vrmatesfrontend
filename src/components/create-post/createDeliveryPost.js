@@ -5,9 +5,8 @@ import {Row, Col, Form, FormGroup, Label, Input} from 'reactstrap';
 import imgIcon from "../post/images/empty-img.svg";
 import {Modal} from "react-bootstrap";
 import '../update-info/style/update-info.css';
-import {resetIsCreated, sendPostDelivery} from "./createPostActions";
+import {editPost, resetIsCreated, sendPostDelivery} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
-import {editPost} from "../profile/profileActions";
 import Notification from "../notification/notification";
 
 const CreatePostDelivery = (props) => {

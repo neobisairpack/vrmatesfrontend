@@ -232,6 +232,129 @@ export const getPostImages = (id) => {
             });
     };
 };
+
+export const editPost = (post, img1, img2) => {
+    const fd1 = new FormData();
+    fd1.append('image', img1)
+    const fd2 = new FormData();
+    fd2.append('image', img2)
+    console.log(post.img1)
+    let token = JSON.parse(localStorage.getItem("token"));
+    return dispatch => {
+        //dispatch(getInboxPostStarted());
+        axios.all([
+            axios.put(`${mainURL}/api/services/${post.id}/`, {
+                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
+                    drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
+                    requester_from: (post.country1).concat(" ", post.state1, " ", post.city1),
+                    location: (post.country2).concat(" ", post.state2, " ", post.city2),
+                    deadline: (post.year).concat("-", post.month, "-", post.day),
+                    status: "Created, not accepted",
+                    title: post.title,
+                    text: post.text,
+                    preferences: post.preferences || "",
+                },
+                {headers: {
+                        "Authorization": "Token " + token
+                    }}),
+            post.img1 ?
+                axios.put(`${mainURL}/api/services-images/${post.img1.id}/`, fd1, {
+                    headers: {
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }) : fd1.append('post', post.id),
+            axios.post(`${mainURL}/api/services-images/`, fd1, {
+                headers: {
+                    "Authorization": "Token " + token,
+                    'Content-Type': 'multipart/form-data'
+                }
+            }),
+            post.img2 ?
+                axios.put(`${mainURL}/api/services-images/${post.img2.id}/`, fd2, {
+                    headers: {
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }) : fd2.append('post', post.id),
+            axios.post(`${mainURL}/api/services-images/`, fd2, {
+                headers: {
+                    "Authorization": "Token " + token,
+                    'Content-Type': 'multipart/form-data'
+                }
+            }),
+        ])
+            .then(axios.spread(function(req, prov) {
+                console.log(req, prov)
+                dispatch(req.concat(prov));
+            }))
+            .catch(err => {
+                dispatch(sendPostFailure(err));
+            });
+    };
+};
+
+export const editPostProvide = (post, img1, img2) => {
+    const fd1 = new FormData();
+    fd1.append('image', img1)
+    //fd1.append('post', post.id)
+    const fd2 = new FormData();
+    fd2.append('image', img2)
+    //fd2.append('post', post.id)
+    let token = JSON.parse(localStorage.getItem("token"));
+    return dispatch => {
+        //dispatch(getInboxPostStarted());
+        axios.all([
+            axios.put(`${mainURL}/api/provide-services/${post.id}/`, {
+                    pickup_location: (post.country1).concat(",", post.state1, ",", post.city1),
+                    drop_off_location: (post.country2).concat(",", post.state2, ",", post.city2),
+                    requester_from: (post.country1).concat(" ", post.state1, " ", post.city1),
+                    location: (post.country2).concat(" ", post.state2, " ", post.city2),
+                    deadline: (post.year).concat("-", post.month, "-", post.day),
+                    status: "Created, not accepted",
+                    title: post.title,
+                    text: post.text,
+                    preferences: post.preferences || "",
+                },
+                {headers: {
+                        "Authorization": "Token " + token
+                    }}),
+            post.img1 ?
+                axios.put(`${mainURL}/api/provide-services-images/${post.img1.id}/`, fd1, {
+                    headers: {
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }) :  fd1.append('post', post.id),
+            axios.post(`${mainURL}/api/provide-services-images/`, fd1, {
+                headers: {
+                    "Authorization": "Token " + token,
+                    'Content-Type': 'multipart/form-data'
+                }
+            }),
+            post.img2 ?
+                axios.put(`${mainURL}/api/provide-services-images/${post.img2.id}/`, fd2, {
+                    headers: {
+                        "Authorization": "Token " + token,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }) : fd2.append('post', post.id),
+            axios.post(`${mainURL}/api/provide-services-images/`, fd2, {
+                headers: {
+                    "Authorization": "Token " + token,
+                    'Content-Type': 'multipart/form-data'
+                }
+            }),
+        ])
+            .then(axios.spread(function(req, prov) {
+                console.log(req, prov)
+                dispatch(sendPostSuccess(req.concat(prov)));
+            }))
+            .catch(err => {
+                dispatch(sendPostFailure(err));
+            });
+    };
+};
 const sendPostStarted = () => ({
     type: SEND_POST_STARTED
 });

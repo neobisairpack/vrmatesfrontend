@@ -49,7 +49,6 @@ const InterestedUser = (props) => {
     }
     const acceptHandler = (req) => {
         if (props.location.state.post.createdBy === "Requester") {
-            console.log(req)
             props.changeStatusRequest(req, "Accepted")
         } else if (props.location.state.post.createdBy === "Provider") {
             props.changeStatusRequestProvide(req, "Accepted")
@@ -61,6 +60,7 @@ const InterestedUser = (props) => {
         } else if (props.location.state.post.createdBy === "Provider") {
             props.changeStatusRequestProvide(req, "Canceled")
         }
+        window.location.reload()
     }
     console.log(activeModal)
 
@@ -96,7 +96,7 @@ const InterestedUser = (props) => {
                     </div>
                     )}
                 <div>
-                    <Notification show={notShow} message={"notMessage"}
+                    <Notification show={notShow} message={notMessage}
                                   onHide={() => setNotShow(false)}/>
                 </div>
             </div>

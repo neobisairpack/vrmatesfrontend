@@ -30,7 +30,7 @@ const InProgressPost = (props) => {
     const [curPost, setCurPost] = useState({})
     const [choice, setChoice] = useState("");
     const [disabled, setDisabled] = useState(false)
-
+    let forReport = Number(localStorage.getItem("report"))
     useEffect(() => {
         if (choice !== "") {
             setLogoutShow(false)
@@ -133,7 +133,8 @@ const InProgressPost = (props) => {
                                                 </Box>
                                             </div>
                                         </li>
-                                        {item.requester.id === Number(userId) ?
+                                        {forReport === item.id ? null :
+                                        item.requester.id === Number(userId) ?
                                             <li className={"post__top-list-item inbox-post__item"}>
                                                 <DropdownButton alignRight
                                                                 title={<img className={"inprogress__icon-more"}
@@ -164,7 +165,7 @@ const InProgressPost = (props) => {
                                                         profile</Dropdown.Item>
                                                 </DropdownButton>
                                                 {/*<button onClick={() => cancelProvider(item)} className={"inprogress__cancel-btn"}>Cancel</button>*/}
-                                            </li>}
+                                            </li> }
 
                                     </ul>
                                 </div>
@@ -196,6 +197,8 @@ const InProgressPost = (props) => {
                         </Card>
                         <RateUser reciever={item.provider} post={item} show={activeModal === item.id}
                                   onHide={() => setActiveModal(null)}/>
+                        <Support show={supportModal} from={item.id}
+                                 onHide={() => setSupportModal(false)}/>
                     </div>
                 )}
                 <div>
@@ -203,8 +206,6 @@ const InProgressPost = (props) => {
             </div>
             <LogOut setChoice={(c) => setChoice(c)} show={logoutShow} message={logoutMessage}
                     onHide={() => setLogoutShow(false)}/>
-            <Support show={supportModal} setDisabled={(e) => setDisabled(e)}
-                     onHide={() => setSupportModal(false)}/>
         </div>
     );
 };

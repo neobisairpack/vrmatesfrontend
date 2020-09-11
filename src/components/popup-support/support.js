@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
 import './style/support.css';
@@ -10,7 +10,6 @@ const Support = (props) => {
         title: "",
         text: ""
     })
-
     const handleChange = (e) => {
         const value = e.target.value
         setState({
@@ -20,6 +19,9 @@ const Support = (props) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault(e)
+        if(props.from){
+            localStorage.setItem("report", props.from)
+        }
         let token = JSON.parse(localStorage.getItem("token"));
         axios.post('http://167.172.178.135:8000/api/support/', {
                 email: state.email,
@@ -33,11 +35,7 @@ const Support = (props) => {
             }
         )
             .then((res) => {
-                props.onHide()
-                if (props.setDisabled) {
-                    console.log(props.setDisabled)
-                    props.setDisabled(true)
-                }
+                console.log("sent")
             })
             .catch((err) => {
                 console.log("Support error " + err)

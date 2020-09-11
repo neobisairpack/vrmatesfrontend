@@ -15,7 +15,6 @@ import {Link as ScrollLink} from 'react-scroll';
 
 const HeaderLanding = () => {
     const [isOpen, setIsOpen] = useState(false);
-
     const toggle = () => setIsOpen(!isOpen);
     return (
         <div className={"header-landing"}>

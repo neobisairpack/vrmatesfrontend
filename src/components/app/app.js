@@ -17,6 +17,7 @@ import MainProviders from "../dashboard/main-providers";
 import PrivateRoute from "./private-router";
 import {connect} from "react-redux";
 import PublicRoute from "./public-route";
+import ConfirmPage from "../confirm-pages/confirm-page";
 
 const App = (props) => {
     let token = localStorage.getItem("token");
@@ -74,6 +75,9 @@ const App = (props) => {
                         <PublicRoute exact path={'/reset-password'}
                                      isAuthed={isAuthed}
                                      component={ResetPassword}/>
+                        <PublicRoute exact path={'/confirm'}
+                                     isAuthed={isAuthed}
+                                     component={ConfirmPage}/>
                     </Switch>
                 </div>
             </div>

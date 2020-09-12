@@ -12,7 +12,7 @@ $percent: calc(var(--rating) / 5 * 100%);
   grid-row-start: 1;
   grid-row-end: 3;
   grid-gap: 0;
-  grid-template-rows: repeat(4, 58px) 55%;
+  grid-template-rows: repeat(4, 58px) 500px;
   grid-template-columns: repeat(2, 50%);
   grid-template-areas:
     "l l"

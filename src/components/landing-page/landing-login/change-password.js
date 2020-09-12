@@ -8,7 +8,7 @@ import axios from 'axios';
 import Notification from "../../notification/notification";
 
 
-const ResetPassword = () => {
+const ChangePassword = () => {
     const [email, setEmail] = useState(null)
     const [notShow, setNotShow] = useState(false)
     const [notMessage, setNotMessage] = useState("")
@@ -37,19 +37,28 @@ const ResetPassword = () => {
                 <div className={"reset-form__item"}>
                     <label className={"reset__title"}>Forgot password?</label>
                     <p className={"reset__text"}>
-                        Enter your email and we will send you a link to reset your password
+                        Please enter your new password twice so we can verify you typed it in correctly.
                     </p>
                     <Form onSubmit={(e) => handleSubmit(e)}>
                         <FormGroup>
                             <Input
                                 className={"register__input"}
-                                placeholder={"E-mail"}
-                                type={"email"}
-                                name={"email"}
+                                placeholder={"New password"}
+                                type={"password"}
+                                name={"password1"}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required/>
                         </FormGroup>
-                        <button type={"submit"} className={"register__sign-up-btn"}>Send link to email</button>
+                        <FormGroup>
+                            <Input
+                                className={"register__input"}
+                                placeholder={"Confirm password"}
+                                type={"password"}
+                                name={"password2"}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required/>
+                        </FormGroup>
+                        <button type={"submit"} className={"register__sign-up-btn"}>Change my password</button>
                     </Form>
                 </div>
             </div>
@@ -61,5 +70,5 @@ const ResetPassword = () => {
     );
 }
 
-export default withRouter(ResetPassword);
+export default withRouter(ChangePassword);
 

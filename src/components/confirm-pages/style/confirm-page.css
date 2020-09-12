@@ -28,16 +28,10 @@
   height: 400px;
   background-color: #FFFFFF;
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 800px) {
   .confirm-window {
-    height: 500px;
-  }
-}
-@media screen and (max-width: 700px) {
-  .confirm-window {
-    grid-template-columns: 90% 5%;
+    left: 18%;
     width: 70%;
-    height: 400px;
   }
 }
 

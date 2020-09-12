@@ -22,7 +22,7 @@ import ConfirmPage from "../confirm-pages/confirm-page";
 const App = (props) => {
     let token = localStorage.getItem("token");
     let isAuthed = props.userData.isAuthed;
-    if(token){
+    if(token || props.userData.isAuthed){
         isAuthed = true;
     }
     else{

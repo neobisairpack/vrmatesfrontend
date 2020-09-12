@@ -5,6 +5,19 @@
   z-index: 45754;
 }
 
+@media screen and (max-width: 767px) {
+  .nav {
+    flex-flow: column;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  ul.mr-auto.landing__navbar.nav {
+    margin-left: 0 !important;
+    justify-self: flex-start;
+  }
+}
+
 .landing__nav-item {
   position: relative;
   z-index: 1;
@@ -46,4 +59,9 @@
 }
 .nav__login:focus {
   outline: none;
+}
+@media screen and (max-width: 768px) {
+  .nav__login {
+    border: none;
+  }
 }

@@ -36,7 +36,6 @@ const HeaderLanding = () => {
                         </NavItem>
                         <NavItem>
                             <ScrollLink to="donation"
-                                //spy={true}
                                         smooth={true}
                                         duration={1000}
                                         className={"landing__nav-item nav__item"}>

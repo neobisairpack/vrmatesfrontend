@@ -1,15 +1,21 @@
 .header-landing{
-  //background: url("../../images/image-for-landing.png")  no-repeat top center;
-  //background-size: cover;
   position: relative;
   padding-left: 5%;
   padding-right: 5%;
   z-index: 45754;
-  //@media screen and (min-width: 1500px){
-  //  background-size: cover;
-  //  background-position: top center;
-  //}
 }
+.nav{
+  @media screen and (max-width: 767px){
+    flex-flow: column;
+  }
+}
+ul.mr-auto.landing__navbar.nav{
+  @media screen and (max-width: 767px){
+    margin-left: 0 !important;
+    justify-self: flex-start;
+  }
+}
+
 .landing__nav-item{
   position: relative;
   z-index: 1;
@@ -47,5 +53,8 @@
   padding: 12px 20px;
   &:focus{
     outline: none
+  }
+  @media screen and (max-width: 768px){
+    border: none;
   }
 }

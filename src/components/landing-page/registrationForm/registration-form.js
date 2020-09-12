@@ -154,20 +154,18 @@ const RegistrationForm = () => {
                     </FormGroup>
 
                     <FormGroup>
-                        <Input
-                            className={"register__input"}
-                            placeholder={"Zip Code"}
-                            type={"number"}
-                            name={"zipcode"}
-                            value={state.zipcode}
-                            onChange={e => handleChange(e)}
+                        <Input type="text" name={"city"}
+                               className={"register__input"}
+                               placeholder={"City"}
+                               value={state.city}
+                               onChange={e => handleChange(e)}
                         />
                     </FormGroup>
 
                     <FormGroup>
                         <DatePicker
                             className={"register__input"}
-                            placeholderText={"   *Date Of Birth"}
+                            placeholderText={"   *Date Of Birth (yyyy/mm/dd)"}
                             required
                             selected={birthDate}
                             onChange={date => setBirthDate(date)}
@@ -175,14 +173,15 @@ const RegistrationForm = () => {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <CountryDropdown
-                            name={"country"}
+                        <RegionDropdown
                             className={"register__input"}
-                            defaultOptionLabel={"  Country"}
-                            value={state.country}
+                            blankOptionLabel={"State"}
+                            defaultOptionLabel={"State"}
+                            country={state.country}
+                            value={state.states}
                             onChange={e => setState({
                                 ...state,
-                                country: e
+                                states: e
                             })}/>
                     </FormGroup>
 
@@ -195,18 +194,15 @@ const RegistrationForm = () => {
                             <option>Others</option>
                         </Input>
                     </FormGroup>
-
                     <FormGroup>
-                        <RegionDropdown
+                        <Input
                             className={"register__input"}
-                            blankOptionLabel={"State"}
-                            defaultOptionLabel={"State"}
-                            country={state.country}
-                            value={state.states}
-                            onChange={e => setState({
-                                ...state,
-                                states: e
-                            })}/>
+                            placeholder={"Zip Code"}
+                            type={"number"}
+                            name={"zipcode"}
+                            value={state.zipcode}
+                            onChange={e => handleChange(e)}
+                        />
                     </FormGroup>
 
                     <FormGroup>
@@ -222,12 +218,15 @@ const RegistrationForm = () => {
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="text" name={"city"}
-                               className={"register__input"}
-                               placeholder={"City"}
-                               value={state.city}
-                               onChange={e => handleChange(e)}
-                        />
+                        <CountryDropdown
+                            name={"country"}
+                            className={"register__input"}
+                            defaultOptionLabel={"  Country"}
+                            value={state.country}
+                            onChange={e => setState({
+                                ...state,
+                                country: e
+                            })}/>
                     </FormGroup>
 
                     <FormGroup>

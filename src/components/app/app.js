@@ -18,6 +18,7 @@ import PrivateRoute from "./private-router";
 import {connect} from "react-redux";
 import PublicRoute from "./public-route";
 import ConfirmPage from "../confirm-pages/confirm-page";
+import ChangePassword from "../landing-page/landing-login/change-password";
 
 const App = (props) => {
     let token = localStorage.getItem("token");
@@ -78,6 +79,9 @@ const App = (props) => {
                         <PublicRoute exact path={'/confirm'}
                                      isAuthed={isAuthed}
                                      component={ConfirmPage}/>
+                        <PublicRoute exact path={'/change-password'}
+                                     isAuthed={isAuthed}
+                                     component={ChangePassword}/>
                     </Switch>
                 </div>
             </div>

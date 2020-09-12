@@ -27,10 +27,10 @@ const LoginForm = (props) => {
             .then((res) => {
                 props.setIsAuthed(true)
                 localStorage.setItem("token", JSON.stringify(res.data.token));
-                props.history.push({
-                    pathname: '/dashboard',
-                    state: {email: email}
-                })
+                // props.history.push({
+                //     pathname: '/dashboard',
+                // });
+                window.location.href = '/dashboard';
             })
             .catch((err) => {
                 console.log("Logging in error " + err)

@@ -9,17 +9,19 @@ import Notification from "../../notification/notification";
 
 
 const ChangePassword = () => {
-    const [email, setEmail] = useState(null)
-    const [notShow, setNotShow] = useState(false)
-    const [notMessage, setNotMessage] = useState("")
+    const [password, setPassword] = useState(null);
+    const [notShow, setNotShow] = useState(false);
+    const [notMessage, setNotMessage] = useState("");
 
     const handleSubmit = (e) => {
+        let token = localStorage.getItem("token")
         e.preventDefault()
-        axios.post('http://167.172.178.135:8000/users/rest-auth/password/reset/', {
-            email: email,
+        axios.post('http://167.172.178.135:8000/users/password-reset/confirm/?token=b79e2222a5da4e1270b466399', {
+            password: password,
+            token: token
         })
             .then((res) => {
-                setNotMessage("Please, check your email and follow the instructions!")
+                setNotMessage("Your password is changed!")
                 setNotShow(true)
             })
             .catch((err) => {
@@ -35,7 +37,7 @@ const ChangePassword = () => {
                 <Link to={"/login"} className={"login__exit-link"}><img className={"login__exit"} src={exit}
                                                                         alt={"exit"}/></Link>
                 <div className={"reset-form__item"}>
-                    <label className={"reset__title"}>Forgot password?</label>
+                    <label className={"reset__title"}>Change password</label>
                     <p className={"reset__text"}>
                         Please enter your new password twice so we can verify you typed it in correctly.
                     </p>
@@ -45,17 +47,8 @@ const ChangePassword = () => {
                                 className={"register__input"}
                                 placeholder={"New password"}
                                 type={"password"}
-                                name={"password1"}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required/>
-                        </FormGroup>
-                        <FormGroup>
-                            <Input
-                                className={"register__input"}
-                                placeholder={"Confirm password"}
-                                type={"password"}
-                                name={"password2"}
-                                onChange={(e) => setEmail(e.target.value)}
+                                name={"password"}
+                                onChange={(e) => setPassword(e.target.value)}
                                 required/>
                         </FormGroup>
                         <button type={"submit"} className={"register__sign-up-btn"}>Change my password</button>

@@ -29,7 +29,6 @@ const InProgressPost = (props) => {
     const [supportModal, setSupportModal] = useState(false)
     const [curPost, setCurPost] = useState({})
     const [choice, setChoice] = useState("");
-    const [disabled, setDisabled] = useState(false)
     let forReport = Number(localStorage.getItem("report"))
     useEffect(() => {
         if (choice !== "") {
@@ -80,7 +79,6 @@ const InProgressPost = (props) => {
         })
     }
     const sendCancel = () => {
-        console.log(choice, new Date().toLocaleString())
         if (choice === "yes") {
             let status = "Canceled"
             props.changePostStatus(curPost, status)
@@ -88,7 +86,6 @@ const InProgressPost = (props) => {
         setChoice("")
     }
     const sendCancelProvider = () => {
-        console.log(choice, new Date().toLocaleString())
         if (choice === "yes") {
             let status = "Canceled"
             props.changePostStatusProvide(curPost, status)
@@ -96,7 +93,6 @@ const InProgressPost = (props) => {
         setChoice("")
     }
     const {posts} = props;
-    console.log(disabled)
     return (
         <div className={"post container"}>
             <div className={"row"}>
@@ -147,7 +143,7 @@ const InProgressPost = (props) => {
                                                                    className={"inprogress__cancel-btn"}>Cancel</Dropdown.Item>
                                                     <Dropdown.Item onClick={() => setSupportModal(true)}
                                                                    eventKey="3">Report</Dropdown.Item>
-                                                    <Dropdown.Item onClick={() => setUserFunc(item.createdBy === "Requester" ? item.provider.first_name : item.requester.first_name)}
+                                                    <Dropdown.Item onClick={() => setUserFunc(item.createdBy === "Requester" ? item.provider : item.requester)}
                                                                    eventKey="3">{item.createdBy === "Requester" ? item.provider.first_name : item.requester.first_name}'s
                                                         profile</Dropdown.Item>
                                                 </DropdownButton>

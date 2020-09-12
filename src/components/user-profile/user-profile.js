@@ -11,7 +11,6 @@ import {connect} from "react-redux";
 
 const UserProfile = (props) => {
     const user = props.post.curUser;
-
     return (
         <div className={"user-profile"}>
             <ScrollToTopControlller/>

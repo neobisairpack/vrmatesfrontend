@@ -147,8 +147,8 @@ const InProgressPost = (props) => {
                                                                    className={"inprogress__cancel-btn"}>Cancel</Dropdown.Item>
                                                     <Dropdown.Item onClick={() => setSupportModal(true)}
                                                                    eventKey="3">Report</Dropdown.Item>
-                                                    <Dropdown.Item onClick={() => setUserFunc(item.createdBy === "Requester" ? item.provider.first_name : item.provider.first_name)}
-                                                                   eventKey="3">{item.createdBy === "Requester" ? item.provider.first_name : item.provider.first_name}'s
+                                                    <Dropdown.Item onClick={() => setUserFunc(item.createdBy === "Requester" ? item.provider.first_name : item.requester.first_name)}
+                                                                   eventKey="3">{item.createdBy === "Requester" ? item.provider.first_name : item.requester.first_name}'s
                                                         profile</Dropdown.Item>
                                                 </DropdownButton>
                                             </li>) :

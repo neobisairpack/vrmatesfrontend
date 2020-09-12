@@ -89,7 +89,7 @@ const InterestedUser = (props) => {
                                         className={"interested__button interested__button_accept"}>Accept
                                 </button>
                                 <button onClick={() => cancelHandler(item)}
-                                        className={"interested__button interested__button_cancel"}>Cancel
+                                        className={"interested__button interested__button_cancel"}>Reject
                                 </button>
                             </div>
                         </div>

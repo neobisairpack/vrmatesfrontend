@@ -1,6 +1,8 @@
 .header-landing {
+  position: relative;
   padding-left: 5%;
   padding-right: 5%;
+  z-index: 45754;
 }
 
 .landing__nav-item {

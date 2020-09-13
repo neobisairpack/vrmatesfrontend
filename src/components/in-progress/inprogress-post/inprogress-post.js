@@ -188,7 +188,6 @@ const InProgressPost = (props) => {
                                     </div>
                                         </>}
                                     <CardSubtitle className={"post__deadline"}>{item.deadline}</CardSubtitle>
-
                                 </div>
                             </div>
                             <CardText className={"post__text"}>{item.title} {item.text}</CardText>

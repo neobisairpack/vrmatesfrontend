@@ -17,8 +17,12 @@
   justify-content: flex-end;
   padding-right: 5.5%;
 }
-.nav{
+button.navbar-toggler{
+  margin-left: auto;
+}
+.nav__dashboard-collapse{
   padding-top: 8px;
+  background-color: #f5f4f2;
 }
 .nav__item{
   color: rgba(0, 0, 0, 0.5);
@@ -45,12 +49,23 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
+  @media screen and (max-width: 767px){
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.5);
+    font-style: normal;
+    padding: 0;
+    border: none;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    margin-right: 2em;
+  }
 }
 .nav__item_logout{
   font-size: 16px;
   line-height: 16px;
   margin-right: 0;
-  margin-left: 30px;
+  //margin-left: 30px;
 }
 .nav__item-logout-icon{
   margin-right: 8px;
@@ -61,5 +76,15 @@
   background-color: #E5E5E5;
   &:focus{
     outline: none;
+  }
+  @media screen and (max-width: 767px){
+    background-color: #f5f4f2;
+  }
+}
+
+.nav__submenu{
+  @media screen and (min-width: 526px){
+    position: absolute;
+    top: -500px;
   }
 }

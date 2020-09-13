@@ -69,7 +69,7 @@ const Header = (props) => {
         <div className={(props.style ? "inbox-header" : "header")}>
             <Navbar light expand="md">
                 <NavbarToggler onClick={toggle}/>
-                <Collapse className={"nav"} isOpen={isOpen} navbar>
+                <Collapse className={"nav__dashboard-collapse"} isOpen={isOpen} navbar>
                     <Nav className={"mr-auto"}>
                         <NavItem>
                             <Link to="/dashboard"
@@ -79,15 +79,24 @@ const Header = (props) => {
                             <Link to="/profile"
                                   className={"nav__item" + (activeLink === 2 ? " nav__item_active" : "")}>Profile</Link>
                         </NavItem>
+                        <NavItem>
+                            <Link to="/dashboard/requesters"
+                                  className={"nav__item nav__submenu" }>Requesters</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to="/dashboard/providers"
+                                  className={"nav__item nav__submenu"}>Providers</Link>
+                        </NavItem>
+                        <NavItem className={"nav__item_logout "}>
+                            <button onClick={() => logoutHandler()} className={
+                                "nav__logout-btn"
+                            }><img src={LogOutImg}
+                                   className={"nav__item-logout-icon"}
+                                   alt={"logOut"}/>Log out
+                            </button>
+                        </NavItem>
                     </Nav>
-                    <NavbarText className={"nav__item_logout "}>
-                        <button onClick={() => logoutHandler()} className={
-                            "nav__logout-btn"
-                        }><img src={LogOutImg}
-                                                                        className={"nav__item-logout-icon"}
-                                                                        alt={"logOut"}/>Log out
-                        </button>
-                    </NavbarText>
+
                 </Collapse>
             </Navbar>
             <LogOut setChoice={(c) => setChoice(c)} message={logoutMessage} show={modalShow}

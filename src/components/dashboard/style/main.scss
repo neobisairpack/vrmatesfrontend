@@ -92,6 +92,13 @@
 .dashboard__list-item img{
   padding-right: 10px;
 }
+.dashboard__sections{
+  @media screen and (max-width: 525px){
+    position: absolute;
+    left: -500px;
+  }
+}
+
 .dashboard__button{
   overflow: hidden;
   width: 180px;
@@ -108,7 +115,7 @@
     outline: none;
   }
   @media screen and (max-width: 1269px){
-    width: 40px;
+    width: 50px;
     color: #FD5A01;
   }
 }

@@ -79,10 +79,10 @@ const MainRequesters = (props) => {
                 <div className={"dashboard__submenu"}>
                     <p className={"dashboard__title"}>NEWS FEED</p>
                     <ul className={"dashboard__list"}>
-                        <Link to={"/dashboard/providers"}>
+                        <Link className={"dashboard__sections"} to={"/dashboard/providers"}>
                             <li className={"dashboard__list-item " + (activeLink === 2 ? "dashboard__list-item_active" : "")}>Providers</li>
                         </Link>
-                        <Link to={"/dashboard/requesters"}>
+                        <Link className={"dashboard__sections"} to={"/dashboard/requesters"}>
                             <li className={"dashboard__list-item " + (activeLink === 1 ? "dashboard__list-item_active" : "")}>Requesters</li>
                         </Link>
                         <li className={"dashboard__list-item "}>

@@ -99,6 +99,13 @@
   padding-right: 10px;
 }
 
+@media screen and (max-width: 525px) {
+  .dashboard__sections {
+    position: absolute;
+    left: -500px;
+  }
+}
+
 .dashboard__button {
   overflow: hidden;
   width: 180px;
@@ -117,7 +124,7 @@
 }
 @media screen and (max-width: 1269px) {
   .dashboard__button {
-    width: 40px;
+    width: 50px;
     color: #FD5A01;
   }
 }

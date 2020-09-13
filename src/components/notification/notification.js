@@ -17,7 +17,7 @@ const Notification = (props) => {
             window.location.reload()
         }
         else if(props.history.location.pathname === "/profile/inbox-page"){
-            props.history.push('/profile/in-progress')
+            props.history.push('/profile/inbox')
         }
     }
     return (

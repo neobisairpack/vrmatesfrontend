@@ -8,6 +8,7 @@ import '../update-info/style/update-info.css';
 import {editPost, resetIsCreated, sendPostDelivery} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import Notification from "../notification/notification";
+import {withRouter} from "react-router-dom";
 
 const CreatePostDelivery = (props) => {
     const [notShow, setNotShow] = useState(false);
@@ -64,8 +65,10 @@ const CreatePostDelivery = (props) => {
 
     const sendPost = (e) => {
         e.preventDefault()
-        console.log(img1, img1File)
         props.post ? props.editPost(state, img1File, img2File) : props.sendPostDelivery(state, img1File, img2File)
+        if(props.post){
+            props.history.push('/profile/inbox')
+        }
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -291,4 +294,4 @@ const mapDispatchToProps = dispatch => {
             dispatch(resetIsCreated()),
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePostDelivery);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreatePostDelivery));

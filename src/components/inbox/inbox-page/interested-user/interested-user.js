@@ -21,7 +21,6 @@ const InterestedUser = (props) => {
         const {isSend} = props.post
         const {error} = props.post
         if (isSend) {
-            console.log(isSend)
             setNotMessage("Thank you! User is accepted")
             setNotShow(true)
         }

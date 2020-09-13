@@ -34,14 +34,21 @@ const Reviews = (props) => {
     }, [])
     const getReviews = () =>{
         let token = JSON.parse(localStorage.getItem("token"));
+        let id = JSON.parse(localStorage.getItem("num"));
         axios.get('http://167.172.178.135:8000/api/rating/', {
             headers: {
                 "Authorization": "Token " + token
             }
         })
             .then(function(res){
-                console.log(res)
-                setRate(res.data);
+                let reviews = []
+                res.data.map((item) => {
+                    if(item.provider.id === id){
+                        reviews.push(item)
+                    }
+                })
+                setRate(reviews);
+                console.log(reviews)
             })
             .catch((err) => console.log(err))
     }
@@ -50,8 +57,8 @@ const Reviews = (props) => {
     }
     return (
         <div className={"reviews " + (props.id ? "reviews__user-profile" : "reviews__profile")}>
-            {rate.map((item) =>
-                userId === item.provider.id ?
+            {rate.length === 0 ? <div className={"reviews__message"}>You have no reviews yet</div> :
+            rate.map((item) =>
             <div key={item.id} className={"review"}>
                <div onClick={() => showFullReview(item.id)} className={"review " + ((item.id) % 2 !== 0 ? "review-orange" : "review-blue") }>
                    <div className={"review__rating"}>
@@ -69,7 +76,7 @@ const Reviews = (props) => {
                 <FullReview {...item} show={activeModal === item.id}
 
                             onHide={() => setActiveModal(null)}/>
-             </div> : null
+             </div>
 
             )}
 

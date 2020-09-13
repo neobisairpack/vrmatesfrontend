@@ -156,7 +156,7 @@ const InProgressPost = (props) => {
                                                     <Dropdown.Item onClick={() => cancelHandler(item)}
                                                                    eventKey="2"
                                                                    className={"inprogress__cancel-btn"}>Cancel</Dropdown.Item>
-                                                    <Dropdown.Item onClick={() => setUserFunc(item.createdBy === "Provider" ? item.requester.first_name : item.provider.first_name)}
+                                                    <Dropdown.Item onClick={() => setUserFunc(item.createdBy === "Provider" ? item.requester : item.provider)}
                                                                    eventKey="3">{item.createdBy === "Provider" ? item.requester.first_name : item.provider.first_name}'s
                                                         profile</Dropdown.Item>
                                                 </DropdownButton>

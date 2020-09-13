@@ -25,6 +25,11 @@
   height: 450px;
 }
 
+.reviews__message {
+  margin: auto;
+  padding: 4%;
+}
+
 .reviews__profile {
   height: 110px;
 }

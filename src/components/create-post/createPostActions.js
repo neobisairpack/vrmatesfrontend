@@ -286,10 +286,10 @@ export const editPost = (post, img1, img2) => {
         ])
             .then(axios.spread(function(req, prov) {
                 console.log(req, prov)
-                dispatch(req.concat(prov));
+                //dispatch(req.concat(prov));
             }))
             .catch(err => {
-                dispatch(sendPostFailure(err));
+                //dispatch(sendPostFailure(err));
             });
     };
 };
@@ -347,11 +347,10 @@ export const editPostProvide = (post, img1, img2) => {
             }),
         ])
             .then(axios.spread(function(req, prov) {
-                console.log(req, prov)
-                dispatch(sendPostSuccess(req.concat(prov)));
+                //dispatch(sendPostSuccess(req.concat(prov)));
             }))
             .catch(err => {
-                dispatch(sendPostFailure(err));
+                //dispatch(sendPostFailure(err));
             });
     };
 };

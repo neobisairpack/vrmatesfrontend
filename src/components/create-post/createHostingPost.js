@@ -6,6 +6,7 @@ import {Modal} from "react-bootstrap";
 import {editPostProvide, resetIsCreated, sendPostHosting} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import Notification from "../notification/notification";
+import {withRouter} from "react-router-dom";
 
 const CreatePostHosting = (props) => {
     const [notShow, setNotShow] = useState(false);
@@ -55,6 +56,9 @@ const CreatePostHosting = (props) => {
     const sendPost = (e) => {
         e.preventDefault()
         props.post ? props.editPost(state) : props.sendPostHosting(state)
+        if(props.post){
+            props.history.push('/profile/inbox')
+        }
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -260,4 +264,4 @@ const mapDispatchToProps = dispatch => {
             dispatch(resetIsCreated()),
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePostHosting);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreatePostHosting));

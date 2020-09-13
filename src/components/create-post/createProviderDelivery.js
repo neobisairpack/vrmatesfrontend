@@ -6,6 +6,7 @@ import {Modal} from "react-bootstrap";
 import {editPostProvide, resetIsCreated, sendProviderDelivery} from "./createPostActions";
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import Notification from "../notification/notification";
+import {withRouter} from "react-router-dom";
 
 const CreateProviderDelivery = (props) => {
     const [notShow, setNotShow] = useState(false);
@@ -57,6 +58,9 @@ const CreateProviderDelivery = (props) => {
     const sendPost = (e) => {
         e.preventDefault()
         props.post ? props.editPostProvide(state) : props.sendProviderDelivery(state)
+        if(props.post){
+            props.history.push('/profile/inbox')
+        }
     }
     const getDropList = () => {
         const year = new Date().getFullYear();
@@ -276,4 +280,4 @@ const mapDispatchToProps = dispatch => {
             dispatch(resetIsCreated()),
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(CreateProviderDelivery);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreateProviderDelivery));

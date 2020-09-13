@@ -177,14 +177,18 @@ const InProgressPost = (props) => {
                                         <CardSubtitle
                                             className={"post__country"}>{splitStr(item.pickup_location, 1)}</CardSubtitle>
                                     </div>
+                                    {item.provider && item.service_type === "Hosting" ? null :
+                                        <>
                                     <img className={"post__arrow"} src={arrow}/>
                                     <div className={"post__address"}>
                                         <CardText
                                             className={"post__city"}>{splitStr(item.drop_off_location, 0)}</CardText>
                                         <CardSubtitle
                                             className={"post__country"}>{splitStr(item.drop_off_location, 0)}</CardSubtitle>
-                                        <CardSubtitle className={"post__deadline"}>{item.deadline}</CardSubtitle>
                                     </div>
+                                        </>}
+                                    <CardSubtitle className={"post__deadline"}>{item.deadline}</CardSubtitle>
+
                                 </div>
                             </div>
                             <CardText className={"post__text"}>{item.title} {item.text}</CardText>

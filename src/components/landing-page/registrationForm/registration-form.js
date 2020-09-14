@@ -200,6 +200,7 @@ const RegistrationForm = () => {
                             placeholder={"Zip Code"}
                             type={"number"}
                             name={"zipcode"}
+                            min={1}
                             value={state.zipcode}
                             onChange={e => handleChange(e)}
                         />

@@ -25,7 +25,11 @@ button.navbar-toggler {
 
 .nav__dashboard-collapse {
   padding-top: 8px;
-  background-color: #f5f4f2;
+}
+@media screen and (max-width: 767px) {
+  .nav__dashboard-collapse {
+    background-color: #f5f4f2;
+  }
 }
 
 .nav__item {

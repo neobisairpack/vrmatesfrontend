@@ -58,6 +58,24 @@ $percent: calc(var(--rating) / 5 * 100%);
     outline: none;
   }
 }
+.profile-sidebar__button{
+  margin-top: 70%;
+  background-color: #202A49;
+  width: 150px;
+  color: #FFFFFF;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: absolute;
+  right: -90px;
+  //top: 50vh;
+  z-index: 3432;
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  transform: rotate(-90deg);
+  outline: none;
+  &:focus{
+    outline: none;
+  }
+}
 .profile-sidebar{
   z-index: 54635;
   width: 337px;
@@ -251,6 +269,7 @@ $percent: calc(var(--rating) / 5 * 100%);
 .sidebar__item-greeting{
   grid-area: g;
   align-self: center;
+  word-break: break-word;
   font-family: $font-family;
   font-style: normal;
   font-weight: normal;

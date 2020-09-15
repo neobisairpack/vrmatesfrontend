@@ -21,7 +21,7 @@ button.navbar-toggler{
   margin-left: auto;
 }
 .nav__dashboard-collapse{
-  padding-top: 8px;
+  padding-top: 20px;
   @media screen and (max-width: 767px){
     background-color: #f5f4f2;
   }
@@ -66,8 +66,9 @@ button.navbar-toggler{
 .nav__item_logout{
   font-size: 16px;
   line-height: 16px;
-  margin-right: 0;
-  //margin-left: 30px;
+  float: right;
+  //margin-right: 0;
+  margin-left: auto;
 }
 .nav__item-logout-icon{
   margin-right: 8px;

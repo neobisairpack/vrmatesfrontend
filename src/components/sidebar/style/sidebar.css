@@ -54,6 +54,24 @@
   outline: none;
 }
 
+.profile-sidebar__button {
+  margin-top: 70%;
+  background-color: #202A49;
+  width: 150px;
+  color: #FFFFFF;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: absolute;
+  right: -90px;
+  z-index: 3432;
+  /* IE 9 */
+  transform: rotate(-90deg);
+  outline: none;
+}
+.profile-sidebar__button:focus {
+  outline: none;
+}
+
 .profile-sidebar {
   z-index: 54635;
   width: 337px;
@@ -271,6 +289,7 @@
   -ms-grid-column: 3;
   grid-area: g;
   align-self: center;
+  word-break: break-word;
   font-family: Muller;
   font-style: normal;
   font-weight: normal;

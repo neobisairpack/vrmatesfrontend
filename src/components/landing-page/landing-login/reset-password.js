@@ -9,13 +9,13 @@ import Notification from "../../notification/notification";
 
 
 const ResetPassword = () => {
-    const [email, setEmail] = useState(null)
-    const [notShow, setNotShow] = useState(false)
-    const [notMessage, setNotMessage] = useState("")
+    const [email, setEmail] = useState(null);
+    const [notShow, setNotShow] = useState(false);
+    const [notMessage, setNotMessage] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://167.172.178.135:8000/users/rest-auth/password/reset/', {
+        axios.post('http://167.172.178.135:8000/users/password-reset/', {
             email: email,
         })
             .then((res) => {

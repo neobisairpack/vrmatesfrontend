@@ -2,6 +2,7 @@
   background-color: #E5E5E5;
   width: 100%;
   display: grid;
+  //position: relative;
   grid-template-columns: 25% 75%;
   grid-template-rows: 80px minmax(90vh, auto) 51px;
   @media screen and (max-width: 1115px){

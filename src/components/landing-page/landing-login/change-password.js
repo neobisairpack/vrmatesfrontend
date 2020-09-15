@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {Link, withRouter, useLocation} from 'react-router-dom';
 import {Form, FormGroup, Input} from 'reactstrap';
 import '../registrationForm/style/register.css';
 import './style/login.css';
@@ -10,25 +10,33 @@ import Notification from "../../notification/notification";
 
 const ChangePassword = () => {
     const [password, setPassword] = useState(null);
+    const [passwordConfirm, setPasswordConfirm] = useState(null);
     const [notShow, setNotShow] = useState(false);
     const [notMessage, setNotMessage] = useState("");
 
+    const location = useLocation().search;
+   // console.log(location.substring(location.indexOf("=") + 1))
     const handleSubmit = (e) => {
-        let token = localStorage.getItem("token")
         e.preventDefault()
-        axios.post('http://167.172.178.135:8000/users/password-reset/confirm/?token=b79e2222a5da4e1270b466399', {
-            password: password,
-            token: token
-        })
-            .then((res) => {
-                setNotMessage("Your password is changed!")
-                setNotShow(true)
+        if (password === passwordConfirm)
+            axios.post(`http://167.172.178.135:8000/users/password-reset/confirm/${location}`, {
+                password: password,
+                //token: location
+                token: location.substring(location.indexOf("=") + 1)
             })
-            .catch((err) => {
-                console.log("Reset password error " + err)
-                setNotMessage("Oops, something went wrong")
-                setNotShow(true)
-            })
+                .then((res) => {
+                    setNotMessage("Your password is changed!")
+                    setNotShow(true)
+                })
+                .catch((err) => {
+                    console.log("Reset password error " + err)
+                    setNotMessage("Oops, something went wrong")
+                    setNotShow(true)
+                })
+        else {
+            setNotMessage("Check your password")
+            setNotShow(true)
+        }
     }
 
     return (
@@ -49,6 +57,15 @@ const ChangePassword = () => {
                                 type={"password"}
                                 name={"password"}
                                 onChange={(e) => setPassword(e.target.value)}
+                                required/>
+                        </FormGroup>
+                        <FormGroup>
+                            <Input
+                                className={"register__input"}
+                                placeholder={"New password"}
+                                type={"password"}
+                                name={"password2"}
+                                onChange={(e) => setPasswordConfirm(e.target.value)}
                                 required/>
                         </FormGroup>
                         <button type={"submit"} className={"register__sign-up-btn"}>Change my password</button>

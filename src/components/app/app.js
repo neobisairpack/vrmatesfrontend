@@ -79,7 +79,7 @@ const App = (props) => {
                         <PublicRoute exact path={'/confirm'}
                                      isAuthed={isAuthed}
                                      component={ConfirmPage}/>
-                        <PublicRoute exact path={'/change-password'}
+                        <PublicRoute path={'/change-password'}
                                      isAuthed={isAuthed}
                                      component={ChangePassword}/>
                     </Switch>

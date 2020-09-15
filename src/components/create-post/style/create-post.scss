@@ -9,6 +9,10 @@
   border-radius: 20px;
   z-index: 1;
   padding: 32px;
+  @media screen and (max-width: 1300px){
+    width: 100%;
+    left: 5%;
+  }
 }
 .create-post{
   display: grid;
@@ -25,6 +29,10 @@
     "ttl ds"
     "p p"
     "b b";
+  @media screen and (max-width: 1300px){
+    display: flex;
+    flex-flow: column;
+  }
 }
 //.modal-content {
 //  position: absolute;
@@ -52,6 +60,10 @@
     "dt dt"
     "ttl ds"
     "b b";
+    @media screen and (max-width: 1300px){
+      display: flex;
+      flex-flow: column;
+    }
 }
 ul{
   list-style: none;
@@ -83,6 +95,10 @@ ul{
     "dt dt"
     "ttl ds"
     "b b";
+  @media screen and (max-width: 1300px){
+    display: flex;
+    flex-flow: column;
+  }
 }
 .form-control{
   background: #F8F8F8;

@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import './style/inprogress-post.css';
 import {DropdownButton, Dropdown} from "react-bootstrap";
-import {changePostStatus, changePostStatusProvide, getPosts} from "../../profile/profileActions";
+import {changePostStatus, changePostStatusProvide} from "../../profile/profileActions";
 import {connect} from "react-redux";
 import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";

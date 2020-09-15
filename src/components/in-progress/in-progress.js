@@ -8,7 +8,6 @@ import InProgressPost from "./inprogress-post/inprogress-post";
 import Header from "../header";
 import Footer from "../footer";
 import ProfileSidebar from "../sidebar/profile-sidebar";
-import {getPostsDashboard} from "../post/postActions";
 import {connect} from "react-redux";
 import {getPosts} from "../profile/profileActions";
 import Pagination from "../pagination/pagination";

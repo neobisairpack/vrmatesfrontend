@@ -10,7 +10,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_USER_DATA_STARTED:
-            console.log("started")
             return {
                 ...state,
                 loading: true
@@ -36,7 +35,8 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 isAuthed: action.payload
             };
+        default:
+            return state;
     }
-    return state
 }
 export default reducer

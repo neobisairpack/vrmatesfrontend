@@ -9,6 +9,17 @@
   z-index: 654;
   padding: 30px;
 }
+@media screen and (max-width: 858px) {
+  .filter {
+    left: 15%;
+  }
+}
+@media screen and (max-width: 589px) {
+  .filter {
+    width: 80%;
+    display: inline-block;
+  }
+}
 
 .filter__title {
   margin-bottom: 4%;
@@ -28,10 +39,15 @@
   justify-content: normal;
   margin-bottom: 4%;
 }
+@media screen and (max-width: 589px) {
+  .filter__forms {
+    display: inline-block;
+  }
+}
 
 .filter__dates-text {
   margin-right: 2%;
-  font-family: Muller;
+  font-family: muller;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;

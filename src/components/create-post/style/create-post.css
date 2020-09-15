@@ -9,6 +9,12 @@
   z-index: 1;
   padding: 32px;
 }
+@media screen and (max-width: 1300px) {
+  .create-post-modal .modal-content {
+    width: 100%;
+    left: 5%;
+  }
+}
 
 .create-post {
   display: grid;
@@ -19,6 +25,12 @@
   grid-template-columns: repeat(2, 45%);
   grid-template-areas: "t t" "lf lt" "dt dt" "ttl ds" "p p" "b b";
 }
+@media screen and (max-width: 1300px) {
+  .create-post {
+    display: flex;
+    flex-flow: column;
+  }
+}
 
 .create-provide-delivery {
   display: grid;
@@ -28,6 +40,12 @@
   grid-template-rows: 8% 32% 32% 20% 8%;
   grid-template-columns: repeat(2, 45%);
   grid-template-areas: "t t" "lf lt" "dt dt" "ttl ds" "b b";
+}
+@media screen and (max-width: 1300px) {
+  .create-provide-delivery {
+    display: flex;
+    flex-flow: column;
+  }
 }
 
 ul {
@@ -43,6 +61,12 @@ ul {
   grid-template-rows: 2% 45% 20% 16% 19% 12%;
   grid-template-columns: repeat(2, 45%);
   grid-template-areas: "t t" "lf lt" "dt dt" "ttl ds" "b b";
+}
+@media screen and (max-width: 1300px) {
+  .create-post-airport {
+    display: flex;
+    flex-flow: column;
+  }
 }
 
 .form-control {

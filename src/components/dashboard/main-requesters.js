@@ -12,7 +12,7 @@ import {Link, withRouter} from 'react-router-dom';
 import CreatePostDelivery from "../create-post/createDeliveryPost";
 import CreatePostAirport from "../create-post/createAirportPost";
 import CreatePostHosting from "../create-post/createHostingPost";
-import {getPostsDashboard, sendInterestedRequest, sendInterestedRequestProvide} from "../post/postActions";
+import {getPostsDashboard} from "../post/postActions";
 import {connect} from "react-redux";
 import Pagination from "../pagination/pagination";
 

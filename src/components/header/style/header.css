@@ -24,6 +24,7 @@ button.navbar-toggler {
 }
 
 .nav__dashboard-collapse {
+  z-index: 5;
   padding-top: 20px;
 }
 @media screen and (max-width: 767px) {

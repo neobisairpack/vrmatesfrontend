@@ -113,6 +113,7 @@
 }
 
 .profile-sidebar__name {
+  word-break: break-word;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;

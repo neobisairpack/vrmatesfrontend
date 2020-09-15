@@ -72,6 +72,9 @@
   margin-left: 96%;
   margin-bottom: 25px;
 }
+.full-post__exit:hover {
+  cursor: pointer;
+}
 
 .full-post__exit-img {
   width: 50px;

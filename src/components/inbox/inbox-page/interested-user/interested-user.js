@@ -10,11 +10,8 @@ import {
 } from "../../../post/postActions";
 import {connect} from "react-redux";
 import Notification from "../../../notification/notification";
-import LogOut from "../../../pop-up/popup-logout";
-
 const InterestedUser = (props) => {
     const urlImg = 'http://167.172.178.135:8000';
-    const [activeModal, setActiveModal] = useState(false);
     const [notShow, setNotShow] = useState(false);
     const [notMessage, setNotMessage] = useState("");
     useEffect(() => {
@@ -61,7 +58,6 @@ const InterestedUser = (props) => {
         }
         window.location.reload()
     }
-    console.log(activeModal)
 
     return (
         <div className={"interested-user container"}>
@@ -122,7 +118,7 @@ const mapDispatchToProps = dispatch => {
         changeStatusRequest: (req, status) =>
             dispatch(changeStatusRequest(req, status)),
         changeStatusRequestProvide: (req, status) =>
-            dispatch(changeStatusRequestProvide(req, status)),
+            dispatch(changeStatusRequestProvide(req, status))
     }
 }
 

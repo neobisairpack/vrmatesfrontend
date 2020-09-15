@@ -62,7 +62,7 @@ const ChangePassword = () => {
                         <FormGroup>
                             <Input
                                 className={"register__input"}
-                                placeholder={"New password"}
+                                placeholder={"Repeat password"}
                                 type={"password"}
                                 name={"password2"}
                                 onChange={(e) => setPasswordConfirm(e.target.value)}

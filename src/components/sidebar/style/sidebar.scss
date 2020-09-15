@@ -115,6 +115,7 @@ $percent: calc(var(--rating) / 5 * 100%);
 //'★★★★★'
 .profile-sidebar__name{
   //align-self: center;
+  word-break: break-word;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;

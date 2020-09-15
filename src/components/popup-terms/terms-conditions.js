@@ -1,12 +1,16 @@
 import React from 'react';
 import './style/terms-conditions.css';
 import {Modal} from 'react-bootstrap';
+import exit from "../post/images/exit.svg";
 
 const TermsConditions = (props) => {
     return (
         <Modal aria-labelledby="contained-modal-title-vcenter"
                dialogClassName={"terms-conditions"}
                {...props}>
+            <div onClick={props.onHide} className={"full-post__exit"}>
+                <img src={exit}/>
+            </div>
             <div className={"terms__title"}>Terms & Conditions</div>
             <div className={"terms__text"}>
                 Our Terms and Conditions template will get you started with creating your own custom Terms and Conditions agreement.

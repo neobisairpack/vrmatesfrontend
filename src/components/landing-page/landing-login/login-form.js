@@ -8,8 +8,6 @@ import loginImg from '../images/login-img.png';
 import axios from 'axios';
 import Notification from "../../notification/notification";
 import {connect} from "react-redux";
-import {changePostStatus, changePostStatusProvide, chooseYesNo, editPost} from "../../profile/profileActions";
-import {getPostImages} from "../../create-post/createPostActions";
 import {setIsAuthed} from "../../sidebar/sidebarActions";
 
 
@@ -78,7 +76,7 @@ const LoginForm = (props) => {
                 <div>
                     <Link to={"/"} className={"login__exit-link"}><img className={"login__exit"} src={exit}
                                                                        alt={"exit"}/></Link>
-                    <img className={"login-form__img"} src={loginImg} alt={"Login image"}/>
+                    <img className={"login-form__img"} src={loginImg} alt={"Login"}/>
                 </div>
             </div>
             <div>

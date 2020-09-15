@@ -7,6 +7,7 @@ import {editPostProvide, resetIsCreated, sendProviderDelivery} from "./createPos
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import Notification from "../notification/notification";
 import {withRouter} from "react-router-dom";
+import exit from "../post/images/exit.svg";
 
 const CreateProviderDelivery = (props) => {
     const [notShow, setNotShow] = useState(false);
@@ -86,6 +87,9 @@ const CreateProviderDelivery = (props) => {
     }
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post-modal"}>
+            <div onClick={props.onHide} className={"full-post__exit"}>
+                <img src={exit}/>
+            </div>
             <div className={"create-post__type"}>Package Delivery</div>
             <Form onSubmit={(e) => sendPost(e)} className={"create-provide-delivery"}>
                 <div className={"create-post__location-from"}>

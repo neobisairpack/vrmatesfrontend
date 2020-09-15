@@ -135,6 +135,10 @@ const FullPost = (props) => {
                  <button onClick={() => {
                     sendRequest(data)
                 }} className={"full-post__interested-btn post__interested-btn"}>Interested</button>
+                <div>
+                    <Notification show={notShow} message={notMessage}
+                                  onHide={() => setNotShow(false)}/>
+                </div>
             </Modal>
         </div>
     );

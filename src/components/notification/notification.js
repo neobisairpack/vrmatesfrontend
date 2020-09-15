@@ -5,9 +5,6 @@ import {withRouter} from "react-router-dom";
 
 const Notification = (props) => {
     const {message} = props;
-    useEffect(() => {
-        console.log(props)
-    }, [])
     const okHandler = () =>{
         props.onHide()
         if(props.history.location.pathname === "/registration"){

@@ -7,6 +7,7 @@ import {editPostProvide, resetIsCreated, sendPostHosting} from "./createPostActi
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector';
 import Notification from "../notification/notification";
 import {withRouter} from "react-router-dom";
+import exit from "../post/images/exit.svg";
 
 const CreatePostHosting = (props) => {
     const [notShow, setNotShow] = useState(false);
@@ -84,6 +85,9 @@ const CreatePostHosting = (props) => {
     }
     return (
         <Modal show={props.show} onHide={props.onHide} dialogClassName={"create-post-modal"}>
+            <div onClick={props.onHide} className={"full-post__exit"}>
+                <img src={exit}/>
+            </div>
             <div className={"create-post__type"}>Hosting</div>
             <Form onSubmit={(e) => sendPost(e)} className={"create-post create-post-hosting"}>
                 <div className={"create-post__location-from"}>

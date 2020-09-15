@@ -63,6 +63,12 @@
 .full-post__exit{
   margin-left: 96%;
   margin-bottom: 25px;
+  &:hover{
+    //background-color: #f5f4f2;
+    cursor: pointer;
+    //box-shadow: 3px 3px 3px 3px #f5f4f2;
+    //border-radius: 50%;
+  }
 }
 .full-post__exit-img{
   width: 50px;

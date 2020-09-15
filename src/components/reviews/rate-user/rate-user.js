@@ -11,9 +11,7 @@ import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
 import {connect} from "react-redux";
-import {getUserData} from "../../sidebar/sidebarActions";
 import {changePostStatus, changePostStatusProvide} from "../../profile/profileActions";
-import imgIcon from "../../post/images/empty-img.svg";
 import Notification from "../../notification/notification";
 import {withRouter} from "react-router-dom";
 
@@ -61,7 +59,8 @@ const RateUser = (props) => {
 
             })
             .catch(err => {
-                console.log(err)
+                setNotMessage("Sorry, your review was not sent")
+                setNotShow(true)
             });
     }
     const imageInputChange = (e) => {
@@ -94,7 +93,7 @@ const RateUser = (props) => {
 
                 <div className={"full-review__text"}>
                     <FormGroup>
-                        <Input className={"rate__text"} type="textarea" name="text" value={text}
+                        <Input className={"rate__text"} placeholder={"*Text"} type="textarea" name="text" value={text}
                                onChange={(e) => handleChange(e)}/>
                     </FormGroup>
                 </div>

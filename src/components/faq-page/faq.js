@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {Modal} from "react-bootstrap";
 import './style/faq.css';
+import exit from "../post/images/exit.svg";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,6 +27,9 @@ export default function FAQ(props) {
                dialogClassName={"terms-conditions faq-page"}
                {...props}>
         <div className={classes.root} >
+            <div onClick={props.onHide} className={"full-post__exit"}>
+                <img src={exit}/>
+            </div>
             <Accordion>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}

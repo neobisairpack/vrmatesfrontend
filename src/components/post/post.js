@@ -22,7 +22,6 @@ const Post = React.memo((props) => {
     const [notMessage, setNotMessage] = useState("")
     useEffect(() => {
         const {isSend} = props.post;
-        console.log(isSend)
         if(isSend !== null){
             props.setIsSendFalse();
             setNotMessage("You are interested in this user's post");

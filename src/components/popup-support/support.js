@@ -3,6 +3,7 @@ import {Form, FormGroup, Label, Input} from 'reactstrap';
 import {Modal} from "react-bootstrap";
 import './style/support.css';
 import axios from "axios";
+import Notification from "../notification/notification";
 
 const Support = (props) => {
     const [state, setState] = useState({
@@ -10,6 +11,8 @@ const Support = (props) => {
         title: "",
         text: ""
     })
+    const [notShow, setNotShow] = useState(false);
+    const [notMessage, setNotMessage] = useState("");
     const handleChange = (e) => {
         const value = e.target.value
         setState({
@@ -35,10 +38,11 @@ const Support = (props) => {
             }
         )
             .then((res) => {
-                console.log("sent")
+                window.location.reload()
             })
             .catch((err) => {
-                console.log("Support error " + err)
+                setNotMessage("Sorry, message was not sent")
+                setNotShow(true)
             })
     }
     return (
@@ -52,7 +56,7 @@ const Support = (props) => {
                         type="email"
                         name="email"
                         id="exampleEmail"
-                        placeholder="Email"
+                        placeholder="*Email"
                         value={state.name}
                         onChange={e => handleChange(e)}
                         reqiured="true"
@@ -63,7 +67,7 @@ const Support = (props) => {
                         style={{height: 46}}
                         type="text"
                         name="title"
-                        placeholder="Title"
+                        placeholder="*Title"
                         value={state.name}
                         onChange={e => handleChange(e)}
                         reqiured="true"
@@ -75,7 +79,7 @@ const Support = (props) => {
                         className={"support__textarea"}
                         type="textarea"
                         name="text"
-                        placeholder={"Text"}
+                        placeholder={"*Text"}
                         value={state.name}
                         onChange={e => handleChange(e)}
                         reqiured="true"/>
@@ -84,6 +88,10 @@ const Support = (props) => {
                     <button onClick={(e) => handleSubmit(e)} className={"support__submit-btn"}>Submit</button>
                 </div>
             </Form>
+            <div>
+                <Notification show={notShow} message={notMessage}
+                              onHide={() => setNotShow(false)}/>
+            </div>
         </Modal>
     );
 }

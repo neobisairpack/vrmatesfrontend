@@ -15,13 +15,11 @@ import {withRouter} from "react-router-dom";
 
 const Filter = (props) => {
     useEffect(() => {
-        console.log(props.location.pathname)
         if(props.location.pathname === "/dashboard/providers"){
 
             props.getPostsDashboard("provide-services")
         }
         else{
-            console.log("req")
             props.getPostsDashboard("services")
         }
     }, [])
@@ -47,9 +45,7 @@ const Filter = (props) => {
         else{
             url="service"
         }
-        console.log(dateformat(date, "yyyy-mm-dd"))
         props.filterPosts(url, date, state.type, state.country1, state.country2)
-        //props.state(false)
     }
     const cancelHandler = () => {
         props.state(false)
@@ -57,7 +53,6 @@ const Filter = (props) => {
     const {posts} = props.post;
 
     const getListPickUp = () => {
-        console.log(posts)
         return (
             posts.map((item) =>
                 <option name={"country1"} key={item.id} value={item.pickup_location}>{item.pickup_location}</option>
@@ -65,7 +60,6 @@ const Filter = (props) => {
         );
     };
     const getListDropOff = () => {
-        console.log(posts)
         return (
             posts.map((item) =>
                 <option name={"country1"} key={item.id} value={item.drop_off_location}>{item.drop_off_location}</option>

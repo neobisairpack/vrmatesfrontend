@@ -59,7 +59,8 @@ export const changePostStatus = (post, status) => {
         axios
             .put(`${mainURL}/api/services/${post.id}/`, {
                     status: status,
-                    deadline: post.deadline
+                    deadline: post.deadline,
+                    id: post.id
                 },
                 {
                     headers: {

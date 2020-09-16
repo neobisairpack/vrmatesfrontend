@@ -54,6 +54,7 @@ export const getPosts = () => {
 export const changePostStatus = (post, status) => {
     let token = JSON.parse(localStorage.getItem("token"));
     console.log(status, post)
+
     return dispatch => {
         dispatch(getInboxPostStarted());
         axios
@@ -71,7 +72,6 @@ export const changePostStatus = (post, status) => {
             )
             .then(res => {
                 console.log(res.data)
-                dispatch(addCanceledPosts());
             })
             .catch(err => {
                 console.log(err)
@@ -80,35 +80,38 @@ export const changePostStatus = (post, status) => {
     };
 };
 
-const addCanceledPosts = () => {
+export const addCanceledPosts = (post, status) => {
     let token = JSON.parse(localStorage.getItem("token"));
-    axios
-        .get(`${mainURL}/users/me/`, {
-            headers: {
-                "Authorization": "Token " + token
-            }
-        })
-        .then(res => {
-            axios
-                .post(`${mainURL}/users/update/`, {
-                    canceled_posts: res.data.canceled_posts + 1
-                }, {
-                    headers: {
-                        "Authorization": "Token " + token
-                    }
-                })
-                .then(res => {
-                    console.log(res)
-                    console.log(res.data.canceled_posts + 1)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        })
-        .catch(err => {
-            console.log(err)
-        })
-
+    return dispatch => {
+        axios
+            .get(`${mainURL}/users/me/`, {
+                headers: {
+                    "Authorization": "Token " + token
+                }
+            })
+            .then(res => {
+                console.log(res)
+                axios
+                    .post(`${mainURL}/users/update/`, {
+                        canceled_posts: res.data.canceled_posts + 1
+                    }, {
+                        headers: {
+                            "Authorization": "Token " + token
+                        }
+                    })
+                    .then(res => {
+                        console.log(res)
+                        console.log(res.data.canceled_posts + 1)
+                        post.createdBy === "Requester" ? dispatch(changePostStatus(post, status)) : dispatch(changePostStatusProvide(post, status))
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 }
 
 export const changePostStatusProvide = (post, status) => {
@@ -129,7 +132,6 @@ export const changePostStatusProvide = (post, status) => {
             )
             .then(res => {
                 console.log(res.data)
-                dispatch(addCanceledPosts());
             })
             .catch(err => {
                 dispatch(editPostFailure(err));

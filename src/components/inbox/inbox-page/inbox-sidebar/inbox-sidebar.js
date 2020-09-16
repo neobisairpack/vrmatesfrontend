@@ -8,7 +8,7 @@ import '../../../create-post/style/create-post.css';
 import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {
-    changePostStatus, changePostStatusProvide,
+    addCanceledPosts, changePostStatusProvide,
     chooseYesNo
 } from "../../../profile/profileActions";
 import Notification from "../../../notification/notification";
@@ -31,7 +31,7 @@ const InboxPageSidebar = (props) => {
     const [type, setType] = useState("");
     const [typeProvide, setTypeProvide] = useState("");
     const {post} = props.location.state;
-    const urlImg = 'http://167.172.178.135:8000';
+    const urlImg = 'https://vrmates.co';
     useEffect(()=>{
         if(choice !== "") {
             setLogoutShow(false)
@@ -79,10 +79,9 @@ const InboxPageSidebar = (props) => {
             }
             else{
                 let status = "Canceled"
-                post.createdBy === "Requester" ? props.changePostStatus(post, status) :
-                    props.changePostStatusProvide(post, status)
+                props.addCanceledPosts(post, status)
                 setChoice("")
-                props.history.push("/profile/inbox")
+                //props.history.push("/profile/inbox")
             }
         }
     }
@@ -161,14 +160,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        changePostStatus: (post, status) =>
-            dispatch(changePostStatus(post, status)),
+        addCanceledPosts: (post, status) =>
+            dispatch(addCanceledPosts(post, status)),
         changePostStatusProvide: (post, status) =>
             dispatch(changePostStatusProvide(post, status)),
         chooseYesNo: (data) =>
             dispatch(chooseYesNo(data)),
         getPostImages: (id) =>
             dispatch(getPostImages(id)),
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(InboxPageSidebar));

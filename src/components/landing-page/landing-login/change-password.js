@@ -15,7 +15,6 @@ const ChangePassword = () => {
     const [notMessage, setNotMessage] = useState("");
 
     const location = useLocation().search;
-   // console.log(location.substring(location.indexOf("=") + 1))
     const handleSubmit = (e) => {
         e.preventDefault()
         if (password === passwordConfirm)

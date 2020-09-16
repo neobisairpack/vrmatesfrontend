@@ -6,7 +6,7 @@ export const GET_POST_IMAGES_SUCCESS = "GET_POST_IMAGES_SUCCESS";
 export const GET_POST_IMAGES_FAILURE = "GET_POST_IMAGES_FAILURE";
 export const RESET_IS_CREATED = "RESET_IS_CREATED";
 
-const mainURL = "http://167.172.178.135:8000"
+const mainURL = "https://vrmates.co/backend"
 export const sendPostDelivery = (post, img1, img2) => {
     const fd = new FormData();
     fd.append('image1', img1)

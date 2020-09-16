@@ -4,7 +4,7 @@ export const GET_USER_DATA_SUCCESS = "GET_USER_DATA_SUCCESS";
 export const GET_USER_DATA_FAILURE = "GET_USER_DATA_FAILURE";
 export const SET_IS_AUTHED = "SET_IS_AUTHED";
 
-const mainURL = "http://167.172.178.135:8000";
+const mainURL = "https://vrmates.co/backend";
 export const getUserData = () => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {

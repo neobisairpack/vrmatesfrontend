@@ -15,7 +15,7 @@ const ResetPassword = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://167.172.178.135:8000/users/password-reset/', {
+        axios.post('https://vrmates.co/backend/users/password-reset/', {
             email: email,
         })
             .then((res) => {

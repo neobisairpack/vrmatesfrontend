@@ -19,7 +19,7 @@ const ChangePassword = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (password === passwordConfirm)
-            axios.post(`http://167.172.178.135:8000/users/password-reset/confirm/${location}`, {
+            axios.post(`https://vrmates.co/backend/users/password-reset/confirm/${location}`, {
                 password: password,
                 //token: location
                 token: location.substring(location.indexOf("=") + 1)

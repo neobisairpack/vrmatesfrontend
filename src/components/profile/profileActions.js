@@ -10,7 +10,7 @@ export const EDIT_POST_FAILURE = "EDIT_POST_FAILURE";
 export const CHOOSE_YES_NO = "CHOOSE_YES_NO";
 export const SET_CURRENT_CREATED_BY = "CURRENT_CREATED_BY";
 
-const mainURL = "http://167.172.178.135:8000"
+const mainURL = "https://vrmates.co/backend"
 export const getPosts = () => {
     let token = JSON.parse(localStorage.getItem("token"));
     let id = JSON.parse(localStorage.getItem("num"));

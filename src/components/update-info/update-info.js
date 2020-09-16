@@ -10,7 +10,7 @@ import './style/update-info.css';
 import imgIcon from "../post/images/empty-img.svg";
 import Notification from "../notification/notification";
 
-const mainURL = "http://167.172.178.135:8000";
+const mainURL = "https://vrmates.co/backend";
 const UpdateInfo = (props) => {
     const [state, setState] = useState({
         name: props.first_name,

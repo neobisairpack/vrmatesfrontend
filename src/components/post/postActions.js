@@ -10,7 +10,7 @@ export const GET_REQUEST_FAILURE = "GET_REQUEST_SUCCESS";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const SET_IS_SEND_FALSE = "SET_IS_SEND_FALSE";
 
-const mainURL = "http://167.172.178.135:8000"
+const mainURL = "https://vrmates.co/backend"
 export const getPostsDashboard = (url) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {

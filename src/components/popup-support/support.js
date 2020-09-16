@@ -26,7 +26,7 @@ const Support = (props) => {
             localStorage.setItem("report", props.from)
         }
         let token = JSON.parse(localStorage.getItem("token"));
-        axios.post('http://167.172.178.135:8000/api/support/', {
+        axios.post('https://vrmates.co/backend/api/support/', {
                 email: state.email,
                 title: state.title,
                 text: state.text

@@ -18,7 +18,7 @@ const LoginForm = (props) => {
     const [notMessage, setNotMessage] = useState("")
     const handleSubmit = (e) => {
         e.preventDefault(e)
-        axios.post('http://167.172.178.135:8000/users/login/', {
+        axios.post('https://vrmates.co/backend/users/login/', {
             email: email,
             password: password
         })

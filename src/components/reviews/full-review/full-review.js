@@ -10,7 +10,7 @@ import {withStyles} from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 
 const FullReview = (props) => {
-    const url = "http://167.172.178.135:8000"
+    const url = "https://vrmates.co/backend"
     const StyledRating = withStyles({
         iconFilled: {
             color: '#FD5A01',

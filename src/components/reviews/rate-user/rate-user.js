@@ -40,7 +40,7 @@ const RateUser = (props) => {
         fd.append('text', text)
         let token = JSON.parse(localStorage.getItem("token"));
         axios
-            .post(`http://167.172.178.135:8000/api/rating/`, fd,
+            .post(`https://vrmates.co/backend/api/rating/`, fd,
                 {
                     headers: {
                         "Authorization": "Token " + token

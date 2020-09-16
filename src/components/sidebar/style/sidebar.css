@@ -27,7 +27,7 @@
   .sidebar {
     width: 300px;
     overflow: hidden;
-    left: -335px;
+    left: -300px;
     padding-right: 300px;
     transition: 0.3s;
   }

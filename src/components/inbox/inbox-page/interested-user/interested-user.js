@@ -58,7 +58,7 @@ const InterestedUser = (props) => {
         }
         window.location.reload()
     }
-
+    console.log(interested)
     return (
         <div className={"interested-user container"}>
             <div className={"row"}>

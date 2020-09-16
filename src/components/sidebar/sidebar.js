@@ -24,7 +24,7 @@ const Sidebar = (props) => {
 
     let {loading} = props.userData;
     let {user} = props.userData;
-    const url = "http://167.172.178.135:8000";
+    const url = "https://vrmates.co";
 
     return (
         <div className="sidebar">

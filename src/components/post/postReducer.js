@@ -17,7 +17,8 @@ const initialState = {
     loading: false,
     error: null,
     res: null,
-    isSend: null
+    isSend: null,
+    filter: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -41,7 +42,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: null,
-                posts: action.payload
+                posts: action.payload,
+                filter: action.filter
             };
         case GET_REQUEST_REQ_SUCCESS:
             let all = []

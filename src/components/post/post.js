@@ -46,7 +46,12 @@ const Post = React.memo((props) => {
             color: '#8c8c8c',
         }
     })(Rating);
-    const urlImg = 'http://167.172.178.135:8000';
+
+    let urlImg = '';
+    const {filter} = props.post
+    if(!filter){
+        urlImg = 'https://vrmates.co'
+    }
     const {url} = props;
     const modalHandler = (index) => {
         setActiveModal(index);

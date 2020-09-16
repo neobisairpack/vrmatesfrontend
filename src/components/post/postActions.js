@@ -28,7 +28,7 @@ export const getPostsDashboard = (url) => {
                         posts.push(item)
                     }
                 })
-                dispatch(getDashboardPostsSuccess(posts))
+                dispatch(getDashboardPostsSuccess([posts, false]))
             })
             .catch((err) => dispatch(getRequestFailure(err)))
     };
@@ -47,7 +47,7 @@ export const filterPosts = (url, deadline, type, country1, country2) => {
         })
             .then(res => {
                 let result = res.data.map(item => item).reverse()
-                dispatch(getDashboardPostsSuccess(result))
+                dispatch(getDashboardPostsSuccess([result, true]))
             })
             .catch((err) => {
                 dispatch(getRequestFailure(err))
@@ -240,7 +240,8 @@ const getRequestReqSuccess = (data) => ({
 });
 const getDashboardPostsSuccess = (data) => ({
     type: GET_DASHBOARD_POSTS_SUCCESS,
-    payload: data
+    payload: data[0],
+    filter: data[1]
 });
 const getRequestSuccess = (data) => ({
     type: GET_REQUEST_SUCCESS,

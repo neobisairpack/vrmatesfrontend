@@ -16,7 +16,11 @@ import Notification from "../../notification/notification";
 import {withRouter} from "react-router-dom";
 
 const FullPost = (props) => {
-    const urlImg = 'https://vrmates.co/backend';
+    let urlImg = '';
+    const {filter} = props.post
+    if(!filter){
+        urlImg = 'https://vrmates.co'
+    }
     const {data} = props;
     const [notShow, setNotShow] = useState(false)
     const [notMessage, setNotMessage] = useState("")

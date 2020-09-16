@@ -21,7 +21,6 @@ const ChangePassword = () => {
         if (password === passwordConfirm)
             axios.post(`https://vrmates.co/backend/users/password-reset/confirm/${location}`, {
                 password: password,
-                //token: location
                 token: location.substring(location.indexOf("=") + 1)
             })
                 .then((res) => {

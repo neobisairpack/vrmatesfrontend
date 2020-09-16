@@ -28,7 +28,6 @@ export const getPostsDashboard = (url) => {
                         posts.push(item)
                     }
                 })
-                console.log(res.data)
                 dispatch(getDashboardPostsSuccess(posts))
             })
             .catch((err) => dispatch(getRequestFailure(err)))
@@ -38,7 +37,6 @@ export const getPostsDashboard = (url) => {
 export const filterPosts = (url, deadline, type, country1, country2) => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
-        console.log(deadline, country1, country2, type)
         deadline = deadline ? dateformat(deadline, "yyyy-mm-dd") : ""
         country1 = country1.split(" ").join("+")
         country2 = country2.split(" ").join("+")
@@ -52,7 +50,6 @@ export const filterPosts = (url, deadline, type, country1, country2) => {
                 dispatch(getDashboardPostsSuccess(result))
             })
             .catch((err) => {
-                console.log(err)
                 dispatch(getRequestFailure(err))
             })
     };
@@ -143,7 +140,6 @@ export const getInterestedRequestById = (createdBy, id) => {
                         if(item.service.id === id && item.status === "Pending")
                             myRes.push(item)
                     })
-                console.log(myRes)
                     dispatch(getRequestSuccess(myRes));
             })
             .catch(err => {
@@ -155,7 +151,6 @@ export const getInterestedRequestById = (createdBy, id) => {
 export const getInterestedRequestProvide = () => {
     let token = JSON.parse(localStorage.getItem("token"));
     return dispatch => {
-        console.log("request")
         axios
             .get(`${mainURL}/api/request-provide-services/`,
                 {
@@ -165,7 +160,6 @@ export const getInterestedRequestProvide = () => {
                 }
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(getRequestProvSuccess(res.data));
             })
             .catch(err => {
@@ -190,7 +184,6 @@ export const changeStatusRequest = (req, status) => {
                 }
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(sendRequestSuccess(res.data));
             })
             .catch(err => {
@@ -216,7 +209,6 @@ export const changeStatusRequestProvide = (req, status) => {
                 }
             )
             .then(res => {
-                console.log(res.data)
                 dispatch(sendRequestSuccess(res.data));
             })
             .catch(err => {

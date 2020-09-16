@@ -71,7 +71,7 @@ const Post = React.memo((props) => {
             }}
     }
     const {posts} = props;
-    console.log(posts, props)
+
     return (
         <div className={"post container"}>
             <>

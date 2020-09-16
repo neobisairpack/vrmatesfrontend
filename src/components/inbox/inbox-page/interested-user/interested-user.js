@@ -11,7 +11,7 @@ import {
 import {connect} from "react-redux";
 import Notification from "../../../notification/notification";
 const InterestedUser = (props) => {
-    const urlImg = 'https://vrmates.co/backend';
+    const urlImg = 'http://167.172.178.135:8000';
     const [notShow, setNotShow] = useState(false);
     const [notMessage, setNotMessage] = useState("");
     useEffect(() => {

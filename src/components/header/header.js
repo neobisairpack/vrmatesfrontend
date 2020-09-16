@@ -87,25 +87,15 @@ const Header = (props) => {
                             <Link to="/dashboard/providers"
                                   className={"nav__item nav__submenu"}>Providers</Link>
                         </NavItem>
-                        {/*<NavItem className={"nav__item_logout "}>*/}
-                        {/*    <button onClick={() => logoutHandler()} className={*/}
-                        {/*        "nav__logout-btn"*/}
-                        {/*    }><img src={LogOutImg}*/}
-                        {/*           className={"nav__item-logout-icon"}*/}
-                        {/*           alt={"logOut"}/>Log out*/}
-                        {/*    </button>*/}
-                        {/*</NavItem>*/}
                     </Nav>
 
-                    <NavbarText>
-                        <NavItem className={"nav__item_logout "}>
-                            <button onClick={() => logoutHandler()} className={
-                                "nav__logout-btn"
-                            }><img src={LogOutImg}
-                                   className={"nav__item-logout-icon"}
-                                   alt={"logOut"}/>Log out
-                            </button>
-                        </NavItem>
+                    <NavbarText className={"nav__item_logout "}>
+                        <button onClick={() => logoutHandler()} className={
+                            "nav__logout-btn"
+                        }><img src={LogOutImg}
+                               className={"nav__item-logout-icon"}
+                               alt={"logOut"}/>Log out
+                        </button>
                     </NavbarText>
                 </Collapse>
             </Navbar>

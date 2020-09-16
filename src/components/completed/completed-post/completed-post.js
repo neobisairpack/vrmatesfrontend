@@ -35,7 +35,7 @@ const CompletedPost = (props) => {
             color: '#8c8c8c',
         }
     })(Rating);
-    const urlImg = 'https://vrmates.co/backend';
+    const urlImg = 'http://167.172.178.135:8000';
     const {url} = props;
     const {posts} = props;
     return (

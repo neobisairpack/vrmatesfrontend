@@ -35,7 +35,7 @@ const Reviews = (props) => {
     const getReviews = () =>{
         let token = JSON.parse(localStorage.getItem("token"));
         let id = JSON.parse(localStorage.getItem("num"));
-        axios.get('http://167.172.178.135:8000/api/rating/', {
+        axios.get('https://vrmates.co/backend/api/rating/', {
             headers: {
                 "Authorization": "Token " + token
             }
@@ -48,7 +48,6 @@ const Reviews = (props) => {
                     }
                 })
                 setRate(reviews);
-                console.log(reviews)
             })
             .catch((err) => console.log(err))
     }

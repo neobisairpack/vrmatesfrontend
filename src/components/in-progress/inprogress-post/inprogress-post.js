@@ -22,7 +22,7 @@ import {withRouter} from "react-router-dom";
 import {setCurrentUser} from "../../post/postActions";
 
 const InProgressPost = (props) => {
-    const urlImg = 'https://vrmates.co/backend';
+    const urlImg = 'http://167.172.178.135:8000';
     const [activeModal, setActiveModal] = useState(null);
     const [logoutShow, setLogoutShow] = useState(false);
     const [logoutMessage, setLogoutMessage] = useState("")

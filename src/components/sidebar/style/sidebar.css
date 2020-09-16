@@ -131,7 +131,6 @@
 }
 
 .profile-sidebar__text-about-me {
-  white-space: nowrap;
   overflow: hidden;
   max-height: 100px;
   font-style: normal;

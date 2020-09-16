@@ -3,7 +3,7 @@ import {
     REMOVE_INBOX_POST,
     GET_INBOX_POST_SUCCESS,
     GET_INBOX_POST_FAILURE,
-    CHOOSE_YES_NO, CURRENT_CREATED_BY, SET_CURRENT_CREATED_BY, GET_ALL_POST_SUCCESS
+    CHOOSE_YES_NO, SET_CURRENT_CREATED_BY, GET_ALL_POST_SUCCESS
 } from "./profileActions";
 
 const initialState = {
@@ -36,7 +36,6 @@ const reducer = (state = initialState, action) => {
                     arr1.push(item)
                 }
             })
-            console.log(arr1)
             return {
                 ...state,
                 loading: false,

@@ -131,7 +131,7 @@ $percent: calc(var(--rating) / 5 * 100%);
   margin-bottom: 10px;
 }
 .profile-sidebar__text-about-me{
-  white-space: nowrap;
+  //white-space: nowrap;
   //word-break: break-word;
   overflow: hidden;
   max-height: 100px;

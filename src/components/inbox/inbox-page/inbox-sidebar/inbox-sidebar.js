@@ -31,7 +31,7 @@ const InboxPageSidebar = (props) => {
     const [type, setType] = useState("");
     const [typeProvide, setTypeProvide] = useState("");
     const {post} = props.location.state;
-    const urlImg = 'https://vrmates.co/backend';
+    const urlImg = 'http://167.172.178.135:8000';
     useEffect(()=>{
         if(choice !== "") {
             setLogoutShow(false)

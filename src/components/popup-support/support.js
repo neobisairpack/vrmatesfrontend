@@ -68,7 +68,7 @@ const Support = (props) => {
                         type="text"
                         name="title"
                         placeholder="*Title"
-                        maxlength={60}
+                        maxLength={60}
                         value={state.name}
                         onChange={e => handleChange(e)}
                         reqiured="true"

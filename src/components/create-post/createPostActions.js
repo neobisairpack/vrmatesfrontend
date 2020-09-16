@@ -257,32 +257,39 @@ export const editPost = (post, img1, img2) => {
                 {headers: {
                         "Authorization": "Token " + token
                     }}),
-            post.img1 ?
+            post.img1 && img1?
                 axios.put(`${mainURL}/api/services-images/${post.img1.id}/`, fd1, {
                     headers: {
                         "Authorization": "Token " + token,
                         'Content-Type': 'multipart/form-data'
                     }
-                }) : fd1.append('post', post.id),
-            axios.post(`${mainURL}/api/services-images/`, fd1, {
-                headers: {
-                    "Authorization": "Token " + token,
-                    'Content-Type': 'multipart/form-data'
-                }
-            }),
-            post.img2 ?
+                }) :
+             !post.img1 && img1 ?
+                 (fd1.append('post', post.id),
+                     axios.post(`${mainURL}/api/services-images/`, fd1, {
+                         headers: {
+                             "Authorization": "Token " + token,
+                             'Content-Type': 'multipart/form-data'
+                         }
+                     })) : null,
+
+            post.img2 && img2 ?
                 axios.put(`${mainURL}/api/services-images/${post.img2.id}/`, fd2, {
                     headers: {
                         "Authorization": "Token " + token,
                         'Content-Type': 'multipart/form-data'
                     }
-                }) : fd2.append('post', post.id),
-            axios.post(`${mainURL}/api/services-images/`, fd2, {
-                headers: {
-                    "Authorization": "Token " + token,
-                    'Content-Type': 'multipart/form-data'
-                }
-            }),
+                }) :
+                !post.img2 && img2 ?
+                    (fd2.append('post', post.id),
+                        axios.post(`${mainURL}/api/services-images/`, fd2, {
+                            headers: {
+                                "Authorization": "Token " + token,
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        })
+                    ) : null,
+
         ])
             .then(axios.spread(function(req, prov) {
                 console.log(req, prov)

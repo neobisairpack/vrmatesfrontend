@@ -56,7 +56,7 @@ const Reviews = (props) => {
     }
     return (
         <div className={"reviews " + (props.id ? "reviews__user-profile" : "reviews__profile")}>
-            {rate.length === 0 ? <div className={"reviews__message"}>You have no reviews yet</div> :
+            {rate.length === 0 ? <div className={"reviews__message"}>No reviews yet</div> :
             rate.map((item) =>
             <div key={item.id} className={"review"}>
                <div onClick={() => showFullReview(item.id)} className={"review " + ((item.id) % 2 !== 0 ? "review-orange" : "review-blue") }>

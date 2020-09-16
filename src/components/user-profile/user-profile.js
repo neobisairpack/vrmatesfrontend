@@ -39,6 +39,7 @@ const UserProfile = (props) => {
             </div>
             <Footer/>
         </div>
+
     );
 };
 const mapStateToProps = state => {

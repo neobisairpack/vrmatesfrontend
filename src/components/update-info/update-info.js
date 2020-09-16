@@ -9,6 +9,7 @@ import {Modal} from 'react-bootstrap';
 import './style/update-info.css';
 import imgIcon from "../post/images/empty-img.svg";
 import Notification from "../notification/notification";
+import exit from "../post/images/exit.svg";
 
 const mainURL = "https://vrmates.co/backend";
 const UpdateInfo = (props) => {
@@ -80,6 +81,9 @@ const UpdateInfo = (props) => {
     }
     return (
             <Modal {...props} dialogClassName={"update-info"}>
+                <div onClick={props.onHide} className={"full-post__exit"}>
+                    <img src={exit}/>
+                </div>
                 <div>
                     <label className={"register__title"}>Update Personal Information</label>
                 </div>
@@ -128,14 +132,14 @@ const UpdateInfo = (props) => {
                         />
                     </FormGroup>
 
-                    <FormGroup/>
+                    {/*<FormGroup/>*/}
                         <DatePicker
                             className={"update__input"}
                             placeholderText={birthDate ? birthDate : "Date of birth"}
                             selected={birthDate}
                             onChange={date => setBirthDate(date)}
                         />
-                    <FormGroup/>
+                    {/*<FormGroup/>*/}
                     <FormGroup>
                         <Input
                             className={"update__input"}

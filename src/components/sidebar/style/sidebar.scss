@@ -30,7 +30,8 @@ $percent: calc(var(--rating) / 5 * 100%);
     border-bottom: 1px solid rgba(196, 196, 196, 0.23);
   }
   @media screen and (max-width: 1115px){
-    overflow: visible;
+    width: 300px;
+    overflow: hidden;
     left: -335px;
     padding-right: 300px;
     transition: 0.3s;
@@ -118,8 +119,7 @@ $percent: calc(var(--rating) / 5 * 100%);
   word-break: break-word;
   font-style: normal;
   font-weight: bold;
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 30px;
   color: #FFFFFF;
 }
 .profile-sidebar__detail{
@@ -226,15 +226,15 @@ $percent: calc(var(--rating) / 5 * 100%);
   grid-area: l;
 }
 .sidebar__profile-photos{
-  width: 115px;
-  height: 115px;
+  width: 100px;
+  height: 100px;
   grid-area: p;
   overflow: hidden;
   position: relative;
 }
 .profile-sidebar__profile-photos{
-  width: 115px;
-  height: 115px;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
   position: relative;
 }
@@ -277,8 +277,7 @@ $percent: calc(var(--rating) / 5 * 100%);
   font-family: $font-family;
   font-style: normal;
   font-weight: normal;
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 30px;
   color: #FFFFFF;
 }
 .sidebar__item-rating{

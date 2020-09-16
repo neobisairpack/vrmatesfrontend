@@ -5,6 +5,7 @@ import './style/sidebar.css';
 import UpdateInfo from "../update-info";
 import {connect} from "react-redux";
 import {getUserData} from "./sidebarActions";
+import {Link} from "react-router-dom";
 
 const ProfileSidebar = (props) => {
     const [modalShow, setModalShow] = useState(false)
@@ -20,7 +21,7 @@ const ProfileSidebar = (props) => {
         <div className="profile-sidebar">
             {loading ? "Loading" :
                 <>
-                    <img src={logo} className={""} alt={"Vrmates"}/>
+                    <Link to={'/dashboard'}><img src={logo} className={""} alt={"Vrmates"}/></Link>
                     <div className={"profile-sidebar__top"}>
                         <div className={"profile-sidebar__profile-photos"}>
                             {user.image ?

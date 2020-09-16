@@ -25,7 +25,8 @@
 }
 @media screen and (max-width: 1115px) {
   .sidebar {
-    overflow: visible;
+    width: 300px;
+    overflow: hidden;
     left: -335px;
     padding-right: 300px;
     transition: 0.3s;
@@ -116,8 +117,7 @@
   word-break: break-word;
   font-style: normal;
   font-weight: bold;
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 30px;
   color: #FFFFFF;
 }
 
@@ -221,16 +221,16 @@
   -ms-grid-row: 3;
   -ms-grid-row-span: 3;
   -ms-grid-column: 1;
-  width: 115px;
-  height: 115px;
+  width: 100px;
+  height: 100px;
   grid-area: p;
   overflow: hidden;
   position: relative;
 }
 
 .profile-sidebar__profile-photos {
-  width: 115px;
-  height: 115px;
+  width: 100px;
+  height: 100px;
   overflow: hidden;
   position: relative;
 }
@@ -280,8 +280,7 @@
   font-family: Muller;
   font-style: normal;
   font-weight: normal;
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 30px;
   color: #FFFFFF;
 }
 

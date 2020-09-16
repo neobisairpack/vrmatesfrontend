@@ -1,5 +1,6 @@
 .update-info .modal-content {
   overflow-y: scroll;
+  overflow-x: hidden;
   left: -15%;
   top: 13%;
   width: 170%;
@@ -11,13 +12,28 @@
 @media screen and (max-width: 1100px) {
   .update-info .modal-content {
     width: 100%;
-    left: 0;
+    left: 5%;
   }
 }
 @media screen and (max-width: 581px) {
   .update-info .modal-content {
     width: 80%;
   }
+}
+.update-info .modal-content::-webkit-scrollbar {
+  width: 5px;
+  box-sizing: content-box;
+}
+.update-info .modal-content::-webkit-scrollbar-track {
+  background: #F4F3F3;
+  border-radius: 10px;
+}
+.update-info .modal-content::-webkit-scrollbar-thumb {
+  background: #D8D8D8;
+  border-radius: 10px;
+}
+.update-info .modal-content::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }
 
 textarea.update__about-me.form-control {

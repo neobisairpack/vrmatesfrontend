@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import Rating from '@material-ui/lab/Rating';
 import Box from "@material-ui/core/Box";
 import {getUserData} from "./sidebarActions";
+import {Link} from "react-router-dom";
 
 
 const Sidebar = (props) => {
@@ -30,7 +31,7 @@ const Sidebar = (props) => {
         <div className="sidebar">
             {loading ? "Loading" :
                 <>
-                    <img src={logo} className={"sidebar__item-logo"} alt={"Vrmates"}/>
+                    <Link to={'/dashboard'}><img src={logo} className={"sidebar__item-logo"} alt={"Vrmates"}/></Link>
                     <div className={"sidebar__profile-photos"}>
                         {user.image ?
                             <img src={url + user.image} className={"sidebar__item-photo"}  alt={"Profile"}/>

@@ -10,14 +10,10 @@ import {
     CardText,
     CardSubtitle,
 } from 'reactstrap';
-import {getPosts} from "../../profile/profileActions";
 import {connect} from "react-redux";
 import {getInterestedRequest, getInterestedRequestProvide} from "../../post/postActions";
-import {getUserData} from "../../sidebar/sidebarActions";
 
 const InboxPost = (props) => {
-   // const [interested, setInterested] = useState([])
-    const [relatedInbox, setRelatedInbox] = useState([])
     useEffect(() => {
         props.getInterestedRequest();
         props.getInterestedRequestProvide();
@@ -66,7 +62,7 @@ const InboxPost = (props) => {
                 {posts.map((item, indx) =>
                     //item.requester.id !== user.id || item.provider.id !== user.id ? null :
                     <div key={indx} className={"col-lg-4 col-md-6 col-sm-12 col-xs-12"}>
-                        <Card onClick={() => redirect(item)}>
+                        <Card className={"post__card"} onClick={() => redirect(item)}>
                             <div className={"post__content"}>
                                 <div className={"post__top"}>
                                     <ul className={"post__top-list"}>

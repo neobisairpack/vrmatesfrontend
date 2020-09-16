@@ -17,7 +17,6 @@ import Notification from "../notification/notification";
 
 const Post = React.memo((props) => {
     const [activeModal, setActiveModal] = useState(null);
-    const [activeModal1, setActiveModal1] = useState(null);
     const [notShow, setNotShow] = useState(false)
     const [notMessage, setNotMessage] = useState("")
     useEffect(() => {
@@ -47,6 +46,7 @@ const Post = React.memo((props) => {
             color: '#8c8c8c',
         }
     })(Rating);
+
     const urlImg = 'http://167.172.178.135:8000';
     const {url} = props;
     const modalHandler = (index) => {
@@ -72,6 +72,7 @@ const Post = React.memo((props) => {
             }}
     }
     const {posts} = props;
+    console.log(posts, props)
     return (
         <div className={"post container"}>
             <>
@@ -140,7 +141,10 @@ const Post = React.memo((props) => {
 
                                 </div>
                                 <div>
-                                    <CardText className={"post__text"}>{item.title} {item.text} </CardText>
+                                    <CardText className={"post__text"}>{item.title}<br/>{item.text}
+                                    <br/>
+                                        {item.preferences ? `Preferences: ${item.preferences}` : ""}
+                                    </CardText>
                                     <CardText
                                         className={"post__email"}>{item.requester ? item.requester.email : item.provider.email}</CardText>
                                     {props.btn ?

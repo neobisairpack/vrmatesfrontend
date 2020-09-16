@@ -210,13 +210,13 @@ const CreateProviderHosting = (props) => {
                 <div className={"create-post__title"}>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>*Please, add post title:</Label>
-                        <Input required type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
+                        <Input maxLength={100} required type="textarea" name="title" value={state.title} onChange={e => handleChange(e)}/>
                     </FormGroup>
                 </div>
                 <div className={"create-post__description"}>
                     <FormGroup>
                         <Label className={"create-post__form-title"}>Please, add post body:</Label>
-                        <Input required type="textarea" name="text" value={state.text} onChange={e => handleChange(e)}/>
+                        <Input maxLength={600} required type="textarea" name="text" value={state.text} onChange={e => handleChange(e)}/>
                     </FormGroup>
                 </div>
 

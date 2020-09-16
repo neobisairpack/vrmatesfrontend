@@ -68,6 +68,7 @@ const Support = (props) => {
                         type="text"
                         name="title"
                         placeholder="*Title"
+                        maxlength={60}
                         value={state.name}
                         onChange={e => handleChange(e)}
                         reqiured="true"
@@ -80,6 +81,7 @@ const Support = (props) => {
                         type="textarea"
                         name="text"
                         placeholder={"*Text"}
+                        maxLength={600}
                         value={state.name}
                         onChange={e => handleChange(e)}
                         reqiured="true"/>

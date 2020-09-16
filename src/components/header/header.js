@@ -97,6 +97,16 @@ const Header = (props) => {
                         </NavItem>
                     </Nav>
 
+                    <NavbarText>
+                        <NavItem className={"nav__item_logout "}>
+                            <button onClick={() => logoutHandler()} className={
+                                "nav__logout-btn"
+                            }><img src={LogOutImg}
+                                   className={"nav__item-logout-icon"}
+                                   alt={"logOut"}/>Log out
+                            </button>
+                        </NavItem>
+                    </NavbarText>
                 </Collapse>
             </Navbar>
             <LogOut setChoice={(c) => setChoice(c)} message={logoutMessage} show={modalShow}

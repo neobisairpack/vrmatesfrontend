@@ -128,13 +128,14 @@ const UpdateInfo = (props) => {
                         />
                     </FormGroup>
 
-                    <DatePicker
-                        className={"update__input"}
-                        placeholderText={birthDate ? birthDate : "Date of birth"}
-                        selected={birthDate}
-                        onChange={date => setBirthDate(date)}
-                    />
-
+                    <FormGroup/>
+                        <DatePicker
+                            className={"update__input"}
+                            placeholderText={birthDate ? birthDate : "Date of birth"}
+                            selected={birthDate}
+                            onChange={date => setBirthDate(date)}
+                        />
+                    <FormGroup/>
                     <FormGroup>
                         <Input
                             className={"update__input"}
@@ -192,6 +193,7 @@ const UpdateInfo = (props) => {
                     <FormGroup>
                         <Input type="textarea" name={"about_me"}
                                className={"update__about-me"}
+                               maxLength={300}
                                placeholder={state.about_me ? state.about_me : "About me"}
                                value={state.about_me}
                                onChange={e => handleChange(e)}

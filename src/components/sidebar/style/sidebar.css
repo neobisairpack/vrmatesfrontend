@@ -1,5 +1,5 @@
 .sidebar {
-  z-index: 314343;
+  z-index: 1;
   width: 337px;
   overflow: hidden;
   display: grid;
@@ -73,7 +73,7 @@
 }
 
 .profile-sidebar {
-  z-index: 54635;
+  z-index: 1;
   width: 337px;
   display: grid;
   overflow: hidden;
@@ -131,28 +131,15 @@
 }
 
 .profile-sidebar__text-about-me {
-  overflow-y: scroll;
-  height: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-height: 100px;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 170%;
   color: rgba(255, 255, 255, 0.5);
-}
-.profile-sidebar__text-about-me::-webkit-scrollbar {
-  width: 5px;
-  box-sizing: content-box;
-}
-.profile-sidebar__text-about-me::-webkit-scrollbar-track {
-  background: #F4F3F3;
-  border-radius: 10px;
-}
-.profile-sidebar__text-about-me::-webkit-scrollbar-thumb {
-  background: #D8D8D8;
-  border-radius: 10px;
-}
-.profile-sidebar__text-about-me::-webkit-scrollbar-thumb:hover {
-  background: #888;
+  text-overflow: ellipsis;
 }
 
 .profile-sidebar__detail-text {

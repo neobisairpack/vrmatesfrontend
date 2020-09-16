@@ -1,7 +1,7 @@
 $font-family: Muller;
 $percent: calc(var(--rating) / 5 * 100%);
 .sidebar {
-  z-index: 314343;
+  z-index: 1;
   width: 337px;
   overflow: hidden;
   display: grid;
@@ -77,7 +77,7 @@ $percent: calc(var(--rating) / 5 * 100%);
   }
 }
 .profile-sidebar{
-  z-index: 54635;
+  z-index: 1;
   width: 337px;
   display: grid;
   overflow: hidden;
@@ -112,7 +112,7 @@ $percent: calc(var(--rating) / 5 * 100%);
  // padding-left: 10%;
   margin-top: 50px;
 }
-//'★★★★★'
+
 .profile-sidebar__name{
   //align-self: center;
   word-break: break-word;
@@ -131,31 +131,34 @@ $percent: calc(var(--rating) / 5 * 100%);
   margin-bottom: 10px;
 }
 .profile-sidebar__text-about-me{
-  overflow-y: scroll;
-  height: 100px;
+  white-space: nowrap;
+  //word-break: break-word;
+  overflow: hidden;
+  max-height: 100px;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 170%;
   color: rgba(255, 255, 255, 0.5);
-  &::-webkit-scrollbar {
-    width: 5px;
-    box-sizing: content-box;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #F4F3F3;
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #D8D8D8;
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: #888;
-  }
+  text-overflow: ellipsis;
+  //&::-webkit-scrollbar {
+  //  width: 5px;
+  //  box-sizing: content-box;
+  //}
+  //
+  //&::-webkit-scrollbar-track {
+  //  background: #F4F3F3;
+  //  border-radius: 10px;
+  //}
+  //
+  //&::-webkit-scrollbar-thumb {
+  //  background: #D8D8D8;
+  //  border-radius: 10px;
+  //}
+  //
+  //&::-webkit-scrollbar-thumb:hover {
+  //  background: #888;
+  //}
 }
 .profile-sidebar__detail-text{
   overflow: hidden;

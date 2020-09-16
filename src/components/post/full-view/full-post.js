@@ -121,7 +121,10 @@ const FullPost = (props) => {
                             </div>
 
                         </div>
-                        <CardText className={"full-post__text"}>{data.title} {data.text} </CardText>
+                        <CardText className={"full-post__text"}>{data.title}<br/>{data.text}
+                            <br/>
+                            {data.preferences ? `Preferences: ${data.preferences}` : ""}
+                        </CardText>
                         <CardText className={"full-post__email"}>{data.requester ? data.requester.email : data.provider.email}</CardText>
                         {data.service_type === 'Delivery' && data.requester || data.service_type === 'Hosting' && data.provider ?
                         <div className={"full-post__images"}>

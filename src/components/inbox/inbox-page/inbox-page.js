@@ -11,8 +11,8 @@ const InboxPage = (props) => {
     return (
         <div className={"inbox-page"}>
             <ScrollToTopControlller/>
-            <InboxPageSidebar/>
             <Header style={"inbox"}/>
+            <InboxPageSidebar/>
             <div className={"inbox-page__content"}>
                 <div className={"inbox-page__title"}>interested users</div>
                 <InterestedUser/>

@@ -71,7 +71,8 @@ const InboxPost = (props) => {
                                             <div
                                                 className={"post__person"}>{item.requester ? "Requester" : "Provider"}</div>
                                         </li>
-                                        <li className={"post__top-list-item inbox-post__item"}><img
+                                        <li className={"post__top-list-item inbox-post__item"}>
+                                            <img
                                             className={"icon-people"} src={people}/> + {item.createdBy === "Requester" ? mapRequests(item.id, "req") : mapRequests(item.id, "prov")}
                                         </li>
                                     </ul>

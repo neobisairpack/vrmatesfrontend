@@ -63,7 +63,7 @@ const InterestedUser = (props) => {
         <div className={"interested-user container"}>
             <div className={"row"}>
                 {interested.map((item) =>
-                    <div key={item.id} className={"col-4"}>
+                    <div key={item.id} className={""}>
                         <div className={"interested-user-card "}>
                             <ul className={"interested-user__info"} onClick={() => setUserFunc(item.requester)}>
                                 <li className={"interested__list-item"}>

@@ -1,9 +1,32 @@
 .interested-user {
+  overflow-y: scroll;
+  overflow-x: hidden;
   padding-top: 8%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+.interested-user::-webkit-scrollbar {
+  width: 5px;
+  box-sizing: content-box;
+}
+.interested-user::-webkit-scrollbar-track {
+  background: #F4F3F3;
+  border-radius: 10px;
+}
+.interested-user::-webkit-scrollbar-thumb {
+  background: #D8D8D8;
+  border-radius: 10px;
+}
+.interested-user::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }
 
 .interested-user-card {
-  width: 90%;
+  width: 95%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   margin-bottom: 10%;
   background: #FFFFFF;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
@@ -52,6 +75,9 @@
 }
 
 .interested__user-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-family: Muller;
   font-style: normal;
   font-weight: bold;
@@ -104,3 +130,4 @@
   border-left: 1px solid rgba(2, 7, 18, 0.1);
   padding-left: 15%;
 }
+/*# sourceMappingURL=interested.css.map */

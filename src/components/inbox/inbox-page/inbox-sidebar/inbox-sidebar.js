@@ -162,8 +162,6 @@ const mapDispatchToProps = dispatch => {
     return {
         addCanceledPosts: (post, status) =>
             dispatch(addCanceledPosts(post, status)),
-        changePostStatusProvide: (post, status) =>
-            dispatch(changePostStatusProvide(post, status)),
         chooseYesNo: (data) =>
             dispatch(chooseYesNo(data)),
         getPostImages: (id) =>

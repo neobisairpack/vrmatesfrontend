@@ -72,7 +72,6 @@ const FullPost = (props) => {
                 setNotShow(true)
             }}
     }
-    console.log(data)
     return (
         <div>
             <Modal show={props.show} onHide={props.onHide} dialogClassName={"full-post"}>

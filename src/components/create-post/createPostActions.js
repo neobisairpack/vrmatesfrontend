@@ -9,6 +9,7 @@ export const RESET_IS_CREATED = "RESET_IS_CREATED";
 const mainURL = "https://vrmates.co/backend"
 export const sendPostDelivery = (post, img1, img2) => {
     const fd = new FormData();
+    console.log(img1, img2)
     fd.append('image1', img1)
     fd.append('image2', img2)
     fd.append('status', "Created, not accepted")
@@ -33,6 +34,7 @@ export const sendPostDelivery = (post, img1, img2) => {
             )
             .then(res => {
                 dispatch(sendPostSuccess(res.data));
+                console.log(res.data)
             })
             .catch(err => {
                 dispatch(sendPostFailure(err));

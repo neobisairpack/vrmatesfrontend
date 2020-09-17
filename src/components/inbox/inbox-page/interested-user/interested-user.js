@@ -6,7 +6,7 @@ import {
     changeStatusRequest, changeStatusRequestProvide,
     getInterestedRequest, getInterestedRequestById,
     getInterestedRequestProvide,
-    setCurrentUser
+    setCurrentUser, setIsSendFalse
 } from "../../../post/postActions";
 import {connect} from "react-redux";
 import Notification from "../../../notification/notification";
@@ -18,6 +18,7 @@ const InterestedUser = (props) => {
         const {isSend} = props.post
         const {error} = props.post
         if (isSend) {
+            props.setIsSendFalse()
             setNotMessage("Thank you! User is accepted")
             setNotShow(true)
         }
@@ -53,15 +54,17 @@ const InterestedUser = (props) => {
     const cancelHandler = (req) => {
         if (props.location.state.post.createdBy === "Requester") {
             props.changeStatusRequest(req, "Canceled")
+            window.location.reload()
         } else if (props.location.state.post.createdBy === "Provider") {
             props.changeStatusRequestProvide(req, "Canceled")
+            window.location.reload()
         }
-        window.location.reload()
+
     }
-    console.log(interested)
+
     return (
-        <div className={"interested-user container"}>
-            <div className={"row"}>
+        <div className={"interested-user"}>
+            {/*<div className={""}>*/}
                 {interested.map((item) =>
                     <div key={item.id} className={""}>
                         <div className={"interested-user-card "}>
@@ -94,7 +97,7 @@ const InterestedUser = (props) => {
                     <Notification show={notShow} message={notMessage}
                                   onHide={() => setNotShow(false)}/>
                 </div>
-            </div>
+            {/*</div>*/}
 
         </div>
     );
@@ -118,7 +121,9 @@ const mapDispatchToProps = dispatch => {
         changeStatusRequest: (req, status) =>
             dispatch(changeStatusRequest(req, status)),
         changeStatusRequestProvide: (req, status) =>
-            dispatch(changeStatusRequestProvide(req, status))
+            dispatch(changeStatusRequestProvide(req, status)),
+        setIsSendFalse: () =>
+            dispatch(setIsSendFalse()),
     }
 }
 

@@ -25,7 +25,7 @@
   }
 }
 .interested-user-card{
-  width: 95%;
+  width: 180px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -76,7 +76,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-family: Muller;
+  font-family: muller;
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
@@ -85,7 +85,7 @@
 }
 .interested__service-type{
   padding: 0 16px 11px 16px;
-  font-family: Muller;
+  font-family: muller;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -122,5 +122,5 @@
 .interested__button_cancel{
   color: #E00E28;
   border-left: 1px solid rgba(2, 7, 18, 0.1);;
-  padding-left: 15%;
+  padding-left: 15px;
 }

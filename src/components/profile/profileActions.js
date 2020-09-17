@@ -90,7 +90,6 @@ export const addCanceledPosts = (post, status) => {
                 }
             })
             .then(res => {
-                console.log(res)
                 axios
                     .post(`${mainURL}/users/update/`, {
                         canceled_posts: res.data.canceled_posts + 1
@@ -121,7 +120,8 @@ export const changePostStatusProvide = (post, status) => {
         axios
             .put(`${mainURL}/api/provide-services/${post.id}/`, {
                     status: status,
-                    deadline: post.deadline
+                    deadline: post.deadline,
+                    id: post.id
                 },
                 {
                     headers: {

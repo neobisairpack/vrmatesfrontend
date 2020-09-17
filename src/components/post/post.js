@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import {getPostsDashboard, sendInterestedRequest, sendInterestedRequestProvide, setIsSendFalse} from "./postActions";
 import Notification from "../notification/notification";
 
-const Post = React.memo((props) => {
+const Post = (props) => {
     const [activeModal, setActiveModal] = useState(null);
     const [notShow, setNotShow] = useState(false)
     const [notMessage, setNotMessage] = useState("")
@@ -175,7 +175,7 @@ const Post = React.memo((props) => {
 
         </div>
     );
-});
+};
 const mapStateToProps = state => {
     return {
         post: state.post,

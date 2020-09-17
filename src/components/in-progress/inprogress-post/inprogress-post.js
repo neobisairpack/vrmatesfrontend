@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import './style/inprogress-post.css';
 import {DropdownButton, Dropdown} from "react-bootstrap";
-import {changePostStatus, changePostStatusProvide} from "../../profile/profileActions";
+import {addCanceledPosts, changePostStatus, changePostStatusProvide} from "../../profile/profileActions";
 import {connect} from "react-redux";
 import Box from "@material-ui/core/Box";
 import {withStyles} from "@material-ui/core/styles";
@@ -22,7 +22,7 @@ import {withRouter} from "react-router-dom";
 import {setCurrentUser} from "../../post/postActions";
 
 const InProgressPost = (props) => {
-    const urlImg = 'http://167.172.178.135:8000';
+    const urlImg = 'https://vrmates.co';
     const [activeModal, setActiveModal] = useState(null);
     const [logoutShow, setLogoutShow] = useState(false);
     const [logoutMessage, setLogoutMessage] = useState("")
@@ -33,7 +33,7 @@ const InProgressPost = (props) => {
     useEffect(() => {
         if (choice !== "") {
             setLogoutShow(false)
-            curPost.createdBy === "Requester" ? sendCancel() : sendCancelProvider()
+            sendCancel()
         }
     },)
     let types = {
@@ -61,13 +61,14 @@ const InProgressPost = (props) => {
     }
     const cancelHandler = (item) => {
         setCurPost(item)
-        setLogoutMessage("Are sure you want to cancel the post? Points will be divided according to date.");
-        setLogoutShow(true)
-    }
-    const cancelProvider = (item) => {
-        setCurPost(item)
-        setLogoutMessage("Are sure you want to cancel the post?");
-        setLogoutShow(true)
+        if(item.createdBy === "Requester"){
+            setLogoutMessage("Are sure you want to cancel the post?")
+            setLogoutShow(true)
+        }
+        else if(item.createdBy === "Provider"){
+            setLogoutMessage("Are sure you want to cancel the post?")
+            setLogoutShow(true)
+        }
     }
     const setUserFunc = (user) => {
         props.setUser(user)
@@ -81,17 +82,11 @@ const InProgressPost = (props) => {
     const sendCancel = () => {
         if (choice === "yes") {
             let status = "Canceled"
-            props.changePostStatus(curPost, status)
+            props.addCanceledPosts(curPost, status)
         }
         setChoice("")
     }
-    const sendCancelProvider = () => {
-        if (choice === "yes") {
-            let status = "Canceled"
-            props.changePostStatusProvide(curPost, status)
-        }
-        setChoice("")
-    }
+
     const {posts} = props;
     return (
         <div className={"post container"}>
@@ -216,10 +211,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        changePostStatus: (post, status) =>
-            dispatch(changePostStatus(post, status)),
-        changePostStatusProvide: (post, status) =>
-            dispatch(changePostStatusProvide(post, status)),
+        addCanceledPosts: (post, status) =>
+            dispatch(addCanceledPosts(post, status)),
         setUser: (user) =>
             dispatch(setCurrentUser(user)),
     }

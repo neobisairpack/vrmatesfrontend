@@ -16,6 +16,9 @@ const LoginForm = (props) => {
     const [password, setPassword] = useState(null)
     const [notShow, setNotShow] = useState(false)
     const [notMessage, setNotMessage] = useState("")
+    const [toggleClass, setToggleClass] = useState("fa fa-eye")
+    const [passwordDisplay, setPasswordDisplay] = useState("password")
+
     const handleSubmit = (e) => {
         e.preventDefault(e)
         axios.post('https://vrmates.co/backend/users/login/', {
@@ -37,6 +40,18 @@ const LoginForm = (props) => {
             })
     }
 
+    // Displaying password
+    const changeToggleClass = () => {
+        if (toggleClass === "fa fa-eye") {
+            setToggleClass("fa fa-eye fa-eye-slash")
+            setPasswordDisplay("text")
+        } else {
+            setToggleClass("fa fa-eye")
+            setPasswordDisplay("password")
+        }
+    }
+
+
     return (
         <div className="login-container">
             <div className={"login-form"}>
@@ -54,16 +69,23 @@ const LoginForm = (props) => {
                                     onChange={(e) => setEmail(e.target.value)}
                                     required/>
                             </FormGroup>
-                            <FormGroup>
+                            <FormGroup className={"input-group"}>
                                 <Input
-                                    type={"password"}
+                                    type={passwordDisplay}
                                     name={"password"}
                                     className={"login__input"}
                                     placeholder={"Password"}
                                     required
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
+                                <button 
+                                    type={"button"} 
+                                    id={"btnToggle"} 
+                                    className={"password-toggle"}>
+                                    <i id={"eyeIcon"} class={toggleClass} onClick={changeToggleClass}></i>
+                                </button>
                             </FormGroup>
+
                             <Link to={"/reset-password"}>
                                 <Label check className={"login__forgot-pswrd"}>
                                     Forgot password?

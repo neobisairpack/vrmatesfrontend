@@ -15,6 +15,7 @@
     background-color: rgba(32, 42, 73, 0.3);
   }
 }
+
 .login-form{
   z-index: 5;
   display: grid;
@@ -36,6 +37,22 @@
     height: 400px;
   }
 }
+
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.password-toggle {
+  background: none;
+  border: none;
+  font-weight: 600;
+  position: absolute;
+  right: .75em;
+  top: .75em;
+  z-index: 9;
+}
+
 .reset-form{
   z-index: 5;
   position: absolute;
